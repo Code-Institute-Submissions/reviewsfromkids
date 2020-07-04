@@ -38,6 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites', # 1.3 Used by socialaccount app to create callback URLS
+    'allauth', # 1.3 Allauth itself
+    'allauth.account', # 1.3 Basic account stuff like log in, password reset, etc.
+    'allauth.socialaccount', # 1.3 Log in via social accounts
 ]
 
 MIDDLEWARE = [
@@ -67,6 +71,27 @@ TEMPLATES = [
         },
     },
 ]
+
+AUTHENTICATION_BACKENDS = (
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+SITE_ID = 1 # 1.4 Used by socialaccount app to create callback URLS
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' # 1.7 To test confirmation mails via console
+
+# 1.8
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
+ACCOUNT_USERNAME_MIN_LENGTH = 4
+LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = '/' # 1.9 Change this redirect from / to /success to test
 
 WSGI_APPLICATION = 'reviewsfromkids.wsgi.application'
 

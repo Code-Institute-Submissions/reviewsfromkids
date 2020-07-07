@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'allauth', # 1.3 Allauth itself
     'allauth.account', # 1.3 Basic account stuff like log in, password reset, etc.
     'allauth.socialaccount', # 1.3 Log in via social accounts
+    'home',
 ]
 
 MIDDLEWARE = [
@@ -56,7 +57,10 @@ ROOT_URLCONF = 'reviewsfromkids.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates'), # 3.7
+            os.path.join(BASE_DIR, 'templates', 'allauth'), # 3.7
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -141,3 +145,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),) # 4.4
+
+# 4.5
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

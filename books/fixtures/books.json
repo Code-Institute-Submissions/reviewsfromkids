@@ -1,0 +1,53 @@
+[
+    {"pk": 1, "model": "books.book", 
+        "fields": {
+            "isbn": "9780439064873", 
+            "title": "Harry Potter and the Sorcerer's Stone",
+            "author": "J.K. Rowling",
+            "description": "The Dursleys were so mean that hideous that summer that all Harry Potter wanted was to get back to the Hogwarts School for Witchcraft and Wizardry. But just as he's packing his bags, Harry receives a warning from a strange, impish creature named Dobby who says that if Harry Potter returns to Hogwarts, disaster will strike.",
+            "image_url": "https://images-na.ssl-images-amazon.com/images/I/51jNORv6nQL._SX340_BO1,204,203,200_.jpg", 
+            "image": "51jNORv6nQL._SX340_BO1,204,203,200_.jpg",
+            "pages": 341,
+            "category": 1,
+            "age": 8,
+            "gender": "all", 
+            "rating": 4.6,
+            "number_of_ratings": 10,
+            "price": 5.50
+        }
+    },
+    {"pk": 2, "model": "books.book", 
+        "fields": {
+            "isbn": "9780439136365", 
+            "title": "Harry Potter And The Prisoner Of Azkaban",
+            "author": "J.K. Rowling",
+            "description": "For twelve long years, the dread fortress of Azkaban held an infamous prisoner named Sirius Black. Convicted of killing thirteen people with a single curse, he was said to be the heir apparent to the Dark Lord, Voldemort. Now he has escaped, leaving only two clues as to where he might be headed: Harry Potter's defeat of You-Know-Who was Black's downfall as well.",
+            "image_url": "https://images-na.ssl-images-amazon.com/images/I/51IiQ4r35LL._SX345_BO1,204,203,200_.jpg", 
+            "image": "51IiQ4r35LL._SX345_BO1,204,203,200_.jpg",
+            "pages": 448,
+            "category": 3,
+            "age": 9,
+            "gender": "girls", 
+            "rating": 4.1,
+            "number_of_ratings": 13,
+            "price": 5.50
+        }
+    },
+    {"pk": 3, "model": "books.book", 
+        "fields": {
+            "isbn": "9780439139601", 
+            "title": "Harry Potter and the Goblet of Fire",
+            "author": "J.K. Rowling",
+            "description": "The Dursleys were so mean that hideous that summer that all Harry Potter wanted was to get back to the Hogwarts School for Witchcraft and Wizardry. But just as he's packing his bags, Harry receives a warning from a strange, impish creature named Dobby who says that if Harry Potter returns to Hogwarts, disaster will strike.",
+            "image_url": "https://images-na.ssl-images-amazon.com/images/I/513d-GGhWsL.jpg", 
+            "image": "513d-GGhWsL.jpg",
+            "pages": 752,
+            "category": 6,
+            "age": 10,
+            "gender": "boys", 
+            "rating": 4.6,
+            "number_of_ratings": 10,
+            "price": 5.50
+        }
+    }
+]

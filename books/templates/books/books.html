@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+    
+{% endblock %}
+
+
+  {% block hero %} 
+  {% endblock %}
+
+  {% block content %}
+    <main>
+      {% include 'includes/sort-bar.html' %}
+      {{ books }}
+    </main>
+  {% endblock %}

@@ -2,26 +2,52 @@
 {% load static %}
 
 {% block page_header %}
-    <div class="container header-container">
-        <div class="row">
-            <div class="col"></div>
-        </div>
-    </div>
+    
 {% endblock %}
 
-{% block content %}
-    <div class="container h-100">
-        <div class="row h-100">
-            <div class="col-7 col-md-6 my-auto">
-                <h1 class="display-4 logo-font text-black">
-                    The new collections are here
-                </h1>
-                <div class="my-5">
-                    <h4>
-                        <a href="" class="shop-now-button btn btn-lg rounded-0 text-uppercase py-3">Shop Now</a>
-                    </h4>
+<!-- show landing page if user is not logged in-->
+{% if not 'username' in session %} 
+  {% include 'landing-page.html' %}
+
+<!-- show home page if user is logged in-->
+{% else %}
+
+  {% block hero %} 
+  {% endblock %}
+
+  {% block content %}
+    <main>
+      {% include 'includes/sort-bar.html' %}
+      <!-- all ages, boys and girls: top 25 based on reviews. -->
+      <div class="wrapper">
+        <section id="top-5">
+            <h2 class="section-title">Thuisblijf Top-10</h2>
+            <div class="top-lists">
+                <div class="top-ten-card top-ten-card-blue">
+                    <div class="top-ten-card__circle-blue">
+                    <div class="top-ten-card__circle-blue-text">6+</div>
+                    </div>
+                    <p class="top-ten-card__content">De top-10 voor jongens en meiden vanaf 6 jaar.</p>
+                    <a class="btn top-ten-card-btn" href="top-10-vanaf-6-jaar.html">kijk</a>
+                </div>
+                <div class="top-ten-card top-ten-card-green">
+                    <div class="top-ten-card__circle-green">
+                    <div class="top-ten-card__circle-green-text">?</div>
+                    </div>
+                    <p class="top-ten-card__content">Binnenkort: een top-10 voor meiden!</p>
+                    <div class="btn top-ten-card-btn btn-inactive" href="#">binnenkort...</div>
+                </div>
+                <div class="top-ten-card top-ten-card-purple">
+                    <div class="top-ten-card__circle-purple">
+                    <div class="top-ten-card__circle-purple-text">?</div>
+                    </div>
+                    <p class="top-ten-card__content">Binnenkort: een top-10 voor jongens!</p>
+                    <div class="btn top-ten-card-btn btn-inactive" href="#">binnenkort...</div>
                 </div>
             </div>
-        </div>
+        </section>
     </div>
-{% endblock %}
+    </main>
+  {% endblock %}
+
+{% endif %}

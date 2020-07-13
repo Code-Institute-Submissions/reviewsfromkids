@@ -1,0 +1,20 @@
+[
+    {"pk": 1, "model": "books.tag", 
+        "fields": {
+            "name": "wizards", 
+            "friendly_name": "wizards"
+            }
+    }, 
+    {"pk": 2, "model": "books.tag",
+         "fields": {
+             "name": "fantasy", 
+             "friendly_name": "fantasy"
+            }
+    },
+    {"pk": 3, "model": "books.tag",
+        "fields": {
+            "name": "dark_sorcery", 
+            "friendly_name": "dark sorcery"
+           }
+   }
+]

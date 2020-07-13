@@ -1,0 +1,164 @@
+.site-header {
+
+    height: auto;
+    position: fixed;
+    background-color: $mainPurple;
+    width: 100%;
+    z-index: 3;
+    display: grid;
+    grid-template-columns: 15% 1fr 15%;
+    justify-items: center;
+    align-items: center;
+    margin-bottom: 7rem;
+ 
+    @mixin atMedium {
+
+        position: absolute;
+        top: 50px;
+
+    }
+    
+    h1 {
+    
+        padding-top: 25px;
+        text-align: center;
+        font-size: 3rem;  
+
+    }
+
+    h2 {
+        
+        position: relative;
+        top: 310px;
+        text-align: center; 
+        
+    }
+
+    &__logo {
+        
+        grid-column: 2;
+
+        &--img {
+
+            height: 55px;
+            
+        }
+    
+        @mixin atMedium {
+            margin: 0 auto 1rem auto;
+        }
+    }
+
+    &__menu-icon {
+        width: 20px;
+        height: 19px;
+        position: absolute;
+        top: 25px;
+        left: 20px;
+        z-index: 3;
+        grid-column: 1;
+
+        @mixin atMedium {
+            display: none;
+        }
+
+        &::before {
+            content: "";    
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 20px;
+            height: 3px;
+            background-color: white;
+            transform-origin: 0 0;
+            transition: transform .3s ease-out;
+        }
+
+        &__middle {
+            position: absolute;
+            top: 8px;
+            left: 0;
+            width: 20px;
+            height: 3px;
+            background-color: white;
+            transition: opacity .3s ease-out;
+        }
+
+        &::after {
+            content: "";  
+            position: absolute;
+            bottom: 0px;
+            left: 0;
+            width: 20px;
+            height: 3px;
+            background-color: white;
+            transform-origin: 0 100%;
+            transition: transform .3s ease-out;
+        }
+    }
+
+    &__menu-icon--close-x {
+        &::before {
+            transform: rotate(45deg) scaleX(1.25);
+        }
+    
+        .site-header__menu-icon__middle {
+            opacity: 0;
+        }
+
+    
+        &::after {
+            transform: rotate(-45deg) scaleX(1.25) translateY(1px);
+        }
+    }
+
+
+    &__overlay {
+        height: 100%;
+        width: 100%;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: $mainPurple;
+        overflow-y: hidden;
+        transition: 0.5s;
+        border-top: 2px solid $mainTurq;
+        border-bottom: 10px solid $mainTurq;
+        display: none;
+        background-image: url("assets/images/waves.svg");
+        background-position: center;
+        background-size: cover;
+        color: #fff;
+
+    &--is-visible {
+        display: block;
+    }
+        
+    }
+
+      &__overlay-content {
+        position: relative;
+        /* top: 25%; */
+        width: 100%;
+        text-align: center;
+        /* margin-top: 30px; */
+      }
+      
+      &__overlay a {
+        padding: 8px;
+        text-decoration: none;
+        color: white;
+        font-size: 16px;
+        display: block;
+        transition: 0.3s;
+      }
+      
+      &__overlay a:hover, .overlay a:focus {
+        color: $mainYellow;
+      }
+
+
+}
+
+

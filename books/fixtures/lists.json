@@ -1,0 +1,14 @@
+[
+    {"pk": 1, "model": "books.list", 
+        "fields": {
+            "name": "summer_holiday", 
+            "friendly_name": "Top 25 Summer Holiday"
+            }
+    }, 
+    {"pk": 2, "model": "books.list",
+         "fields": {
+             "name": "xmas_top10", 
+             "friendly_name": "Christmas Top 10"
+            }
+    }
+]

@@ -1,0 +1,34 @@
+[
+    {"pk": 1, "model": "books.category", 
+        "fields": {
+            "name": "action_adventure", 
+            "friendly_name": "Action & Adventure"
+            }
+    }, 
+    {"pk": 2, "model": "books.category",
+         "fields": {
+             "name": "animals_nature", 
+             "friendly_name": "Animals & Nature"
+            }
+    }, 
+    {"pk": 3, "model": "books.category", 
+        "fields": {"name": "fantasy_magic", 
+            "friendly_name": "Fantasy & Magic"
+            }
+    },
+    {"pk": 4, "model": "books.category", 
+        "fields": {"name": "history", 
+            "friendly_name": "History"
+            }
+    },
+    {"pk": 5, "model": "books.category", 
+        "fields": {"name": "sports", 
+            "friendly_name": "Sports"
+            }
+    },
+    {"pk": 6, "model": "books.category", 
+        "fields": {"name": "friendship", 
+            "friendly_name": "Friendship"
+            }
+    }
+]

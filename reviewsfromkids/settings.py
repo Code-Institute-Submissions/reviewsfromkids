@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount', # 1.3 Log in via social accounts
     'home',
     'books',
+    'taggit',
 ]
 
 MIDDLEWARE = [

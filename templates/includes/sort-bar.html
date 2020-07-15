@@ -1,11 +1,24 @@
 <div class="sort-bar">
-    <form class="sort-bar__age">
-        <h5>Age:</h5>
-        <select></select>
+    
+    <form class="sort-bar__age" action="">
+        <div class="dropup">
+            <button class=" dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">age
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="#">14 and up</a>
+              <a class="dropdown-item" href="#">12 to 14</a>
+              <a class="dropdown-item" href="#">10 to 12</a>
+              <a class="dropdown-item" href="#">8 to 10</a>
+              <a class="dropdown-item" href="#">6 to 8</a>
+              <a class="dropdown-item" href="#">under 6</a>
+            </div>
+          </div>
     </form>
+
     <form class="sort-bar__gender">
-        <button type="button" class="btn btn-primary">Girls</button>
-        <button type="button" class="btn btn-primary">Boys</button>
-        <button type="button" class="btn btn-primary">All</button>
+        <button type="button" class="sort-bar__gender--item">All</button>
+        <button type="button" class="sort-bar__gender--item">Girls</button>
+        <button type="button" class="sort-bar__gender--item">Boys</button>
     </form>
+
 </div>

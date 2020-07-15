@@ -158,11 +158,23 @@
 }
 
 .sort-bar {
-  margin-top: 4rem;
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: 30% 70%;
 }
-
-.btn-primary {
+.sort-bar__age {
+  align-self: center;
+  justify-self: center;
+}
+.sort-bar__gender {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+.sort-bar__gender--item {
+  width: 90%;
+  justify-self: center;
   background-color: #e166c4;
+  color: white;
 }
 
 .book-card {

@@ -1,7 +1,29 @@
 .sort-bar {
-    margin-top: 4rem;
-}
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: 30% 70%;
+    // width: 90%;
 
-.btn-primary {
-    background-color: $mainPink;
+    &__age {
+
+        align-self: center;
+        justify-self: center;
+
+    }
+
+    &__gender {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    
+        &--item {
+
+            width: 90%;
+            //align-self: center;
+            justify-self: center;
+            background-color: $mainPink;
+            color: white;
+        
+        }
+    }
+
 }

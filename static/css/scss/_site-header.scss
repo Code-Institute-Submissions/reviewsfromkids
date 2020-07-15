@@ -92,7 +92,7 @@
 
     &__menu-icon--close-x {
         &::before {
-            transform: rotate(45deg) scaleX(1.25);
+            transform: rotate(45deg) scaleX(1);
         }
     
         .site-header__menu-icon__middle {
@@ -101,7 +101,7 @@
 
     
         &::after {
-            transform: rotate(-45deg) scaleX(1.25) translateY(1px);
+            transform: rotate(-45deg) scaleX(1) translateY(1.1px) translateX(-0.5px);
         }
     }
 
@@ -125,10 +125,8 @@
         background-color: $mainPurple;
         overflow-y: hidden;
         transition: 0.5s;
-        border-top: 2px solid $mainTurq;
-        border-bottom: 10px solid $mainTurq;
         display: none;
-        background-image: url("assets/images/waves.svg");
+        background-image: url("/media/waves.svg");
         background-position: center;
         background-size: cover;
         color: #fff;

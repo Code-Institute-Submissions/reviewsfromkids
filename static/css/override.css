@@ -83,13 +83,13 @@
   transition: transform 0.3s ease-out;
 }
 .site-header__menu-icon--close-x::before {
-  transform: rotate(45deg) scaleX(1.25);
+  transform: rotate(45deg) scaleX(1);
 }
 .site-header__menu-icon--close-x .site-header__menu-icon__middle {
   opacity: 0;
 }
 .site-header__menu-icon--close-x::after {
-  transform: rotate(-45deg) scaleX(1.25) translateY(1px);
+  transform: rotate(-45deg) scaleX(1) translateY(1.1px) translateX(-0.5px);
 }
 .site-header__search {
   align-self: center;
@@ -108,10 +108,8 @@
   background-color: #7d51a1;
   overflow-y: hidden;
   transition: 0.5s;
-  border-top: 2px solid #00d4f7;
-  border-bottom: 10px solid #00d4f7;
   display: none;
-  background-image: url("assets/images/waves.svg");
+  background-image: url("/media/waves.svg");
   background-position: center;
   background-size: cover;
   color: #fff;

@@ -7,23 +7,34 @@
     background-position: center;
     background-size: cover;
     background-color: $mainHero;
+    display: grid;
+    grid-template-columns: 5% 1fr 5%;
+    grid-template-rows: 1fr 1fr 1fr;
 
     h1 {
         color: white;
         text-align: center;
-    }
-
-    &__helper {
-        display: block;
-        margin-left: 9rem;
-        margin-top: 2rem;
-
+        grid-column: 2;
+        grid-row: 1;
     }
 
     &__icon {
         color: white;
-        display: block;
-        margin: 1rem auto;
+        grid-column: 2;
+        grid-row: 2;
+        align-self: center;
+        justify-self: center;
         
+    }
+
+    &__btn {
+
+        grid-row: 3;
+        grid-column: 2;
+        align-self: center;
+        justify-self: center;
+        width: 100px;
+        background-color: $mainOrange;
+
     }
 }

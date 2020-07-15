@@ -1,13 +1,33 @@
-.shop-now-button {
-  background: pink;
-  color: purple;
-  min-width: 260px;
+.hero {
+  margin-top: 2rem;
+  padding-top: 5rem;
+  padding-bottom: 2rem;
+  height: auto;
+  background-image: url("/media/waves.svg");
+  background-position: center;
+  background-size: cover;
+  background-color: #52c5fb;
+}
+.hero h1 {
+  color: white;
+  text-align: center;
+}
+.hero__helper {
+  display: block;
+  margin-left: 9rem;
+  margin-top: 2rem;
+}
+.hero__icon {
+  color: white;
+  display: block;
+  margin: 1rem auto;
 }
 
 .site-header {
   height: auto;
   position: fixed;
   top: 0;
+  padding: 0.5rem 0;
   background-color: #7d51a1;
   width: 100%;
   z-index: 3;
@@ -15,7 +35,6 @@
   grid-template-columns: 15% 1fr 15%;
   justify-items: center;
   align-items: center;
-  margin-bottom: 7rem;
 }
 .site-header h1 {
   padding-top: 25px;
@@ -36,17 +55,13 @@
 .site-header__menu-icon {
   width: 20px;
   height: 19px;
-  position: absolute;
-  top: 25px;
-  left: 20px;
   z-index: 3;
   grid-column: 1;
+  display: grid;
+  align-items: center;
 }
 .site-header__menu-icon::before {
   content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 20px;
   height: 3px;
   background-color: white;
@@ -54,9 +69,6 @@
   transition: transform 0.3s ease-out;
 }
 .site-header__menu-icon__middle {
-  position: absolute;
-  top: 8px;
-  left: 0;
   width: 20px;
   height: 3px;
   background-color: white;
@@ -64,9 +76,6 @@
 }
 .site-header__menu-icon::after {
   content: "";
-  position: absolute;
-  bottom: 0px;
-  left: 0;
   width: 20px;
   height: 3px;
   background-color: white;
@@ -81,6 +90,13 @@
 }
 .site-header__menu-icon--close-x::after {
   transform: rotate(-45deg) scaleX(1.25) translateY(1px);
+}
+.site-header__search {
+  align-self: center;
+  justify-self: center;
+}
+.site-header__search--icon {
+  color: white;
 }
 .site-header__overlay {
   height: 100%;
@@ -191,6 +207,46 @@
   font-weight: 700;
   text-decoration: none;
   display: block;
+}
+
+.search-bar__overlay {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #7d51a1;
+  overflow-y: hidden;
+  transition: 0.5s;
+  border-top: 2px solid #00d4f7;
+  border-bottom: 10px solid #00d4f7;
+  display: none;
+  background-image: url("assets/images/waves.svg");
+  background-position: center;
+  background-size: cover;
+  color: #fff;
+}
+.search-bar__overlay--is-visible {
+  display: block;
+}
+.search-bar__overlay-content {
+  position: relative;
+  /* top: 25%; */
+  width: 100%;
+  text-align: center;
+  /* margin-top: 30px; */
+}
+.search-bar__overlay a {
+  padding: 8px;
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+  display: block;
+  transition: 0.3s;
+}
+.search-bar__overlay a:hover, .search-bar .overlay a:focus {
+  color: #fec944;
 }
 
 /*# sourceMappingURL=override.css.map */

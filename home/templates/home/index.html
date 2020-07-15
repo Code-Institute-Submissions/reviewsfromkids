@@ -12,7 +12,12 @@
 <!-- show home page if user is logged in-->
 {% else %}
 
-  {% block hero %} 
+  {% block hero %}
+    <div class="hero">
+      <h1>Find your next favorite book.</h1>
+      <div class="hero__helper"><i class="fas fa-thumbs-up fa-5x hero__icon"></i></div>
+    </div>
+    
   {% endblock %}
 
   {% block content %}

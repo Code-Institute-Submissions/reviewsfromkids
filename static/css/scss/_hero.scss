@@ -1,5 +1,29 @@
-.shop-now-button {
-    background: pink;
-    color: purple;
-    min-width: 260px;
+.hero {
+    margin-top: 2rem;
+    padding-top: 5rem;
+    padding-bottom: 2rem;
+    height: auto;
+    background-image: url("/media/waves.svg");
+    background-position: center;
+    background-size: cover;
+    background-color: $mainHero;
+
+    h1 {
+        color: white;
+        text-align: center;
+    }
+
+    &__helper {
+        display: block;
+        margin-left: 9rem;
+        margin-top: 2rem;
+
+    }
+
+    &__icon {
+        color: white;
+        display: block;
+        margin: 1rem auto;
+        
+    }
 }

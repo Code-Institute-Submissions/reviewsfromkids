@@ -3,6 +3,7 @@
     height: auto;
     position: fixed;
     top: 0;
+    padding: 0.5rem 0;
     background-color: $mainPurple;
     width: 100%;
     z-index: 3;
@@ -10,7 +11,8 @@
     grid-template-columns: 15% 1fr 15%;
     justify-items: center;
     align-items: center;
-    margin-bottom: 7rem;
+    
+    
  
     @mixin atMedium {
 
@@ -53,11 +55,10 @@
     &__menu-icon {
         width: 20px;
         height: 19px;
-        position: absolute;
-        top: 25px;
-        left: 20px;
         z-index: 3;
         grid-column: 1;
+        display: grid;
+        align-items: center;
 
         @mixin atMedium {
             display: none;
@@ -65,9 +66,6 @@
 
         &::before {
             content: "";    
-            position: absolute;
-            top: 0;
-            left: 0;
             width: 20px;
             height: 3px;
             background-color: white;
@@ -76,9 +74,6 @@
         }
 
         &__middle {
-            position: absolute;
-            top: 8px;
-            left: 0;
             width: 20px;
             height: 3px;
             background-color: white;
@@ -86,10 +81,7 @@
         }
 
         &::after {
-            content: "";  
-            position: absolute;
-            bottom: 0px;
-            left: 0;
+            content: "";
             width: 20px;
             height: 3px;
             background-color: white;
@@ -110,6 +102,15 @@
     
         &::after {
             transform: rotate(-45deg) scaleX(1.25) translateY(1px);
+        }
+    }
+
+    &__search {
+        align-self: center;
+        justify-self: center;
+
+        &--icon {
+            color: white;
         }
     }
 

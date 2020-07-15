@@ -1,5 +1,6 @@
 <!-- 2.2 -->
 {% load static %}
+<script type="module" src="{% static 'scripts/App.js' %}"></script>
 
 <!doctype html>
 <html lang="en">
@@ -32,7 +33,7 @@
     <!-- 2.3 -->
     {% block corejs %}
       <!-- 4.3 -->
-      <script src="https://kit.fontawesome.com/e9c73d7092.js" crossorigin="anonymous"></script>
+      <script src="https://kit.fontawesome.com/aca8a0f519.js" crossorigin="anonymous"></script>
       <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
       <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
@@ -52,6 +53,7 @@
         
         {% include 'includes/main-nav.html' %}
         {% include 'includes/overlay-nav.html' %}
+        {% include 'includes/overlay-search.html' %}
         
         <div class="site-header__menu-icon">
             <div class="site-header__menu-icon__middle"></div>
@@ -60,6 +62,10 @@
         <a class="site-header__logo" href="">
             <img class="site-header__logo--img" src="/media/logo.jpg" alt="logo voorkidsdoorkids">
         </a>
+
+        <div class="site-header__search">
+          <i class="fas fa-search site-header__search--icon"></i>
+        </div>
 
     </header>
 

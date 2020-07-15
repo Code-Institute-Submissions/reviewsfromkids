@@ -1,5 +1,7 @@
-from django.shortcuts import render, get_object_or_404 # 10.5 import get_object_or_404
+from django.shortcuts import render, redirect, reverse, get_object_or_404 # 10.5 import get_object_or_404
 from .models import Book # 7.2
+from django.db.models import Q # 11.3
+from django.contrib import messages
 from django.views.generic import ListView
 
 # Create your views here.
@@ -8,12 +10,22 @@ from django.views.generic import ListView
 def all_books(request):
     """ A view to show all books, including sorting and search queries """
     
-    # 7.3 grab all products from the database and put it in products
     books = Book.objects.all() 
+    query = None
 
-    # 7.4 make the books available for the template by adding this to the context
+    if request.GET:
+        if 'q' in request.GET:
+            query = request.GET['q']
+            if not query:
+                messages.error(request, "You didn't enter any search criteria!")
+                return redirect (reverse('books'))
+            
+            queries =  Q(tags__name__icontains=query) | Q(title__icontains=query) | Q(description__icontains=query)
+            books = books.filter(queries).distinct()
+
     context = {
         'books': books,
+        'search_term': query,
     }
 
     return render(request, 'books/books.html', context)

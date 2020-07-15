@@ -1,0 +1,47 @@
+.search-bar {
+
+    &__overlay {
+        height: 100%;
+        width: 100%;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: $mainPurple;
+        overflow-y: hidden;
+        transition: 0.5s;
+        border-top: 2px solid $mainTurq;
+        border-bottom: 10px solid $mainTurq;
+        display: none;
+        background-image: url("assets/images/waves.svg");
+        background-position: center;
+        background-size: cover;
+        color: #fff;
+
+        &--is-visible {
+            display: block;
+        }
+        
+    }
+
+    &__overlay-content {
+    position: relative;
+    /* top: 25%; */
+    width: 100%;
+    text-align: center;
+    /* margin-top: 30px; */
+    }
+      
+    &__overlay a {
+    padding: 8px;
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    display: block;
+    transition: 0.3s;
+    }
+      
+    &__overlay a:hover, .overlay a:focus {
+    color: $mainYellow;
+    }
+}

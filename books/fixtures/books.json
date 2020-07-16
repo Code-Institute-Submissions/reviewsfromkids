@@ -13,7 +13,9 @@
             "gender": "all", 
             "rating": 4.6,
             "number_of_ratings": 10,
-            "price": 5.50
+            "price": 5.50,
+            "featured_item": "True",
+            "date_added": "2020-07-16"
         }
     },
     {"pk": 2, "model": "books.book", 
@@ -30,7 +32,9 @@
             "gender": "girls", 
             "rating": 4.1,
             "number_of_ratings": 13,
-            "price": 5.50
+            "price": 5.50,
+            "featured_item": "True",
+            "date_added": "2020-07-16"
         }
     },
     {"pk": 3, "model": "books.book", 
@@ -47,7 +51,142 @@
             "gender": "boys", 
             "rating": 4.6,
             "number_of_ratings": 10,
-            "price": 5.50
+            "price": 5.50,
+            "featured_item": "True",
+            "date_added": "2020-07-16"
+        }
+    },
+    {"pk": 4, "model": "books.book", 
+        "fields": {
+            "isbn": "9780316085274", 
+            "title": "How to Train Your Dragon",
+            "author": "Cressida Cowell",
+            "description": "Hiccup Horrendous Haddock III, the quiet and thoughtful son of the Chief of the Hairy Hooligans, tries to pass the important initiation test of his Viking clan by catching and training a dragon. Can Hiccup do it without being torn limb from limb? Join his adventures and misadventures as he finds a new way to train dragons--and becomes a hero. This action-packed, hilarious, and perfectly illustrated novel is a modern classic beloved by millions across the globe.",
+            "image_url": "https://images-na.ssl-images-amazon.com/images/I/51aXNkS2bjL._SX337_BO1,204,203,200_.jpg", 
+            "image": "51aXNkS2bjL._SX337_BO1,204,203,200_.jpg",
+            "pages": 256,
+            "category": 6,
+            "age": 8,
+            "gender": "boys", 
+            "rating": 4.6,
+            "number_of_ratings": 10,
+            "price": 5.50,
+            "featured_item": "False",
+            "date_added": "2020-07-16"
+        }
+    },
+    {"pk": 5, "model": "books.book", 
+        "fields": {
+            "isbn": " 9780142410318", 
+            "title": "Charlie and the Chocolate Factory",
+            "author": "Roald Dahl",
+            "description": "Willy Wonka's famous chocolate factory is opening at last! But only five lucky children will be allowed inside. And the winners are: Augustus Gloop, an enormously fat boy whose hobby is eating; Veruca Salt, a spoiled-rotten brat whose parents are wrapped around her little finger; Violet Beauregarde, a dim-witted gum-chewer with the fastest jaws around; Mike Teavee, a toy pistol-toting gangster-in-training who is obsessed with television; and Charlie Bucket, Our Hero, a boy who is honest and kind, brave and true, and good and ready for the wildest time",
+            "image_url": "https://images-na.ssl-images-amazon.com/images/I/51W8IWdCSKL._SX322_BO1,204,203,200_.jpg", 
+            "image": "51W8IWdCSKL._SX322_BO1,204,203,200_.jpg",
+            "pages": 192,
+            "category": 6,
+            "age": 8,
+            "gender": "all", 
+            "rating": 4.6,
+            "number_of_ratings": 10,
+            "price": 5.50,
+            "featured_item": "False",
+            "date_added": "2020-07-16"
+        }
+    },
+    {"pk": 6, "model": "books.book", 
+        "fields": {
+            "isbn": "9780142410325", 
+            "title": "Charlie and the Great Glass Elevator",
+            "author": "Roald Dahl",
+            "description": "Last seen flying through the sky in a giant elevator in Charlie and the Chocolate Factory, Charlie Bucket's back for another adventure. When the giant elevator picks up speed, Charlie, Willy Wonka, and the gang are sent hurtling through space and time. Visiting the world’' first space hotel, battling the dreaded Vermicious Knids, and saving the world are only a few stops along this remarkable, intergalactic joyride.",
+            "image_url": "https://images-na.ssl-images-amazon.com/images/I/51v+rlUkoGL._SX323_BO1,204,203,200_.jpg", 
+            "image": "51v+rlUkoGL._SX323_BO1,204,203,200_.jpg",
+            "pages": 159,
+            "category": 6,
+            "age": 8,
+            "gender": "all", 
+            "rating": 4.6,
+            "number_of_ratings": 10,
+            "price": 5.50,
+            "featured_item": "False",
+            "date_added": "2020-07-16"
+        }
+    },
+    {"pk": 7, "model": "books.book", 
+        "fields": {
+            "isbn": " 9780061124952", 
+            "title": "Charlotte's Web",
+            "author": "E. B. White",
+            "description": "Some Pig. Humble. Radiant. These are the words in Charlotte's Web, high up in Zuckerman's barn. Charlotte's spiderweb tells of her feelings for a little pig named Wilbur, who simply wants a friend. They also express the love of a girl named Fern, who saved Wilbur's life when he was born the runt of his litter.",
+            "image_url": "https://images-na.ssl-images-amazon.com/images/I/61+3z1o4oUL._SX334_BO1,204,203,200_.jpg", 
+            "image": "61+3z1o4oUL._SX334_BO1,204,203,200_.jpg",
+            "pages": 192,
+            "category": 6,
+            "age": 8,
+            "gender": "girls", 
+            "rating": 4.6,
+            "number_of_ratings": 10,
+            "price": 5.50,
+            "featured_item": "False",
+            "date_added": "2020-07-16"
+        }
+    },
+    {"pk": 8, "model": "books.book", 
+        "fields": {
+            "isbn": " 9781419741852", 
+            "title": "Diary of a Wimpy Kid: Book 1",
+            "author": "Jeff Kinney",
+            "description": "It’s a new school year, and Greg Heffley finds himself thrust into middle school, where undersized weaklings share the hallways with kids who are taller, meaner, and already shaving. The hazards of growing up before you’re ready are uniquely revealed through words and drawings as Greg records them in his diary.",
+            "image_url": "https://images-na.ssl-images-amazon.com/images/I/51+trz4Y98L._SY344_BO1,204,203,200_.jpg", 
+            "image": "51+trz4Y98L._SY344_BO1,204,203,200_.jpg",
+            "pages": 224,
+            "category": 7,
+            "age": 8,
+            "gender": "boys", 
+            "rating": 4.6,
+            "number_of_ratings": 10,
+            "price": 5.50,
+            "featured_item": "False",
+            "date_added": "2020-07-16"
+        }
+    },
+    {"pk": 9, "model": "books.book", 
+        "fields": {
+            "isbn": "9780141332352", 
+            "title": "The Sheep-Pig",
+            "author": "Dick King-Smith",
+            "description": "When Babe, the little orphaned piglet, is won at a fair by Farmer Hogget, he is adopted by Fly, the kind-hearted sheep-dog. Babe is determined to learn everything he can from Fly. He knows he can't be a sheep-dog. But maybe, just maybe, he might be a sheep-pig.",
+            "image_url": "https://images-na.ssl-images-amazon.com/images/I/51TOXFMBKLL._SX323_BO1,204,203,200_.jpg", 
+            "image": "51TOXFMBKLL._SX323_BO1,204,203,200_.jpg",
+            "pages": 160,
+            "category": 6,
+            "age": 5,
+            "gender": "all", 
+            "rating": 4.6,
+            "number_of_ratings": 10,
+            "price": 5.50,
+            "featured_item": "False",
+            "date_added": "2020-07-16"
+        }
+    },
+    {"pk": 10, "model": "books.book", 
+        "fields": {
+            "isbn": "9780060530945", 
+            "title": "The Graveyard Book",
+            "author": "Neil Gaiman",
+            "description": "Nobody Owens, known as Bod, is a normal boy. He would be completely normal if he didn’t live in a graveyard, being raised by ghosts, with a guardian who belongs to neither the world of the living nor the dead. There are adventures in the graveyard for a boy—an ancient Indigo Man, a gateway to the abandoned city of ghouls, the strange and terrible Sleer. But if Bod leaves the graveyard, he will be in danger from the man Jack—who has already killed Bod’s family.",
+            "image_url": "https://images-na.ssl-images-amazon.com/images/I/51V2lDZogPL._SX334_BO1,204,203,200_.jpg", 
+            "image": "51V2lDZogPL._SX334_BO1,204,203,200_.jpg",
+            "pages": 320,
+            "category": 6,
+            "age": 10,
+            "gender": "boys", 
+            "rating": 4.6,
+            "number_of_ratings": 10,
+            "price": 5.50,
+            "featured_item": "False",
+            "date_added": "2020-07-16"
         }
     }
 ]

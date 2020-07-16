@@ -54,6 +54,8 @@ class Book(models.Model):
     number_of_ratings = models.IntegerField()
     # part_of_lists = models.ManyToManyField('List', blank=True)
     price = models.DecimalField(max_digits=6, decimal_places=2)
+    date_added = models.DateField(auto_now_add=False)
+    featured_item = models.BooleanField()
 
     def __str__(self):
         return self.title

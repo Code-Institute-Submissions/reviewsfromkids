@@ -177,6 +177,26 @@
   color: white;
 }
 
+.sort-bar-books {
+  margin-top: 5rem;
+  display: grid;
+  grid-template-columns: 30% 70%;
+}
+.sort-bar-books__age {
+  align-self: center;
+  justify-self: center;
+}
+.sort-bar-books__gender {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+.sort-bar-books__gender--item {
+  width: 90%;
+  justify-self: center;
+  background-color: #e166c4;
+  color: white;
+}
+
 .book-card {
   max-height: 480px;
 }

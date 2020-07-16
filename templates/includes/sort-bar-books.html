@@ -1,0 +1,34 @@
+<div class="sort-bar-books">
+    
+    <div class="sort-bar-books__age">
+        <div class="dropup">
+            <button class=" dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">age
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="{% url 'books' %}?age=14">14 and up</a>
+              <a class="dropdown-item" href="{% url 'home_books' %}?age=12,13">12 to 14</a>
+              <a class="dropdown-item" href="{% url 'home_books' %}?age=8,9">8 to 10</a>
+              <a class="dropdown-item" href="{% url 'books' %}?age=10,11">10 to 12</a>
+              <a class="dropdown-item" href="{% url 'books' %}?age=6,7">6 to 8</a>
+              <a class="dropdown-item" href="{% url 'books' %}?age=5">under 6</a>
+            </div>
+          </div>
+        </div>
+
+    <div class="sort-bar-books__gender">
+        <a class="sort-bar__gender--item btn-primary" href="{% url 'home_books' %}?q=gender=all">All</a>
+        <a class="sort-bar__gender--item" href="{% url 'home_books' %}?q=gender=boys">Boys</a>
+        <a class="sort-bar__gender--item" href="{% url 'home_books' %}?q=gender=girls">Girls</a>
+    </div>
+
+</div>
+
+
+<form method="GET" action="{% url 'home_books' %}">
+  <div class="search__box">
+    <input type="text" name="q" value="girls">
+    <button class="primary-btn" type="submit">
+      Girls
+    </button>
+  </div>
+</form>

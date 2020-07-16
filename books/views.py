@@ -20,7 +20,7 @@ def all_books(request):
                 messages.error(request, "You didn't enter any search criteria!")
                 return redirect (reverse('books'))
             
-            queries =  Q(tags__name__icontains=query) | Q(title__icontains=query) | Q(description__icontains=query) | Q(category__name__icontains=query) | Q(author__icontains=query)
+            queries =  Q(tags__name__icontains=query) | Q(title__icontains=query) | Q(description__icontains=query) | Q(category__name__icontains=query) | Q(author__icontains=query)| Q(gender__icontains=query) | Q(age__icontains=query)
             books = books.filter(queries).distinct()
 
     context = {

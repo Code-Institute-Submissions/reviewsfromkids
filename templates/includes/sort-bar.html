@@ -1,24 +1,24 @@
 <div class="sort-bar">
     
-    <form class="sort-bar__age" action="">
+    <div class="sort-bar__age">
         <div class="dropup">
             <button class=" dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">age
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="#">14 and up</a>
-              <a class="dropdown-item" href="#">12 to 14</a>
-              <a class="dropdown-item" href="#">10 to 12</a>
-              <a class="dropdown-item" href="#">8 to 10</a>
-              <a class="dropdown-item" href="#">6 to 8</a>
-              <a class="dropdown-item" href="#">under 6</a>
+              <a class="dropdown-item" href="{% url 'books' %}?age=14">14 and up</a>
+              <a class="dropdown-item" href="{% url 'books' %}?age=12,13">12 to 14</a>
+              <a class="dropdown-item" href="{% url 'books' %}?age=10,11">10 to 12</a>
+              <a class="dropdown-item" href="{% url 'books' %}?age=8,9">8 to 10</a>
+              <a class="dropdown-item" href="{% url 'books' %}?age=6,7">6 to 8</a>
+              <a class="dropdown-item" href="{% url 'books' %}?age=5">under 6</a>
             </div>
           </div>
-    </form>
+        </div>
 
-    <form class="sort-bar__gender">
-        <button type="button" class="sort-bar__gender--item">All</button>
-        <button type="button" class="sort-bar__gender--item">Girls</button>
-        <button type="button" class="sort-bar__gender--item">Boys</button>
-    </form>
+    <div class="sort-bar__gender">
+        <a class="sort-bar__gender--item btn-primary" href="{% url 'books' %}?gender=all">All</a>
+        <a class="sort-bar__gender--item" href="{% url 'home' %}?gender=boys">Boys</a>
+        <a class="sort-bar__gender--item" href="{% url 'home' %}?gender=girls">Girls</a>
+    </div>
 
 </div>

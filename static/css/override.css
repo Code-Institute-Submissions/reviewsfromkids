@@ -326,4 +326,13 @@ html, body {
   margin: 0;
 }
 
+.scrolling-wrapper {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+.scrolling-wrapper__card {
+  display: inline-block;
+}
+
 /*# sourceMappingURL=override.css.map */

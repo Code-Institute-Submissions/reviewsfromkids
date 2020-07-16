@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404 # 10.5
 from .models import Book # 7.2
 from django.db.models import Q # 11.3
 from django.contrib import messages
-from django.views.generic import ListView
+# from django.views.generic import ListView
 
 # Create your views here.
 

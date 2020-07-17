@@ -50,7 +50,9 @@ class Book(models.Model):
     tags = TaggableManager()
     age = models.IntegerField()
     gender = models.CharField(max_length=25)
-    rating = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
+    rating_all = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
+    rating_girls = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True) # only for ms4: ultimate project would calculate this from user profiles
+    rating_boys = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True) # only for ms4: ultimate project would calculate this from user profiles
     number_of_ratings = models.IntegerField()
     # part_of_lists = models.ManyToManyField('List', blank=True)
     price = models.DecimalField(max_digits=6, decimal_places=2)

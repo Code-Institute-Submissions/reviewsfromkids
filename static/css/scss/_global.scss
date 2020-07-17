@@ -23,6 +23,19 @@ html, body {
 
 }
 
+.tag {
+
+    color: #70AD47;
+    background-color: white;
+    border: solid 1px #70AD47;
+    border-radius: 4px;
+    
+    &:hover {
+        color:  white;
+        background-color: #70AD47;
+        border: solid 1px  white;
+    }
+}
 
 .text-divider {
 

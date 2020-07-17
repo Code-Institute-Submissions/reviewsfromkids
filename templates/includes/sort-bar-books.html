@@ -23,10 +23,10 @@
 
 </div>
 
-
+<!-- Testing -->
 <form method="GET" action="{% url 'books' %}">
   <div class="search__box">
-    <input type="text" name="q" value="girls">
+    <input type="hidden" name="q" value="girls">
     <button class="primary-btn" type="submit">
       Girls
     </button>
@@ -35,7 +35,7 @@
 
 <form method="GET" action="{% url 'books' %}">
   <div class="search__box">
-    <input type="text" name="q" value="8">
+    <input type="hidden" name="q" value="8">
     <button class="primary-btn" type="submit">
       8
     </button>

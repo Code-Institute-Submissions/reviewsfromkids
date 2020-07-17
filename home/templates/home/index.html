@@ -25,7 +25,7 @@
     <main>
       {% include 'includes/sort-bar-home.html' %}
       <!-- all ages, boys and girls: top 25 based on reviews. -->
-      Featured Books
+      <h2>Featured books</h2>
 
       <div class="scrolling-wrapper-flexbox">
         {% for book in featured_books %}
@@ -35,7 +35,15 @@
         {% endfor %}
       </div>
 
-      
+      <h2>Recently added books</h2>
+
+      <div class="scrolling-wrapper-flexbox">
+        {% for book in recent_books %}
+        
+        {% include 'includes/book-card-hs.html' %}
+        
+        {% endfor %}
+      </div>
       
       
       

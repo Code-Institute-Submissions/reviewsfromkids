@@ -22,3 +22,22 @@
     </div>
 
 </div>
+
+<!-- Testing -->
+<form method="GET" action="{% url 'home' %}">
+  <div class="search__box">
+    <input type="hidden" name="q" value="girls">
+    <button class="primary-btn" type="submit">
+      Girls
+    </button>
+  </div>
+</form>
+
+<form method="GET" action="{% url 'home' %}">
+  <div class="search__box">
+    <input type="hidden" name="q" value="8">
+    <button class="primary-btn" type="submit">
+      8
+    </button>
+  </div>
+</form>

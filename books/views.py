@@ -10,8 +10,9 @@ from django.contrib import messages
 def all_books(request):
     """ A view to show all books, including sorting and search queries """
     
-    books = Book.objects.all() 
+    books = Book.objects.all() # Make sure this is a selection somehow (recent or popular). If There are 10K books in db, I do not want to show all...
     query = None
+    search_results = False
 
     if request.GET:
         if 'q' in request.GET:
@@ -22,10 +23,14 @@ def all_books(request):
             
             queries =  Q(tags__name__icontains=query) | Q(title__icontains=query) | Q(description__icontains=query) | Q(category__name__icontains=query) | Q(author__icontains=query)| Q(gender__icontains=query) | Q(age__icontains=query)
             books = books.filter(queries).distinct()
+            temp_query = books
+            search_results = True
 
     context = {
         'books': books,
         'search_term': query,
+        'show_refine_bar': search_results,
+        'temp_query': books
     }
 
     return render(request, 'books/books.html', context)

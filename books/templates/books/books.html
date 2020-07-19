@@ -12,6 +12,10 @@
   {% block content %}
     <main>
         {% include 'includes/sort-bar-books.html' %}
+        {% if show_refine_bar == True %}
+        Show refine bar
+            {{ temp_query }}
+        {% endif %}
         <div class="row">
             <div class="product-container col-10 offset-1">
                 <div class="row mt-1 mb-2"></div>

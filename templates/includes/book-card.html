@@ -1,4 +1,4 @@
-<div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
+<div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 sort-visible">
     <div class="book-card">
         <img class="book-card__image" src="{{ book.image.url }}" alt="{{ book.name }}">
         <div class="book-card__reveal">
@@ -46,6 +46,14 @@
         </div>
     </div>
 </div>
+<div class="sort-data-hidden">
+    <div class="sort-data-category">{{ book.category }}</div>
+    <div class="sort-data-age">{{ book.age }}</div>
+    <div class="sort-data-gender">{{ book.gender }}</div>
+</div>
+
+
+
 
 
 

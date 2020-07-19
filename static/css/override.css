@@ -199,6 +199,18 @@
   color: white;
 }
 
+.sort-data-hidden {
+  display: initial;
+}
+
+.sort-visible {
+  display: initial;
+}
+
+.sort-invisible {
+  display: none;
+}
+
 .book-card {
   max-height: 480px;
   width: 308px;

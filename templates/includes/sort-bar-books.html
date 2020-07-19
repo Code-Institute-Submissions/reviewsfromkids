@@ -5,12 +5,12 @@
             <button class=" dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">age
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="{% url 'books' %}?age=14">14 and up</a>
-              <a class="dropdown-item" href="{% url 'books' %}?age=12,13">12 to 14</a>
-              <a class="dropdown-item" href="{% url 'books' %}?age=8,9">8 to 10</a>
-              <a class="dropdown-item" href="{% url 'books' %}?age=10,11">10 to 12</a>
-              <a class="dropdown-item" href="{% url 'books' %}?age=6,7">6 to 8</a>
-              <a class="dropdown-item" href="{% url 'books' %}?age=5">under 6</a>
+              <option class="dropdown-item" value="14">14 and up</option>
+              <option class="dropdown-item" value="12,13">12 to 14</option>
+              <option class="dropdown-item" value="8,9">8 to 10</option>
+              <option class="dropdown-item" value="10,11">10 to 12</option>
+              <option class="dropdown-item" value="6,7">6 to 8</option>
+              <option class="dropdown-item" value="5">under 6</option>
             </div>
           </div>
         </div>
@@ -23,7 +23,7 @@
 
 </div>
 
-<!-- Testing -->
+Testing
 <form method="GET" action="{% url 'books' %}">
   <div class="search__box">
     <input type="hidden" name="q" value="girls">

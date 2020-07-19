@@ -12,6 +12,7 @@ class MobileMenu {
     toggleTheMenu() {
       this.menuContent.classList.toggle("site-header__overlay--is-visible")
       this.menuIcon.classList.toggle("site-header__menu-icon--close-x")
+      console.log('wired')
     }
   }
 

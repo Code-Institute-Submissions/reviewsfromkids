@@ -200,7 +200,7 @@
 }
 
 .sort-data-hidden {
-  display: initial;
+  display: none;
 }
 
 .sort-visible {

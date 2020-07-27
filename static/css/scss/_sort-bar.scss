@@ -1,38 +1,16 @@
-.sort-bar {
-    margin-top: 1rem;
-    display: grid;
-    grid-template-columns: 30% 70%;
-    // width: 90%;
-
-    &__age {
-
-        align-self: center;
-        justify-self: center;
-
-    }
-
-    &__gender {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-    
-        &--item {
-
-            width: 90%;
-            //align-self: center;
-            justify-self: center;
-            background-color: $mainPink;
-            color: white;
-        
-        }
-    }
-
-}
-
 .sort-bar-books {
 
-    margin-top: 5rem;display: grid;
-    grid-template-columns: 30% 70%;
+    margin-top: 7rem;
+    // display: grid;
+    // grid-template-columns: 30% 70%;
     // width: 90%;
+
+    form {
+
+        width: 90%;
+        margin: 0 auto;
+    }
+
 
     &__age {
 
@@ -57,6 +35,7 @@
     }
 
 }
+
 
 .sort-data-hidden {
 

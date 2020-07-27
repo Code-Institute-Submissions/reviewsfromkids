@@ -159,30 +159,12 @@
   font-size: 1.2rem;
 }
 
-.sort-bar {
-  margin-top: 1rem;
-  display: grid;
-  grid-template-columns: 30% 70%;
-}
-.sort-bar__age {
-  align-self: center;
-  justify-self: center;
-}
-.sort-bar__gender {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-}
-.sort-bar__gender--item {
-  width: 90%;
-  justify-self: center;
-  background-color: #e166c4;
-  color: white;
-}
-
 .sort-bar-books {
-  margin-top: 5rem;
-  display: grid;
-  grid-template-columns: 30% 70%;
+  margin-top: 7rem;
+}
+.sort-bar-books form {
+  width: 90%;
+  margin: 0 auto;
 }
 .sort-bar-books__age {
   align-self: center;
@@ -381,6 +363,7 @@ html, body {
   padding: 0.75rem 1.5rem;
   font-weight: 600;
   height: 3rem;
+  background-color: #ff8d1a;
 }
 
 .tag {

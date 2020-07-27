@@ -25,8 +25,10 @@
           <div class="book-details-container mb-5 mt-md-5">
             <p class="mb-0">{{ book.title }}</p>
             <p class="lead mb-0 text-left font-weight-bold">${{ book.price }}</p>
-            {% if book.rating %}
-                <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ book.rating }} / 5</small>
+            {% if book.rating_all %}
+                Rating all: <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ book.rating_all }} / 5</small>
+                Rating girls: <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ book.rating_girls }} / 5</small>
+                Rating boys: <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ book.rating_boys }} / 5</small>
             {% else %}
                 <small class="text-muted">No Rating</small>
             {% endif %}

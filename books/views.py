@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404 # 10.5 import get_object_or_404
-from .models import Book # 7.2
+from .models import Book, Category # 7.2
 from django.db.models import Q # 11.3
 from django.contrib import messages
 # from django.views.generic import ListView
@@ -11,6 +11,7 @@ def all_books(request):
     """ A view to show all books, including sorting and search queries """
     
     books = Book.objects.all() # Make sure this is a selection somehow (recent or popular). If There are 10K books in db, I do not want to show all...
+    category = Category.objects.all()
     query = None
     search_results = False
 
@@ -30,7 +31,8 @@ def all_books(request):
         'books': books,
         'search_term': query,
         'show_refine_bar': search_results,
-        'temp_query': books
+        'temp_query': books,
+        'categories': category,
     }
 
     return render(request, 'books/books.html', context)

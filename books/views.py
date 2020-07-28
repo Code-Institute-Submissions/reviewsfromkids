@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404 # 10.5
 from .models import Book, Category # 7.2
 from django.db.models import Q # 11.3
 from django.contrib import messages
+from .filters import BookFilter
 # from django.views.generic import ListView
 
 # Create your views here.
@@ -15,17 +16,20 @@ def all_books(request):
     query = None
     search_results = False
 
-    if request.GET:
-        if 'q' in request.GET:
-            query = request.GET['q']
-            if not query:
-                messages.error(request, "You didn't enter any search criteria!")
-                return redirect (reverse('books'))
+    # if request.GET:
+    #     if 'q' in request.GET:
+    #         query = request.GET['q']
+    #         if not query:
+    #             messages.error(request, "You didn't enter any search criteria!")
+    #             return redirect (reverse('books'))
             
-            queries =  Q(tags__name__icontains=query) | Q(title__icontains=query) | Q(description__icontains=query) | Q(category__name__icontains=query) | Q(author__icontains=query)| Q(gender__icontains=query) | Q(age__icontains=query)
-            books = books.filter(queries).distinct()
-            temp_query = books
-            search_results = True
+    #         queries =  Q(tags__name__icontains=query) | Q(title__icontains=query) | Q(description__icontains=query) | Q(category__name__icontains=query) | Q(author__icontains=query)| Q(gender__icontains=query) | Q(age__icontains=query)
+    #         books = books.filter(queries).distinct()
+    #         temp_query = books
+    #         search_results = True
+
+    myFilter = BookFilter(request.GET, queryset=books)
+    books = myFilter.qs
 
     context = {
         'books': books,
@@ -33,6 +37,7 @@ def all_books(request):
         'show_refine_bar': search_results,
         'temp_query': books,
         'categories': category,
+        'myFilter': myFilter,
     }
 
     return render(request, 'books/books.html', context)
@@ -50,3 +55,4 @@ def book_detail(request, book_id): #10.2 Add the book.id as parameter
     }
 
     return render(request, 'books/book_detail.html', context)
+

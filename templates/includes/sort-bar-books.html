@@ -1,10 +1,12 @@
 <div class="sort-bar-books">
     
-  <form class="sort-bar-books__form" method="GET" action=".">
+  <form class="sort-bar-books__form" method="GET" action="{% url 'book_search' %}">
+    
     <div class="form-row">
         <div class="form-group col-12">
-            <div class="input-group">
-                <input class="form-control py-2 border" type="search" name="title" placeholder="Search anything..." />
+          {{myFilter.form}}
+            <!-- <div class="input-group">
+                <input class="form-control py-2 border" type="search" name="title" placeholder="Search anything..." /> -->
                 <!-- <span class="input-group-append">
                     <div class="input-group-text bg-transparent">
                         <i class="fa fa-search"></i>
@@ -37,19 +39,19 @@
             </div>
         </div>        
     </div> -->
-    <div class="form-row">
+    <!-- <div class="form-row">
       <div class="form-group col-6 col-md-2 col-lg-2">
-        <!-- <label for="viewCountMin">your age</label> -->
+        
         <input type="number" min=0 class="form-control" id="viewCountMin" placeholder="type your age" name="view_count_min">
       </div>
       <div class="form-group col-6 col-md-2 col-lg-2">
-        <!-- <label for="viewCountMax">Show only ratings from</label> -->
+       
         <select id="gender" class="form-control" name="gender">
           <option value="All" selected>for boys and girls</option>
           <option value="Girls">girls</option>
           <option value="Boys">boys</option>
         </select>
-      </div>
+      </div> -->
       <!-- <div class="form-group col-md-2 col-lg-2">
         <label for="publishDateMin">Publish date minimum</label>
         <input type="date" class="form-control" id="publishDateMin" name="date_min">
@@ -58,15 +60,15 @@
         <label for="publishDateMax">Publish date maximum</label>
         <input type="date" class="form-control" id="publishDateMax" name="date_max">
       </div> -->
-      <div class="form-group col-6 col-md-4">
-        <!-- <label for="category">Category</label> -->
+      <!-- <div class="form-group col-6 col-md-4">
+        
         <select id="category" class="form-control" name="category">
           <option selected>Category</option>
           {% for cat in categories %}
           <option value="{{ cat }}">{{ cat }}</option>
           {% endfor %}
         </select>
-      </div>
+      </div> -->
       <div class="class="form-group col-6 col-md-4"">
         <button type="submit" class="btn btnize">Search</button>
       </div>

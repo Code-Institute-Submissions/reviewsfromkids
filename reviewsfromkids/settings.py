@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'home',
     'books',
     'taggit',
+    'django_filters',
 ]
 
 MIDDLEWARE = [

@@ -431,9 +431,11 @@ html, body {
   position: relative;
   margin-right: 1.5rem;
   flex: 0 0 auto;
+  box-shadow: 0 5px 1rem rgba(0, 0, 0, 0.16);
 }
 .book-card-hs__image {
   height: 280px;
+  border-radius: 4px;
 }
 
 .wrapper-home {

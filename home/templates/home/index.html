@@ -23,30 +23,30 @@
 
   {% block content %}
     <main>
-      {% include 'includes/sort-bar-home.html' %}
-      <!-- all ages, boys and girls: top 25 based on reviews. -->
-      <h2>Featured books</h2>
 
-      <div class="scrolling-wrapper-flexbox">
-        {% for book in featured_books %}
-        
-        {% include 'includes/book-card-hs.html' %}
-        
-        {% endfor %}
-      </div>
+      <section class="featured-books">
 
-      <h2>Recently added books</h2>
+        <h2 class="featured-books__header">Featured books</h2>
 
-      <div class="scrolling-wrapper-flexbox">
-        {% for book in recent_books %}
+        <div class="scrolling-wrapper-flexbox">
+          {% for book in featured_books %}
+            {% include 'includes/book-card-hs.html' %}
+          {% endfor %}
+        </div>
+
+      </section>
+      
+      <section class="recent-books">
+
+        <h2 class="recent-books__header">Recently added books</h2>
+
+        <div class="scrolling-wrapper-flexbox">
+          {% for book in recent_books %}
+            {% include 'includes/book-card-hs.html' %}
+          {% endfor %}
+        </div>
         
-        {% include 'includes/book-card-hs.html' %}
-        
-        {% endfor %}
-      </div>
-      
-      
-      
+      </section>  
 
     </main>
   {% endblock %}

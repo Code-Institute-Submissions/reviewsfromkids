@@ -15,25 +15,42 @@
     flex-wrap: nowrap;
     overflow-x: auto;
     
-    .card {
-      flex: 0 0 auto;
-      margin-right: 0.5rem;
-    }
+    // .card {
+    //   flex: 0 0 auto;
+    //   margin-right: 0.5rem;
+    // }
   }
   
-  .card {
-    border: 2px solid red;
-    width: 150px;
-    height: 225px;
-    background: black;
-  }
+  // .card {
+  //   border: 2px solid red;
+  //   width: 150px;
+  //   height: 225px;
+  //   background: black;
+    
+  // }
   
   .scrolling-wrapper, .scrolling-wrapper-flexbox {
-    height: 480px;
+    // height: 280px;
     margin-bottom: 20px;
     width: 100%;
     -webkit-overflow-scrolling: touch;
     &::-webkit-scrollbar {
       display: none;
     }
+  }
+
+  .book-card-hs {
+
+    max-height: 280px;
+    margin: 0 auto;
+    position: relative;
+    margin-right: 1.5rem;
+    flex: 0 0 auto;
+
+    &__image {
+
+      height: 280px;
+    }
+
+  
   }

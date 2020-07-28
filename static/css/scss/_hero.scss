@@ -14,6 +14,7 @@
     grid-template-rows: 1fr 1fr 1fr;
 
     h1 {
+
         color: white;
         text-align: center;
         grid-column: 2;
@@ -21,6 +22,7 @@
     }
 
     &__icon {
+
         color: white;
         grid-column: 2;
         grid-row: 2;
@@ -30,6 +32,7 @@
     }
 
     &__btn {
+        
         margin-top: 3rem;
         margin-bottom: 2rem;
         grid-row: 3;

@@ -23,30 +23,47 @@
 
   {% block content %}
     <main>
-
-      <section class="featured-books">
-
-        <h2 class="featured-books__header">Featured books</h2>
-
-        <div class="scrolling-wrapper-flexbox">
-          {% for book in featured_books %}
-            {% include 'includes/book-card-hs.html' %}
-          {% endfor %}
-        </div>
-
-      </section>
       
-      <section class="recent-books">
 
-        <h2 class="recent-books__header">Recently added books</h2>
+        <section class="featured-books">
 
-        <div class="scrolling-wrapper-flexbox">
-          {% for book in recent_books %}
-            {% include 'includes/book-card-hs.html' %}
-          {% endfor %}
-        </div>
+          <h2 class="featured-books__header">Featured books</h2>
+  
+          <div class="scrolling-wrapper-flexbox">
+            {% for book in featured_books %}
+              {% include 'includes/book-card-hs.html' %}
+            {% endfor %}
+          </div>
+  
+        </section>
         
-      </section>  
+        <section class="recent-books">
+  
+          <h2 class="recent-books__header">Recently added books</h2>
+  
+          <div class="scrolling-wrapper-flexbox">
+            {% for book in recent_books %}
+              {% include 'includes/book-card-hs.html' %}
+            {% endfor %}
+          </div>
+          
+        </section>
+  
+      <div class="wrapper wrapper-home">
+
+        <section class="search-books">
+
+          <h2 class="search-books__header">Find the perfect book!</h2>
+          <p>You can look for a book yourself with help of our advanced search functions.</p>
+          <p>Or, you let other kids help you find the books that fit you!</p>
+          <p>The more you tell us about yourself, the better we can help you.</p>
+          
+          <a class="btn home-btn" href="">find my perfect books!</a>
+
+            
+        </section>
+        
+      </div>
 
     </main>
   {% endblock %}

@@ -15,6 +15,7 @@ class BookFilter(django_filters.FilterSet):
             'author': ['icontains'], 
             'category': ['exact'], 
             'rating_all': ['exact'],
+            'gender': ['icontains'],
         }
 
 

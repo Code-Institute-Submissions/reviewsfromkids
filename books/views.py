@@ -31,6 +31,8 @@ def all_books(request):
     # initiated from search in menu
     myFilter = BookFilter(request.GET, queryset=books)
     books = myFilter.qs
+    numResults = books.count()
+    
 
     context = {
         'books': books,
@@ -38,6 +40,7 @@ def all_books(request):
         'show_refine_bar': search_results,
         'categories': category,
         'myFilter': myFilter,
+        'numResults': numResults,
     }
 
     return render(request, 'books/books.html', context)

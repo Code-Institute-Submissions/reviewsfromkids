@@ -16,7 +16,12 @@
             <button id="refine-sort__btn" class="refine-sort__btn">Refine</button>
             <button class="refine-sort__btn">Sort</button>
         </div>
-        <div>
+        <div>{% if numResults %}
+            Search results: {{ numResults }}
+        {% else %}
+        Search results: {{ numResults }}
+            No results, please try again
+        {% endif %}
             <div class="">
              
                     {% for book in books %}

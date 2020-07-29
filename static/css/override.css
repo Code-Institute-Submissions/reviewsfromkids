@@ -167,6 +167,15 @@
   column-gap: 2rem;
   padding: 0 2rem;
 }
+.refine-sort__btn {
+  margin-top: -0.5rem;
+  color: #ff8d1a;
+  border: solid 1px #ff8d1a;
+  background-color: #fff;
+  border-radius: 4px;
+  text-transform: uppercase;
+  text-align: center;
+}
 .refine-sort__overlay {
   margin-top: 4.2rem;
   padding: 3rem 2rem;
@@ -187,40 +196,6 @@
 }
 .refine-sort__overlay--is-visible {
   display: block;
-}
-
-.sort-bar-books {
-  margin-top: 7rem;
-}
-.sort-bar-books form {
-  width: 90%;
-  margin: 0 auto;
-}
-.sort-bar-books__age {
-  align-self: center;
-  justify-self: center;
-}
-.sort-bar-books__gender {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-}
-.sort-bar-books__gender--item {
-  width: 90%;
-  justify-self: center;
-  background-color: #e166c4;
-  color: white;
-}
-
-.sort-data-hidden {
-  display: none;
-}
-
-.sort-visible {
-  display: initial;
-}
-
-.sort-invisible {
-  display: none;
 }
 
 .book-card {

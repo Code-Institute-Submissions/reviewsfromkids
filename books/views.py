@@ -11,23 +11,24 @@ from .filters import BookFilter
 def all_books(request):
     """ A view to show all books, including sorting and search queries """
     
+    # initiated from search in menu
     books = Book.objects.all() # Make sure this is a selection somehow (recent or popular). If There are 10K books in db, I do not want to show all...
     category = Category.objects.all()
     query = None
     search_results = False
 
-    # if request.GET:
-    #     if 'q' in request.GET:
-    #         query = request.GET['q']
-    #         if not query:
-    #             messages.error(request, "You didn't enter any search criteria!")
-    #             return redirect (reverse('books'))
+    if request.GET:
+        if 'q' in request.GET:
+            query = request.GET['q']
+            if not query:
+                messages.error(request, "You didn't enter any search criteria!")
+                return redirect (reverse('books'))
             
-    #         queries =  Q(tags__name__icontains=query) | Q(title__icontains=query) | Q(description__icontains=query) | Q(category__name__icontains=query) | Q(author__icontains=query)| Q(gender__icontains=query) | Q(age__icontains=query)
-    #         books = books.filter(queries).distinct()
-    #         temp_query = books
-    #         search_results = True
+            queries =  Q(tags__name__icontains=query) | Q(title__icontains=query) | Q(description__icontains=query) | Q(category__name__icontains=query) | Q(author__icontains=query)| Q(gender__icontains=query) | Q(age__icontains=query)
+            books = books.filter(queries).distinct()
+            search_results = True
 
+    # initiated from search in menu
     myFilter = BookFilter(request.GET, queryset=books)
     books = myFilter.qs
 
@@ -35,7 +36,6 @@ def all_books(request):
         'books': books,
         'search_term': query,
         'show_refine_bar': search_results,
-        'temp_query': books,
         'categories': category,
         'myFilter': myFilter,
     }

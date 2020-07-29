@@ -1,65 +1,47 @@
-<div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-    <!-- <div class="sort-data-hidden">
-        <div class="sort-data-category">{{ book.category }}</div>
-        <div class="sort-data-age">{{ book.age }}</div>
-        <div class="sort-data-gender">{{ book.gender }}</div>
-    </div> -->
-    <div class="book-card">
-        <img class="book-card__image" src="{{ book.image.url }}" alt="{{ book.name }}">
-        <div class="book-card__reveal">
-            <h5 class="book-card__reveal--row1">Recommended age</h5>
-            <h2 class="book-card__reveal--row2">{{ book.age }}</h2>
-            <h5 class="book-card__reveal--row3">Keywords</h5>
-            <div class="book-card__reveal--row4">
-                {% for tag in book.tags.all %}
-                    <form method="GET" action="{% url 'books' %}">
-                        <div>
-                        <input type="hidden" name="q" value="{{ tag }}">
-                        <button class="tag btnize" type="submit">
-                            {{ tag }}
-                        </button>
-                        </div>
-                    </form>
-                {% endfor %}
-            </div>
-            <div class="book-card__reveal--row5">
-                <h5 class="book-card__reveal--row5-item1">
-                    Girls
-                </h5>
-                <h5 class="book-card__reveal--row5-item2">
-                    Boys
-                </h5>
-            </div>
-            <div class="book-card__reveal--row6">
-                <h3 class="book-card__reveal--row6-item1">
-                    46%
-                </h3>
-                <h3 class="book-card__reveal--row6-item2">
-                    54%
-                </h3>
-            </div>
-            <div class="book-card__reveal--row7">
-                <h7 class="book-card__reveal--row7-item1">
-                    # likes
-                </h7>
-                <h7 class="book-card__reveal--row7-item2">
-                    # likes category: {{ book.category }}
-                </h7>
-            </div>
-                
-            <a href="{% url 'book_detail' book.id %}" class="btn text book-card__reveal--row8">view details</a>
+<div class="book-card">
+    <img class="book-card__image" src="{{ book.image.url }}" alt="{{ book.name }}">
+    <div class="book-card__reveal">
+        <h5 class="book-card__reveal--row1">Recommended age</h5>
+        <h2 class="book-card__reveal--row2">{{ book.age }}</h2>
+        <h5 class="book-card__reveal--row3">Keywords</h5>
+        <div class="book-card__reveal--row4">
+            {% for tag in book.tags.all %}
+                <form method="GET" action="{% url 'books' %}">
+                    <div>
+                    <input type="hidden" name="q" value="{{ tag }}">
+                    <button class="tag btnize" type="submit">
+                        {{ tag }}
+                    </button>
+                    </div>
+                </form>
+            {% endfor %}
         </div>
+        <div class="book-card__reveal--row5">
+            <h5 class="book-card__reveal--row5-item1">
+                Girls
+            </h5>
+            <h5 class="book-card__reveal--row5-item2">
+                Boys
+            </h5>
+        </div>
+        <div class="book-card__reveal--row6">
+            <h3 class="book-card__reveal--row6-item1">
+                46%
+            </h3>
+            <h3 class="book-card__reveal--row6-item2">
+                54%
+            </h3>
+        </div>
+        <div class="book-card__reveal--row7">
+            <h7 class="book-card__reveal--row7-item1">
+                # likes
+            </h7>
+            <h7 class="book-card__reveal--row7-item2">
+                # likes category: {{ book.category }}
+            </h7>
+        </div>
+            
+        <a href="{% url 'book_detail' book.id %}" class="btn text book-card__reveal--row8">view details</a>
     </div>
 </div>
 
-
-
-
-
-
-
-<!-- {% if book.rating %}
-            <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ book.rating }} / 5</small>
-        {% else %}
-            <small class="text-muted">No likes yet</small>
-        {% endif %} -->

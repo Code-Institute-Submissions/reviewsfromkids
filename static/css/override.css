@@ -160,6 +160,35 @@
   font-size: 1.2rem;
 }
 
+.refine-sort {
+  margin: 6rem 0 2rem 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 2rem;
+  padding: 0 2rem;
+}
+.refine-sort__overlay {
+  margin-top: 4.2rem;
+  padding: 3rem 2rem;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #25b8c0;
+  overflow-y: hidden;
+  transition: 0.5s;
+  display: none;
+  background-image: url("/media/waves.svg");
+  background-position: center;
+  background-size: cover;
+  color: #fff;
+}
+.refine-sort__overlay--is-visible {
+  display: block;
+}
+
 .sort-bar-books {
   margin-top: 7rem;
 }

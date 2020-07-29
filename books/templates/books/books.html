@@ -10,13 +10,13 @@
   {% endblock %}
 
   {% block content %}
-    <main>
-        {% include 'includes/sort-bar-books.html' %}
-        {% if show_refine_bar == True %}
-        Show refine bar
-        <button class="refine-search__boys">Boys</button>
-        {% endif %}
-        <div class="">
+    <main id="main">
+        <div class="refine-sort">
+            {% include 'includes/overlay-refine-sort.html' %}    
+            <button class="btnize btn refine-sort__btn">Refine</button>
+            <button class="btnize btn">Sort</button>
+        </div>
+        <div>
             <div class="">
              
                     {% for book in books %}
@@ -47,4 +47,5 @@
             </div>
         </div>
     </main>
+
   {% endblock %}

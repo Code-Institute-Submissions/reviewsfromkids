@@ -1,29 +1,20 @@
-// class RefineSearch {
-//     constructor() {
-//       this.buttonBoys = document.querySelector(".refine-search__boys")
-//       this.contentBoys = document.getElementsByClassName("sort-data-gender")
-//       this.events()
-//     }
-  
-//     events() {
-//       this.buttonBoys.addEventListener("click", () => this.toggleBoys())
-//     }
-  
-//     toggleBoys() {
+class RefineSearch {
+    constructor() {
+        this.refineStart = document.querySelector(".refine-sort__btn")
+        this.refineContent = document.querySelector(".refine-sort__overlay")
+        this.events()
+      }
+    
+      events() {
+        this.refineStart.addEventListener("click", () => this.toggleRefineMenu())
+      }
+    
+      toggleRefineMenu() {
+        console.log('wired')
+        this.refineContent.classList.toggle("refine-sort__overlay--is-visible")
+        this.refineStart.classList.toggle("site-header__menu-icon--close-x")
         
-//       var i=0;
-//       while(i < this.contentBoys.length) {
-//         if(this.contentBoys.innerHTML = "girls"){
-//           document.querySelector(".sort-visible").classList.add("invisible")
-//         } else if(this.contentBoys.innerHTML = "boys"){
-//           console.log("hide boys");
-//           console.log(i);
-//         }
-//         i++;
-//       }
-        
-        
-//     }
-//   }
+      }
+  }
 
-// export default RefineSearch
+export default RefineSearch

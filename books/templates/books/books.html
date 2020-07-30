@@ -16,12 +16,21 @@
             <button id="refine-sort__btn" class="refine-sort__btn">Refine</button>
             <button class="refine-sort__btn">Sort</button>
         </div>
-        <div>{% if numResults %}
-            Search results: {{ numResults }}
-        {% else %}
-        Search results: {{ numResults }}
-            No results, please try again
-        {% endif %}
+        <div>
+            {% if searched_term == None %}
+                There are xxx books waiting for you!
+                {% else %}
+                Your search for {{ searched_term }} has 
+                {% if numResults == 1 %}
+                    {{ numResults }} search result.
+                {% elif numResults > 1 %}
+                    {{ numResults }} search results.
+                {% else %}
+                    no results, please try again.
+                {% endif %}
+            {% endif %}
+
+        
             <div class="">
              
                     {% for book in books %}

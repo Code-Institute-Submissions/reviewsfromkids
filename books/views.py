@@ -38,7 +38,6 @@ def all_books(request):
     myFilter = BookFilter(request.GET, queryset=books)
     books = myFilter.qs
     
-    
 
     context = {
         'books': books,
@@ -65,25 +64,3 @@ def book_detail(request, book_id): #10.2 Add the book.id as parameter
     }
 
     return render(request, 'books/book_detail.html', context)
-
-def is_valid_queryparam(param):
-    return param != '' and param is not None
-
-def filter(request):
-    qs = Book.objects.all()
-    categories = Category.objects.all()
-    category = request.GET.get('category')
-
-    if is_valid_queryparam(category) and category != 'Choose...':
-        qs = qs.filter(category__name=category)
-    
-    return qs
-
-def testFilterView(request):
-    qs = filter(request)
-    context = {
-        'queryset': qs,
-        'categories': Category.objects.all()
-    }
-
-    return render(request, "testfilter.html", context)

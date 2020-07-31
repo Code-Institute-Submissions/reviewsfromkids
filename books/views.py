@@ -30,13 +30,14 @@ def all_books(request):
             search_results = True
 
             # put searched terms into vars
-            numResults = books.count()
+
             searched_term=request.GET['q']
             
 
     # initiated from search in menu
-    myFilter = BookFilter(request.GET, queryset=books)
-    books = myFilter.qs
+    # myFilter = BookFilter(request.GET, queryset=books)
+    # books = myFilter.qs
+    numResults = books.count()
     
 
     context = {
@@ -44,7 +45,7 @@ def all_books(request):
         'search_term': query,
         'show_refine_bar': search_results,
         'categories': category,
-        'myFilter': myFilter,
+        # 'myFilter': myFilter,
         'numResults': numResults,
         'searched_term': searched_term,
     }

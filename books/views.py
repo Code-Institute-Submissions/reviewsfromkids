@@ -28,10 +28,26 @@ def all_books(request):
             queries =  Q(tags__name__icontains=query) | Q(title__icontains=query) | Q(description__icontains=query) | Q(category__name__icontains=query) | Q(author__icontains=query)| Q(gender__icontains=query) | Q(age__icontains=query)
             books = books.filter(queries).distinct()
             search_results = True
-
-            # put searched terms into vars
-
             searched_term=request.GET['q']
+
+            # check what query was hit
+            if books.filter(Q(title__icontains=query)):
+                title_hit = searched_term
+                print(title_hit)
+            if not books.filter(Q(title__icontains=query)):
+                print('no title hit')
+
+            if books.filter(Q(description__icontains=query)):
+                print('description_hit')
+            if not books.filter(Q(description__icontains=query)):
+                print('no description hit')
+
+            # if books.filter(Q(category_id__icontains=query)):
+            #     print('category_hit')
+            # print('no category hit')
+
+
+            
             
 
     # initiated from search in menu

@@ -17,6 +17,8 @@ def all_books(request):
     query = None
     search_results = False
     searched_term = None
+    title_hit = None
+    description_hit = None
 
     if request.GET:
         if 'q' in request.GET:
@@ -34,14 +36,11 @@ def all_books(request):
             if books.filter(Q(title__icontains=query)):
                 title_hit = searched_term
                 print(title_hit)
-            if not books.filter(Q(title__icontains=query)):
-                print('no title hit')
 
             if books.filter(Q(description__icontains=query)):
-                print('description_hit')
-            if not books.filter(Q(description__icontains=query)):
-                print('no description hit')
-
+                description_hit = searched_term
+                print(description_hit)
+            
             # if books.filter(Q(category_id__icontains=query)):
             #     print('category_hit')
             # print('no category hit')
@@ -64,6 +63,8 @@ def all_books(request):
         # 'myFilter': myFilter,
         'numResults': numResults,
         'searched_term': searched_term,
+        'title_hit': title_hit,
+        'description_hit': description_hit,
     }
 
     return render(request, 'books/books.html', context)

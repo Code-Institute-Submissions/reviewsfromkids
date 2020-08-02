@@ -2,8 +2,14 @@
   
   <div class="refine-sort__overlay-content">
     <a class="refine-sort__btn-close-x">X</a>
-    <form>
-      {{myFilter.form}}
+    <form class="strip-margin" method="GET" action="{% url 'books' %}">Your search term {{searched_term}} has hits on
+      <br>
+      {% if title_hit %}title{% endif %} <br>
+      and<br> {% if description_hit %}description{% endif %}
+      <br>
+      Title<input class="search__box--input" type="text" name="q" {% if title_hit %}value="{{title_hit}}" {% else %}placeholder="    search title, author, theme, tag"  {% endif %}>
+      <br>
+      Description contains<input class="search__box--input" type="text" name="q" {% if title_hit %}value="{{description_hit}}" {% else %}placeholder="    search title, author, theme, tag"  {% endif %}>
       <button type="submit" class="btn btnize">Refine search</button>
       <a href="{% url 'books' %}">reset all</a>
     </form>

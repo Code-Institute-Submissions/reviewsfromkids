@@ -39,10 +39,13 @@ INSTALLED_APPS = [
     'allauth', # 1.3 Allauth itself
     'allauth.account', # 1.3 Basic account stuff like log in, password reset, etc.
     'allauth.socialaccount', # 1.3 Log in via social accounts
-    'home',
-    'books',
     'taggit',
     'django_filters',
+
+    # my apps
+    'home',
+    'books',
+    'profiles',
 ]
 
 MIDDLEWARE = [

@@ -9,6 +9,13 @@ class UserProfile(models.Model):
     """
 
     user = models.OneToOneField(User, on_delete=models.CASCADE) # try to anonymize ratings and votes for books
+    first_name = models.CharField(max_length=254, null=True, blank=True)
+    last_name = models.CharField(max_length=254, null=True, blank=True)
+    gender = models.CharField(max_length=25, null=True, blank=True)
+    date_of_birth = models.DateField(null=True, blank=True)
+    hobbies = models.ManyToManyField('Hobby', blank=True)
+    sports = models.ManyToManyField('Sport', blank=True)
+    
     
     def __str__(self):
         return self.user.username
@@ -22,3 +29,19 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
         UserProfile.objects.create(user=instance)
     # Existing users: just save the profile
     instance.userprofile.save()
+
+class Hobby(models.Model):
+
+    class Meta: # 6.1
+        verbose_name_plural = 'Hobbies'
+    
+    name = models.CharField(max_length=254)
+
+    def __str__(self):
+        return self.name
+
+class Sport(models.Model):
+    name = models.CharField(max_length=254)
+
+    def __str__(self):
+        return self.name

@@ -26,3 +26,7 @@ html {
         padding-top: 164px;
     }
 }
+
+.allauth-form-inner-content {
+  margin-top: 5rem;
+}

@@ -471,4 +471,20 @@ html, body {
   padding: 0.75rem 1rem;
 }
 
+.profile {
+  color: white;
+  grid-template: none;
+  background-color: #25b8c0;
+}
+.profile__basic h3, .profile__account h3 {
+  color: #25b8c0;
+}
+.profile__basic-grid, .profile__account-grid {
+  display: grid;
+}
+.profile__basic-grid-row, .profile__account-grid-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
 /*# sourceMappingURL=override.css.map */

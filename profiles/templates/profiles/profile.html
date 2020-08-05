@@ -1,9 +1,93 @@
-<h1>Profile page</h1>
-{{ profile }}
-{{ sport }}
+{% extends "base.html" %}
+{% load static %}
+{% block hero %}
+<div class="hero profile">
+    <h3>{{profile}} Profile Page</h3>
+    <p>Hello {{ profile.first_name }}!</p>
+    <p>This is your personal profile page. In here you can tell as much (or as little) about yourself as you want.</p>
+    <p>The more you tell, the better the recommendations for a book will be!</p>
+    
+</div>
+{% endblock %}
 
-{{ profile.first_name }}
+{% block content %}
+<ul class="nav nav-pills">
+    <li class="active"><a data-toggle="pill" href="#menu1">Account</a></li>
+    <li><a data-toggle="pill" href="#menu2">Hobby & Sport</a></li>
+    <li><a data-toggle="pill" href="#menu3">Other</a></li>
+  </ul>
+<div class="container tab-content">
+    <div class="container">
+        <div class="tab-content">
 
-{% for hobby in hobby %}
-{{ hobby }}
-{% endfor %}
+          <div id="menu1" class="tab-pane fade in show active">
+
+            <section class="profile__account card-body">
+                <h3>Account</h3><i class="fas fa-edit"></i>
+                <div class="profile__account-grid">
+                    <div class="profile__account-grid-row">
+                        <div class="account-grid-row--key">Username: </div>
+                        <div class="account-grid-row--value">{{ profile }}</div>
+                    </div>
+                    <div class="account-grid-row">
+                        <div class="account-grid-row--key">Email: </div>
+                        <div class="account-grid-row--value">{{ user.email_address }}</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="profile__basic card-body">
+                <h3>Personal</h3><i class="fas fa-edit"></i>
+                <div class="profile__basic-grid">
+                    <div class="profile__basic-grid-row">
+                        <div class="profile__basic-grid-row--key">First name: </div>
+                        <div class="profile__basic-grid-row--value">{{ profile.first_name }}</div>
+                    </div>
+                    <div class="profile__basic-grid-row">
+                        <div class="profile__basic-grid-row--key">Last name: </div>
+                        <div class="profile__basic-grid-row--value">{{ profile.last_name }}</div>
+                    </div>
+                    <div class="profile__basic-grid-row">
+                        <div class="profile__basic-grid-row--key">Date of birth: </div>
+                        <div class="profile__basic-grid-row--value">{{ profile.date_of_birth }}</div>
+                    </div>
+                    <div class="profile__basic-grid-row">
+                        <div class="profile__basic-grid-row--key">Gender: </div>
+                        <div class="profile__basic-grid-row--value">{{ profile.gender }}</div>
+                    </div>
+                </div>
+            </section>
+          </div>
+
+          <div id="menu2" class="tab-pane fade">
+            <h3>Hobbies</h3><i class="fas fa-edit"></i>
+            <ul>
+                {% if hobby %}
+                    {% for hobby in hobby %}
+                    <li>{{ hobby }}</li>
+                    {% endfor %}
+                {% else %}
+                No hobbies provided yet. Go here to complete.
+                {% endif %}
+            </ul>
+            
+            <h3>Sports</h3><i class="fas fa-edit"></i>
+            <ul>
+                {% if sport %}
+                    {% for sport in sport %}
+                        <li>{{ sport }}</li>
+                    {% endfor %}
+                {% else %}
+                    No sports provided yet. Go here to complete.
+                {% endif %}
+            </ul>
+          </div>
+
+          <div id="menu3" class="tab-pane fade">
+            <h3>Other</h3>
+            <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+          </div>
+        </div>
+      </div>
+</div>
+{% endblock %}

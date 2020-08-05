@@ -1,0 +1,25 @@
+.profile {
+    
+    color: white;
+    grid-template: none;
+    background-color: $mainTeal;
+
+    &__basic, &__account {
+
+        h3 {
+
+            color: $mainTeal;
+        }
+
+        &-grid {
+
+            display: grid;
+
+            &-row {
+
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    }
+}

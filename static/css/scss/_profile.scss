@@ -6,6 +6,14 @@
     padding-right: 2rem;
     padding-left: 2rem;
 
+    &__title {
+
+        display: grid;
+        grid-template-columns: auto 1fr;
+        column-gap: 0.5rem;
+        align-items: center;
+    }
+
     &__pills {
 
         display: flex;
@@ -54,5 +62,19 @@
                 grid-template-columns: 1fr 1fr;
             }
         }
+    }
+
+    &__hobbysport {
+
+        h3 {
+
+            color: $mainTeal;
+        }
+
+    }
+
+    &__icon--edit {
+
+        color: $mainTeal;
     }
 }

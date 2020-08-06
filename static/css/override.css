@@ -478,6 +478,12 @@ html, body {
   padding-right: 2rem;
   padding-left: 2rem;
 }
+.profile__title {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 0.5rem;
+  align-items: center;
+}
 .profile__pills {
   display: flex;
   flex-wrap: wrap;
@@ -510,6 +516,12 @@ html, body {
 .profile__basic-grid-row, .profile__account-grid-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
+}
+.profile__hobbysport h3 {
+  color: #25b8c0;
+}
+.profile__icon--edit {
+  color: #25b8c0;
 }
 
 /*# sourceMappingURL=override.css.map */

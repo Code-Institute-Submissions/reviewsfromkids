@@ -477,6 +477,7 @@ html, body {
   background-color: #25b8c0;
   padding-right: 2rem;
   padding-left: 2rem;
+  text-align: center;
 }
 .profile__title {
   display: grid;
@@ -512,6 +513,7 @@ html, body {
 }
 .profile__basic-grid, .profile__account-grid {
   display: grid;
+  row-gap: 0.5rem;
 }
 .profile__basic-grid-row, .profile__account-grid-row {
   display: grid;
@@ -522,6 +524,10 @@ html, body {
 }
 .profile__icon--edit {
   color: #25b8c0;
+}
+
+.profile-modal__personal--edit {
+  padding-top: 0rem;
 }
 
 /*# sourceMappingURL=override.css.map */

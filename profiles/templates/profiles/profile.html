@@ -2,8 +2,13 @@
 {% load static %}
 {% block hero %}
 <div class="hero profile">
-    <h3>{{profile}} Profile Page</h3>
-    <p>Hello {{ profile.first_name }}!</p>
+    <h3>
+        {% if profile.first_name %}
+            Hello {{ profile.first_name }}!
+        {% else %}
+            Hello anonymous!
+        {% endif %}
+    </h3>
     <p>This is your personal profile page. In here you can tell as much (or as little) about yourself as you want.</p>
     <p>The more you tell, the better the recommendations for a book will be!</p>
 </div>
@@ -21,7 +26,7 @@
                 <section class="profile__account card-body">
                     <div class="profile__title">
                         <h3>Account</h3>
-                        <a href="#"><i class="fas profile__icon--edit fa-edit"></i></a>
+                        <a data-toggle="modal" data-target="#account"><i class="fas profile__icon--edit fa-edit"></i></a>
                     </div>
                     <div class="profile__account-grid">
                         <div class="profile__account-grid-row">
@@ -37,33 +42,37 @@
                 <section class="profile__basic card-body">
                     <div class="profile__title">
                         <h3>Personal</h3>
-                        <a href="#"><i class="fas profile__icon--edit fa-edit"></i></a>
+                        <a data-toggle="modal" data-target="#personal"><i class="fas profile__icon--edit fa-edit"></i></a>
                     </div>
-                    <div class="profile__basic-grid">
-                        <div class="profile__basic-grid-row">
-                            <div class="profile__basic-grid-row--key">First name: </div>
-                            <div class="profile__basic-grid-row--value">{{ profile.first_name }}</div>
+                    {% if profile.first_name %}
+                        <div class="profile__basic-grid">
+                            <div class="profile__basic-grid-row">
+                                <div class="profile__basic-grid-row--key">First name: </div>
+                                <div class="profile__basic-grid-row--value">{{ profile.first_name }}</div>
+                            </div>
+                            <div class="profile__basic-grid-row">
+                                <div class="profile__basic-grid-row--key">Last name: </div>
+                                <div class="profile__basic-grid-row--value">{{ profile.last_name }}</div>
+                            </div>
+                            <div class="profile__basic-grid-row">
+                                <div class="profile__basic-grid-row--key">Date of birth: </div>
+                                <div class="profile__basic-grid-row--value">{{ profile.date_of_birth }}</div>
+                            </div>
+                            <div class="profile__basic-grid-row">
+                                <div class="profile__basic-grid-row--key">Gender: </div>
+                                <div class="profile__basic-grid-row--value">{{ profile.gender }}</div>
+                            </div>
                         </div>
-                        <div class="profile__basic-grid-row">
-                            <div class="profile__basic-grid-row--key">Last name: </div>
-                            <div class="profile__basic-grid-row--value">{{ profile.last_name }}</div>
-                        </div>
-                        <div class="profile__basic-grid-row">
-                            <div class="profile__basic-grid-row--key">Date of birth: </div>
-                            <div class="profile__basic-grid-row--value">{{ profile.date_of_birth }}</div>
-                        </div>
-                        <div class="profile__basic-grid-row">
-                            <div class="profile__basic-grid-row--key">Gender: </div>
-                            <div class="profile__basic-grid-row--value">{{ profile.gender }}</div>
-                        </div>
-                    </div>
+                    {% else %}
+                        button met tekst om profiel in te vullen
+                    {% endif %}
                 </section>
             </div>
             <div id="menu2" class="tab-pane fade">
                 <section class="profile__hobbysport card-body">
                     <div class="profile__title">
                         <h3>Hobbies</h3>
-                        <a href="#"><i class="fas profile__icon--edit fa-edit"></i></a>
+                        <a data-toggle="modal" data-target="#hobby"><i class="fas profile__icon--edit fa-edit"></i></a>
                     </div>
                     <ul>
                         {% if hobby %}
@@ -78,7 +87,7 @@
                 <section class="profile__hobbysport card-body">
                     <div class="profile__title">
                         <h3>Sports</h3>
-                        <a href="#"><i class="fas profile__icon--edit fa-edit"></i></a>
+                        <a data-toggle="modal" data-target="#sport"><i class="fas profile__icon--edit fa-edit"></i></a>
                     </div>
                     <ul>
                         {% if sport %}
@@ -102,4 +111,12 @@
             </div>
         </div>
     </div>
+
+{% include 'includes/profile-modal.html' %}    <!-- Modal -->
+
 {% endblock %}
+
+{% block postloadjs %}
+
+{% endblock %} 
+

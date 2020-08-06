@@ -522,6 +522,18 @@ html, body {
 .profile__hobbysport h3 {
   color: #25b8c0;
 }
+.profile__hobbysport ul {
+  margin-top: 0.3rem;
+  padding: 0;
+}
+.profile__hobbysport--tag {
+  display: inline-block;
+  border: 1px solid #929292;
+  border-radius: 4px;
+  color: #929292;
+  padding: 0.2rem 0.4rem;
+  margin: 0.3rem;
+}
 .profile__icon--edit {
   color: #25b8c0;
 }

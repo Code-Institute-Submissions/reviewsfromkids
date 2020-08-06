@@ -77,7 +77,7 @@
                     <ul>
                         {% if hobby %}
                             {% for hobby in hobby %}
-                            <li>{{ hobby }}</li>
+                            <li class="profile__hobbysport--tag">{{ hobby }}</li>
                             {% endfor %}
                         {% else %}
                         No hobbies provided yet. Go here to complete.
@@ -92,7 +92,7 @@
                     <ul>
                         {% if sport %}
                             {% for sport in sport %}
-                                <li>{{ sport }}</li>
+                                <li class="profile__hobbysport--tag">{{ sport }}</li>
                             {% endfor %}
                         {% else %}
                             No sports provided yet. Go here to complete.

@@ -6,14 +6,14 @@ def profile(request):
     """ Display user profile """
 
     profile = get_object_or_404(UserProfile, user=request.user)
-    hobby = profile.hobbies.all()
-    # sport = profile.sports.all()
+    hobby = profile.hobbies.all().order_by('name')
+    sport = profile.sports.all().order_by('name')
 
 
     template = 'profiles/profile.html'
     context = {
         'hobby':hobby,
-        # 'sport': sport,
+        'sport': sport,
         'profile': profile,
         }
 

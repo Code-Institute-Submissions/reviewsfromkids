@@ -73,6 +73,22 @@
             color: $mainTeal;
         }
 
+        ul {
+
+            margin-top: 0.3rem;
+            padding: 0;
+        }
+
+        &--tag {
+
+            display: inline-block;
+            border: 1px solid $mainGrey;
+            border-radius: 4px;;
+            color: $mainGrey;
+            padding: 0.2rem 0.4rem;
+            margin: 0.3rem;
+        }
+
     }
 
     &__icon--edit {

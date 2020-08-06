@@ -542,4 +542,26 @@ html, body {
   padding-top: 0rem;
 }
 
+.book-details {
+  margin-top: 5rem;
+  padding: 0 1rem;
+}
+.book-details__image-container {
+  margin: 0 0 1rem 0;
+}
+.book-details__quick-facts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.img-fluid {
+  height: 400px;
+  object-fit: scale-down;
+}
+
+h2.book-details__title {
+  padding: 1rem 0;
+  text-align: center;
+}
+
 /*# sourceMappingURL=override.css.map */

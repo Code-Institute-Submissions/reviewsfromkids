@@ -1,0 +1,29 @@
+.book-details {
+    
+    margin-top: 5rem;
+    padding: 0 1rem;
+
+    &__image-container {
+
+        margin: 0 0 1rem 0;
+    }
+
+    &__quick-facts {
+
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.img-fluid {
+
+    height: 400px;
+    object-fit: scale-down;
+}
+
+h2.book-details__title {
+    
+    padding: 1rem 0;
+    text-align: center;
+
+}

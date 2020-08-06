@@ -71,22 +71,15 @@
         </div>
         <div class="modal-body">
             <form class="profile-modal__personal--edit">
-                <div class="form-group">
-                    <label for="first_name">First name</label>
-                    <input type="text" class="form-control" id="first_name" name="first_name" {% if profile.first_name %}value="{{ profile.first_name }}"{% endif %}>
-                </div>
-                <div class="form-group">
-                    <label for="last_name">Last name</label>
-                    <input type="text" class="form-control" id="last_name" name="last_name" {% if profile.last_name %}value="{{ profile.last_name }}"{% endif %}>
-                </div>
-                <div class="form-group">
-                    <label for="gender">Gender</label>
-                    <input type="text" class="form-control" id="gender" name="gender" {% if profile.gender %}value="{{ profile.gender }}"{% endif %}>
-                </div>
-                <div class="form-group">
-                    <label for="age">Date of birth</label>
-                    <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" {% if profile.date_of_birth %} select="{{ profile.date_of_birth }}"{% endif %}>
-                    </div>
+                <ul>
+                    {% if hobby %}
+                        {% for hobby in hobby %}
+                        <li class="profile__hobbysport--tag">{{ hobby }}</li>
+                        {% endfor %}
+                    {% else %}
+                    No hobbies provided yet. Go here to complete.
+                    {% endif %}
+                </ul>
                 <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             
@@ -111,22 +104,15 @@
         </div>
         <div class="modal-body">
             <form class="profile-modal__personal--edit">
-                <div class="form-group">
-                    <label for="first_name">First name</label>
-                    <input type="text" class="form-control" id="first_name" name="first_name" {% if profile.first_name %}value="{{ profile.first_name }}"{% endif %}>
-                </div>
-                <div class="form-group">
-                    <label for="last_name">Last name</label>
-                    <input type="text" class="form-control" id="last_name" name="last_name" {% if profile.last_name %}value="{{ profile.last_name }}"{% endif %}>
-                </div>
-                <div class="form-group">
-                    <label for="gender">Gender</label>
-                    <input type="text" class="form-control" id="gender" name="gender" {% if profile.gender %}value="{{ profile.gender }}"{% endif %}>
-                </div>
-                <div class="form-group">
-                    <label for="age">Date of birth</label>
-                    <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" {% if profile.date_of_birth %} select="{{ profile.date_of_birth }}"{% endif %}>
-                    </div>
+                <ul>
+                    {% if sport %}
+                        {% for sport in sport %}
+                            <li class="profile__hobbysport--tag">{{ sport }}</li>
+                        {% endfor %}
+                    {% else %}
+                        No sports provided yet. Go here to complete.
+                    {% endif %}
+                </ul>
                 <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             

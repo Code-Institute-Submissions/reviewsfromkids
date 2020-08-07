@@ -62,20 +62,40 @@ def book_detail(request, book_id):
     book = get_object_or_404(Book, pk=book_id)
     current_book = book_id
 
+    # All ratings by boys and girls
     rating = Rating.objects.filter(book_id=current_book)
     number_of_ratings = len(rating)
     total_rating_sum = Rating.objects.aggregate(sum=Sum('rating'))['sum']
-    avg_rating = total_rating_sum / number_of_ratings
-    outcome = avg_rating
+    if number_of_ratings > 0:
+        avg_rating = total_rating_sum / number_of_ratings
+    else:
+        avg_rating = 0    
+    
+    # Rating boys only
+    boys_rating = Rating.objects.filter(book_id=current_book, gender='boy')
+    boys_number_of_ratings = len(boys_rating)
+    boys_total_rating_sum = boys_rating.aggregate(sum=Sum('rating'))['sum']
+    if boys_number_of_ratings > 0:
+        boys_avg_rating = boys_total_rating_sum / boys_number_of_ratings
+    else:
+        boys_avg_rating = 0    
 
-    print(number_of_ratings)
-    print(total_rating_sum)
-    print(outcome)
-
+    # Rating girls only
+    girls_rating = Rating.objects.filter(book_id=current_book, gender='girl')
+    girls_number_of_ratings = len(girls_rating)
+    girls_total_rating_sum = girls_rating.aggregate(sum=Sum('rating'))['sum']
+    if girls_number_of_ratings > 0:
+        girls_avg_rating = girls_total_rating_sum / girls_number_of_ratings
+    else:
+        girls_avg_rating = 0    
+    
     context = {
         'book': book,
         'rating': rating,
         'number_of_ratings': number_of_ratings,
+        'avg_rating': avg_rating,
+        'boys_avg_rating': boys_avg_rating,
+        'girls_avg_rating': girls_avg_rating,
     }
 
     return render(request, 'books/book_detail.html', context)

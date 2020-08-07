@@ -1,3 +1,15 @@
 {% if profile.first_name %}{{ profile.first_name }}{% endif %}
 
 profile-modal__personal--edit
+
+
+
+Can access attributes of profile via rating! However, cannot get to hobbies and sports. Probably, because these are linked to profile via manytomany. Need to find out.
+
+{% for i in rating %}
+        {{ i.rated_by.gender }}
+        {{ i.rated_by.date_of_birth }}
+        {{ i.rating }}
+        {{ i.sports }}
+        {{ i.hobbies }}
+        {% endfor %}

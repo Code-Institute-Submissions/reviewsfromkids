@@ -1,5 +1,10 @@
 from django.db import models
+from django.contrib.auth.models import User
 from taggit.managers import TaggableManager
+from profiles.models import UserProfile
+from django.core.exceptions import ValidationError
+
+
 
 # Create your models here.
 class Category(models.Model):
@@ -61,3 +66,18 @@ class Book(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Rating(models.Model):
+    """ 
+    Rating model.
+    """
+
+    rated_by = models.OneToOneField(User, on_delete=models.CASCADE)
+    book_id = models.ForeignKey('Book', on_delete=models.PROTECT)
+    gender = models.CharField(max_length=25, null=True, blank=True)
+    date_of_birth = models.DateField(null=True, blank=True)
+    rating = models.IntegerField(null=True, blank=True)
+      
+    # def __str__(self):
+    #     return self.rated_by

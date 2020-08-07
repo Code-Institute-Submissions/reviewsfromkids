@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Book, Category, Tag, List
+from .models import Book, Category, Tag, List, Rating
 
 # Register your models here.
 
@@ -41,5 +41,6 @@ class ListAdmin(admin.ModelAdmin): # 6.3
 
 admin.site.register(Book, BookAdmin) # 5.3 6.
 admin.site.register(Category, CategoryAdmin) # 5.3 6.
+admin.site.register(Rating)
 """ admin.site.register(Tag, TagAdmin) # 5.3 6.
 admin.site.register(List, ListAdmin) # 5.3 6. """

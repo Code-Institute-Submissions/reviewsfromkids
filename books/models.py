@@ -78,8 +78,8 @@ class Rating(models.Model):
     """ 
     Rating model.
     """
-
-    rated_by = models.OneToOneField(User, on_delete=models.CASCADE)
+    rated_by = models.OneToOneField(UserProfile, on_delete=models.CASCADE)
+    # rated_by = models.OneToOneField(User, on_delete=models.CASCADE)
     book_id = models.ForeignKey('Book', on_delete=models.PROTECT)
     gender = models.CharField(max_length=25, null=True, blank=True)
     date_of_birth = models.DateField(null=True, blank=True)

@@ -42,7 +42,9 @@
       <div class="book-details__section">
         <h4>Reviews & Ratings</h4>
         <a href="#">Rate this book</a>
-
+        {% for i in outcome %}
+        {{ i.rated_by.gender }}
+        {% endfor %}
 
       </div>
 

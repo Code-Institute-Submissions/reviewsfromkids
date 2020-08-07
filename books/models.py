@@ -63,6 +63,12 @@ class Book(models.Model):
     price = models.DecimalField(max_digits=6, decimal_places=2)
     date_added = models.DateField(auto_now_add=False)
     featured_item = models.BooleanField()
+    test_rating = models.ForeignKey('Rating', null=True, blank=True, on_delete=models.PROTECT)
+
+    # def get_total_ratings(self):
+    #     ratings = Rating.objects.filter(book_id=self)
+    #     total_ratings = len(ratings)
+    #     return total_ratings
 
     def __str__(self):
         return self.title
@@ -81,4 +87,3 @@ class Rating(models.Model):
       
     def __str__(self):
         return self.book_id.title
-    

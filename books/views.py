@@ -1,13 +1,9 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404 # 10.5 import get_object_or_404
-from .models import Book, Category # 7.2
-from django.db.models import Q # 11.3
+from django.shortcuts import render, redirect, reverse, get_object_or_404
+from .models import Book, Category, Rating
+from django.db.models import Q
 from django.contrib import messages
 from .filters import BookFilter
-# from django.views.generic import ListView
 
-# Create your views here.
-
-# 7.1
 def all_books(request):
     """ A view to show all books, including sorting and search queries """
     
@@ -40,27 +36,17 @@ def all_books(request):
             if books.filter(Q(description__icontains=query)):
                 description_hit = searched_term
                 print(description_hit)
-            
-            # if books.filter(Q(category_id__icontains=query)):
-            #     print('category_hit')
-            # print('no category hit')
-
-
-            
-            
 
     # initiated from search in menu
     # myFilter = BookFilter(request.GET, queryset=books)
     # books = myFilter.qs
     numResults = books.count()
     
-
     context = {
         'books': books,
         'search_term': query,
         'show_refine_bar': search_results,
         'categories': category,
-        # 'myFilter': myFilter,
         'numResults': numResults,
         'searched_term': searched_term,
         'title_hit': title_hit,
@@ -69,16 +55,32 @@ def all_books(request):
 
     return render(request, 'books/books.html', context)
 
-# 10.1
-def book_detail(request, book_id): #10.2 Add the book.id as parameter
+def book_detail(request, book_id):
     """ A view to show book details """
     
-    # 10.3 get one product based on id
     book = get_object_or_404(Book, pk=book_id)
+    current_book = book_id
 
-    # 10.4 make the product available for the template by adding this to the context
+    rating = Rating.objects.filter(book_id=current_book)
+    outcome = rating
+
+    # def get_total_ratings(self):
+    #         ratings = Rating.objects.filter(book_id=self)
+    #         total_ratings = len(ratings)
+    #         return total_ratings
+
+    print(outcome)
+
     context = {
         'book': book,
+        'outcome': outcome,
     }
 
     return render(request, 'books/book_detail.html', context)
+
+def add_rating(request, rating_id):
+    """ Test adding a rating """
+
+    book = get_object_or_404(Book, pk=book_id)
+
+

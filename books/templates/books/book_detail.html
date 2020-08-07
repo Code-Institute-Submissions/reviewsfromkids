@@ -42,8 +42,12 @@
       <div class="book-details__section">
         <h4>Reviews & Ratings</h4>
         <a href="#">Rate this book</a>
-        {% for i in outcome %}
+        {% for i in rating %}
         {{ i.rated_by.gender }}
+        {{ i.rated_by.date_of_birth }}
+        {{ i.rating }}
+        {{ i.sports }}
+        {{ i.hobbies }}
         {% endfor %}
 
       </div>

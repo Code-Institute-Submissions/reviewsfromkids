@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from .models import Book, Category, Rating
-from django.db.models import Q
+from profiles.models import Hobby, Sport
+from django.db.models import Q, Sum
 from django.contrib import messages
 from .filters import BookFilter
 
@@ -62,18 +63,19 @@ def book_detail(request, book_id):
     current_book = book_id
 
     rating = Rating.objects.filter(book_id=current_book)
-    outcome = rating
+    number_of_ratings = len(rating)
+    total_rating_sum = Rating.objects.aggregate(sum=Sum('rating'))['sum']
+    avg_rating = total_rating_sum / number_of_ratings
+    outcome = avg_rating
 
-    # def get_total_ratings(self):
-    #         ratings = Rating.objects.filter(book_id=self)
-    #         total_ratings = len(ratings)
-    #         return total_ratings
-
+    print(number_of_ratings)
+    print(total_rating_sum)
     print(outcome)
 
     context = {
         'book': book,
-        'outcome': outcome,
+        'rating': rating,
+        'number_of_ratings': number_of_ratings,
     }
 
     return render(request, 'books/book_detail.html', context)

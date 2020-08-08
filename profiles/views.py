@@ -9,6 +9,9 @@ def profile(request):
     hobby = profile.hobbies.all().order_by('name')
     sport = profile.sports.all().order_by('name')
 
+    name = request.POST.get("ratingOptions")
+    print(request.POST)
+
 
     template = 'profiles/profile.html'
     context = {

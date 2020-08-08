@@ -7,7 +7,7 @@ from .filters import BookFilter
 
 def all_books(request):
     """ A view to show all books, including sorting and search queries """
-    
+    print('view triggered')
     # initiated from search in menu
     books = Book.objects.all() # Make sure this is a selection somehow (recent or popular). If There are 10K books in db, I do not want to show all...
     category = Category.objects.all()
@@ -100,9 +100,14 @@ def book_detail(request, book_id):
 
     return render(request, 'books/book_detail.html', context)
 
-def add_rating(request, rating_id):
-    """ Test adding a rating """
 
-    book = get_object_or_404(Book, pk=book_id)
+def add_rating(request):
+    """ Test adding a rating """
+    print('view rating triggered')
+
+    context = {}
+    
+    return render(request, 'profiles/profile.html', context)
+
 
 

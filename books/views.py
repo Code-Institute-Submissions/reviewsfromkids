@@ -89,6 +89,11 @@ def book_detail(request, book_id):
     else:
         girls_avg_rating = 0    
     
+
+    if request.POST:
+        ratingOptions = request.POST.get('ratingOptions')
+        print(ratingOptions)
+
     context = {
         'book': book,
         'rating': rating,
@@ -101,13 +106,13 @@ def book_detail(request, book_id):
     return render(request, 'books/book_detail.html', context)
 
 
-def add_rating(request):
-    """ Test adding a rating """
-    print('view rating triggered')
+# def add_rating(request):
+#     """ Test adding a rating """
+#     print('view rating triggered')
 
-    context = {}
+#     context = {}
     
-    return render(request, 'profiles/profile.html', context)
+#     return render(request, 'profiles/profile.html', context)
 
 
 

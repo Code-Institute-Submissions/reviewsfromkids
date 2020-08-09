@@ -63,7 +63,7 @@ class Book(models.Model):
     price = models.DecimalField(max_digits=6, decimal_places=2)
     date_added = models.DateField(auto_now_add=False)
     featured_item = models.BooleanField()
-    test_rating = models.ForeignKey('Rating', null=True, blank=True, on_delete=models.PROTECT)
+    # test_rating = models.ForeignKey('Rating', null=True, blank=True, on_delete=models.PROTECT)
 
     # def get_total_ratings(self):
     #     ratings = Rating.objects.filter(book_id=self)
@@ -78,7 +78,7 @@ class Rating(models.Model):
     """ 
     Rating model.
     """
-    rated_by = models.OneToOneField(UserProfile, on_delete=models.CASCADE)
+    rated_by = models.ManyToManyField(UserProfile, blank=True)
     # rated_by = models.OneToOneField(User, on_delete=models.CASCADE)
     book_id = models.ForeignKey('Book', on_delete=models.PROTECT)
     gender = models.CharField(max_length=25, null=True, blank=True)

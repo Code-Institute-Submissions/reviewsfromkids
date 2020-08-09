@@ -92,7 +92,11 @@ def book_detail(request, book_id):
 
     if request.POST:
         ratingOptions = request.POST.get('ratingOptions')
+        rated_by = request.POST.get('rated_by')
+        book_id = request.POST.get('book_id')
         print(ratingOptions)
+        print(rated_by)
+        print(book_id)
 
     context = {
         'book': book,

@@ -45,7 +45,7 @@
         {% for i in rating %}
         {{ i.rated_by.gender }}
         {{ i.rated_by.date_of_birth }}
-        {{ i.rating }}
+       
         {{ i.sports }}
         {{ i.hobbies }}
         {% endfor %}
@@ -79,7 +79,7 @@
             <label class="form-check-label" for="inlineRadio5">5</label>
           </div>
           <input class="text" name="rated_by" value="{{ request.user }}" hidden>
-          <input class="text" name="book_id" value="{{ book.id }}" hidden>
+          <input class="text" name="book_id" value="{{ book.pk }}" hidden>
         </form>
       </div>
 

@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from .models import Book, Category, Rating
+from profiles.models import UserProfile
 from profiles.models import Hobby, Sport
 from django.db.models import Q, Sum
 from django.contrib import messages
@@ -93,10 +94,19 @@ def book_detail(request, book_id):
     if request.POST:
         ratingOptions = request.POST.get('ratingOptions')
         rated_by = request.POST.get('rated_by')
-        book_id = request.POST.get('book_id')
-        print(ratingOptions)
-        print(rated_by)
-        print(book_id)
+        book_id = get_object_or_404(Book, pk=book_id)
+        user = get_object_or_404(UserProfile, user=request.user)
+        user_gender = user.gender
+        user_dob = user.date_of_birth
+        print(user_dob)
+        
+        r = Rating(
+            book_id=book_id, 
+            rating=ratingOptions,
+            gender=user_gender,
+            date_of_birth=user_dob
+            )
+        r.save()
 
     context = {
         'book': book,

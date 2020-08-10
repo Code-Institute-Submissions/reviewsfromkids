@@ -74,7 +74,8 @@ class Rating(models.Model):
     # rated_by = models.OneToOneField(User, on_delete=models.CASCADE)
     book_id = models.ForeignKey('Book', on_delete=models.PROTECT)
     gender = models.CharField(max_length=25, null=True, blank=True)
-    date_of_birth = models.DateField(null=True, blank=True)
+    age_rating_years = models.CharField(max_length=3, null=True, blank=True)
+    age_rating_months = models.CharField(max_length=3, null=True, blank=True)
     rating = models.IntegerField(null=True, blank=True)
       
     def __str__(self):

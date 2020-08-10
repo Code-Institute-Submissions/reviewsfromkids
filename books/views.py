@@ -5,6 +5,9 @@ from profiles.models import Hobby, Sport
 from django.db.models import Q, Sum
 from django.contrib import messages
 from .filters import BookFilter
+from datetime import datetime
+from dateutil.relativedelta import relativedelta, MO
+
 
 def all_books(request):
     """ A view to show all books, including sorting and search queries """
@@ -75,7 +78,7 @@ def book_detail(request, book_id):
     # Check if request.user has rated
     ratings_for_this_book = Rating.objects.filter(book_id=current_book)
     if ratings_for_this_book.filter(rated_by=userprofile):
-        already_rated=True
+        already_rated=True # set to false to test ratings
 
     if request.POST:
         ratingOptions = request.POST.get('ratingOptions')
@@ -84,14 +87,19 @@ def book_detail(request, book_id):
         userprofile = get_object_or_404(UserProfile, user=request.user)
         user_gender = userprofile.gender
         user_dob = userprofile.date_of_birth
-        
+        date_rating = datetime.now()
+        age_rating = relativedelta(date_rating, user_dob)
+        age_rating_years = age_rating.years
+        age_rating_months = age_rating.months
+
         r = Rating(
 
             book_id=book_id, 
             rating=ratingOptions,
             gender=user_gender,
-            date_of_birth=user_dob,
             rated_by=userprofile,
+            age_rating_years=age_rating_years,
+            age_rating_months=age_rating_months
             
             )
 

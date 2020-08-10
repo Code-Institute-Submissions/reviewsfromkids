@@ -76,8 +76,6 @@ def book_detail(request, book_id):
     ratings_for_this_book = Rating.objects.filter(book_id=current_book)
     if ratings_for_this_book.filter(rated_by=userprofile):
         already_rated=True
-    
-    print(already_rated)
 
     if request.POST:
         ratingOptions = request.POST.get('ratingOptions')

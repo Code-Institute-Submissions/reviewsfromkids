@@ -62,25 +62,46 @@ def book_detail(request, book_id):
     
     book = get_object_or_404(Book, pk=book_id)
     current_book = book_id
+    user_logged_in=False
+    already_rated=False
+    user=request.user
+    userprofile=None
+
+    if user.is_authenticated:
+        userprofile = get_object_or_404(UserProfile, user=request.user)
+        user_logged_in=True
+   
+
+    # Check if request.user has rated
+    ratings_for_this_book = Rating.objects.filter(book_id=current_book)
+    if ratings_for_this_book.filter(rated_by=userprofile):
+        already_rated=True
+    
+    print(already_rated)
 
     if request.POST:
-            ratingOptions = request.POST.get('ratingOptions')
-            rated_by = request.POST.get('rated_by')
-            book_id = get_object_or_404(Book, pk=book_id)
-            userprofile = get_object_or_404(UserProfile, user=request.user)
-            user_gender = userprofile.gender
-            user_dob = userprofile.date_of_birth
+        ratingOptions = request.POST.get('ratingOptions')
+        rated_by = request.POST.get('rated_by')
+        book_id = get_object_or_404(Book, pk=book_id)
+        userprofile = get_object_or_404(UserProfile, user=request.user)
+        user_gender = userprofile.gender
+        user_dob = userprofile.date_of_birth
+        
+        r = Rating(
+
+            book_id=book_id, 
+            rating=ratingOptions,
+            gender=user_gender,
+            date_of_birth=user_dob,
+            rated_by=userprofile,
             
-            r = Rating(
-                book_id=book_id, 
-                rating=ratingOptions,
-                gender=user_gender,
-                date_of_birth=user_dob,
-                rated_by=userprofile,
-                )
+            )
 
-            r.save()
-
+        r.save()
+ 
+    ratings_for_this_book = Rating.objects.filter(book_id=current_book)
+    if ratings_for_this_book.filter(rated_by=userprofile):
+        already_rated=True
 
     # All ratings by boys and girls
     rating = Rating.objects.filter(book_id=current_book)
@@ -116,6 +137,10 @@ def book_detail(request, book_id):
         'avg_rating': avg_rating,
         'boys_avg_rating': boys_avg_rating,
         'girls_avg_rating': girls_avg_rating,
+        'already_rated': already_rated,
+        'user_logged_in': user_logged_in,
+        'boys_number_of_ratings': boys_number_of_ratings,
+        'girls_number_of_ratings': girls_number_of_ratings,
     }
 
     return render(request, 'books/book_detail.html', context)

@@ -19,13 +19,9 @@
           <small>Recommended age:</small> <br>{{ book.age }} yrs
         </div>
         <div class="book-details__quick-facts__ratings">
-          {% if book.rating_all %}
-          Rating all: <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ avg_rating }} / 5</small>
-          Rating girls: <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ girls_avg_rating }} / 5</small>
-          Rating boys: <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ boys_avg_rating }} / 5</small>
-      {% else %}
-          <small class="text-muted">No Rating</small>
-      {% endif %}
+          Rating all: <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ avg_rating }} / 5 ({{ number_of_ratings }})</small>
+          Rating girls: <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ girls_avg_rating }} / 5 ({{ girls_number_of_ratings }})</small>
+          Rating boys: <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ boys_avg_rating }} / 5 ({{ boys_number_of_ratings }})</small>
         </div>
       </div>
       <div class="book-details__section">
@@ -42,31 +38,39 @@
       <div class="book-details__section">
         <h4>Reviews & Ratings</h4>
         Rate this book
-        <form method="POST" action="{% url 'book_detail' book.id %}">
-          {% csrf_token %}
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="ratingOptions" id="inlineRadio1" value="1">
-            <label class="form-check-label" for="inlineRadio1">1</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="ratingOptions" id="inlineRadio2" value="2">
-            <label class="form-check-label" for="inlineRadio2">2</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="ratingOptions" id="inlineRadio3" value="3">
-            <label class="form-check-label" for="inlineRadio3">3</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="ratingOptions" id="inlineRadio4" value="4">
-            <label class="form-check-label" for="inlineRadio4">4</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="ratingOptions" id="inlineRadio5" value="5">
-            <label class="form-check-label" for="inlineRadio5">5</label>
-          </div>
-          <input class="text" name="rated_by" value="{{ request.user }}" hidden>
-          <input class="text" name="book_id" value="{{ book.pk }}" hidden>
-        </form>
+        {% if user_logged_in %}
+          {% if not already_rated %}
+          <form method="POST" action="{% url 'book_detail' book.id %}">
+            {% csrf_token %}
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="ratingOptions" id="inlineRadio1" value="1">
+              <label class="form-check-label" for="inlineRadio1">1</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="ratingOptions" id="inlineRadio2" value="2">
+              <label class="form-check-label" for="inlineRadio2">2</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="ratingOptions" id="inlineRadio3" value="3">
+              <label class="form-check-label" for="inlineRadio3">3</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="ratingOptions" id="inlineRadio4" value="4">
+              <label class="form-check-label" for="inlineRadio4">4</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="ratingOptions" id="inlineRadio5" value="5">
+              <label class="form-check-label" for="inlineRadio5">5</label>
+            </div>
+            <input class="text" name="rated_by" value="{{ request.user }}" hidden>
+            <input class="text" name="book_id" value="{{ book.pk }}" hidden>
+          </form>
+          {% else %}
+          You have already rated!
+          {% endif %}
+        {% else %}
+          Please log in to rate.
+        {% endif %}
       </div>
 
       <div class="book-details__section">

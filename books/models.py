@@ -55,20 +55,12 @@ class Book(models.Model):
     tags = TaggableManager()
     age = models.IntegerField()
     gender = models.CharField(max_length=25)
-    rating_all = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
-    rating_girls = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True) # only for ms4: ultimate project would calculate this from user profiles
-    rating_boys = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True) # only for ms4: ultimate project would calculate this from user profiles
     number_of_ratings = models.IntegerField()
     # part_of_lists = models.ManyToManyField('List', blank=True)
     price = models.DecimalField(max_digits=6, decimal_places=2)
     date_added = models.DateField(auto_now_add=False)
     featured_item = models.BooleanField()
-    # test_rating = models.ForeignKey('Rating', null=True, blank=True, on_delete=models.PROTECT)
-
-    # def get_total_ratings(self):
-    #     ratings = Rating.objects.filter(book_id=self)
-    #     total_ratings = len(ratings)
-    #     return total_ratings
+    # rated_by = models.CharField(max_length=254)    
 
     def __str__(self):
         return self.title

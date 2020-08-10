@@ -12,11 +12,11 @@ class BookAdmin(admin.ModelAdmin): #6.2
         # 'tag', # gives error The value of 'list_display[4]' refers to 'tag', which is not a callable, an attribute of 'BookAdmin', or an attribute or method on 'books.Book'.
         # 'list', # idem
         'age',
-        'rating_all',
+        # 'rating_all',
         'image',
     )
 
-    ordering = ('rating_all',) # 6.4
+    # ordering = ('rating_all',) # 6.4
 
 class CategoryAdmin(admin.ModelAdmin): # 6.3
     list_display = (

@@ -95,16 +95,16 @@ def book_detail(request, book_id):
         ratingOptions = request.POST.get('ratingOptions')
         rated_by = request.POST.get('rated_by')
         book_id = get_object_or_404(Book, pk=book_id)
-        user = get_object_or_404(UserProfile, user=request.user)
-        user_gender = user.gender
-        user_dob = user.date_of_birth
-        print(user_dob)
+        userprofile = get_object_or_404(UserProfile, user=request.user)
+        user_gender = userprofile.gender
+        user_dob = userprofile.date_of_birth
         
         r = Rating(
             book_id=book_id, 
             rating=ratingOptions,
             gender=user_gender,
-            date_of_birth=user_dob
+            date_of_birth=user_dob,
+            rated_by=userprofile,
             )
         r.save()
 

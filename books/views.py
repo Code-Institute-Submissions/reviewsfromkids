@@ -106,7 +106,7 @@ def book_detail(request, book_id):
     # All ratings by boys and girls
     rating = Rating.objects.filter(book_id=current_book)
     number_of_ratings = len(rating)
-    total_rating_sum = Rating.objects.aggregate(sum=Sum('rating'))['sum']
+    total_rating_sum = rating.aggregate(sum=Sum('rating'))['sum']
     if number_of_ratings > 0:
         avg_rating = round(total_rating_sum / number_of_ratings, 1)
     else:

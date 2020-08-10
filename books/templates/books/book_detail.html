@@ -20,9 +20,9 @@
         </div>
         <div class="book-details__quick-facts__ratings">
           {% if book.rating_all %}
-          Rating all: <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ book.rating_all }} / 5</small>
-          Rating girls: <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ book.rating_girls }} / 5</small>
-          Rating boys: <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ book.rating_boys }} / 5</small>
+          Rating all: <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ avg_rating }} / 5</small>
+          Rating girls: <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ girls_avg_rating }} / 5</small>
+          Rating boys: <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ boys_avg_rating }} / 5</small>
       {% else %}
           <small class="text-muted">No Rating</small>
       {% endif %}
@@ -41,21 +41,7 @@
       </div>
       <div class="book-details__section">
         <h4>Reviews & Ratings</h4>
-        <a href="#">Rate this book</a>
-        {% for i in rating %}
-        {{ i.rated_by.gender }}
-        {{ i.rated_by.date_of_birth }}
-       
-        {{ i.sports }}
-        {{ i.hobbies }}
-        {% endfor %}
-
-        Rating by all: {{ avg_rating }}
-        Rating by boys: {{ boys_avg_rating }}
-        Rating by girls: {{ girls_avg_rating }}
-      </div>
-
-      <div>
+        Rate this book
         <form method="POST" action="{% url 'book_detail' book.id %}">
           {% csrf_token %}
           <div class="form-check form-check-inline">

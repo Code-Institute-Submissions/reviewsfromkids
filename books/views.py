@@ -63,12 +63,31 @@ def book_detail(request, book_id):
     book = get_object_or_404(Book, pk=book_id)
     current_book = book_id
 
+    if request.POST:
+            ratingOptions = request.POST.get('ratingOptions')
+            rated_by = request.POST.get('rated_by')
+            book_id = get_object_or_404(Book, pk=book_id)
+            userprofile = get_object_or_404(UserProfile, user=request.user)
+            user_gender = userprofile.gender
+            user_dob = userprofile.date_of_birth
+            
+            r = Rating(
+                book_id=book_id, 
+                rating=ratingOptions,
+                gender=user_gender,
+                date_of_birth=user_dob,
+                rated_by=userprofile,
+                )
+
+            r.save()
+
+
     # All ratings by boys and girls
     rating = Rating.objects.filter(book_id=current_book)
     number_of_ratings = len(rating)
     total_rating_sum = Rating.objects.aggregate(sum=Sum('rating'))['sum']
     if number_of_ratings > 0:
-        avg_rating = total_rating_sum / number_of_ratings
+        avg_rating = round(total_rating_sum / number_of_ratings, 1)
     else:
         avg_rating = 0    
     
@@ -77,7 +96,7 @@ def book_detail(request, book_id):
     boys_number_of_ratings = len(boys_rating)
     boys_total_rating_sum = boys_rating.aggregate(sum=Sum('rating'))['sum']
     if boys_number_of_ratings > 0:
-        boys_avg_rating = boys_total_rating_sum / boys_number_of_ratings
+        boys_avg_rating = round(boys_total_rating_sum / boys_number_of_ratings, 1)
     else:
         boys_avg_rating = 0    
 
@@ -86,28 +105,10 @@ def book_detail(request, book_id):
     girls_number_of_ratings = len(girls_rating)
     girls_total_rating_sum = girls_rating.aggregate(sum=Sum('rating'))['sum']
     if girls_number_of_ratings > 0:
-        girls_avg_rating = girls_total_rating_sum / girls_number_of_ratings
+        girls_avg_rating = round(girls_total_rating_sum / girls_number_of_ratings, 1)
     else:
         girls_avg_rating = 0    
     
-
-    if request.POST:
-        ratingOptions = request.POST.get('ratingOptions')
-        rated_by = request.POST.get('rated_by')
-        book_id = get_object_or_404(Book, pk=book_id)
-        userprofile = get_object_or_404(UserProfile, user=request.user)
-        user_gender = userprofile.gender
-        user_dob = userprofile.date_of_birth
-        
-        r = Rating(
-            book_id=book_id, 
-            rating=ratingOptions,
-            gender=user_gender,
-            date_of_birth=user_dob,
-            rated_by=userprofile,
-            )
-        r.save()
-
     context = {
         'book': book,
         'rating': rating,
@@ -118,15 +119,4 @@ def book_detail(request, book_id):
     }
 
     return render(request, 'books/book_detail.html', context)
-
-
-# def add_rating(request):
-#     """ Test adding a rating """
-#     print('view rating triggered')
-
-#     context = {}
-    
-#     return render(request, 'profiles/profile.html', context)
-
-
 

@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from taggit.managers import TaggableManager
-from profiles.models import UserProfile
+from profiles.models import UserProfile, Hobby, Sport
 from django.core.exceptions import ValidationError
 
 
@@ -77,6 +77,8 @@ class Rating(models.Model):
     age_rating_years = models.CharField(max_length=3, null=True, blank=True)
     age_rating_months = models.CharField(max_length=3, null=True, blank=True)
     rating = models.IntegerField(null=True, blank=True)
+    hobbies = models.ManyToManyField(Hobby, blank=True)
+    
       
     def __str__(self):
         return self.book_id.title

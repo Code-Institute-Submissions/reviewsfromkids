@@ -70,15 +70,15 @@ def book_detail(request, book_id):
     user=request.user
     userprofile=None
 
+    # Check if user is logged in
     if user.is_authenticated:
         userprofile = get_object_or_404(UserProfile, user=request.user)
         user_logged_in=True
-   
 
-    # Check if request.user has rated
+    # Check if user has rated before
     ratings_for_this_book = Rating.objects.filter(book_id=current_book)
     if ratings_for_this_book.filter(rated_by=userprofile):
-        already_rated=True # set to false to test ratings
+        already_rated=True
 
     if request.POST:
         ratingOptions = request.POST.get('ratingOptions')
@@ -91,6 +91,8 @@ def book_detail(request, book_id):
         age_rating = relativedelta(date_rating, user_dob)
         age_rating_years = age_rating.years
         age_rating_months = age_rating.months
+        hobbies_rating = userprofile.hobbies.all()
+        sports_rating = userprofile.sports.all()
 
         r = Rating(
 
@@ -99,11 +101,12 @@ def book_detail(request, book_id):
             gender=user_gender,
             rated_by=userprofile,
             age_rating_years=age_rating_years,
-            age_rating_months=age_rating_months
-            
+            age_rating_months=age_rating_months,
+                       
             )
 
         r.save()
+
  
     ratings_for_this_book = Rating.objects.filter(book_id=current_book)
     if ratings_for_this_book.filter(rated_by=userprofile):

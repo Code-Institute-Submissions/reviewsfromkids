@@ -1,0 +1,47 @@
+[
+    {"pk": 1, "model": "profiles.hobby", 
+        "fields": {
+            "name": "cooking"
+            }
+    }, 
+    {"pk": 2, "model": "profiles.hobby",
+         "fields": {
+            "name": "singing" 
+            }
+    },
+    {"pk": 3, "model": "profiles.hobby",
+        "fields": {
+            "name": "lego" 
+           }
+    },
+    {"pk": 4, "model": "profiles.hobby",
+        "fields": {
+            "name": "play outside" 
+           }
+    },
+    {"pk": 5, "model": "profiles.hobby",
+        "fields": {
+            "name": "music" 
+           }
+    },
+    {"pk": 6, "model": "profiles.hobby",
+        "fields": {
+            "name": "dancing"
+           }
+    },
+    {"pk": 7, "model": "profiles.hobby",
+       "fields": {
+           "name": "astronomy"
+          }
+    },
+    {"pk": 8, "model": "profiles.hobby",
+       "fields": {
+           "name": "collecting" 
+          }
+    },
+    {"pk": 9, "model": "profiles.hobby",
+       "fields": {
+           "name": "play an instrument" 
+          }
+    }
+]

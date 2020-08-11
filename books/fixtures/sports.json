@@ -1,0 +1,47 @@
+[
+    {"pk": 1, "model": "profiles.sport", 
+        "fields": {
+            "name": "rugby"
+            }
+    }, 
+    {"pk": 2, "model": "profiles.sport",
+         "fields": {
+            "name": "football" 
+            }
+    },
+    {"pk": 3, "model": "profiles.sport",
+        "fields": {
+            "name": "martial arts" 
+           }
+    },
+    {"pk": 4, "model": "profiles.sport",
+        "fields": {
+            "name": "free running" 
+           }
+    },
+    {"pk": 5, "model": "profiles.sport",
+        "fields": {
+            "name": "gymnastics" 
+           }
+    },
+    {"pk": 6, "model": "profiles.sport",
+        "fields": {
+            "name": "swimming"
+           }
+    },
+    {"pk": 7, "model": "profiles.sport",
+       "fields": {
+           "name": "baseball"
+          }
+    },
+    {"pk": 8, "model": "profiles.sport",
+       "fields": {
+           "name": "tennis" 
+          }
+    },
+    {"pk": 9, "model": "profiles.sport",
+       "fields": {
+           "name": "gymnastics" 
+          }
+    }
+]

@@ -111,11 +111,26 @@
                         <a href="#"><i class="fas profile__icon--edit fa-edit"></i></a>
                     </div>
                     <p>All your rated books are here:</p>
-                    <ul>
-                        {% for i in ratings %}
-                            <li>{{ i }}</li>
+                    <h5>Books that are great!</h5>
+                    <div class="scrolling-wrapper-flexbox">
+                        {% for book in ratings_high %}
+                          {% include 'includes/book-card-hs.html' %}
                         {% endfor %}
-                    </ul>
+                    </div>
+
+                    <h5>Books that are ok-ish</h5>
+                    <div class="scrolling-wrapper-flexbox">
+                        {% for book in ratings_ok %}
+                          {% include 'includes/book-card-hs.html' %}
+                        {% endfor %}
+                    </div>
+
+                    <h5>Books that are meh</h5>
+                    <div class="scrolling-wrapper-flexbox">
+                        {% for book in ratings_low %}
+                          {% include 'includes/book-card-hs.html' %}
+                        {% endfor %}
+                    </div>
 
                 </section>  
             </div>

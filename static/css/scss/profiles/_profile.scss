@@ -18,11 +18,11 @@
     &__pills {
 
         display: flex;
-        flex-wrap: wrap;
+        // flex-wrap: wrap;
         padding-left: 0;
         margin: 1.5rem 0;
         list-style: none;
-        justify-content: space-evenly;
+        // justify-content: space-evenly;
 
         a {
             color: $mainTeal;
@@ -30,7 +30,8 @@
             padding: 0.5rem 1rem;
             border: 1px solid $mainTeal;
             border-radius: 4px;
-            
+            margin: 0 0.5rem;
+            white-space: nowrap;
             text-transform: uppercase;
             text-decoration: none;
             

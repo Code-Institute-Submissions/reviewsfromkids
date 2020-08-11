@@ -15,11 +15,15 @@
 {% endblock %}
 
 {% block content %}
-    <ul class="nav profile__pills">
-        <li><a class="active" data-toggle="pill" href="#menu1">Account</a></li>
-        <li><a data-toggle="pill" href="#menu2">Hobby & Sport</a></li>
-        <li><a data-toggle="pill" href="#menu3">Ratings</a></li>
+    <ul class="nav profile__pills scrolling-wrapper-flexbox">
+        <!-- <div class="scrolling-wrapper-flexbox"> -->
+            <li><a class="active" data-toggle="pill" href="#menu1">Account</a></li>
+            <li><a data-toggle="pill" href="#menu2">Hobby & Sport</a></li>
+            <li><a data-toggle="pill" href="#menu3">Ratings</a></li>
+            <li><a data-toggle="pill" href="#menu4">Favorites</a></li>
+        <!-- </div> -->
     </ul>
+    
     <div class="container">
         <div class="tab-content">
             <div id="menu1" class="tab-pane fade in show active">
@@ -113,6 +117,15 @@
                         {% endfor %}
                     </ul>
 
+                </section>  
+            </div>
+            <div id="menu4" class="tab-pane fade">
+                <section class="profile__hobbysport card-body">
+                    <div class="profile__title">
+                        <h3>Favorites</h3>
+                        <a href="#"><i class="fas profile__icon--edit fa-edit"></i></a>
+                    </div>
+                    <p>All your favorites are here:</p>
                 </section>  
             </div>
         </div>

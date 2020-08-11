@@ -1,14 +1,14 @@
 // sass --watch static/css/scss/styles.scss static/css/override.css
-@import 'colors';
+@import 'global/colors';
 @import 'hero';
-@import 'site-header';
+@import 'global/site-header';
 @import 'nav';
 @import 'sort-bar';
-@import 'book-card';
+@import 'books/book-card';
 @import 'search';
-@import 'global';
+@import 'global/global';
 @import 'hs';
 @import 'home';
-@import 'profile';
-@import 'modal';
-@import 'book-detail';
+@import 'profiles/profile';
+@import 'modals/modal';
+@import 'books/book-detail';

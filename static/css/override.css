@@ -546,8 +546,38 @@ html, body {
   margin-top: 5rem;
   padding: 0 1rem;
 }
+.book-details h4 {
+  color: #7d51a1;
+}
 .book-details__image-container {
   margin: 0 0 1rem 0;
+  position: relative;
+}
+.book-details__pills {
+  display: flex;
+  padding-left: 0;
+  margin: 1.5rem 0;
+  list-style: none;
+}
+.book-details__pills a {
+  color: #7d51a1;
+  background-color: white;
+  padding: 0.5rem 1rem;
+  border: 1px solid #7d51a1;
+  border-radius: 4px;
+  margin: 0 0.5rem;
+  white-space: nowrap;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.book-details__pills a.active {
+  color: white;
+  background-color: #7d51a1;
+  border: none;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+}
+.book-details__section__category, .book-details__section__tags {
+  margin-bottom: 1rem;
 }
 .book-details__quick-facts {
   display: grid;
@@ -562,6 +592,7 @@ html, body {
 h2.book-details__title {
   padding: 1rem 0;
   text-align: center;
+  align-self: center;
 }
 
 /*# sourceMappingURL=override.css.map */

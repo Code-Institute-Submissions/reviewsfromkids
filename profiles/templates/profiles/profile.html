@@ -18,7 +18,7 @@
     <ul class="nav profile__pills">
         <li><a class="active" data-toggle="pill" href="#menu1">Account</a></li>
         <li><a data-toggle="pill" href="#menu2">Hobby & Sport</a></li>
-        <li><a data-toggle="pill" href="#menu3">Other</a></li>
+        <li><a data-toggle="pill" href="#menu3">Ratings</a></li>
     </ul>
     <div class="container">
         <div class="tab-content">
@@ -103,10 +103,16 @@
             <div id="menu3" class="tab-pane fade">
                 <section class="profile__hobbysport card-body">
                     <div class="profile__title">
-                        <h3>Other</h3>
+                        <h3>Ratings</h3>
                         <a href="#"><i class="fas profile__icon--edit fa-edit"></i></a>
                     </div>
-                    <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+                    <p>All your rated books are here:</p>
+                    <ul>
+                        {% for i in ratings %}
+                            <li>{{ i }}</li>
+                        {% endfor %}
+                    </ul>
+
                 </section>  
             </div>
         </div>

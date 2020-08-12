@@ -1,6 +1,8 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect, reverse
 from .models import *
 from books.models import Rating, Book
+from django.http import HttpResponseRedirect
+
 
 # Create your views here.
 def profile(request):
@@ -50,15 +52,8 @@ def add_personal(request):
         date_of_birth=date_of_birth,
     )
 
-    template = 'profiles/profile.html'
-    context = {
-        'first_name': first_name,
-        'last_name': last_name,
-        'gender': gender,
-        'date_of_birth': date_of_birth,
-    }
-
-    return render(request, template, context)
+    next = request.POST.get('next', 'profile')
+    return HttpResponseRedirect(next)
 
 # def add_sport(request):
 #     """ User can edit his/her hobbies """

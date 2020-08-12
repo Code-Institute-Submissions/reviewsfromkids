@@ -78,30 +78,30 @@
                 <section class="profile__hobbysport card-body">
                     <div class="profile__title">
                         <h3>Hobbies</h3>
-                        {% if hobby %}
+                        {% if user_hobby %}
                             <a data-toggle="modal" data-target="#hobby"><i class="fas profile__icon--edit fa-edit"></i></a>
                         {% endif %}
                     </div>
                     <ul>
-                        {% if hobby %}
-                            {% for hobby in hobby %}
+                        {% if user_hobby %}
+                            {% for hobby in user_hobby %}
                             <li class="profile__hobbysport--tag">{{ hobby }}</li>
                             {% endfor %}
                         {% else %}
-                        No hobbies provided yet. Go here to complete.
+                        No hobbies provided yet. Go <a data-toggle="modal" data-target="#hobby">here</a> to complete.
                         {% endif %}
                     </ul>
                 </section>
                 <section class="profile__hobbysport card-body">
                     <div class="profile__title">
                         <h3>Sports</h3>
-                        {% if sport %}
+                        {% if user_sport %}
                             <a data-toggle="modal" data-target="#sport"><i class="fas profile__icon--edit fa-edit"></i></a>
                         {% endif %}
                     </div>
                     <ul>
-                        {% if sport %}
-                            {% for sport in sport %}
+                        {% if user_sport %}
+                            {% for sport in user_sport %}
                                 <li class="profile__hobbysport--tag">{{ sport }}</li>
                             {% endfor %}
                         {% else %}

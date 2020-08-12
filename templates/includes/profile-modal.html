@@ -71,16 +71,15 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form class="profile-modal__personal--edit" action="">
-                    <ul>
-                        {% if hobby %}
-                            {% for hobby in hobby %}
-                            <li class="profile__hobbysport--tag">{{ hobby }}</li>
-                            {% endfor %}
-                        {% else %}
-                        No hobbies provided yet. Go here to complete.
-                        {% endif %}
-                    </ul>
+                <form class="profile-modal__hobby--add" action="{% url 'add_hobby' %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <select class="custom-select" multiple>
+                        <option selected>Open this select menu</option>
+                        {% for hobby in hobby %}
+                            <option name="userhobby" value="{{ hobby }}">{{ hobby }}</option>
+                        {% endfor %}
+                    </select>                     
+                    <input type="hidden" name="next" value="{{ request.path }}">
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Submit</button>
                         <button type="button" class="btn btn-primary">Save changes</button>

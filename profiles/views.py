@@ -8,9 +8,12 @@ from django.http import HttpResponseRedirect
 def profile(request):
     """ Display user profile """
 
+    hobby=Hobby.objects.all()
+    sport=Sport.objects.all()
+
     profile = get_object_or_404(UserProfile, user=request.user)
-    hobby = profile.hobbies.all().order_by('name')
-    sport = profile.sports.all().order_by('name')
+    user_hobby = profile.hobbies.all().order_by('name')
+    user_sport = profile.sports.all().order_by('name')
 
     ratings_high = Book.objects.filter(rating__rated_by=profile, rating__rating__gte=4)
     ratings_low = Book.objects.filter(rating__rated_by=profile, rating__rating__lte=2)
@@ -19,13 +22,21 @@ def profile(request):
 
     template = 'profiles/profile.html'
     context = {
-        'hobby':hobby,
+        'hobby': hobby,
         'sport': sport,
+        'user_hobby':user_hobby,
+        'user_sport': user_sport,
         'profile': profile,
         'ratings_high': ratings_high,
         'ratings_low': ratings_low,
         'ratings_ok': ratings_ok,
         }
+
+    if hobby:
+        print(hobby)
+        print(hobby.values())
+    else:
+        print('no hobbies selected')
 
     return render(request, template, context)
 
@@ -42,7 +53,6 @@ def add_personal(request):
         last_name = request.POST.get('last_name')
         gender = request.POST.get('gender')
         date_of_birth = request.POST.get('date_of_birth')
-        print(profile.pk)
 
     # Store POST values in record
     UserProfile.objects.filter(id=profile.pk).update(
@@ -55,10 +65,23 @@ def add_personal(request):
     next = request.POST.get('next', 'profile')
     return HttpResponseRedirect(next)
 
-# def add_sport(request):
-#     """ User can edit his/her hobbies """
+def add_hobby(request):
+    """ User can add his/her hobbies """
     
-#     sports = profile.sports.all().order_by('name')
+    # Get userprofile
+    profile = get_object_or_404(UserProfile, user=request.user)
 
+    # Grab POST values
+    if request.POST:
+        user = profile
+        userhobby = request.POST.get('userhobby')
+        print(userhobby)
+    
+    # UserProfile.objects.filter(id=profile.pk).update(
+    #     hobbies=userhobby,
+    # )
+
+    next = request.POST.get('next', 'profile')
+    return HttpResponseRedirect(next)
 
 

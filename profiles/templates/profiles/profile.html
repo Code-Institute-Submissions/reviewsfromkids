@@ -11,6 +11,7 @@
     </h3>
     <p>This is your personal profile page. In here you can tell as much (or as little) about yourself as you want.</p>
     <p>The more you tell, the better the recommendations for a book will be!</p>
+    <p>Your profile is xx% complete</p>
 </div>
 {% endblock %}
 
@@ -60,7 +61,7 @@
                             </div>
                             <div class="profile__basic-grid-row">
                                 <div class="profile__basic-grid-row--key">Date of birth: </div>
-                                <div class="profile__basic-grid-row--value">{{ profile.date_of_birth }}</div>
+                                <div class="profile__basic-grid-row--value">{{ profile.date_of_birth|date:'Y/m/d' }}</div>
                             </div>
                             <div class="profile__basic-grid-row">
                                 <div class="profile__basic-grid-row--key">Gender: </div>
@@ -68,7 +69,8 @@
                             </div>
                         </div>
                     {% else %}
-                        button met tekst om profiel in te vullen
+                        Add your age to see better recommendations.
+                        <button>start</button>
                     {% endif %}
                 </section>
             </div>
@@ -76,7 +78,9 @@
                 <section class="profile__hobbysport card-body">
                     <div class="profile__title">
                         <h3>Hobbies</h3>
-                        <a data-toggle="modal" data-target="#hobby"><i class="fas profile__icon--edit fa-edit"></i></a>
+                        {% if hobby %}
+                            <a data-toggle="modal" data-target="#hobby"><i class="fas profile__icon--edit fa-edit"></i></a>
+                        {% endif %}
                     </div>
                     <ul>
                         {% if hobby %}
@@ -91,7 +95,9 @@
                 <section class="profile__hobbysport card-body">
                     <div class="profile__title">
                         <h3>Sports</h3>
-                        <a data-toggle="modal" data-target="#sport"><i class="fas profile__icon--edit fa-edit"></i></a>
+                        {% if sport %}
+                            <a data-toggle="modal" data-target="#sport"><i class="fas profile__icon--edit fa-edit"></i></a>
+                        {% endif %}
                     </div>
                     <ul>
                         {% if sport %}
@@ -146,7 +152,7 @@
         </div>
     </div>
 
-{% include 'includes/profile-modal.html' %}    <!-- Modal -->
+    {% include 'includes/profile-modal.html' %}    
 
 {% endblock %}
 

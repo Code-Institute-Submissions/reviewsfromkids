@@ -10,6 +10,8 @@ def profile(request):
 
     hobby=Hobby.objects.all()
     sport=Sport.objects.all()
+    user = get_object_or_404(User, username=request.user)
+    print(user.email)
 
     profile = get_object_or_404(UserProfile, user=request.user)
     user_hobby = profile.hobbies.all().order_by('name')
@@ -22,6 +24,7 @@ def profile(request):
 
     template = 'profiles/profile.html'
     context = {
+        'user': user,
         'hobby': hobby,
         'sport': sport,
         'user_hobby':user_hobby,
@@ -32,11 +35,11 @@ def profile(request):
         'ratings_ok': ratings_ok,
         }
 
-    if hobby:
-        print(hobby)
-        print(hobby.values())
-    else:
-        print('no hobbies selected')
+    # if hobby:
+    #     print(hobby)
+    #     print(hobby.values())
+    # else:
+    #     print('no hobbies selected')
 
     return render(request, template, context)
 

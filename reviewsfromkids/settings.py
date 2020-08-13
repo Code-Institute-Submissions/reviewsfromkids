@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-from env import SECRET_KEY, POSTGRES_PASS
+from env import SECRET_KEY, POSTGRES_PASS, STRIPE_API_KEY_TEST
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'home',
     'books',
     'profiles',
+    'donations',
 
     # other
     'crispy_forms',

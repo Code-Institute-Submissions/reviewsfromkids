@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block page_header %}
+{% endblock %}
+
+
+{% block hero %}
+<div class="hero profile">
+    <h3>
+        {% if profile.first_name %}
+            Hello {{ profile.first_name }}!
+        {% else %}
+            Hello anonymous!
+        {% endif %}
+    </h3>
+    <p>This is your personal profile page. In here you can tell as much (or as little) about yourself as you want.</p>
+    <p>The more you tell, the better the recommendations for a book will be!</p>
+    <p>Your profile is xx% complete</p>
+</div>
+{% endblock %}
+
+
+{% block content %}
+	<div id="box">
+		<img id="succes-icon" src="{% static 'images/check.png' %}">
+		<h4>Thank you for your contribution of ${{amount}}!</h4>
+		<p>Your support helps me fulfill my dream of teaching aspiring developers around the world! You should receive a receipt to the email you provided shortly :)</p>
+		<hr>
+		<a class="myButton" href="{% url 'donations' %}">&#x2190;Back to donation page</a>
+	</div>
+{% endblock content %}

@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/stripe.css' %}">
+
+{% endblock %}
+
+{% block page_header %}
+{% endblock %}
+
+
+{% block hero %} 
+<div class="hero profile">
+    <h3>
+        {% if profile.first_name %}
+            Hello {{ profile.first_name }}!
+        {% else %}
+            Hello anonymous!
+        {% endif %}
+    </h3>
+    <p>This is your personal profile page. In here you can tell as much (or as little) about yourself as you want.</p>
+    <p>The more you tell, the better the recommendations for a book will be!</p>
+    <p>Your profile is xx% complete</p>
+</div>
+{% endblock %}
+
+{% block content %}
+
+<form action="{% url 'charge' %}" method="post" id="payment-form">
+{% csrf_token %}
+    <div class="form-row">
+        <select name="amount" id="amount" required>
+            <option selected value="5">5 euro</option>
+            <option value="10">10 euro</option>
+            <option value="25">25 euro</option>
+        </select>
+    </div>
+
+    <div class="form-row">
+        <input type="text" name="name" placeholder="your name" required>
+        <input type="email" name="email" placeholder="your email" required>
+        <input type="text" name="description" placeholder="keep up the good work!">
+    </div>
+
+    <div class="form-row">
+
+        <label for="card-element">
+            Credit or debit card
+        </label>
+
+        <div id="card-element" style="width:30em">
+            <!-- A Stripe Element will be inserted here. -->
+        </div>
+
+        <!-- Used to display form errors. -->
+        <div id="card-errors" role="alert">
+            <span style="width: 30em; height: 2em; letter-spacing: 0em" id="card-errors" role="alert"></span>
+        </div>
+
+    </div>
+
+    <button>Submit Payment</button>
+
+</form>
+
+{% endblock %}
+
+{% block postloadjs %}
+    <script type="module" src="{% static 'scripts/modules/Stripe.js' %}"></script>
+{% endblock %}  

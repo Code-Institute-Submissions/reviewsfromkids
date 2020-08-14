@@ -1,11 +1,6 @@
 import os
-from os import path
 import dj_database_url
-
-# if path.exists("env.py"):
-#     import env
-
-# from env import SECRET_KEY, POSTGRES_PASS, STRIPE_API_KEY_TEST, DATABASE_URL
+from env import SECRET_KEY, POSTGRES_PASS, STRIPE_API_KEY_TEST, DATABASE_URL
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -16,11 +11,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 SECRET_KEY = os.environ.get('SECRET_KEY', '')
+# SECRET_KEY = SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'DEVELOPMENT' in os.environ
+# DEBUG = True
 
 ALLOWED_HOSTS = ['reviewsfromkids.herokuapp.com', 'localhost']
+# ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -165,7 +163,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
+print(DATABASES)
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 

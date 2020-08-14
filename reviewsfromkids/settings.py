@@ -2,8 +2,8 @@ import os
 from os import path
 import dj_database_url
 
-if path.exists("env.py"):
-    import env
+# if path.exists("env.py"):
+#     import env
 
 # from env import SECRET_KEY, POSTGRES_PASS, STRIPE_API_KEY_TEST, DATABASE_URL
 

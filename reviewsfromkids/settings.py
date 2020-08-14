@@ -1,6 +1,11 @@
 import os
+from os import path
 import dj_database_url
-from env import SECRET_KEY, POSTGRES_PASS, STRIPE_API_KEY_TEST, DATABASE_URL
+
+if path.exists("env.py"):
+    import env
+
+# from env import SECRET_KEY, POSTGRES_PASS, STRIPE_API_KEY_TEST, DATABASE_URL
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)

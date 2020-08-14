@@ -2,6 +2,11 @@ import os
 import dj_database_url
 # from env import SECRET_KEY, POSTGRES_PASS, STRIPE_API_KEY_TEST, DATABASE_URL
 
+# Running locally pull keys from env.py
+if os.path.exists("env.py"):
+  import env
+  from env import SECRET_KEY, POSTGRES_PASS, STRIPE_API_KEY_TEST, DATABASE_URL
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -10,15 +15,19 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
-SECRET_KEY = os.environ.get('SECRET_KEY', '')
-# SECRET_KEY = SECRET_KEY
+if os.path.exists("env.py"):
+    SECRET_KEY = SECRET_KEY
+else:
+    SECRET_KEY = os.environ.get('SECRET_KEY', '')
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = 'DEVELOPMENT' in os.environ
-# DEBUG = True
 
-ALLOWED_HOSTS = ['reviewsfromkids.herokuapp.com', 'localhost']
-# ALLOWED_HOSTS = []
+if os.path.exists("env.py"):
+    DEBUG = True
+    ALLOWED_HOSTS = []
+else:
+    DEBUG = 'DEVELOPMENT' in os.environ
+    ALLOWED_HOSTS = ['reviewsfromkids.herokuapp.com', 'localhost']
+
 
 
 # Application definition
@@ -108,27 +117,6 @@ LOGIN_REDIRECT_URL = '/' # 1.9 Change this redirect from / to /success to test
 
 WSGI_APPLICATION = 'reviewsfromkids.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
-# DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    # }
-
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql',
-    #     'NAME': 'reviewsfromkids',
-    #     'USER': 'postgres',
-    #     'PASSWORD': POSTGRES_PASS,
-    #     'HOST': '127.0.0.1',
-    #     'PORT': '5432',
-    # }
-# }
-
-# Not working: reverts to sql - need more config
 if 'DATABASE_URL' in os.environ:
     DATABASES = {
         'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
@@ -140,14 +128,6 @@ else:
             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         }
     }
-
-# Working with credentials in env.py
-# DATABASES = {
-#         'default': dj_database_url.parse(DATABASE_URL)
-# }
-
-# Password validation
-# https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -164,9 +144,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-print(DATABASES)
-# Internationalization
-# https://docs.djangoproject.com/en/3.0/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
@@ -177,10 +154,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),) # 4.4

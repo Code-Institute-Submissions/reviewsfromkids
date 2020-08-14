@@ -4,11 +4,11 @@ from django.http import JsonResponse
 import stripe
 
 import os
-from env import STRIPE_API_KEY_TEST
+# from env import STRIPE_API_KEY_TEST
 
 # Create your views here.
-
-stripe.api_key = STRIPE_API_KEY_TEST
+# stripe.api_key = STRIPE_API_KEY_TEST
+stripe.api_key = os.environ.get('STRIPE_API_KEY_TEST')
 
 def donations(request):
     return render(request, 'donations/donations.html')

@@ -178,5 +178,77 @@
             "featured_item": "False",
             "date_added": "2020-07-16"
         }
+    },
+    {"pk": 11, "model": "books.book", 
+        "fields": {
+            "isbn": "978-0142410387", 
+            "title": "The BFG",
+            "author": "Roald Dahl",
+            "description": "The BFG is no ordinary bone-crunching giant. He is far too nice and jumbly. It's lucky for Sophie that he is. Had she been carried off in the middle of the night by the Bloodbottler, or any of the other giants—rather than the BFG—she would have soon become breakfast. When Sophie hears that the giants are flush-bunking off to England to swollomp a few nice little chiddlers, she decides she must stop them once and for all. And the BFG is going to help her!",
+            "image_url": "https://images-na.ssl-images-amazon.com/images/I/91I2ywLs1YL.jpg", 
+            "image": "91I2ywLs1YL.jpg",
+            "pages": 224,
+            "category": 6,
+            "age": 8,
+            "gender": "all", 
+            "number_of_ratings": 10,
+            "price": 5.50,
+            "featured_item": "False",
+            "date_added": "2020-07-16"
+        }
+    },
+    {"pk": 12, "model": "books.book", 
+        "fields": {
+            "isbn": " 978-0142410356", 
+            "title": "George's Marvelous Medicine",
+            "author": "Roald Dahl",
+            "description": "George is alone in the house with Grandma. The most horrid, grizzly old grunion of a grandma ever. She needs something stronger than her usual medicine to cure her grouchiness. A special grandma medicine, a remedy for everything. And George knows just what to put into it. Grandma's in for the surprise of her life—and so is George, when he sees the results of his mixture!",
+            "image_url": "https://images-na.ssl-images-amazon.com/images/I/91Rd5VXqrcL.jpg", 
+            "image": "91Rd5VXqrcL.jpg",
+            "pages": 112,
+            "category": 6,
+            "age": 8,
+            "gender": "boys", 
+            "number_of_ratings": 10,
+            "price": 5.50,
+            "featured_item": "False",
+            "date_added": "2020-07-16"
+        }
+    },
+    {"pk": 13, "model": "books.book", 
+        "fields": {
+            "isbn": "978-0142410332", 
+            "title": "Danny the Champion of the World",
+            "author": "Roald Dahl",
+            "description": "Danny has a life any boy would love—his home is a gypsy caravan, he's the youngest master car mechanic around, and his best friend is his dad, who never runs out of wonderful stories to tell. But one night Danny discovers a shocking secret that his father has kept hidden for years. Soon Danny finds himself the mastermind behind the most incredible plot ever attempted against nasty Victor Hazell, a wealthy landowner with a bad attitude. Can they pull it off? If so, Danny will truly be the champion of the world.",
+            "image_url": "https://images-na.ssl-images-amazon.com/images/I/91oa7T-wJ+L.jpg", 
+            "image": "91oa7T-wJ+L.jpg",
+            "pages": 202,
+            "category": 6,
+            "age": 8,
+            "gender": "boys", 
+            "number_of_ratings": 10,
+            "price": 5.50,
+            "featured_item": "False",
+            "date_added": "2020-07-16"
+        }
+    },
+    {"pk": 14, "model": "books.book", 
+        "fields": {
+            "isbn": "978-0140365566", 
+            "title": "The Enormous Crocodile",
+            "author": "Roald Dahl",
+            "description": "The Enormous Crocodile is incredibly hungry—and incredibly greedy. His favorite meal is a plump, juicy little child, and he intends to gobble up as many of them as he can! His is sure that his “secret plans and clever tricks” cannot be foiled. But when the other animals in the jungle join together to put an end to his wicked schemes, the Enormous Crocodile learns a lesson he won’t soon forget.",
+            "image_url": "https://images-na.ssl-images-amazon.com/images/I/91VFZJOzyEL.jpg", 
+            "image": "91VFZJOzyEL.jpg",
+            "pages": 48,
+            "category": 6,
+            "age": 7,
+            "gender": "boys", 
+            "number_of_ratings": 10,
+            "price": 5.50,
+            "featured_item": "False",
+            "date_added": "2020-07-16"
+        }
     }
 ]

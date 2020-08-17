@@ -3,6 +3,11 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
+GENDER_CHOICES = [
+    ('GIRL', 'girl'),
+    ('BOY', 'boy'),
+    ('NONE', 'prefer not to say'),
+]
 class UserProfile(models.Model):
     """ 
     User profile for tailoring reviews and queried results.
@@ -11,7 +16,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE) # try to anonymize ratings and votes for books
     first_name = models.CharField(max_length=254, null=True, blank=True)
     last_name = models.CharField(max_length=254, null=True, blank=True)
-    gender = models.CharField(max_length=25, null=True, blank=True)
+    gender = models.CharField(max_length=25, choices=GENDER_CHOICES)
     date_of_birth = models.DateField(null=True, blank=True)
     hobbies = models.ManyToManyField('Hobby', blank=True)
     sports = models.ManyToManyField('Sport', blank=True)

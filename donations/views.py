@@ -18,7 +18,6 @@ def donations(request):
 def charge(request):
      
     if request.method == 'POST':
-        print('Data:', request.POST)
 
         amount = int(request.POST['amount'])
         

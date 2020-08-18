@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+{% block hero %}
+
+{% endblock %}
+
+{% block content %}
+<br>
+<br><br>
+<h4>Test ModelForm</h4>
+
+    <form method="POST" >
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type='submit' value='Save' />
+    </form>
+{% endblock %}
+
+{% block postloadjs %}
+
+{% endblock %} 

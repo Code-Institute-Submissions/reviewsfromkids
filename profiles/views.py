@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect, reverse
 from .models import *
 from books.models import Rating, Book
 from django.http import HttpResponseRedirect
-from .forms import *
+# from .forms import *
 
 
 # Create your views here.
@@ -45,7 +45,7 @@ def profile(request):
     return render(request, template, context)
 
 #Form with ModelForm
-def add_personal(request):
+def edit_personal(request):
 
     # Get userprofile
     profile = get_object_or_404(UserProfile, user=request.user)
@@ -61,67 +61,30 @@ def add_personal(request):
             form.save()
             print(request.POST)
             return redirect('profile')
-           
 
-
-    
-    print(form.errors)
-    print(form.non_field_errors)
-
-    template = 'profiles/add_personal.html'
-
-    context = {
-        'form': form
-    }
-
+    # Load edit personal page
+    template = 'profiles/edit_personal.html'
+    context = {'form': form}
     return render(request, template, context)
 
 
-
-# Form without ModelForm
-def add_personal2(request):
-    """ User adds personal information to profile """
-
-    # Get userprofile
-    profile = get_object_or_404(UserProfile, user=request.user)
-
-    # Grab POST values
-    if request.POST:
-        user = profile
-        first_name = request.POST.get('first_name')
-        last_name = request.POST.get('last_name')
-        gender = request.POST.get('gender')
-        date_of_birth = request.POST.get('date_of_birth')
-
-    # Store POST values in record
-    UserProfile.objects.filter(id=profile.pk).update(
-        first_name=first_name,
-        last_name=last_name,
-        gender=gender,
-        date_of_birth=date_of_birth,
-    )
-
-    next = request.POST.get('next', 'profile')
-    return HttpResponseRedirect(next)
-
-def add_hobby(request):
+def edit_hobby(request):
     """ User can add his/her hobbies """
     
     # Get userprofile
     profile = get_object_or_404(UserProfile, user=request.user)
 
-    # Grab POST values
-    if request.POST:
-        user = profile
-        userhobby = request.POST.get('userhobby')
-        print(userhobby)
-    
-    # UserProfile.objects.filter(id=profile.pk).update(
-    #     hobbies=userhobby,
-    # )
+    # Render existing data on form
+    form = UserProfileHobbyForm(instance=profile)
 
-    next = request.POST.get('next', 'profile')
-    print(next)
-    return HttpResponseRedirect(next)
+    if request.method == "POST":
+        form = UserProfileHobbyForm(instance=profile, data = request.POST)
+        if form.is_valid():
+            form.save()
+            print(request.POST)
+            return redirect('profile')
 
-
+    # Load edit hobby page
+    template = 'profiles/edit_hobby.html'
+    context = {'form': form}
+    return render(request, template, context)

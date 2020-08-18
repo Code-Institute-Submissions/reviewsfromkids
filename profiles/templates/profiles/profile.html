@@ -47,7 +47,7 @@
                 <section class="profile__basic card-body">
                     <div class="profile__title">
                         <h3>Personal</h3>
-                        <a href="{% url 'add_personal' %}"><i class="fas profile__icon--edit fa-edit"></i></a>
+                        <a href="{% url 'edit_personal' %}"><i class="fas profile__icon--edit fa-edit"></i></a>
                     </div>
                     {% if profile.first_name %}
                         <div class="profile__basic-grid">
@@ -74,12 +74,14 @@
                     {% endif %}
                 </section>
             </div>
+
+            <!-- Hobby -->
             <div id="menu2" class="tab-pane fade">
                 <section class="profile__hobbysport card-body">
                     <div class="profile__title">
                         <h3>Hobbies</h3>
                         {% if user_hobby %}
-                            <a data-toggle="modal" data-target="#hobby"><i class="fas profile__icon--edit fa-edit"></i></a>
+                            <a href="{% url 'edit_hobby' %}"><i class="fas profile__icon--edit fa-edit"></i></a>
                         {% endif %}
                     </div>
                     <ul>
@@ -88,7 +90,7 @@
                             <li class="profile__hobbysport--tag">{{ hobby }}</li>
                             {% endfor %}
                         {% else %}
-                        No hobbies provided yet. Go <a data-toggle="modal" data-target="#hobby">here</a> to complete.
+                        No hobbies provided yet. Go <a href="{% url 'edit_hobby' %}">here</a> to complete.
                         {% endif %}
                     </ul>
                 </section>

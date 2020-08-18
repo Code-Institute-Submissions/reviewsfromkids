@@ -21,6 +21,7 @@ class Category(models.Model):
     def get_friendly_name(self):
         return self.friendly_name
 
+
 class List(models.Model):
 
     name = models.CharField(max_length=254)
@@ -32,16 +33,6 @@ class List(models.Model):
     def get_friendly_name(self):
         return self.friendly_name
 
-# class Tag(models.Model):
-
-#     name = models.CharField(max_length=254)
-#     friendly_name = models.CharField(max_length=254, null=True, blank=True)
-
-#     def __str__(self):
-#         return self.name
-
-#     def get_friendly_name(self):
-#         return self.friendly_name
 
 class Book(models.Model):
     category = models.ForeignKey('Category', null=True, blank=True, on_delete=models.SET_NULL)
@@ -60,7 +51,6 @@ class Book(models.Model):
     price = models.DecimalField(max_digits=6, decimal_places=2)
     date_added = models.DateField(auto_now_add=False)
     featured_item = models.BooleanField()
-    # rated_by = models.CharField(max_length=254)    
 
     def __str__(self):
         return self.title
@@ -77,9 +67,7 @@ class Rating(models.Model):
     age_rating_years = models.CharField(max_length=3, null=True, blank=True)
     age_rating_months = models.CharField(max_length=3, null=True, blank=True)
     rating = models.IntegerField(null=True, blank=True)
-    # hobbies = models.CharField(max_length=5000, null=True, blank=True)
     hobbies = models.ManyToManyField(Hobby, blank=True)
     
-      
     def __str__(self):
         return self.book_id.title

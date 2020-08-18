@@ -88,3 +88,25 @@ def edit_hobby(request):
     template = 'profiles/edit_hobby.html'
     context = {'form': form}
     return render(request, template, context)
+
+
+def edit_sport(request):
+    """ User can add his/her sports """
+    
+    # Get userprofile
+    profile = get_object_or_404(UserProfile, user=request.user)
+
+    # Render existing data on form
+    form = UserProfileSportForm(instance=profile)
+
+    if request.method == "POST":
+        form = UserProfileSportForm(instance=profile, data = request.POST)
+        if form.is_valid():
+            form.save()
+            print(request.POST)
+            return redirect('profile')
+
+    # Load edit hobby page
+    template = 'profiles/edit_sport.html'
+    context = {'form': form}
+    return render(request, template, context)

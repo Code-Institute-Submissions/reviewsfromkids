@@ -75,7 +75,7 @@
                 </section>
             </div>
 
-            <!-- Hobby -->
+            <!-- Hobby, sport, instrument, etc. -->
             <div id="menu2" class="tab-pane fade">
                 <section class="profile__hobbysport card-body">
                     <div class="profile__title">
@@ -94,11 +94,12 @@
                         {% endif %}
                     </ul>
                 </section>
+
                 <section class="profile__hobbysport card-body">
                     <div class="profile__title">
                         <h3>Sports</h3>
                         {% if user_sport %}
-                            <a data-toggle="modal" data-target="#sport"><i class="fas profile__icon--edit fa-edit"></i></a>
+                            <a href="{% url 'edit_hobby' %}"><i class="fas profile__icon--edit fa-edit"></i></a>
                         {% endif %}
                     </div>
                     <ul>
@@ -107,7 +108,7 @@
                                 <li class="profile__hobbysport--tag">{{ sport }}</li>
                             {% endfor %}
                         {% else %}
-                            No sports provided yet. Go here to complete.
+                        No sports provided yet. Go <a href="{% url 'edit_sport' %}">here</a> to complete.
                         {% endif %}
                     </ul>
                 </section>

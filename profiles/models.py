@@ -62,14 +62,15 @@ class Hobby(models.Model):
 class UserProfileHobbyForm(ModelForm):
     class Meta:
         model = UserProfile
-        fields = [
-             
-            'hobbies',
-            
-            ]
+        fields = ['hobbies']
 
 class Sport(models.Model):
     name = models.CharField(max_length=254)
 
     def __str__(self):
         return self.name
+
+class UserProfileSportForm(ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ['sports']

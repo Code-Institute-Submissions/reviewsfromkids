@@ -91,7 +91,7 @@ def book_detail(request, book_id):
         age_rating = relativedelta(date_rating, user_dob)
         age_rating_years = age_rating.years
         age_rating_months = age_rating.months
-        hobbies_rating = userprofile.hobbies.all()
+        hobbies_rating = userprofile.hobbies.values_list('name')
         sports_rating = userprofile.sports.all()
 
         r = Rating(
@@ -102,11 +102,11 @@ def book_detail(request, book_id):
             rated_by=userprofile,
             age_rating_years=age_rating_years,
             age_rating_months=age_rating_months,
+            hobbies=hobbies_rating,
                        
             )
-
+        print(hobbies_rating)
         r.save()
-
  
     ratings_for_this_book = Rating.objects.filter(book_id=current_book)
     if ratings_for_this_book.filter(rated_by=userprofile):

@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect, reverse
 from .models import *
 from books.models import Rating, Book
 from django.http import HttpResponseRedirect
+from .forms import *
 
 
 # Create your views here.
@@ -11,7 +12,6 @@ def profile(request):
     hobby=Hobby.objects.all()
     sport=Sport.objects.all()
     user = get_object_or_404(User, username=request.user)
-    print(user.email)
 
     profile = get_object_or_404(UserProfile, user=request.user)
     user_hobby = profile.hobbies.all().order_by('name')
@@ -23,6 +23,7 @@ def profile(request):
 
 
     template = 'profiles/profile.html'
+
     context = {
         'user': user,
         'hobby': hobby,
@@ -43,7 +44,42 @@ def profile(request):
 
     return render(request, template, context)
 
+#Form with ModelForm
 def add_personal(request):
+
+    # Get userprofile
+    profile = get_object_or_404(UserProfile, user=request.user)
+
+    # Render existing data in form
+    form = UserProfileForm(instance=profile)
+
+    # Check if form is updated via submit button i.e. POST
+    if request.method == "POST":
+        
+        form = UserProfileForm(instance=profile, data = request.POST)
+        if form.is_valid():
+            form.save()
+            print(request.POST)
+            return redirect('profile')
+           
+
+
+    
+    print(form.errors)
+    print(form.non_field_errors)
+
+    template = 'profiles/add_personal.html'
+
+    context = {
+        'form': form
+    }
+
+    return render(request, template, context)
+
+
+
+# Form without ModelForm
+def add_personal2(request):
     """ User adds personal information to profile """
 
     # Get userprofile
@@ -85,6 +121,7 @@ def add_hobby(request):
     # )
 
     next = request.POST.get('next', 'profile')
+    print(next)
     return HttpResponseRedirect(next)
 
 

@@ -4,6 +4,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.forms import ModelForm
 
+
 GENDER_CHOICES = [
     ('GIRL', 'girl'),
     ('BOY', 'boy'),
@@ -36,10 +37,17 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
     # Existing users: just save the profile
     instance.userprofile.save()
 
-# class UserProfileForm(ModelForm):
-#     class Meta:
-#         model = UserProfile
-#         fields = ['first_name', 'last_name', 'gender', 'date_of_birth', 'hobbies', 'sports']
+class UserProfileForm(ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = [
+            'first_name', 
+            'last_name', 
+            'gender', 
+            'date_of_birth', 
+            # 'hobbies', 
+            # 'sports'
+            ]
 
 class Hobby(models.Model):
 

@@ -32,7 +32,8 @@
             <div class="modal-body">
                 <form class="profile-modal__personal--edit" method="POST" action="{% url 'add_personal' %}">
                     {% csrf_token %}
-                    <div class="form-group">
+                    {{ form.as_p }}
+                    <!-- <div class="form-group">
                         <label for="first_name">First name</label>
                         <input type="text" class="form-control" id="first_name" name="first_name" {% if profile.first_name %}value="{{ profile.first_name }}"{% endif %}>
                     </div>
@@ -47,7 +48,7 @@
                     <div class="form-group">
                         <label for="age">Date of birth</label>
                         <input type="text" class="form-control" id="date_of_birth" name="date_of_birth" {% if profile.date_of_birth %} value="{{ profile.date_of_birth|date:'Y-m-d' }}"{% endif %}>
-                    </div>
+                    </div> -->
                     <input type="hidden" name="next" value="{{ request.path }}">
 
                     <div class="modal-footer">

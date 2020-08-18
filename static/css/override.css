@@ -526,6 +526,9 @@ html, body {
   margin-top: 0.3rem;
   padding: 0;
 }
+.profile__hobbysport--edit ul li {
+  list-style: none;
+}
 .profile__hobbysport--tag {
   display: inline-block;
   border: 1px solid #929292;
@@ -533,6 +536,7 @@ html, body {
   color: #929292;
   padding: 0.2rem 0.4rem;
   margin: 0.3rem;
+  list-style: none;
 }
 .profile__icon--edit {
   color: #25b8c0;

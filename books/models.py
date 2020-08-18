@@ -68,6 +68,7 @@ class Rating(models.Model):
     age_rating_months = models.CharField(max_length=3, null=True, blank=True)
     rating = models.IntegerField(null=True, blank=True)
     hobbies = models.ManyToManyField(Hobby, blank=True)
+    sports = models.ManyToManyField(Sport, blank=True)
     
     def __str__(self):
         return self.book_id.title

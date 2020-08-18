@@ -107,6 +107,7 @@ def book_detail(request, book_id):
         
         r.save()
         r.hobbies.set(hobbies_rating)
+        r.sports.set(sports_rating)
  
     ratings_for_this_book = Rating.objects.filter(book_id=current_book)
     if ratings_for_this_book.filter(rated_by=userprofile):

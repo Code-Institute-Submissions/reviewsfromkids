@@ -106,6 +106,8 @@ def book_detail(request, book_id):
             )
         
         r.save()
+
+        # Due to the nature of the m2m fields these need to be saved separately
         r.hobbies.set(hobbies_rating)
         r.sports.set(sports_rating)
  

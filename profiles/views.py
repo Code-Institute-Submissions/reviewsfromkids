@@ -16,6 +16,7 @@ def profile(request):
     profile = get_object_or_404(UserProfile, user=request.user)
     user_hobby = profile.hobbies.all().order_by('name')
     user_sport = profile.sports.all().order_by('name')
+    favorites = profile.favorites.all()
 
     ratings_high = Book.objects.filter(rating__rated_by=profile, rating__rating__gte=4)
     ratings_low = Book.objects.filter(rating__rated_by=profile, rating__rating__lte=2)
@@ -34,6 +35,7 @@ def profile(request):
         'ratings_high': ratings_high,
         'ratings_low': ratings_low,
         'ratings_ok': ratings_ok,
+        'favorites': favorites,
         }
 
     # if hobby:

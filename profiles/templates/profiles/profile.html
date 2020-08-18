@@ -150,6 +150,12 @@
                         <a href="#"><i class="fas profile__icon--edit fa-edit"></i></a>
                     </div>
                     <p>All your favorites are here:</p>
+                    <div class="scrolling-wrapper-flexbox">
+                        {% for book in favorites %}
+                          {% include 'includes/book-card-hs.html' %}
+                        {% endfor %}
+                    </div>
+                    
                 </section>  
             </div>
         </div>

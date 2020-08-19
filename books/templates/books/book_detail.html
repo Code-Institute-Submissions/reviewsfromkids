@@ -45,23 +45,34 @@
             </div>
             <div id="menu4" class="tab-pane fade">
               <div class="book-details__section">
-                <h4>Is this book for you?</h4>
+                {% if favorite %}
+                  <h4>This book is in your favorites. You like it!</h4>
+                  <form method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" value="remove_fav" name="type_of_action">
+                    <button class="iconify" value="submit"><i class="book-details__title-bar-icon fa fa-heart" aria-hidden="true"></i></button>
+                  </form>
+                  {% if not already_rated %}
+                    Would you like to rate this book too? You can do that <a href="">here</a>.
+                  {% endif %}
+                {% else %}  
+                  <h4>Is this book for you?</h4>
+                  <form method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" value="add_fav" name="type_of_action">
+                    <button class="iconify" value="submit"><i class="book-details__title-bar-icon far fa-heart" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Tooltip on top"></i></button>
+                  </form>
+                {% endif %}
+                
                 <ul>
                   <li>Non logged in user: CTA to create account.</li>
                   <li>Logged in user without completed profile: CTA to complete profile.</li>                  
                   <li>Logged in user with complete profile: show all.</li>
                 </ul>
-                
-                
-                
                 Show favorites, want to read, your rating
         
                 <div class="book-details__title-bar">
-                  {% if favorite %}
-                  <i class="book-details__title-bar-icon fa fa-heart" aria-hidden="true"></i>
-                  {% else %}
-                    <a href="{% url 'add_to_favorites' book.id %}"><i class="book-details__title-bar-icon far fa-heart" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Tooltip on top"></i></a>
-                  {% endif %}
+            
                 </div>
               </div>
             </div>

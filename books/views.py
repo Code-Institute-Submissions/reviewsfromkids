@@ -87,6 +87,18 @@ def book_detail(request, book_id):
     if user_favorites_book_id.filter(id=current_book):
         favorite=True
     
+    # Check if add to favorites is in POST and add to favorites
+    if request.POST:
+        if request.POST.get('type_of_action')=='add_fav':
+            userprofile.favorites.add(current_book)
+            return redirect('book_detail', book_id=book_id)
+
+    # Check if remove from favorites is in POST and remove from favorites
+    if request.POST:
+        if request.POST.get('type_of_action')=='remove_fav':
+            userprofile.favorites.remove(current_book)
+            return redirect('book_detail', book_id=book_id)
+
     # Grab all info about user and add this to rating instance
     if request.POST:
         ratingOptions = request.POST.get('ratingOptions')
@@ -167,25 +179,21 @@ def book_detail(request, book_id):
     return render(request, 'books/book_detail.html', context)
 
 
-def add_to_favorites(request):
+def add_to_favorites(request, book_id):
     
     book = get_object_or_404(Book, pk=book_id)
     current_book = book_id
-    user_logged_in=False
-    already_favorite=False
-    
-    # Check if user is logged in
+    print('click')
     if user.is_authenticated:
         userprofile = get_object_or_404(UserProfile, user=request.user)
         user_logged_in=True
     
-    # # Check if book is already part of favorites
-    # if userprofile.objects.filter(favorites=current_book):
+    print(user_logged_in)
+    
+    # UserProfile.favorites.update(book_id)
+    # print(UserProfile.favorites)
+    
+    return redirect('book_detail', book_id=book_id)
 
-
-    if already_favorite==False:
-        UserProfile.favorites.update(book_id)
-        print(UserProfile.favorites)
-        already_favorite=True
-        return redirect('book_detail', book_id=book_id)
+    # return redirect('book_detail', book_id=book_id)
     

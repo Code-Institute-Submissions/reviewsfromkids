@@ -38,12 +38,6 @@ def profile(request):
         'favorites': favorites,
         }
 
-    # if hobby:
-    #     print(hobby)
-    #     print(hobby.values())
-    # else:
-    #     print('no hobbies selected')
-
     return render(request, template, context)
 
 #Form with ModelForm
@@ -61,7 +55,6 @@ def edit_personal(request):
         form = UserProfileForm(instance=profile, data = request.POST)
         if form.is_valid():
             form.save()
-            print(request.POST)
             return redirect('profile')
 
     # Load edit personal page
@@ -83,7 +76,6 @@ def edit_hobby(request):
         form = UserProfileHobbyForm(instance=profile, data = request.POST)
         if form.is_valid():
             form.save()
-            print(request.POST)
             return redirect('profile')
 
     # Load edit hobby page
@@ -105,7 +97,6 @@ def edit_sport(request):
         form = UserProfileSportForm(instance=profile, data = request.POST)
         if form.is_valid():
             form.save()
-            print(request.POST)
             return redirect('profile')
 
     # Load edit hobby page

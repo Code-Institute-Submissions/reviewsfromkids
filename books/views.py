@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from .models import Book, Category, Rating
 from profiles.models import UserProfile, Hobby, Sport
-from django.db.models import Q, Sum
+from django.db.models import Q, Sum, Count
 from django.contrib import messages
 from .filters import BookFilter
 from datetime import datetime
@@ -150,7 +150,7 @@ def book_detail(request, book_id):
         avg_rating = 0    
     
     # Rating boys only
-    boys_rating = Rating.objects.filter(book_id=current_book, gender='boy')
+    boys_rating = Rating.objects.filter(book_id=current_book, gender='BOY')
     boys_number_of_ratings = len(boys_rating)
     boys_total_rating_sum = boys_rating.aggregate(sum=Sum('rating'))['sum']
     if boys_number_of_ratings > 0:
@@ -159,7 +159,7 @@ def book_detail(request, book_id):
         boys_avg_rating = 0    
 
     # Rating girls only
-    girls_rating = Rating.objects.filter(book_id=current_book, gender='girl')
+    girls_rating = Rating.objects.filter(book_id=current_book, gender='GIRL')
     girls_number_of_ratings = len(girls_rating)
     girls_total_rating_sum = girls_rating.aggregate(sum=Sum('rating'))['sum']
     if girls_number_of_ratings > 0:
@@ -167,6 +167,13 @@ def book_detail(request, book_id):
     else:
         girls_avg_rating = 0    
     
+
+    # Hobbies and ratings
+    all_hobbies_of_ratings = Hobby.objects.filter(rating__book_id=book_id, rating__rating__gte=4)
+    popular_hobbies = all_hobbies_of_ratings.values('name').annotate(Count('name')).order_by('-name__count')[:2]
+    
+    user_hobbies = Hobby.objects.filter(userprofile__user=request.user)
+
     context = {
         'book': book,
         'rating': rating,
@@ -179,6 +186,8 @@ def book_detail(request, book_id):
         'user_logged_in': user_logged_in,
         'boys_number_of_ratings': boys_number_of_ratings,
         'girls_number_of_ratings': girls_number_of_ratings,
+        'popular_hobbies': popular_hobbies,
+        'user_hobbies': user_hobbies,
     }
 
     return render(request, 'books/book_detail.html', context)

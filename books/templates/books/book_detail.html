@@ -66,8 +66,15 @@
                   <li>Logged in user without completed profile: CTA to complete profile.</li>                  
                   <li>Logged in user with complete profile: show all.</li>
                 </ul>
-                Show favorites, want to read, your rating
-        
+                <h5>Hobbies of other users</h5>
+                {% for i in popular_hobbies %}
+                  {{ i.name }} ({{ i.name__count }})
+                {% endfor %}
+
+                <h5>Your hobbies</h5>
+                {% for i in user_hobbies %}
+                  {{ i.name }}
+                {% endfor %}
                 <div class="book-details__title-bar">
             
                 </div>

@@ -17,6 +17,7 @@ def profile(request):
     user_hobby = profile.hobbies.all().order_by('name')
     user_sport = profile.sports.all().order_by('name')
     favorites = profile.favorites.all()
+    print(favorites)
 
     ratings_high = Book.objects.filter(rating__rated_by=profile, rating__rating__gte=4)
     ratings_low = Book.objects.filter(rating__rated_by=profile, rating__rating__lte=2)

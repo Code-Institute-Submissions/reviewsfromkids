@@ -57,8 +57,11 @@
                 Show favorites, want to read, your rating
         
                 <div class="book-details__title-bar">
-                  <i class="book-details__title-bar-icon far fa-heart" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Tooltip on top"></i>
+                  {% if favorite %}
                   <i class="book-details__title-bar-icon fa fa-heart" aria-hidden="true"></i>
+                  {% else %}
+                    <a href="{% url 'add_to_favorites' book.id %}"><i class="book-details__title-bar-icon far fa-heart" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Tooltip on top"></i></a>
+                  {% endif %}
                 </div>
               </div>
             </div>

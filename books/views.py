@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from .models import Book, Category, Rating
-from profiles.models import UserProfile
-from profiles.models import Hobby, Sport
+from profiles.models import UserProfile, Hobby, Sport
 from django.db.models import Q, Sum
 from django.contrib import messages
 from .filters import BookFilter
@@ -69,6 +68,7 @@ def book_detail(request, book_id):
     already_rated=False
     user=request.user
     userprofile=None
+    favorite=False
 
     # Check if user is logged in
     if user.is_authenticated:
@@ -80,6 +80,14 @@ def book_detail(request, book_id):
     if ratings_for_this_book.filter(rated_by=userprofile):
         already_rated=True
 
+    # Check if book is in favorites
+    user_favorites = userprofile.favorites.all()
+   
+    user_favorites_book_id = user_favorites.values('id')
+    if user_favorites_book_id.filter(id=current_book):
+        favorite=True
+    
+    # Grab all info about user and add this to rating instance
     if request.POST:
         ratingOptions = request.POST.get('ratingOptions')
         rated_by = request.POST.get('rated_by')
@@ -150,6 +158,7 @@ def book_detail(request, book_id):
         'boys_avg_rating': boys_avg_rating,
         'girls_avg_rating': girls_avg_rating,
         'already_rated': already_rated,
+        'favorite': favorite,
         'user_logged_in': user_logged_in,
         'boys_number_of_ratings': boys_number_of_ratings,
         'girls_number_of_ratings': girls_number_of_ratings,
@@ -157,3 +166,26 @@ def book_detail(request, book_id):
 
     return render(request, 'books/book_detail.html', context)
 
+
+def add_to_favorites(request):
+    
+    book = get_object_or_404(Book, pk=book_id)
+    current_book = book_id
+    user_logged_in=False
+    already_favorite=False
+    
+    # Check if user is logged in
+    if user.is_authenticated:
+        userprofile = get_object_or_404(UserProfile, user=request.user)
+        user_logged_in=True
+    
+    # # Check if book is already part of favorites
+    # if userprofile.objects.filter(favorites=current_book):
+
+
+    if already_favorite==False:
+        UserProfile.favorites.update(book_id)
+        print(UserProfile.favorites)
+        already_favorite=True
+        return redirect('book_detail', book_id=book_id)
+    

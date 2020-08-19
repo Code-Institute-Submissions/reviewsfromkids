@@ -23,7 +23,7 @@ class UserProfile(models.Model):
     date_of_birth = models.DateField(null=True, blank=True)
     hobbies = models.ManyToManyField('Hobby', blank=True)
     sports = models.ManyToManyField('Sport', blank=True)
-    favorites = models.ManyToManyField('books.Book')
+    favorites = models.ManyToManyField('books.Book', blank=True)
     
     def __str__(self):
         return self.user.username

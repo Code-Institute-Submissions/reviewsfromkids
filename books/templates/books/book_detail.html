@@ -46,15 +46,12 @@
             <div id="menu4" class="tab-pane fade">
               <div class="book-details__section">
                 {% if favorite %}
-                  <h4>This book is in your favorites. You like it!</h4>
+                  <h4>This book is in your favorites. You want to read it!</h4>
                   <form method="POST">
                     {% csrf_token %}
                     <input type="hidden" value="remove_fav" name="type_of_action">
                     <button class="iconify" value="submit"><i class="book-details__title-bar-icon fa fa-heart" aria-hidden="true"></i></button>
                   </form>
-                  {% if not already_rated %}
-                    Would you like to rate this book too? You can do that <a href="">here</a>.
-                  {% endif %}
                 {% else %}  
                   <h4>Is this book for you?</h4>
                   <form method="POST">

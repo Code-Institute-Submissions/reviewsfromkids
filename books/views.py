@@ -97,6 +97,7 @@ def book_detail(request, book_id):
     if request.POST:
         if request.POST.get('type_of_action')=='remove_fav':
             userprofile.favorites.remove(current_book)
+            # show message with question why. If read, ask for rating.
             return redirect('book_detail', book_id=book_id)
 
     # Grab all info about user and add this to rating instance
@@ -130,6 +131,10 @@ def book_detail(request, book_id):
         # Due to the nature of the m2m fields these need to be saved separately
         r.hobbies.set(hobbies_rating)
         r.sports.set(sports_rating)
+
+        # Redirect to prevent re-submitting
+        book_id = book.id
+        return redirect('book_detail', book_id=book_id)
  
     ratings_for_this_book = Rating.objects.filter(book_id=current_book)
     if ratings_for_this_book.filter(rated_by=userprofile):

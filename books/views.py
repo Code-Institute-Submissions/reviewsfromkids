@@ -177,23 +177,3 @@ def book_detail(request, book_id):
     }
 
     return render(request, 'books/book_detail.html', context)
-
-
-def add_to_favorites(request, book_id):
-    
-    book = get_object_or_404(Book, pk=book_id)
-    current_book = book_id
-    print('click')
-    if user.is_authenticated:
-        userprofile = get_object_or_404(UserProfile, user=request.user)
-        user_logged_in=True
-    
-    print(user_logged_in)
-    
-    # UserProfile.favorites.update(book_id)
-    # print(UserProfile.favorites)
-    
-    return redirect('book_detail', book_id=book_id)
-
-    # return redirect('book_detail', book_id=book_id)
-    

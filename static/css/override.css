@@ -417,6 +417,11 @@ html, body {
   display: inline-block;
 }
 
+.emphasis1 {
+  color: #e166c4;
+  font-weight: 700;
+}
+
 .scrolling-wrapper {
   overflow-x: scroll;
   overflow-y: hidden;

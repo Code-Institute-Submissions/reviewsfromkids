@@ -59,8 +59,15 @@ def all_books(request):
 
     return render(request, 'books/books.html', context)
 
+
 def book_detail(request, book_id):
-    """ A view to show book details """
+
+    """ 
+    A view for book details and to handle:
+    - add and remove favorites
+    - add rating
+    - calculate ratings
+    """
     
     book = get_object_or_404(Book, pk=book_id)
     current_book = book_id
@@ -75,17 +82,15 @@ def book_detail(request, book_id):
         userprofile = get_object_or_404(UserProfile, user=request.user)
         user_logged_in=True
 
-    # Check if user has rated before
-    ratings_for_this_book = Rating.objects.filter(book_id=current_book)
-    if ratings_for_this_book.filter(rated_by=userprofile):
-        already_rated=True
-
+    
+    """ Handle favorites """
     # Check if book is in favorites
-    user_favorites = userprofile.favorites.all()
+    if user_logged_in:
+        user_favorites = userprofile.favorites.all()
    
-    user_favorites_book_id = user_favorites.values('id')
-    if user_favorites_book_id.filter(id=current_book):
-        favorite=True
+        user_favorites_book_id = user_favorites.values('id')
+        if user_favorites_book_id.filter(id=current_book):
+            favorite=True
     
     # Check if add to favorites is in POST and add to favorites
     if request.POST:
@@ -99,6 +104,13 @@ def book_detail(request, book_id):
             userprofile.favorites.remove(current_book)
             # show message with question why. If read, ask for rating.
             return redirect('book_detail', book_id=book_id)
+
+    """ Handle ratings """
+    # Check if user has rated before
+    ratings_for_this_book = Rating.objects.filter(book_id=current_book)
+
+    if ratings_for_this_book.filter(rated_by=userprofile):
+        already_rated=True
 
     # Grab all info about user and add this to rating instance
     if request.POST:
@@ -135,8 +147,12 @@ def book_detail(request, book_id):
         # Redirect to prevent re-submitting
         book_id = book.id
         return redirect('book_detail', book_id=book_id)
- 
+    
+    """ Calculate ratings"""
+    # If enough time: move to model as model methods
+
     ratings_for_this_book = Rating.objects.filter(book_id=current_book)
+
     if ratings_for_this_book.filter(rated_by=userprofile):
         already_rated=True
 
@@ -144,6 +160,7 @@ def book_detail(request, book_id):
     rating = Rating.objects.filter(book_id=current_book)
     number_of_ratings = len(rating)
     total_rating_sum = rating.aggregate(sum=Sum('rating'))['sum']
+
     if number_of_ratings > 0:
         avg_rating = round(total_rating_sum / number_of_ratings, 1)
     else:
@@ -153,6 +170,7 @@ def book_detail(request, book_id):
     boys_rating = Rating.objects.filter(book_id=current_book, gender='BOY')
     boys_number_of_ratings = len(boys_rating)
     boys_total_rating_sum = boys_rating.aggregate(sum=Sum('rating'))['sum']
+
     if boys_number_of_ratings > 0:
         boys_avg_rating = round(boys_total_rating_sum / boys_number_of_ratings, 1)
     else:
@@ -162,19 +180,76 @@ def book_detail(request, book_id):
     girls_rating = Rating.objects.filter(book_id=current_book, gender='GIRL')
     girls_number_of_ratings = len(girls_rating)
     girls_total_rating_sum = girls_rating.aggregate(sum=Sum('rating'))['sum']
+
     if girls_number_of_ratings > 0:
         girls_avg_rating = round(girls_total_rating_sum / girls_number_of_ratings, 1)
     else:
         girls_avg_rating = 0    
     
+    """ Calculate avg age for ratings of this book """
+    # Avg age for positive ratings
+    positive_ratings = Rating.objects.filter(book_id=book_id, rating__gte=4)
+    number_of_positive_ratings = len(positive_ratings)
+    total_positive_ratings_years = positive_ratings.aggregate(sum=Sum('age_rating_years'))['sum']
 
-    # Hobbies and ratings
-    all_hobbies_of_ratings = Hobby.objects.filter(rating__book_id=book_id, rating__rating__gte=4)
-    popular_hobbies = all_hobbies_of_ratings.values('name').annotate(Count('name')).order_by('-name__count')[:2]
+    if number_of_positive_ratings > 0:
+        avg_age_positive_ratings = round(total_positive_ratings_years / number_of_positive_ratings)
+    else:
+        avg_age_positive_ratings = None
+
+    if avg_age_positive_ratings == 0:
+        avg_age_positive_ratings = None
+
+    # Avg age for negative ratings
+    negative_ratings = Rating.objects.filter(book_id=book_id, rating__lte=2)
+    number_of_negative_ratings = len(negative_ratings)
+    total_negative_ratings_years = negative_ratings.aggregate(sum=Sum('age_rating_years'))['sum']
     
-    user_hobbies = Hobby.objects.filter(userprofile__user=request.user)
+    if number_of_negative_ratings > 0:
+        avg_age_negative_ratings = round(total_negative_ratings_years / number_of_negative_ratings)
+    else:
+        avg_age_negative_ratings = None
+    
+    if avg_age_negative_ratings == 0:
+        avg_age_negative_ratings = None
 
+    """ Grab hobbies and sports connected to ratings of this book """
+    # if user_logged_in:
+    #     user_hobbies = Hobby.objects.filter(userprofile__user=request.user)
+    #     user_sports = Sport.objects.filter(userprofile__user=request.user)
+
+    # Hobbies and positive ratings
+    all_hobbies_of_positive_ratings = Hobby.objects.filter(rating__book_id=book_id, rating__rating__gte=4)
+    hobbies_positive_ratings = all_hobbies_of_positive_ratings.values('name').annotate(Count('name')).order_by('-name__count')[:2]
+    
+    # Hobbies and negative ratings
+    all_hobbies_of_negative_ratings = Hobby.objects.filter(rating__book_id=book_id, rating__rating__lte=2)
+    hobbies_negative_ratings = all_hobbies_of_negative_ratings.values('name').annotate(Count('name')).order_by('-name__count')[:2]
+
+    # Sports and positive ratings
+    all_sports_of_positive_ratings = Sport.objects.filter(rating__book_id=book_id, rating__rating__gte=4)
+    sports_positive_ratings = all_sports_of_positive_ratings.values('name').annotate(Count('name')).order_by('-name__count')[:2]
+
+    # Sports and negative ratings
+    all_sports_of_negative_ratings = Sport.objects.filter(rating__book_id=book_id, rating__rating__lte=2)
+    sports_negative_ratings = all_sports_of_negative_ratings.values('name').annotate(Count('name')).order_by('-name__count')[:2]
+    
+    
+    # In case of a new book or a book without ratings infornation
+    no_ratings_info_at_all = False
+    # if hobbies_positive_ratings.exists()==False and sports_positive_ratings.exists()==False and avg_age_positive_ratings == None:
+    #     no_positive_ratings_info = True
+    #     if hobbies_negative_ratings.exists()==False and sports_negative_ratings.exists()==False and avg_age_negative_ratings == None:   
+    #         no_negative_ratings_info = True
+    #         no_ratings_info_at_all = True
+    
+    
+    if hobbies_positive_ratings.exists()==False and sports_positive_ratings.exists()==False and avg_age_positive_ratings == None and hobbies_negative_ratings.exists()==False and sports_negative_ratings.exists()==False and avg_age_negative_ratings == None:   
+        no_ratings_info_at_all = True
+    print('no ratings at all:', no_ratings_info_at_all)
+    
     context = {
+
         'book': book,
         'rating': rating,
         'number_of_ratings': number_of_ratings,
@@ -186,8 +261,15 @@ def book_detail(request, book_id):
         'user_logged_in': user_logged_in,
         'boys_number_of_ratings': boys_number_of_ratings,
         'girls_number_of_ratings': girls_number_of_ratings,
-        'popular_hobbies': popular_hobbies,
-        'user_hobbies': user_hobbies,
+        'avg_age_positive_ratings': avg_age_positive_ratings,
+        'avg_age_negative_ratings': avg_age_negative_ratings,
+        # 'user_hobbies': user_hobbies,
+        # 'user_sports': user_sports,
+        'hobbies_positive_ratings': hobbies_positive_ratings,
+        'hobbies_negative_ratings': hobbies_negative_ratings,
+        'sports_positive_ratings': sports_positive_ratings,
+        'sports_negative_ratings': sports_negative_ratings,
+        'no_ratings_info_at_all': no_ratings_info_at_all,
     }
 
     return render(request, 'books/book_detail.html', context)

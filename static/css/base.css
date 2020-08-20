@@ -30,3 +30,9 @@ html {
 .allauth-form-inner-content {
   margin-top: 5rem;
 }
+
+.temp-wrapper {
+
+  max-width: 1000px;
+  margin: 0 auto;
+}

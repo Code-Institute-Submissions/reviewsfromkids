@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from .models import Book, Category, Rating
 from profiles.models import UserProfile, Hobby, Sport
-from django.db.models import Q, Sum, Count
+from django.db.models import Q, Sum, Count, Avg
 from django.contrib import messages
 from .filters import BookFilter
 from datetime import datetime
@@ -213,7 +213,7 @@ def book_detail(request, book_id):
     if avg_age_negative_ratings == 0:
         avg_age_negative_ratings = None
 
-    """ Grab hobbies and sports connected to ratings of this book """
+    """Grab hobbies and sports connected to ratings of this book"""
     # if user_logged_in:
     #     user_hobbies = Hobby.objects.filter(userprofile__user=request.user)
     #     user_sports = Sport.objects.filter(userprofile__user=request.user)
@@ -237,15 +237,16 @@ def book_detail(request, book_id):
     
     # In case of a new book or a book without ratings infornation
     no_ratings_info_at_all = False
-    # if hobbies_positive_ratings.exists()==False and sports_positive_ratings.exists()==False and avg_age_positive_ratings == None:
-    #     no_positive_ratings_info = True
-    #     if hobbies_negative_ratings.exists()==False and sports_negative_ratings.exists()==False and avg_age_negative_ratings == None:   
-    #         no_negative_ratings_info = True
-    #         no_ratings_info_at_all = True
+    if hobbies_positive_ratings.exists()==False and sports_positive_ratings.exists()==False and avg_age_positive_ratings == None:
+        no_positive_ratings_info = True
+        if hobbies_negative_ratings.exists()==False and sports_negative_ratings.exists()==False and avg_age_negative_ratings == None:   
+            no_negative_ratings_info = True
+            no_ratings_info_at_all = True
     
     
     if hobbies_positive_ratings.exists()==False and sports_positive_ratings.exists()==False and avg_age_positive_ratings == None and hobbies_negative_ratings.exists()==False and sports_negative_ratings.exists()==False and avg_age_negative_ratings == None:   
         no_ratings_info_at_all = True
+    
     print('no ratings at all:', no_ratings_info_at_all)
     
     context = {

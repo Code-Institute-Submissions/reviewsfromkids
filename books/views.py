@@ -6,6 +6,7 @@ from django.contrib import messages
 from .filters import BookFilter
 from datetime import datetime
 from dateutil.relativedelta import relativedelta, MO
+from django.contrib.auth.decorators import login_required
 
 
 def all_books(request):
@@ -69,7 +70,7 @@ def book_detail(request, book_id):
     - calculate ratings
     """
     
-    book = get_object_or_404(Book, pk=book_id)
+    # book = get_object_or_404(Book, pk=book_id)
     current_book = book_id
     user_logged_in=False
     already_rated=False
@@ -274,3 +275,7 @@ def book_detail(request, book_id):
     }
 
     return render(request, 'books/book_detail.html', context)
+
+
+def index1(request):
+    return HttpResponse("<h1>New View</h1>")

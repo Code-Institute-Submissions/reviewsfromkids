@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+{% endblock %}
+
+
+{% block hero %}
+<div class="hero profile">
+  <h3>Alright {{ profile.first_name }}, </h3>
+  <h4>let's look for books that other {{ profile.gender }}s of your age like.</h4>
+  <i class="fas fa-search fa-5x hero__icon"></i>
+  
+  
+  
+</div>
+{% endblock %}
+
+  {% block content %}
+    <main id="main">
+     <p>There are thousands of nice books out there. So, we need to start smart.</p>
+     {% if not user_hobby and not user_sport %}
+     <p>Your profile does not contain hobbies or sports. No problemo. You get better recommendations if you tell more about yourself.</p>
+     {% else %}
+        {% if not user_hobby %}
+          <p>Your profile does not contain hobbies. No problemo. You get better recommendations if you tell more about yourself.</p>
+        {% endif %}
+        {% if not user_sport %}
+          <p>Your profile does not contain sports. No problemo. You get better recommendations if you tell more about yourself.</p>
+        {% endif %}
+     {% endif %}
+     {% if user_hobby and user_sport %}
+      <a href="" class="btn">next cat</a>
+     {% else %}
+      <a href="" class="btn">next hobspor</a>
+     {% endif %}
+     
+
+
+
+     
+    </main>
+
+  {% endblock %}

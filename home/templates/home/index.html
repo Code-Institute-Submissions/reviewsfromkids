@@ -16,7 +16,11 @@
     <div class="hero">
       <h1>Find your next favorite book.</h1>
       <i class="fas fa-thumbs-up fa-5x hero__icon"></i>
-      <a class="btn hero__btn" href="">start</a>
+      {% if user_logged_in %}
+        <a class="btn hero__btn" href="{% url 'book_finder_user' %}">start logged in</a>
+      {% else %}
+        <a class="btn hero__btn" href="">start anonymous</a>
+      {% endif %}
     </div>
     
   {% endblock %}

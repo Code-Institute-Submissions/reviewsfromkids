@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect, reverse
 from .models import *
 from books.models import Rating, Book
 from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 # from .forms import *
 
 
@@ -103,3 +104,20 @@ def edit_sport(request):
     template = 'profiles/edit_sport.html'
     context = {'form': form}
     return render(request, template, context)
+
+@login_required
+def book_finder_user(request):
+    """
+    Series of questions to find books that fit.
+    """
+    profile = get_object_or_404(UserProfile, user=request.user)
+    user_hobby = profile.hobbies.all().order_by('name')
+    user_sport = profile.sports.all().order_by('name')
+    
+    context = {
+        'profile': profile,
+        'user_hobby': user_hobby,
+        'user_sport': user_sport,
+    }
+
+    return render(request, 'profiles/book_finder_user.html', context)

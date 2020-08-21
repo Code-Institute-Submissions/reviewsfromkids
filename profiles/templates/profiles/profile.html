@@ -65,7 +65,7 @@
                             </div>
                             <div class="profile__basic-grid-row">
                                 <div class="profile__basic-grid-row--key">Gender: </div>
-                                <div class="profile__basic-grid-row--value">{{ profile.gender }}</div>
+                                <div class="profile__basic-grid-row--value">{% if profile.gender == 'BOY' %}boy{% elif profile.gender == 'GIRL' %}girl{% elif profile.gender == 'UNKNOWN' %}prefer not to say{% endif %}</div>
                             </div>
                         </div>
                     {% else %}

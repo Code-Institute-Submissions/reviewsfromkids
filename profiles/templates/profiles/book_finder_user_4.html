@@ -19,10 +19,52 @@
 {% block content %}
   <main id="main">
     
-We find books based on your hobbies and sports. If you want to adjust these go <a href="{% url 'book_finder_user_5' %}">here</a>.
+
+<p>We find books based on your hobbies and sports. If you want to adjust these go <a href="{% url 'book_finder_user_5' %}">here</a>.</p>
+<p>These are the books that fit you because of your age, </p>
+
+{% for book in books %}
+{% include 'includes/book-card.html' %}
+
+{% if forloop.counter|divisibleby:1 %}
+    <div class="col-12 d-sm-none mb-5">
+        <hr>
+    </div>
+{% endif %}                        
+{% if forloop.counter|divisibleby:2 %}
+    <div class="col-12 d-none d-sm-block d-md-block d-lg-none mb-5">
+        <hr>
+    </div>
+{% endif %}
+{% if forloop.counter|divisibleby:3 %}
+    <div class="col-12 d-none d-lg-block d-xl-none mb-5">
+        <hr>
+    </div>
+{% endif %}
+{% if forloop.counter|divisibleby:4 %}
+    <div class="col-12 d-none d-xl-block mb-5">
+        <hr>
+    </div>
+{% endif %}
+{% endfor %}
 
 
+<p>Please select one category you really like!</p>
 
+<!-- This will be the form where all settings are collected. Profile info is inserted in the backend -->
+
+{% for i in categories %}
+{{ i }}
+{% endfor %}
+
+<form class="strip-margin" method="GET" action="{% url 'books' %}">
+  <div class="search__box">
+    <input class="search__box--input" type="text" name="q" placeholder="    search title, author, theme, tag">
+    <button class="btnize search__icon" type="submit">
+      <i class="fas fa-search"></i>
+    </button>
+  </div>
+</form>
   
 
 

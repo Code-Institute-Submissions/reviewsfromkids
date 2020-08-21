@@ -70,7 +70,7 @@ def book_detail(request, book_id):
     - calculate ratings
     """
     
-    # book = get_object_or_404(Book, pk=book_id)
+    book = get_object_or_404(Book, pk=book_id)
     current_book = book_id
     user_logged_in=False
     already_rated=False

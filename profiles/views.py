@@ -105,6 +105,49 @@ def edit_sport(request):
     context = {'form': form}
     return render(request, template, context)
 
+
+def book_finder_edit_hobby(request):
+    """ User can add his/her hobbies """
+    
+    # Get userprofile
+    profile = get_object_or_404(UserProfile, user=request.user)
+
+    # Render existing data on form
+    form = UserProfileHobbyForm(instance=profile)
+
+    if request.method == "POST":
+        form = UserProfileHobbyForm(instance=profile, data = request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('book_finder_user_5')
+
+    # Load edit hobby page
+    template = 'profiles/book_finder_edit_hobby.html'
+    context = {'form': form}
+    return render(request, template, context)
+
+
+def book_finder_edit_sport(request):
+    """ User can add his/her sports """
+    
+    # Get userprofile
+    profile = get_object_or_404(UserProfile, user=request.user)
+
+    # Render existing data on form
+    form = UserProfileSportForm(instance=profile)
+
+    if request.method == "POST":
+        form = UserProfileSportForm(instance=profile, data = request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('book_finder_user_5')
+
+    # Load edit sport page
+    template = 'profiles/book_finder_edit_sport.html'
+    context = {'form': form}
+    return render(request, template, context)
+
+
 @login_required
 def book_finder_user(request):
     """
@@ -179,6 +222,7 @@ def book_finder_user(request):
 
     return render(request, 'profiles/book_finder_user.html', context)
 
+
 @login_required
 def book_finder_user_1(request):
 
@@ -227,6 +271,7 @@ def book_finder_user_1(request):
     }
 
     return render(request, 'profiles/book_finder_user_1.html', context)
+
 
 @login_required
 def book_finder_user_2(request):
@@ -388,12 +433,33 @@ def book_finder_user_4(request):
     user_hobby = profile.hobbies.all().order_by('name')
     user_sport = profile.sports.all().order_by('name')
     categories = Category.objects.all()
+
+    # Build query
+    #Find positive ratings 4 and 5 for age and gender user
+    """ Need to add field with age in years.
+        Now age_rating_years has a hard coded value, but has to be from userprofile.   
+    
+    """
+    ratings_high = Rating.objects.filter(rating__gte=4, age_rating_years=10, gender=profile.gender)
+
+    
+
+    print(ratings_high.values())
+
+    book_ids = ratings_high.values('book_id_id')
+    print(book_ids)
+    books = Book.objects.filter(pk__in=book_ids)
+    print(books)
+    
     
     context = {
         'user': user,
         'user_hobby':user_hobby,
         'user_sport': user_sport,
         'profile': profile,
+        'categories': categories,
+        'ratings_high': ratings_high,
+        'books': books,
         }
     
     return render(request, 'profiles/book_finder_user_4.html', context)
@@ -407,9 +473,7 @@ def book_finder_user_5(request):
     profile = get_object_or_404(UserProfile, user=request.user)
     user_hobby = profile.hobbies.all().order_by('name')
     user_sport = profile.sports.all().order_by('name')
-    categories = Category.objects.all()
-    print(categories)
-
+    
     context = {
         'user': user,
         'user_hobby':user_hobby,
@@ -419,43 +483,3 @@ def book_finder_user_5(request):
     
     return render(request, 'profiles/book_finder_user_5.html', context)
 
-def book_finder_edit_hobby(request):
-    """ User can add his/her hobbies """
-    
-    # Get userprofile
-    profile = get_object_or_404(UserProfile, user=request.user)
-
-    # Render existing data on form
-    form = UserProfileHobbyForm(instance=profile)
-
-    if request.method == "POST":
-        form = UserProfileHobbyForm(instance=profile, data = request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('book_finder_user_5')
-
-    # Load edit hobby page
-    template = 'profiles/book_finder_edit_hobby.html'
-    context = {'form': form}
-    return render(request, template, context)
-
-
-def book_finder_edit_sport(request):
-    """ User can add his/her sports """
-    
-    # Get userprofile
-    profile = get_object_or_404(UserProfile, user=request.user)
-
-    # Render existing data on form
-    form = UserProfileSportForm(instance=profile)
-
-    if request.method == "POST":
-        form = UserProfileSportForm(instance=profile, data = request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('book_finder_user_5')
-
-    # Load edit sport page
-    template = 'profiles/book_finder_edit_sport.html'
-    context = {'form': form}
-    return render(request, template, context)

@@ -9,7 +9,7 @@ from django.forms import ModelForm
 GENDER_CHOICES = [
     ('GIRL', 'girl'),
     ('BOY', 'boy'),
-    ('NONE', 'prefer not to say'),
+    ('UNKNOWN', 'prefer not to say'),
 ]
 class UserProfile(models.Model):
     """ 

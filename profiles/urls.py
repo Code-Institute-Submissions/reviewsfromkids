@@ -8,4 +8,8 @@ urlpatterns = [
     path('edit_hobby', views.edit_hobby, name='edit_hobby'),
     path('edit_sport', views.edit_sport, name='edit_sport'),
     path('book_finder_user', views.book_finder_user,  name='book_finder_user'),
+    path('book_finder_user_1', views.book_finder_user_1,  name='book_finder_user_1'),
+    path('book_finder_user_2', views.book_finder_user_2,  name='book_finder_user_2'),
+    path('book_finder_user_3', views.book_finder_user_3,  name='book_finder_user_3'),
+    path('book_finder_user_4', views.book_finder_user_4,  name='book_finder_user_4'),
 ]

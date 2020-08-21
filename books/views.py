@@ -215,10 +215,6 @@ def book_detail(request, book_id):
         avg_age_negative_ratings = None
 
     """Grab hobbies and sports connected to ratings of this book"""
-    # if user_logged_in:
-    #     user_hobbies = Hobby.objects.filter(userprofile__user=request.user)
-    #     user_sports = Sport.objects.filter(userprofile__user=request.user)
-
     # Hobbies and positive ratings
     all_hobbies_of_positive_ratings = Hobby.objects.filter(rating__book_id=book_id, rating__rating__gte=4)
     hobbies_positive_ratings = all_hobbies_of_positive_ratings.values('name').annotate(Count('name')).order_by('-name__count')[:2]
@@ -235,7 +231,6 @@ def book_detail(request, book_id):
     all_sports_of_negative_ratings = Sport.objects.filter(rating__book_id=book_id, rating__rating__lte=2)
     sports_negative_ratings = all_sports_of_negative_ratings.values('name').annotate(Count('name')).order_by('-name__count')[:2]
     
-    
     # In case of a new book or a book without ratings infornation
     no_ratings_info_at_all = False
     if hobbies_positive_ratings.exists()==False and sports_positive_ratings.exists()==False and avg_age_positive_ratings == None:
@@ -243,7 +238,6 @@ def book_detail(request, book_id):
         if hobbies_negative_ratings.exists()==False and sports_negative_ratings.exists()==False and avg_age_negative_ratings == None:   
             no_negative_ratings_info = True
             no_ratings_info_at_all = True
-    
     
     if hobbies_positive_ratings.exists()==False and sports_positive_ratings.exists()==False and avg_age_positive_ratings == None and hobbies_negative_ratings.exists()==False and sports_negative_ratings.exists()==False and avg_age_negative_ratings == None:   
         no_ratings_info_at_all = True
@@ -265,8 +259,6 @@ def book_detail(request, book_id):
         'girls_number_of_ratings': girls_number_of_ratings,
         'avg_age_positive_ratings': avg_age_positive_ratings,
         'avg_age_negative_ratings': avg_age_negative_ratings,
-        # 'user_hobbies': user_hobbies,
-        # 'user_sports': user_sports,
         'hobbies_positive_ratings': hobbies_positive_ratings,
         'hobbies_negative_ratings': hobbies_negative_ratings,
         'sports_positive_ratings': sports_positive_ratings,
@@ -275,7 +267,3 @@ def book_detail(request, book_id):
     }
 
     return render(request, 'books/book_detail.html', context)
-
-
-def index1(request):
-    return HttpResponse("<h1>New View</h1>")

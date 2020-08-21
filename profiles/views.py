@@ -3,6 +3,8 @@ from .models import *
 from books.models import Rating, Book, Category
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
+from datetime import datetime
+from dateutil.relativedelta import relativedelta, MO
 # from .forms import *
 
 
@@ -436,11 +438,13 @@ def book_finder_user_4(request):
 
     # Build query
     #Find positive ratings 4 and 5 for age and gender user
-    """ Need to add field with age in years.
-        Now age_rating_years has a hard coded value, but has to be from userprofile.   
+    user_dob = profile.date_of_birth
+    date_calc = datetime.now()
+    age_rating = relativedelta(date_calc, user_dob)
+    age_rating_years = age_rating.years
+    age_rating_months = age_rating.months  
     
-    """
-    ratings_high = Rating.objects.filter(rating__gte=4, age_rating_years=10, gender=profile.gender)
+    ratings_high = Rating.objects.filter(rating__gte=4, age_rating_years=age_rating_years, gender=profile.gender)
 
     
 
@@ -450,7 +454,9 @@ def book_finder_user_4(request):
     print(book_ids)
     books = Book.objects.filter(pk__in=book_ids)
     print(books)
-    
+    """
+    Need to remove books that user has rated himself/herself from recommendations
+    """
     
     context = {
         'user': user,

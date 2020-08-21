@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+{% block hero %}
+
+{% endblock %}
+
+{% block content %}
+<br>
+<br><br>
+<h4>Hobby ModelForm</h4>
+
+    <form class="profile__hobbysport--edit" method="POST" >
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input class="btn" type="submit" value="Save" />
+    </form>
+{% endblock %}
+
+{% block postloadjs %}
+
+{% endblock %} 

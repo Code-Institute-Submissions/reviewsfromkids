@@ -18,7 +18,9 @@
 
 {% block content %}
   <main id="main">
-    
+{% for i in common_items %}
+{{ i }}
+{% endfor %}
 
 <p>We find books based on your hobbies and sports. If you want to adjust these go <a href="{% url 'book_finder_user_5' %}">here</a>.</p>
 <p>These are the books that fit you because of your age, </p>

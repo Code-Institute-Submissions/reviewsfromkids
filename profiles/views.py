@@ -446,18 +446,35 @@ def book_finder_user_4(request):
     
     ratings_high = Rating.objects.filter(rating__gte=4, age_rating_years=age_rating_years, gender=profile.gender)
 
-    
-
-    print(ratings_high.values())
-
+    # Find book objects for the high rates that match users' age and gender
     book_ids = ratings_high.values('book_id_id')
-    print(book_ids)
     books = Book.objects.filter(pk__in=book_ids)
-    print(books)
+    
     """
     Need to remove books that user has rated himself/herself from recommendations
     """
+    # Find books that match users' hobbies
+    # all_hobbies_of_positive_ratings = Hobby.objects.filter(rating__book_id=book_id, rating__rating__gte=4)
+    # hobbies_positive_ratings = all_hobbies_of_positive_ratings.values('name').annotate(Count('name')).order_by('-name__count')[:2]
+
+    # <QuerySet [{'name': 'dancing', 'name__count': 1}, {'name': 'lego', 'name__count': 1}]>
+    testset1 = Book.objects.filter(pk__in=book_ids)
+    testset2 = Book.objects.filter(pk__in=book_ids)
+    print(type(testset1))
+    print(testset1)
+    testset1_names = testset1.values_list('author')
+    testset2_names = testset2.values_list('author')
+    print(testset1_names)
+    print(type(testset1_names))
+    # testset1_names = testset2.values_list('name')
+    key1 = frozenset(testset1_names)
+    key2 = frozenset(testset2_names)
+ 
+    common_items = frozenset.intersection(key1, key2)
+    print(common_items)
     
+
+
     context = {
         'user': user,
         'user_hobby':user_hobby,
@@ -466,6 +483,7 @@ def book_finder_user_4(request):
         'categories': categories,
         'ratings_high': ratings_high,
         'books': books,
+        'common_items': common_items,
         }
     
     return render(request, 'profiles/book_finder_user_4.html', context)

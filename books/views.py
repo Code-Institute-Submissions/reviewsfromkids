@@ -218,7 +218,8 @@ def book_detail(request, book_id):
     # Hobbies and positive ratings
     all_hobbies_of_positive_ratings = Hobby.objects.filter(rating__book_id=book_id, rating__rating__gte=4)
     hobbies_positive_ratings = all_hobbies_of_positive_ratings.values('name').annotate(Count('name')).order_by('-name__count')[:2]
-    
+    print(type(all_hobbies_of_positive_ratings))
+    print(type(hobbies_positive_ratings))
     # Hobbies and negative ratings
     all_hobbies_of_negative_ratings = Hobby.objects.filter(rating__book_id=book_id, rating__rating__lte=2)
     hobbies_negative_ratings = all_hobbies_of_negative_ratings.values('name').annotate(Count('name')).order_by('-name__count')[:2]

@@ -24,6 +24,12 @@ class UserProfile(models.Model):
     hobbies = models.ManyToManyField('Hobby', blank=True)
     sports = models.ManyToManyField('Sport', blank=True)
     favorites = models.ManyToManyField('books.Book', blank=True)
+    hobbies_known = models.BooleanField(default=False)
+    sports_known = models.BooleanField(default=False)
+    only_sports_known = models.BooleanField(default=False)
+    only_hobbies_known = models.BooleanField(default=False)
+    hobbies_and_sports_known = models.BooleanField(default=False)
+    no_hobbies_and_sports_known = models.BooleanField(default=False)
     
     def __str__(self):
         return self.user.username

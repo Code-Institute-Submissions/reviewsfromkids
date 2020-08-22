@@ -30,7 +30,7 @@
 
 {% block content %}
   <main id="main">
-    {% if profile.first_name and profile.last_name and dobgender_available and hobbysport_available %}
+    {% if profile.first_name and profile.last_name and dobgender_available and profile.hobbies_and_sports_known %}
       <p>There are thousands of nice books out there. So, we need to start with a rough selection. Ready?</p>
       <a href="{% url 'book_finder_user_4' %}" class="btn">go!</a>
     {% elif profile.first_name and profile.last_name and dobgender_available %}

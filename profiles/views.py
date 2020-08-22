@@ -71,6 +71,7 @@ def edit_hobby(request):
     
     # Get userprofile
     profile = get_object_or_404(UserProfile, user=request.user)
+    user_hobby = profile.hobbies.all()
 
     # Render existing data on form
     form = UserProfileHobbyForm(instance=profile)
@@ -79,6 +80,35 @@ def edit_hobby(request):
         form = UserProfileHobbyForm(instance=profile, data = request.POST)
         if form.is_valid():
             form.save()
+            
+            # Set bools needed for bookfinder functionality
+            if profile.hobbies.all().exists()==True:
+                profile.hobbies_known = True
+            else:
+                profile.hobbies_known = False
+            
+            if profile.hobbies_known == True and profile.sports_known == True:
+                profile.hobbies_and_sports_known = True
+            else:
+                profile.hobbies_and_sports_known = False
+
+            if profile.hobbies_known == True and profile.sports_known == False:
+                profile.only_hobbies_known = True
+            else:
+                profile.only_hobbies_known = False
+
+            if profile.hobbies_known == False and profile.sports_known == True:
+                profile.only_sports_known = True
+            else:
+                profile.only_sports_known = False
+
+            if profile.hobbies_known == False and profile.sports_known == False:
+                profile.no_hobbies_and_sports_known = True
+            else:
+                profile.no_hobbies_and_sports_known = False
+            
+            profile.save()
+
             return redirect('profile')
 
     # Load edit hobby page
@@ -100,6 +130,35 @@ def edit_sport(request):
         form = UserProfileSportForm(instance=profile, data = request.POST)
         if form.is_valid():
             form.save()
+
+            # Set bools needed for bookfinder functionality
+            if profile.sports.all().exists()==True:
+                profile.sports_known = True
+            else:
+                profile.sports_known = False
+            
+            if profile.hobbies_known == True and profile.sports_known == True:
+                profile.hobbies_and_sports_known = True
+            else:
+                profile.hobbies_and_sports_known = False
+
+            if profile.hobbies_known == True and profile.sports_known == False:
+                profile.only_hobbies_known = True
+            else:
+                profile.only_hobbies_known = False
+
+            if profile.hobbies_known == False and profile.sports_known == True:
+                profile.only_sports_known = True
+            else:
+                profile.only_sports_known = False
+
+            if profile.hobbies_known == False and profile.sports_known == False:
+                profile.no_hobbies_and_sports_known = True
+            else:
+                profile.no_hobbies_and_sports_known = False
+
+            profile.save()
+            
             return redirect('profile')
 
     # Load edit sport page
@@ -121,6 +180,35 @@ def book_finder_edit_hobby(request):
         form = UserProfileHobbyForm(instance=profile, data = request.POST)
         if form.is_valid():
             form.save()
+
+            # Set bools needed for bookfinder functionality
+            if profile.hobbies.all().exists()==True:
+                profile.hobbies_known = True
+            else:
+                profile.hobbies_known = False
+            
+            if profile.hobbies_known == True and profile.sports_known == True:
+                profile.hobbies_and_sports_known = True
+            else:
+                profile.hobbies_and_sports_known = False
+
+            if profile.hobbies_known == True and profile.sports_known == False:
+                profile.only_hobbies_known = True
+            else:
+                profile.only_hobbies_known = False
+
+            if profile.hobbies_known == False and profile.sports_known == True:
+                profile.only_sports_known = True
+            else:
+                profile.only_sports_known = False
+
+            if profile.hobbies_known == False and profile.sports_known == False:
+                profile.no_hobbies_and_sports_known = True
+            else:
+                profile.no_hobbies_and_sports_known = False
+            
+            profile.save()
+
             return redirect('book_finder_user_5')
 
     # Load edit hobby page
@@ -142,6 +230,35 @@ def book_finder_edit_sport(request):
         form = UserProfileSportForm(instance=profile, data = request.POST)
         if form.is_valid():
             form.save()
+
+            # Set bools needed for bookfinder functionality
+            if profile.sports.all().exists()==True:
+                profile.sports_known = True
+            else:
+                profile.sports_known = False
+            
+            if profile.hobbies_known == True and profile.sports_known == True:
+                profile.hobbies_and_sports_known = True
+            else:
+                profile.hobbies_and_sports_known = False
+
+            if profile.hobbies_known == True and profile.sports_known == False:
+                profile.only_hobbies_known = True
+            else:
+                profile.only_hobbies_known = False
+
+            if profile.hobbies_known == False and profile.sports_known == True:
+                profile.only_sports_known = True
+            else:
+                profile.only_sports_known = False
+
+            if profile.hobbies_known == False and profile.sports_known == False:
+                profile.no_hobbies_and_sports_known = True
+            else:
+                profile.no_hobbies_and_sports_known = False
+
+            profile.save()
+
             return redirect('book_finder_user_5')
 
     # Load edit sport page
@@ -154,6 +271,8 @@ def book_finder_edit_sport(request):
 def book_finder_user(request):
     """
     Series of questions to find books that fit.
+    First check if profile is complete. If so, redirect to last step.
+    If not complete profile over the next steps.
     """
     profile = get_object_or_404(UserProfile, user=request.user)
     user_hobby = profile.hobbies.all()
@@ -175,6 +294,7 @@ def book_finder_user(request):
     else:
         gender_available = True
     
+    # Pass results to template
     if dob_available == True and gender_available == True:
         dobgender_available = True
     elif dob_available == True and gender_available == False:
@@ -184,50 +304,23 @@ def book_finder_user(request):
     else:
         onlyuser_available = True
     
-    # Check hobbies and sports
-    onlyhobby_available = False
-    onlysport_available = False
-    hobbysport_available = False
-    no_hobbysport_available = False
-
-    if user_hobby.exists()==True:
-        hobby_available = True
-    else:
-        hobby_available = False
-
-    if user_sport.exists()==True:
-        sport_available = True
-    else:
-        sport_available = False
-
-    if hobby_available == True and sport_available == True:
-        hobbysport_available = True
-    elif hobby_available == True and sport_available == False:
-        onlyhobby_available = True
-    elif hobby_available == False and sport_available == True:
-        onlysport_available = True
-    else:
-        no_hobbysport_available = True
-
     context = {
         'profile': profile,
         'dobgender_available': dobgender_available,
         'onlydob_available': onlydob_available,
         'onlygender_available': onlygender_available,
         'onlyuser_available': onlyuser_available,
-        'hobbysport_available': hobbysport_available,
-        'onlyhobby_available': onlyhobby_available,
-        'onlysport_available': onlysport_available,
-        'no_hobbysport_available': no_hobbysport_available,
-
     }
-
+    
     return render(request, 'profiles/book_finder_user.html', context)
 
 
 @login_required
 def book_finder_user_1(request):
-
+    """
+    Complete profile information.
+    Information that is known is preloaded.
+    """
     profile = get_object_or_404(UserProfile, user=request.user)
     form = UserProfileForm(instance=profile)
 
@@ -247,6 +340,7 @@ def book_finder_user_1(request):
     else:
         gender_available = True
     
+    # Pass results to template
     if dob_available == True and gender_available == True:
         dobgender_available = True
     elif dob_available == True and gender_available == False:
@@ -256,7 +350,7 @@ def book_finder_user_1(request):
     else:
         onlyuser_available = True
     
-    # Grab form data
+    # Grab form data and save
     if request.method == "POST":
         form = UserProfileForm(instance=profile, data = request.POST)
         if form.is_valid():
@@ -277,7 +371,11 @@ def book_finder_user_1(request):
 
 @login_required
 def book_finder_user_2(request):
-
+    """
+    Series of questions to find books that fit.
+    First check if profile is complete. If so, redirect to last step.
+    If not complete profile over the next steps.
+    """
     profile = get_object_or_404(UserProfile, user=request.user)
     user_hobby = profile.hobbies.all().order_by('name')
     user_sport = profile.sports.all().order_by('name')
@@ -306,31 +404,6 @@ def book_finder_user_2(request):
         onlygender_available = True
     else:
         onlyuser_available = True
-
-    # Check hobbies and sports
-    onlyhobby_available = False
-    onlysport_available = False
-    hobbysport_available = False
-    no_hobbysport_available = False
-
-    if user_hobby.exists()==True:
-        hobby_available = True
-    else:
-        hobby_available = False
-
-    if user_sport.exists()==True:
-        sport_available = True
-    else:
-        sport_available = False
-
-    if hobby_available == True and sport_available == True:
-        hobbysport_available = True
-    elif hobby_available == True and sport_available == False:
-        onlyhobby_available = True
-    elif hobby_available == False and sport_available == True:
-        onlysport_available = True
-    else:
-        no_hobbysport_available = True
     
     form_hobby = UserProfileHobbyForm(instance=profile)
     form_sport = UserProfileSportForm(instance=profile)
@@ -341,20 +414,107 @@ def book_finder_user_2(request):
             form = UserProfileSportForm(instance=profile, data = request.POST)
             if form.is_valid():
                 form.save()
+
+                # Set bools needed for bookfinder functionality
+                if profile.sports.all().exists()==True:
+                    profile.sports_known = True
+                else:
+                    profile.sports_known = False
+                
+                if profile.hobbies_known == True and profile.sports_known == True:
+                    profile.hobbies_and_sports_known = True
+                else:
+                    profile.hobbies_and_sports_known = False
+
+                if profile.hobbies_known == True and profile.sports_known == False:
+                    profile.only_hobbies_known = True
+                else:
+                    profile.only_hobbies_known = False
+
+                if profile.hobbies_known == False and profile.sports_known == True:
+                    profile.only_sports_known = True
+                else:
+                    profile.only_sports_known = False
+
+                if profile.hobbies_known == False and profile.sports_known == False:
+                    profile.no_hobbies_and_sports_known = True
+                else:
+                    profile.no_hobbies_and_sports_known = False
+
+                profile.save()
+
                 return redirect('book_finder_user_4')
 
         if request.POST.get('type_of_action')=='onlysport_available':
             form = UserProfileHobbyForm(instance=profile, data = request.POST)
             if form.is_valid():
                 form.save()
+
+                # Set bools needed for bookfinder functionality
+                if profile.sports.all().exists()==True:
+                    profile.sports_known = True
+                else:
+                    profile.sports_known = False
+                
+                if profile.hobbies_known == True and profile.sports_known == True:
+                    profile.hobbies_and_sports_known = True
+                else:
+                    profile.hobbies_and_sports_known = False
+
+                if profile.hobbies_known == True and profile.sports_known == False:
+                    profile.only_hobbies_known = True
+                else:
+                    profile.only_hobbies_known = False
+
+                if profile.hobbies_known == False and profile.sports_known == True:
+                    profile.only_sports_known = True
+                else:
+                    profile.only_sports_known = False
+
+                if profile.hobbies_known == False and profile.sports_known == False:
+                    profile.no_hobbies_and_sports_known = True
+                else:
+                    profile.no_hobbies_and_sports_known = False
+
+                profile.save()
+
                 return redirect('book_finder_user_4')
         
         if request.POST.get('type_of_action')=='no_hobbysport_available':
             form = UserProfileHobbyForm(instance=profile, data = request.POST)
             if form.is_valid():
                 form.save()
+
+                # Set bools needed for bookfinder functionality
+                if profile.hobbies.all().exists()==True:
+                    profile.hobbies_known = True
+                else:
+                    profile.hobbies_known = False
+                
+                if profile.hobbies_known == True and profile.sports_known == True:
+                    profile.hobbies_and_sports_known = True
+                else:
+                    profile.hobbies_and_sports_known = False
+
+                if profile.hobbies_known == True and profile.sports_known == False:
+                    profile.only_hobbies_known = True
+                else:
+                    profile.only_hobbies_known = False
+
+                if profile.hobbies_known == False and profile.sports_known == True:
+                    profile.only_sports_known = True
+                else:
+                    profile.only_sports_known = False
+
+                if profile.hobbies_known == False and profile.sports_known == False:
+                    profile.no_hobbies_and_sports_known = True
+                else:
+                    profile.no_hobbies_and_sports_known = False
+                
+                profile.save()
+
                 return redirect('book_finder_user_3')
-        
+    
     context = {
         'profile': profile,
         'user_hobby': user_hobby,
@@ -365,9 +525,6 @@ def book_finder_user_2(request):
         'onlyuser_available': onlyuser_available,
         'form_hobby': form_hobby,
         'form_sport': form_sport,
-        'onlyhobby_available': onlyhobby_available,
-        'onlysport_available': onlysport_available,
-        'no_hobbysport_available': no_hobbysport_available,
     }
 
     return render(request, 'profiles/book_finder_user_2.html', context)
@@ -410,6 +567,35 @@ def book_finder_user_3(request):
         form = UserProfileSportForm(instance=profile, data = request.POST)
         if form.is_valid():
             form.save()
+
+            # Set bools needed for bookfinder functionality
+            if profile.sports.all().exists()==True:
+                profile.sports_known = True
+            else:
+                profile.sports_known = False
+            
+            if profile.hobbies_known == True and profile.sports_known == True:
+                profile.hobbies_and_sports_known = True
+            else:
+                profile.hobbies_and_sports_known = False
+
+            if profile.hobbies_known == True and profile.sports_known == False:
+                profile.only_hobbies_known = True
+            else:
+                profile.only_hobbies_known = False
+
+            if profile.hobbies_known == False and profile.sports_known == True:
+                profile.only_sports_known = True
+            else:
+                profile.only_sports_known = False
+
+            if profile.hobbies_known == False and profile.sports_known == False:
+                profile.no_hobbies_and_sports_known = True
+            else:
+                profile.no_hobbies_and_sports_known = False
+
+            profile.save()
+            
             return redirect('book_finder_user_4')
     
     context = {

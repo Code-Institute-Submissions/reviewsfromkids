@@ -30,7 +30,7 @@
 
 {% block content %}
   <main id="main">
-    {% if onlyhobby_available %}
+    {% if profile.only_hobbies_known %}
     <p>Do you sport? Of course you do! Please select the ones you do.</p>
     <p>If you do not actively sport: select the ones you like to watch.</p>
       <form class="profile__hobbysport--edit" method="POST">
@@ -39,7 +39,7 @@
         <input type="hidden" name="type_of_action" value="onlyhobby_available">
         <input class="btn" type='submit' value='Save' />
       </form>
-    {% elif onlysport_available %}
+    {% elif profile.only_sports_known %}
     <p>What hobbies do you have?</p>
       <form class="profile__hobbysport--edit" method="POST" >
         {% csrf_token %}

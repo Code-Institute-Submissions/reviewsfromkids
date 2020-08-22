@@ -17,9 +17,9 @@
       <h1>Find your next favorite book.</h1>
       <i class="fas fa-thumbs-up fa-5x hero__icon"></i>
       {% if user_logged_in %}
-        <a class="btn hero__btn" href="{% url 'book_finder_user' %}">start logged in</a>
+        <a class="btn hero__btn" href="{% url 'book_finder_user' %}">start</a>
       {% else %}
-        <a class="btn hero__btn" href="">start anonymous</a>
+        <a class="btn hero__btn" href="{% url 'book_finder' %}">start</a>
       {% endif %}
     </div>
     
@@ -54,21 +54,18 @@
         </section>
   
       <div class="wrapper wrapper-home">
-
         <section class="search-books">
-
           <h2 class="search-books__header">Find the perfect book!</h2>
           <p>You can look for a book yourself with help of our advanced search functions.</p>
           <p>Or, you let other kids help you find the books that fit you!</p>
           <p>The more you tell us about yourself, the better we can help you.</p>
-          
-          <a class="btn home-btn" href="">find my perfect books!</a>
-
-            
+          {% if user_logged_in %}
+            <a class="btn hero__btn" href="{% url 'book_finder_user' %}">find my perfect books!</a>
+          {% else %}
+            <a class="btn hero__btn" href="{% url 'book_finder' %}">find my perfect books!</a>
+          {% endif %}
         </section>
-        
       </div>
-
     </main>
   {% endblock %}
 

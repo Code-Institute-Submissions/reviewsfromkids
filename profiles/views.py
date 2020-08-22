@@ -267,6 +267,19 @@ def book_finder_edit_sport(request):
     return render(request, template, context)
 
 
+def book_finder(request):
+    """
+    Series of questions to find books that fit.
+    Non logged in user will first be checked: has account or not?
+    If account: redirect to book_finder_user, which has @login_required.
+    If no account: stimulate to create one.
+    After that, user can start flow for book_finder_user.
+    """
+    context = {}
+
+    return render(request, 'profiles/book_finder.html', context)
+
+
 @login_required
 def book_finder_user(request):
     """

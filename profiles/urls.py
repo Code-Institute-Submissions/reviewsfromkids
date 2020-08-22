@@ -15,4 +15,5 @@ urlpatterns = [
     path('book_finder_user_3', views.book_finder_user_3,  name='book_finder_user_3'),
     path('book_finder_user_4', views.book_finder_user_4,  name='book_finder_user_4'),
     path('book_finder_user_5', views.book_finder_user_5,  name='book_finder_user_5'),
+    path('book_finder', views.book_finder,  name='book_finder'),
 ]

@@ -566,7 +566,7 @@ def book_finder_user_3(request):
 @login_required
 def book_finder_user_4(request):
     """ 
-    Books that fit your profile! 
+    Books that fit your profile! Based on age, gender, hobbies, sports and your own ratings.
     """
 
     user = get_object_or_404(User, username=request.user)
@@ -574,45 +574,27 @@ def book_finder_user_4(request):
     user_hobby = profile.hobbies.all().order_by('name')
     user_sport = profile.sports.all().order_by('name')
     categories = Category.objects.all()
-
-    # Build query
-    #Find positive ratings 4 and 5 for age and gender user
     user_dob = profile.date_of_birth
     date_calc = datetime.now()
     age_rating = relativedelta(date_calc, user_dob)
     age_rating_years = age_rating.years
-    age_rating_months = age_rating.months  
     
-    ratings_high = Rating.objects.filter(rating__gte=4, age_rating_years=age_rating_years, gender=profile.gender)
+    # Collect users' hobbies and find ratings with the same hobbies. Then filter on high rating and users' gender and age 
+    hobby_ids = user_hobby.values('id')
+    a = Rating.objects.filter(hobbies__in=hobby_ids, gender=profile.gender, rating__gte=4, age_rating_years=age_rating_years)
+    b = a.values('book_id_id')
 
-    # Find book objects for the high rates that match users' age and gender
-    book_ids = ratings_high.values('book_id_id')
-    books = Book.objects.filter(pk__in=book_ids)
-    
-    """
-    Need to remove books that user has rated himself/herself from recommendations
-    """
-    # Find books that match users' hobbies
-    # all_hobbies_of_positive_ratings = Hobby.objects.filter(rating__book_id=book_id, rating__rating__gte=4)
-    # hobbies_positive_ratings = all_hobbies_of_positive_ratings.values('name').annotate(Count('name')).order_by('-name__count')[:2]
+    # Same for sports
+    sport_ids = user_sport.values('id')
+    c = Rating.objects.filter(hobbies__in=sport_ids, gender=profile.gender, rating__gte=4, age_rating_years=age_rating_years)
+    d = c.values('book_id_id')
 
-    # <QuerySet [{'name': 'dancing', 'name__count': 1}, {'name': 'lego', 'name__count': 1}]>
-    testset1 = Book.objects.filter(pk__in=book_ids)
-    testset2 = Book.objects.filter(pk__in=book_ids)
-    print(type(testset1))
-    print(testset1)
-    testset1_names = testset1.values_list('author')
-    testset2_names = testset2.values_list('author')
-    print(testset1_names)
-    print(type(testset1_names))
-    # testset1_names = testset2.values_list('name')
-    key1 = frozenset(testset1_names)
-    key2 = frozenset(testset2_names)
- 
-    common_items = frozenset.intersection(key1, key2)
-    print(common_items)
-    
-
+    # Grab user's own ratings to remove from recommendation, take both positive and negative ratings
+    e = Rating.objects.filter(rated_by=profile).exclude(rating=3)
+    f = e.values('book_id_id')
+   
+    # Convert QuerySet Rating to QuerySet Book to show in template
+    books = Book.objects.filter(pk__in=[b, d]).exclude(pk__in=f).distinct()
 
     context = {
         'user': user,
@@ -620,9 +602,8 @@ def book_finder_user_4(request):
         'user_sport': user_sport,
         'profile': profile,
         'categories': categories,
-        'ratings_high': ratings_high,
+        'age_rating_years': age_rating_years,
         'books': books,
-        'common_items': common_items,
         }
     
     return render(request, 'profiles/book_finder_user_4.html', context)
@@ -631,7 +612,7 @@ def book_finder_user_4(request):
 @login_required
 def book_finder_user_5(request):
     """ 
-    Display user profile 
+    Special view for user to edit hobbies and sports. Redirects to book_finder_user_4.
     """
 
     user = get_object_or_404(User, username=request.user)

@@ -82,3 +82,51 @@ else:
     profile.no_hobbies_and_sports_known = False
 
 profile.save()
+
+
+Op basis van hobby:
+
+a = Rating.objects.filter(hobbies__name='lego')
+# print(a.values())
+
+b = a.filter(rating__gte=4, age_rating_years=age_rating_years, gender=profile.gender)
+c = b.values('book_id_id')
+recommended_by_age_gender = Book.objects.filter(pk__in=c)
+print(recommended_by_age_gender)
+
+
+
+Goeie manier om overeenkomsten te vinden:
+# Find books that match users' hobbies
+    # all_hobbies_of_positive_ratings = Hobby.objects.filter(rating__book_id=book_id, rating__rating__gte=4)
+    # hobbies_positive_ratings = all_hobbies_of_positive_ratings.values('name').annotate(Count('name')).order_by('-name__count')[:2]
+
+    # <QuerySet [{'name': 'dancing', 'name__count': 1}, {'name': 'lego', 'name__count': 1}]>
+    # testset1 = Book.objects.filter(pk__in=book_ids)
+    # testset2 = Book.objects.filter(pk__in=book_ids)
+    
+    # print(testset1)
+    # print(testset2)
+    # testset1_names = testset1.values_list('author')
+    # testset2_names = testset2.values_list('author')
+    # print(testset1_names)
+    # print(type(testset1_names))
+    # # testset1_names = testset2.values_list('name')
+    # key1 = frozenset(testset1_names)
+    # key2 = frozenset(testset2_names)
+ 
+    # common_items = frozenset.intersection(key1, key2)
+    # print(common_items)
+
+Oude code voor bookfinder:
+# ratings_high = Rating.objects.filter(rating__gte=4, age_rating_years=age_rating_years, gender=profile.gender)
+
+    # Find book objects for the high rates that match users' age and gender
+    # book_ids = ratings_high.values('book_id_id')
+    # recommended_by_age_gender = Book.objects.filter(pk__in=book_ids)
+    
+    # print('recommended_by_age_gender:', recommended_by_age_gender)
+    # print(type(recommended_by_age_gender))
+    
+    # all_hobbies_of_positive_ratings = Hobby.objects.filter(rating__age_rating_years=age_rating_years, rating__rating__gte=4)
+    # print(all_hobbies_of_positive_ratings.values())

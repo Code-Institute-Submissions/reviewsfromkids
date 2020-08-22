@@ -48,3 +48,37 @@ Can access attributes of profile via rating! However, cannot get to hobbies and 
         'onlyhobby_available': onlyhobby_available,
         'onlysport_available': onlysport_available,
         'no_hobbysport_available': no_hobbysport_available,
+
+
+# Set bools needed for bookfinder functionality
+if profile.sports.all().exists()==True:
+    profile.sports_known = True
+else:
+    profile.sports_known = False
+
+if profile.hobbies.all().exists()==True:
+    profile.hobbies_known = True
+else:
+    profile.hobbies_known = False
+
+if profile.hobbies_known == True and profile.sports_known == True:
+    profile.hobbies_and_sports_known = True
+else:
+    profile.hobbies_and_sports_known = False
+
+if profile.hobbies_known == True and profile.sports_known == False:
+    profile.only_hobbies_known = True
+else:
+    profile.only_hobbies_known = False
+
+if profile.hobbies_known == False and profile.sports_known == True:
+    profile.only_sports_known = True
+else:
+    profile.only_sports_known = False
+
+if profile.hobbies_known == False and profile.sports_known == False:
+    profile.no_hobbies_and_sports_known = True
+else:
+    profile.no_hobbies_and_sports_known = False
+
+profile.save()

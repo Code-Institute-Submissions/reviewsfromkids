@@ -11,8 +11,6 @@
             "category": 1,
             "age": 8,
             "gender": "all", 
-            "number_of_ratings": 10,
-            "price": 5.50,
             "featured_item": "True",
             "date_added": "2020-07-16"
         }
@@ -29,8 +27,6 @@
             "category": 3,
             "age": 9,
             "gender": "girls", 
-            "number_of_ratings": 13,
-            "price": 5.50,
             "featured_item": "True",
             "date_added": "2020-07-16"
         }
@@ -47,8 +43,6 @@
             "category": 6,
             "age": 10,
             "gender": "boys", 
-            "number_of_ratings": 10,
-            "price": 5.50,
             "featured_item": "True",
             "date_added": "2020-07-16"
         }
@@ -65,8 +59,6 @@
             "category": 6,
             "age": 8,
             "gender": "boys", 
-            "number_of_ratings": 10,
-            "price": 5.50,
             "featured_item": "False",
             "date_added": "2020-07-16"
         }
@@ -83,8 +75,6 @@
             "category": 6,
             "age": 8,
             "gender": "all", 
-            "number_of_ratings": 10,
-            "price": 5.50,
             "featured_item": "False",
             "date_added": "2020-07-16"
         }
@@ -101,8 +91,6 @@
             "category": 6,
             "age": 8,
             "gender": "all", 
-            "number_of_ratings": 10,
-            "price": 5.50,
             "featured_item": "False",
             "date_added": "2020-07-16"
         }
@@ -119,8 +107,6 @@
             "category": 6,
             "age": 8,
             "gender": "girls", 
-            "number_of_ratings": 10,
-            "price": 5.50,
             "featured_item": "False",
             "date_added": "2020-07-16"
         }
@@ -137,8 +123,6 @@
             "category": 7,
             "age": 8,
             "gender": "boys", 
-            "number_of_ratings": 10,
-            "price": 5.50,
             "featured_item": "False",
             "date_added": "2020-07-16"
         }
@@ -155,8 +139,6 @@
             "category": 6,
             "age": 5,
             "gender": "all", 
-            "number_of_ratings": 10,
-            "price": 5.50,
             "featured_item": "False",
             "date_added": "2020-07-16"
         }
@@ -173,8 +155,6 @@
             "category": 6,
             "age": 10,
             "gender": "boys", 
-            "number_of_ratings": 10,
-            "price": 5.50,
             "featured_item": "False",
             "date_added": "2020-07-16"
         }
@@ -191,8 +171,6 @@
             "category": 6,
             "age": 8,
             "gender": "all", 
-            "number_of_ratings": 10,
-            "price": 5.50,
             "featured_item": "False",
             "date_added": "2020-07-16"
         }
@@ -209,8 +187,6 @@
             "category": 6,
             "age": 8,
             "gender": "boys", 
-            "number_of_ratings": 10,
-            "price": 5.50,
             "featured_item": "False",
             "date_added": "2020-07-16"
         }
@@ -227,8 +203,6 @@
             "category": 6,
             "age": 8,
             "gender": "boys", 
-            "number_of_ratings": 10,
-            "price": 5.50,
             "featured_item": "False",
             "date_added": "2020-07-16"
         }
@@ -245,8 +219,6 @@
             "category": 6,
             "age": 7,
             "gender": "boys", 
-            "number_of_ratings": 10,
-            "price": 5.50,
             "featured_item": "False",
             "date_added": "2020-07-16"
         }

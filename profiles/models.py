@@ -19,7 +19,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE) # try to anonymize ratings and votes for books
     first_name = models.CharField(max_length=254, null=True, blank=True)
     last_name = models.CharField(max_length=254, null=True, blank=True)
-    gender = models.CharField(max_length=25, choices=GENDER_CHOICES)
+    gender = models.CharField(max_length=25, choices=GENDER_CHOICES, null=True)
     date_of_birth = models.DateField(null=True, blank=True, default=None)
     hobbies = models.ManyToManyField('Hobby', blank=True)
     sports = models.ManyToManyField('Sport', blank=True)
@@ -51,9 +51,7 @@ class UserProfileForm(ModelForm):
             'first_name', 
             'last_name', 
             'gender', 
-            'date_of_birth', 
-            # 'hobbies', 
-            # 'sports'
+            'date_of_birth',
             ]
 
 class Hobby(models.Model):

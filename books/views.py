@@ -57,6 +57,7 @@ def book_detail(request, book_id):
     user=request.user
     userprofile=None
     favorite=False
+    rating = Rating.objects.filter(book_id=current_book)
 
     # Check if user is logged in
     if user.is_authenticated:
@@ -115,6 +116,7 @@ def book_detail(request, book_id):
             rated_by=userprofile,
             age_rating_years=age_rating_years,
             age_rating_months=age_rating_months,
+            date_added=datetime.now(),
                                    
             )
         
@@ -124,12 +126,27 @@ def book_detail(request, book_id):
         r.hobbies.set(hobbies_rating)
         r.sports.set(sports_rating)
 
+        # Update ratings
+        number_of_ratings = len(rating)
+        total_rating_sum = rating.aggregate(sum=Sum('rating'))['sum']
+
+        if number_of_ratings > 0:
+            avg_rating = round(total_rating_sum / number_of_ratings, 1)
+        else:
+            avg_rating = 0.0
+        
+        Book.objects.update_or_create(
+            pk=book.id,
+            defaults={
+                'avg_rating': avg_rating
+            },
+        )   
         # Redirect to prevent re-submitting
         book_id = book.id
         return redirect('book_detail', book_id=book_id)
     
     """ Calculate ratings"""
-    # If enough time: move to model as model methods
+    # Move to POST so that it is calculated only when new rating is added?
 
     ratings_for_this_book = Rating.objects.filter(book_id=current_book)
 
@@ -137,14 +154,7 @@ def book_detail(request, book_id):
         already_rated=True
 
     # All ratings by boys and girls
-    rating = Rating.objects.filter(book_id=current_book)
-    number_of_ratings = len(rating)
-    total_rating_sum = rating.aggregate(sum=Sum('rating'))['sum']
-
-    if number_of_ratings > 0:
-        avg_rating = round(total_rating_sum / number_of_ratings, 1)
-    else:
-        avg_rating = 0    
+       
     
     # Rating boys only
     boys_rating = Rating.objects.filter(book_id=current_book, gender='BOY')
@@ -164,7 +174,9 @@ def book_detail(request, book_id):
     if girls_number_of_ratings > 0:
         girls_avg_rating = round(girls_total_rating_sum / girls_number_of_ratings, 1)
     else:
-        girls_avg_rating = 0    
+        girls_avg_rating = 0
+
+    
     
     """ Calculate avg age for ratings of this book """
     # Avg age for positive ratings
@@ -220,13 +232,21 @@ def book_detail(request, book_id):
     
     if hobbies_positive_ratings.exists()==False and sports_positive_ratings.exists()==False and avg_age_positive_ratings == None and hobbies_negative_ratings.exists()==False and sports_negative_ratings.exists()==False and avg_age_negative_ratings == None:   
         no_ratings_info_at_all = True
-        
+    
+    # Testfield
+    Book.objects.update_or_create(
+        pk=book_id,
+        defaults={
+            'testfield': 1
+        },
+    )        
+
     context = {
 
         'book': book,
         'rating': rating,
-        'number_of_ratings': number_of_ratings,
-        'avg_rating': avg_rating,
+        # 'number_of_ratings': number_of_ratings,
+        # 'avg_rating': avg_rating,
         'boys_avg_rating': boys_avg_rating,
         'girls_avg_rating': girls_avg_rating,
         'already_rated': already_rated,

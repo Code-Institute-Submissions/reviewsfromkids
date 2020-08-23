@@ -13,25 +13,9 @@ class Category(models.Model):
         verbose_name_plural = 'Categories'
 
     name = models.CharField(max_length=254)
-    friendly_name = models.CharField(max_length=254, null=True, blank=True)
 
     def __str__(self):
         return self.name
-
-    def get_friendly_name(self):
-        return self.friendly_name
-
-
-class List(models.Model):
-
-    name = models.CharField(max_length=254)
-    friendly_name = models.CharField(max_length=254, null=True, blank=True)
-
-    def __str__(self):
-        return self.name
-
-    def get_friendly_name(self):
-        return self.friendly_name
 
 
 class Book(models.Model):
@@ -46,11 +30,10 @@ class Book(models.Model):
     tags = TaggableManager()
     age = models.IntegerField()
     gender = models.CharField(max_length=25)
-    number_of_ratings = models.IntegerField()
-    # part_of_lists = models.ManyToManyField('List', blank=True)
-    price = models.DecimalField(max_digits=6, decimal_places=2)
     date_added = models.DateField(auto_now_add=False)
     featured_item = models.BooleanField()
+    testfield = models.IntegerField()
+    avg_rating = models.DecimalField(max_digits=2, decimal_places=1, default=0.0)
     
     def __str__(self):
         return self.title
@@ -61,7 +44,6 @@ class Rating(models.Model):
     Rating model.
     """
     rated_by = models.ForeignKey(UserProfile, null=True, blank=True, on_delete=models.CASCADE)
-    # rated_by = models.OneToOneField(User, on_delete=models.CASCADE)
     book_id = models.ForeignKey('Book', on_delete=models.PROTECT)
     gender = models.CharField(max_length=25, null=True, blank=True)
     age_rating_years = models.IntegerField()
@@ -69,6 +51,7 @@ class Rating(models.Model):
     rating = models.IntegerField(null=True, blank=True)
     hobbies = models.ManyToManyField(Hobby, blank=True)
     sports = models.ManyToManyField(Sport, blank=True)
+    date_added = models.DateField(auto_now_add=False)
     
     def __str__(self):
         return self.book_id.title

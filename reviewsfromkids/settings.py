@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'allauth', # 1.3 Allauth itself
     'allauth.account', # 1.3 Basic account stuff like log in, password reset, etc.
     'allauth.socialaccount', # 1.3 Log in via social accounts
-    'taggit',
     'django_filters',
 
     # my apps
@@ -55,6 +54,7 @@ INSTALLED_APPS = [
     # other
     'crispy_forms',
     'storages',
+    'taggit',
 ]
 
 MIDDLEWARE = [
@@ -118,7 +118,15 @@ LOGIN_REDIRECT_URL = '/' # 1.9 Change this redirect from / to /success to test
 
 WSGI_APPLICATION = 'reviewsfromkids.wsgi.application'
 
+def FILTERS_VERBOSE_LOOKUPS():
+    from django_filters.conf import DEFAULTS
 
+    verbose_lookups = DEFAULTS['VERBOSE_LOOKUPS'].copy()
+    verbose_lookups.update({
+        'exact': '',
+        'icontains': '',
+    })
+    return verbose_lookups
 # if 'DATABASE_URL' in os.environ:
 #     DATABASES = {
 #         'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))

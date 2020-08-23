@@ -10,44 +10,17 @@
 
   {% block content %}
     <main id="main">
+        <form class="quickfix" method="GET">
+            {{ myFilter.form }}
+            <button class="btn" type="submit">search</button>
+        </form>
         
-        <div class="refine-sort">
-            
-            <div class="refine-sort__message">
-                {% if searched_term == None %}
-                    There are xxx books waiting for you!
-                    <form class="strip-margin" method="GET" action="{% url 'books' %}">
-                        <div class="search__box">
-                          <input class="search__box--input" type="text" name="q" placeholder="    search title, author, theme, tag">
-                          <button class="btnize search__icon" type="submit">
-                            <i class="fas fa-search"></i>
-                          </button>
-                        </div>
-                      </form>
-                    {% else %}
-                    Your search for {{ searched_term }} has 
-                    {% if numResults == 1 %}
-                        {{ numResults }} search result.
-                    {% elif numResults > 1 %}
-                        {{ numResults }} search results.
-                    {% else %}
-                        no results, please try again.
-                    {% endif %}
-                {% endif %}
-            </div>
-                       
-            <button id="refine-sort__btn" class="refine-sort__btn">Refine</button>
-            
-            <button class="refine-sort__btn">Sort</button>
-
-            {% include 'includes/overlay-refine-sort.html' %}    
-
-        </div>
         <div>
             
 
         
             <div class="">
+                
              
                     {% for book in books %}
                         {% include 'includes/book-card.html' %}

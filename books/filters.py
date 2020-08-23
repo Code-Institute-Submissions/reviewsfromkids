@@ -18,5 +18,5 @@ class BookFilter(django_filters.FilterSet):
             'gender': ['icontains'],
         }
 
-
+    
         # fields = ['title', 'author', 'category', 'rating_all']

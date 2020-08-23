@@ -21,30 +21,9 @@ def all_books(request):
     title_hit = None
     description_hit = None
 
-    if request.GET:
-        if 'q' in request.GET:
-            query = request.GET['q']
-            if not query:
-                messages.error(request, "You didn't enter any search criteria!")
-                return redirect (reverse('books'))
-            
-            queries =  Q(tags__name__icontains=query) | Q(title__icontains=query) | Q(description__icontains=query) | Q(category__name__icontains=query) | Q(author__icontains=query)| Q(gender__icontains=query) | Q(age__icontains=query)
-            books = books.filter(queries).distinct()
-            search_results = True
-            searched_term=request.GET['q']
+    myFilter = BookFilter(request.GET, queryset=books)
+    books = myFilter.qs
 
-            # check what query was hit
-            if books.filter(Q(title__icontains=query)):
-                title_hit = searched_term
-                print(title_hit)
-
-            if books.filter(Q(description__icontains=query)):
-                description_hit = searched_term
-                print(description_hit)
-
-    # initiated from search in menu
-    # myFilter = BookFilter(request.GET, queryset=books)
-    # books = myFilter.qs
     numResults = books.count()
     
     context = {
@@ -56,6 +35,7 @@ def all_books(request):
         'searched_term': searched_term,
         'title_hit': title_hit,
         'description_hit': description_hit,
+        'myFilter': myFilter,
     }
 
     return render(request, 'books/books.html', context)
@@ -82,7 +62,6 @@ def book_detail(request, book_id):
     if user.is_authenticated:
         userprofile = get_object_or_404(UserProfile, user=request.user)
         user_logged_in=True
-
     
     """ Handle favorites """
     # Check if book is in favorites

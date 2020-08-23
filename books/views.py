@@ -127,6 +127,8 @@ def book_detail(request, book_id):
         r.sports.set(sports_rating)
 
         # Update ratings
+
+        ## All ratings by boys and girls
         number_of_ratings = len(rating)
         total_rating_sum = rating.aggregate(sum=Sum('rating'))['sum']
 
@@ -135,48 +137,40 @@ def book_detail(request, book_id):
         else:
             avg_rating = 0.0
         
+        ## Rating boys only
+        boys_rating = Rating.objects.filter(book_id=current_book, gender='BOY')
+        boys_number_of_ratings = len(boys_rating)
+        boys_total_rating_sum = boys_rating.aggregate(sum=Sum('rating'))['sum']
+
+        if boys_number_of_ratings > 0:
+            boys_avg_rating = round(boys_total_rating_sum / boys_number_of_ratings, 1)
+        else:
+            boys_avg_rating = 0    
+
+        ## Rating girls only
+        girls_rating = Rating.objects.filter(book_id=current_book, gender='GIRL')
+        girls_number_of_ratings = len(girls_rating)
+        girls_total_rating_sum = girls_rating.aggregate(sum=Sum('rating'))['sum']
+
+        if girls_number_of_ratings > 0:
+            girls_avg_rating = round(girls_total_rating_sum / girls_number_of_ratings, 1)
+        else:
+            girls_avg_rating = 0
+
         Book.objects.update_or_create(
             pk=book.id,
             defaults={
-                'avg_rating': avg_rating
+                'avg_rating': avg_rating,
+                'number_of_ratings': number_of_ratings,
+                'boys_avg_rating': boys_avg_rating,
+                'boys_number_of_ratings': boys_number_of_ratings,
+                'girls_avg_rating': girls_avg_rating,
+                'girls_number_of_ratings': girls_number_of_ratings,
             },
         )   
         # Redirect to prevent re-submitting
         book_id = book.id
         return redirect('book_detail', book_id=book_id)
-    
-    """ Calculate ratings"""
-    # Move to POST so that it is calculated only when new rating is added?
-
-    ratings_for_this_book = Rating.objects.filter(book_id=current_book)
-
-    if ratings_for_this_book.filter(rated_by=userprofile):
-        already_rated=True
-
-    # All ratings by boys and girls
-       
-    
-    # Rating boys only
-    boys_rating = Rating.objects.filter(book_id=current_book, gender='BOY')
-    boys_number_of_ratings = len(boys_rating)
-    boys_total_rating_sum = boys_rating.aggregate(sum=Sum('rating'))['sum']
-
-    if boys_number_of_ratings > 0:
-        boys_avg_rating = round(boys_total_rating_sum / boys_number_of_ratings, 1)
-    else:
-        boys_avg_rating = 0    
-
-    # Rating girls only
-    girls_rating = Rating.objects.filter(book_id=current_book, gender='GIRL')
-    girls_number_of_ratings = len(girls_rating)
-    girls_total_rating_sum = girls_rating.aggregate(sum=Sum('rating'))['sum']
-
-    if girls_number_of_ratings > 0:
-        girls_avg_rating = round(girls_total_rating_sum / girls_number_of_ratings, 1)
-    else:
-        girls_avg_rating = 0
-
-    
     
     """ Calculate avg age for ratings of this book """
     # Avg age for positive ratings
@@ -231,29 +225,15 @@ def book_detail(request, book_id):
             no_ratings_info_at_all = True
     
     if hobbies_positive_ratings.exists()==False and sports_positive_ratings.exists()==False and avg_age_positive_ratings == None and hobbies_negative_ratings.exists()==False and sports_negative_ratings.exists()==False and avg_age_negative_ratings == None:   
-        no_ratings_info_at_all = True
-    
-    # Testfield
-    Book.objects.update_or_create(
-        pk=book_id,
-        defaults={
-            'testfield': 1
-        },
-    )        
+        no_ratings_info_at_all = True       
 
     context = {
 
         'book': book,
         'rating': rating,
-        # 'number_of_ratings': number_of_ratings,
-        # 'avg_rating': avg_rating,
-        'boys_avg_rating': boys_avg_rating,
-        'girls_avg_rating': girls_avg_rating,
         'already_rated': already_rated,
         'favorite': favorite,
         'user_logged_in': user_logged_in,
-        'boys_number_of_ratings': boys_number_of_ratings,
-        'girls_number_of_ratings': girls_number_of_ratings,
         'avg_age_positive_ratings': avg_age_positive_ratings,
         'avg_age_negative_ratings': avg_age_negative_ratings,
         'hobbies_positive_ratings': hobbies_positive_ratings,

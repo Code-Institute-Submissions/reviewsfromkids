@@ -32,8 +32,13 @@ class Book(models.Model):
     gender = models.CharField(max_length=25)
     date_added = models.DateField(auto_now_add=False)
     featured_item = models.BooleanField()
-    testfield = models.IntegerField()
     avg_rating = models.DecimalField(max_digits=2, decimal_places=1, default=0.0)
+    number_of_ratings = models.IntegerField()
+    boys_avg_rating = models.DecimalField(max_digits=2, decimal_places=1, default=0.0)
+    boys_number_of_ratings = models.IntegerField()
+    girls_avg_rating = models.DecimalField(max_digits=2, decimal_places=1, default=0.0)
+    girls_number_of_ratings = models.IntegerField()
+
     
     def __str__(self):
         return self.title

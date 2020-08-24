@@ -1,13 +1,14 @@
 <div class="site-header__overlay">
     <div class="site-header__overlay-content">
+
       <a class="site-header__logo" href="{% url 'home' %}">
         <img class="site-header__logo--img" src="{{ MEDIA_URL }}logo.jpg" alt="logo voorkidsdoorkids">
-    </a>
+      </a>
+
       <nav class="primary-nav">
         <ul>
           <li><a href="{% url 'home' %}">Home</a></li>
           <li><a href="{% url 'books' %}">All books</a></li>
-          <li><a href="">Shop</a></li>
           <li><a href="">Contact</a></li>
           <li><a href="">About</a></li>
           {% if request.user.is_authenticated %}
@@ -19,23 +20,15 @@
             <li><a href="{% url 'account_login' %}">Login</a></li>
           {% endif %}
         </ul>
-        
-        
-        
       </nav>
+
       <div class="search">
-        <p class="search__text">Search yourself</p>
-        <form class="strip-margin" method="GET" action="{% url 'books' %}">
-          <div class="search__box">
-            <input class="search__box--input" type="text" name="q" placeholder="    search title, author, theme, tag">
-            <button class="btnize search__icon" type="submit">
-              <i class="fas fa-search"></i>
-            </button>
-          </div>
-        </form>
-        <div class="text-divider">or</div>
         <p class="search__text">Let other kids help you find the perfect books!</p>
-        <a class="btn search__btn" href="">start</a>
+        {% if user_logged_in %}
+          <a class="btn search__btn" href="{% url 'book_finder_user' %}">start</a>
+        {% else %}
+          <a class="btn search__btn" href="{% url 'book_finder' %}">start</a>
+        {% endif %}
       </div>
       
     </div>

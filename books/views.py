@@ -21,24 +21,63 @@ def all_books(request):
     searched_term = None
     title_hit = None
     description_hit = None
+    noresults = False
+    # most_liked_by = None
 
     myFilter = BookFilter(request.GET, queryset=books)
     books = myFilter.qs
-    print(myFilter)
-
-    numResults = books.count()
-    print(numResults)
     
+    numresults = books.count()
+    
+    # Grab search results to show context in template
+    if request.GET:
+        
+        title__icontains = request.GET['title__icontains']
+        author__icontains = request.GET['author__icontains']
+        category = request.GET['category']
+        most_liked_by = request.GET['most_liked_by']
+        age_mode__icontains = request.GET['age_mode__icontains']
+        rating = request.GET['rating']
+        
+        if not title__icontains and not author__icontains and not category and not most_liked_by and not age_mode__icontains and not rating:
+            search_performed = False
+        else:
+            search_performed = True
+
+        if numresults == 0:
+            noresults = True
+
+
+    else:
+
+        title__icontains = None
+        author__icontains = None
+        category = None
+        most_liked_by = None
+        age_mode__icontains = None
+        rating = None
+        search_performed = False
+
     context = {
+
         'books': books,
         'search_term': query,
         'show_refine_bar': search_results,
         'categories': category,
-        'numResults': numResults,
+        'numresults': numresults,
         'searched_term': searched_term,
         'title_hit': title_hit,
         'description_hit': description_hit,
         'myFilter': myFilter,
+        'title': title__icontains,
+        'author': author__icontains,
+        'category': category,
+        'most_liked_by': most_liked_by,
+        'age_mode__icontains': age_mode__icontains,
+        'rating': rating,
+        'search_performed': search_performed,
+        'noresults': noresults,
+
     }
 
     return render(request, 'books/books.html', context)

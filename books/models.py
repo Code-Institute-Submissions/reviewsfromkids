@@ -20,7 +20,7 @@ class Category(models.Model):
 GENDER_CHOICES = [
     ('girls', 'girls'),
     ('boys', 'boys'),
-    ('boys and girls', 'bosy and girls'),
+    ('boys and girls', 'boys and girls'),
 ]
 
 class Book(models.Model):

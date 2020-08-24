@@ -32,12 +32,14 @@ class Book(models.Model):
     gender = models.CharField(max_length=25)
     date_added = models.DateField(auto_now_add=False)
     featured_item = models.BooleanField()
-    avg_rating = models.DecimalField(max_digits=2, decimal_places=1, default=0.0)
+    rating = models.DecimalField(max_digits=2, decimal_places=1, default=0.0)
     number_of_ratings = models.IntegerField()
     boys_avg_rating = models.DecimalField(max_digits=2, decimal_places=1, default=0.0)
     boys_number_of_ratings = models.IntegerField()
     girls_avg_rating = models.DecimalField(max_digits=2, decimal_places=1, default=0.0)
     girls_number_of_ratings = models.IntegerField()
+    most_liked_by = models.CharField(max_length=15, default='not known yet')
+    recommended_age = models.CharField(max_length=254, default='not known yet')
 
     
     def __str__(self):
@@ -49,7 +51,7 @@ class Rating(models.Model):
     Rating model.
     """
     rated_by = models.ForeignKey(UserProfile, null=True, blank=True, on_delete=models.CASCADE)
-    book_id = models.ForeignKey('Book', on_delete=models.PROTECT)
+    book_id = models.ForeignKey('Book', on_delete=models.PROTECT, related_name='book_id_of_rating')
     gender = models.CharField(max_length=25, null=True, blank=True)
     age_rating_years = models.IntegerField()
     age_rating_months = models.IntegerField()

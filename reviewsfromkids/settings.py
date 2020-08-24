@@ -125,6 +125,7 @@ def FILTERS_VERBOSE_LOOKUPS():
     verbose_lookups.update({
         'exact': '',
         'icontains': '',
+        'gte': 'from'
     })
     return verbose_lookups
 # if 'DATABASE_URL' in os.environ:

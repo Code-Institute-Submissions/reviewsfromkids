@@ -157,10 +157,22 @@ def book_detail(request, book_id):
         else:
             girls_avg_rating = 0
 
+        # Who rated positive the most?
+        # most_liked_by_girls = 'not known'
+
+        if boys_number_of_ratings > girls_number_of_ratings:
+            most_liked_by = 'boys'
+        elif girls_number_of_ratings > boys_number_of_ratings:
+            most_liked_by = 'girls'
+        else:
+            most_liked_by = 'boys and girls'
+        
+        print('most liked by:', most_liked_by)
+
         Book.objects.update_or_create(
             pk=book.id,
             defaults={
-                'avg_rating': avg_rating,
+                'rating': avg_rating,
                 'number_of_ratings': number_of_ratings,
                 'boys_avg_rating': boys_avg_rating,
                 'boys_number_of_ratings': boys_number_of_ratings,

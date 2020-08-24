@@ -12,7 +12,16 @@
             "age": 8,
             "gender": "all", 
             "featured_item": "True",
-            "date_added": "2020-07-16"
+            "date_added": "2020-07-16",
+            "rating": 0.0,
+            "number_of_ratings": 0,
+            "boys_avg_rating": 0.0,
+            "boys_number_of_ratings": 0,
+            "girls_avg_rating": 0.0,
+            "girls_number_of_ratings": 0,
+            "most_liked_by": "not known yet",
+            "recommended_age": "not known yet",
+            "age_mode": "not available"
         }
     },
     {"pk": 2, "model": "books.book", 
@@ -28,7 +37,16 @@
             "age": 9,
             "gender": "girls", 
             "featured_item": "True",
-            "date_added": "2020-07-16"
+            "date_added": "2020-07-16",
+            "rating": 0.0,
+            "number_of_ratings": 0,
+            "boys_avg_rating": 0.0,
+            "boys_number_of_ratings": 0,
+            "girls_avg_rating": 0.0,
+            "girls_number_of_ratings": 0,
+            "most_liked_by": "not known yet",
+            "recommended_age": "not known yet",
+            "age_mode": "not available"
         }
     },
     {"pk": 3, "model": "books.book", 
@@ -44,7 +62,16 @@
             "age": 10,
             "gender": "boys", 
             "featured_item": "True",
-            "date_added": "2020-07-16"
+            "date_added": "2020-07-16",
+            "rating": 0.0,
+            "number_of_ratings": 0,
+            "boys_avg_rating": 0.0,
+            "boys_number_of_ratings": 0,
+            "girls_avg_rating": 0.0,
+            "girls_number_of_ratings": 0,
+            "most_liked_by": "not known yet",
+            "recommended_age": "not known yet",
+            "age_mode": "not available"
         }
     },
     {"pk": 4, "model": "books.book", 
@@ -60,7 +87,16 @@
             "age": 8,
             "gender": "boys", 
             "featured_item": "False",
-            "date_added": "2020-07-16"
+            "date_added": "2020-07-16",
+            "rating": 0.0,
+            "number_of_ratings": 0,
+            "boys_avg_rating": 0.0,
+            "boys_number_of_ratings": 0,
+            "girls_avg_rating": 0.0,
+            "girls_number_of_ratings": 0,
+            "most_liked_by": "not known yet",
+            "recommended_age": "not known yet",
+            "age_mode": "not available"
         }
     },
     {"pk": 5, "model": "books.book", 
@@ -76,7 +112,16 @@
             "age": 8,
             "gender": "all", 
             "featured_item": "False",
-            "date_added": "2020-07-16"
+            "date_added": "2020-07-16",
+            "rating": 0.0,
+            "number_of_ratings": 0,
+            "boys_avg_rating": 0.0,
+            "boys_number_of_ratings": 0,
+            "girls_avg_rating": 0.0,
+            "girls_number_of_ratings": 0,
+            "most_liked_by": "not known yet",
+            "recommended_age": "not known yet",
+            "age_mode": "not available"
         }
     },
     {"pk": 6, "model": "books.book", 
@@ -92,7 +137,16 @@
             "age": 8,
             "gender": "all", 
             "featured_item": "False",
-            "date_added": "2020-07-16"
+            "date_added": "2020-07-16",
+            "rating": 0.0,
+            "number_of_ratings": 0,
+            "boys_avg_rating": 0.0,
+            "boys_number_of_ratings": 0,
+            "girls_avg_rating": 0.0,
+            "girls_number_of_ratings": 0,
+            "most_liked_by": "not known yet",
+            "recommended_age": "not known yet",
+            "age_mode": "not available"
         }
     },
     {"pk": 7, "model": "books.book", 
@@ -108,7 +162,16 @@
             "age": 8,
             "gender": "girls", 
             "featured_item": "False",
-            "date_added": "2020-07-16"
+            "date_added": "2020-07-16",
+            "rating": 0.0,
+            "number_of_ratings": 0,
+            "boys_avg_rating": 0.0,
+            "boys_number_of_ratings": 0,
+            "girls_avg_rating": 0.0,
+            "girls_number_of_ratings": 0,
+            "most_liked_by": "not known yet",
+            "recommended_age": "not known yet",
+            "age_mode": "not available"
         }
     },
     {"pk": 8, "model": "books.book", 
@@ -124,7 +187,16 @@
             "age": 8,
             "gender": "boys", 
             "featured_item": "False",
-            "date_added": "2020-07-16"
+            "date_added": "2020-07-16",
+            "rating": 0.0,
+            "number_of_ratings": 0,
+            "boys_avg_rating": 0.0,
+            "boys_number_of_ratings": 0,
+            "girls_avg_rating": 0.0,
+            "girls_number_of_ratings": 0,
+            "most_liked_by": "not known yet",
+            "recommended_age": "not known yet",
+            "age_mode": "not available"
         }
     },
     {"pk": 9, "model": "books.book", 
@@ -140,7 +212,16 @@
             "age": 5,
             "gender": "all", 
             "featured_item": "False",
-            "date_added": "2020-07-16"
+            "date_added": "2020-07-16",
+            "rating": 0.0,
+            "number_of_ratings": 0,
+            "boys_avg_rating": 0.0,
+            "boys_number_of_ratings": 0,
+            "girls_avg_rating": 0.0,
+            "girls_number_of_ratings": 0,
+            "most_liked_by": "not known yet",
+            "recommended_age": "not known yet",
+            "age_mode": "not available"
         }
     },
     {"pk": 10, "model": "books.book", 
@@ -156,7 +237,16 @@
             "age": 10,
             "gender": "boys", 
             "featured_item": "False",
-            "date_added": "2020-07-16"
+            "date_added": "2020-07-16",
+            "rating": 0.0,
+            "number_of_ratings": 0,
+            "boys_avg_rating": 0.0,
+            "boys_number_of_ratings": 0,
+            "girls_avg_rating": 0.0,
+            "girls_number_of_ratings": 0,
+            "most_liked_by": "not known yet",
+            "recommended_age": "not known yet",
+            "age_mode": "not available"
         }
     },
     {"pk": 11, "model": "books.book", 
@@ -172,7 +262,16 @@
             "age": 8,
             "gender": "all", 
             "featured_item": "False",
-            "date_added": "2020-07-16"
+            "date_added": "2020-07-16",
+            "rating": 0.0,
+            "number_of_ratings": 0,
+            "boys_avg_rating": 0.0,
+            "boys_number_of_ratings": 0,
+            "girls_avg_rating": 0.0,
+            "girls_number_of_ratings": 0,
+            "most_liked_by": "not known yet",
+            "recommended_age": "not known yet",
+            "age_mode": "not available"
         }
     },
     {"pk": 12, "model": "books.book", 
@@ -188,7 +287,16 @@
             "age": 8,
             "gender": "boys", 
             "featured_item": "False",
-            "date_added": "2020-07-16"
+            "date_added": "2020-07-16",
+            "rating": 0.0,
+            "number_of_ratings": 0,
+            "boys_avg_rating": 0.0,
+            "boys_number_of_ratings": 0,
+            "girls_avg_rating": 0.0,
+            "girls_number_of_ratings": 0,
+            "most_liked_by": "not known yet",
+            "recommended_age": "not known yet",
+            "age_mode": "not available"
         }
     },
     {"pk": 13, "model": "books.book", 
@@ -204,7 +312,16 @@
             "age": 8,
             "gender": "boys", 
             "featured_item": "False",
-            "date_added": "2020-07-16"
+            "date_added": "2020-07-16",
+            "rating": 0.0,
+            "number_of_ratings": 0,
+            "boys_avg_rating": 0.0,
+            "boys_number_of_ratings": 0,
+            "girls_avg_rating": 0.0,
+            "girls_number_of_ratings": 0,
+            "most_liked_by": "not known yet",
+            "recommended_age": "not known yet",
+            "age_mode": "not available"
         }
     },
     {"pk": 14, "model": "books.book", 
@@ -220,7 +337,16 @@
             "age": 7,
             "gender": "boys", 
             "featured_item": "False",
-            "date_added": "2020-07-16"
+            "date_added": "2020-07-16",
+            "rating": 0.0,
+            "number_of_ratings": 0,
+            "boys_avg_rating": 0.0,
+            "boys_number_of_ratings": 0,
+            "girls_avg_rating": 0.0,
+            "girls_number_of_ratings": 0,
+            "most_liked_by": "not known yet",
+            "recommended_age": "not known yet",
+            "age_mode": "not available"
         }
     }
 ]

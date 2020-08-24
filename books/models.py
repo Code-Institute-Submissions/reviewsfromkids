@@ -17,6 +17,11 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+GENDER_CHOICES = [
+    ('girls', 'girls'),
+    ('boys', 'boys'),
+    ('boys and girls', 'bosy and girls'),
+]
 
 class Book(models.Model):
     category = models.ForeignKey('Category', null=True, blank=True, on_delete=models.SET_NULL)
@@ -38,7 +43,7 @@ class Book(models.Model):
     boys_number_of_ratings = models.IntegerField()
     girls_avg_rating = models.DecimalField(max_digits=2, decimal_places=1, default=0.0)
     girls_number_of_ratings = models.IntegerField()
-    most_liked_by = models.CharField(max_length=15, default='not known yet')
+    most_liked_by = models.CharField(max_length=15, default='not known yet', choices=GENDER_CHOICES)
     recommended_age = models.CharField(max_length=254, default='not known yet')
 
     

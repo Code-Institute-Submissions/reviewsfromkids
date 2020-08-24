@@ -4,7 +4,8 @@ from .models import *
 
 class BookFilter(django_filters.FilterSet):
 
-    start_rating = NumberFilter(field_name='avg_rating', lookup_expr='gte')
+    rating = NumberFilter(field_name='rating', lookup_expr='gte')
+
     
     class Meta:
         model = Book
@@ -12,5 +13,5 @@ class BookFilter(django_filters.FilterSet):
             'title': ['icontains'], 
             'author': ['icontains'], 
             'category': ['exact'], 
-            'gender': ['icontains'],
+            'most_liked_by': ['exact'],
         }

@@ -178,6 +178,7 @@ def book_detail(request, book_id):
                 'boys_number_of_ratings': boys_number_of_ratings,
                 'girls_avg_rating': girls_avg_rating,
                 'girls_number_of_ratings': girls_number_of_ratings,
+                'most_liked_by': most_liked_by,
             },
         )   
         # Redirect to prevent re-submitting

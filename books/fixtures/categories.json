@@ -33,5 +33,10 @@
         "fields": {
             "name": "Humor"
         }
+    },
+    {"pk": 8, "model": "books.category", 
+        "fields": {
+            "name": "Mystery & Detective"
+        }
     }
 ]

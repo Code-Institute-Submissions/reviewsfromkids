@@ -12,6 +12,12 @@ class BookAdmin(admin.ModelAdmin): #6.2
         'age',
     )
 
+class CategoryAdmin(admin.ModelAdmin): #6.2
+    list_display = (
+        'pk', 
+        'name',
+    )
+
 admin.site.register(Book, BookAdmin) # 5.3 6.
-admin.site.register(Category) # 5.3 6.
+admin.site.register(Category, CategoryAdmin) # 5.3 6.
 admin.site.register(Rating)

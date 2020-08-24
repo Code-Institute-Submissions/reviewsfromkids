@@ -14,4 +14,5 @@ class BookFilter(django_filters.FilterSet):
             'author': ['icontains'], 
             'category': ['exact'], 
             'most_liked_by': ['exact'],
+            'age_mode': ['icontains'],
         }

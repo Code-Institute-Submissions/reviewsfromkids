@@ -7,11 +7,12 @@ from .filters import BookFilter
 from datetime import datetime
 from dateutil.relativedelta import relativedelta, MO
 from django.contrib.auth.decorators import login_required
+from statistics import mode
 
 
 def all_books(request):
     """ A view to show all books, including sorting and search queries """
-    print('view triggered')
+
     # initiated from search in menu
     books = Book.objects.all() # Make sure this is a selection somehow (recent or popular). If There are 10K books in db, I do not want to show all...
     category = Category.objects.all()
@@ -23,8 +24,10 @@ def all_books(request):
 
     myFilter = BookFilter(request.GET, queryset=books)
     books = myFilter.qs
+    print(myFilter)
 
     numResults = books.count()
+    print(numResults)
     
     context = {
         'books': books,
@@ -58,7 +61,7 @@ def book_detail(request, book_id):
     userprofile=None
     favorite=False
     rating = Rating.objects.filter(book_id=current_book)
-
+    
     # Check if user is logged in
     if user.is_authenticated:
         userprofile = get_object_or_404(UserProfile, user=request.user)
@@ -167,7 +170,15 @@ def book_detail(request, book_id):
         else:
             most_liked_by = 'boys and girls'
         
-        print('most liked by:', most_liked_by)
+        # What age occurs most often in ratings? (mode not average)
+        all_ages_rating = Rating.objects.filter(book_id=current_book, rating__gte=4)
+        all_ages_rating_years = all_ages_rating.values_list('age_rating_years') 
+        age_mode = mode(all_ages_rating_years)
+        if age_mode:
+            age_mode = mode(all_ages_rating_years)
+        else:
+            age_mode = 'not available'
+        print(age_mode)
 
         Book.objects.update_or_create(
             pk=book.id,
@@ -179,12 +190,16 @@ def book_detail(request, book_id):
                 'girls_avg_rating': girls_avg_rating,
                 'girls_number_of_ratings': girls_number_of_ratings,
                 'most_liked_by': most_liked_by,
+                'age_mode': age_mode,
             },
         )   
         # Redirect to prevent re-submitting
         book_id = book.id
         return redirect('book_detail', book_id=book_id)
     
+    
+    
+
     """ Calculate avg age for ratings of this book """
     # Avg age for positive ratings
     positive_ratings = Rating.objects.filter(book_id=book_id, rating__gte=4)

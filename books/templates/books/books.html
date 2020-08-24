@@ -10,7 +10,9 @@
 
   {% block content %}
     <main id="main">
+        
         <form class="quickfix" method="GET">
+            Search results {{ numResults }}
             {{ myFilter.form }}
             <button class="btn" type="submit">search</button>
         </form>

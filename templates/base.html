@@ -51,7 +51,7 @@
     <title>Reviews from kids for kids | {% block extra_title %}{% endblock %}</title>
   </head>
   <body>
-    <header class="site-header">
+    <header class="site-header toggle">
         
         {% include 'includes/main-nav.html' %}
         {% include 'includes/overlay-nav.html' %}
@@ -87,6 +87,27 @@
   
 
     {% block postloadjs %}
-    {% endblock %}    
+    {% endblock %}
+    <script>
+      var prevScrollpos = window.pageYOffset;
+      window.onscroll = function() {
+      var currentScrollPos = window.pageYOffset;
+        if (prevScrollpos > currentScrollPos) {
+          showHeader();
+        } else {
+          
+          hideHeader();
+        }
+        prevScrollpos = currentScrollPos;
+      }
+
+      function hideHeader() {
+          $(".toggle").removeClass("is-visible").addClass("is-hidden");
+        }
+
+        function showHeader() {
+          $(".toggle").removeClass("is-hidden").addClass("is-visible").addClass("scrolling");
+        }
+    </script>    
   </body>
 </html>

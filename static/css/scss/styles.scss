@@ -1,8 +1,7 @@
 // sass --watch static/css/scss/styles.scss static/css/override.css
 @import 'global/colors';
 @import 'hero';
-@import 'global/site-header';
-@import 'nav';
+@import 'global/nav';
 @import 'books/book-card';
 @import 'global/global';
 @import 'hs';

@@ -21,9 +21,17 @@ def profile(request):
     user_sport = profile.sports.all().order_by('name')
     favorites = profile.favorites.all()
 
-    ratings_high = Book.objects.filter(rating__rated_by=profile, rating__rating__gte=4)
-    ratings_low = Book.objects.filter(rating__rated_by=profile, rating__rating__lte=2)
-    ratings_ok = Book.objects.filter(rating__rated_by=profile, rating__rating=3)
+    a = Rating.objects.filter(rated_by=profile, rating__gte=4)
+    b = a.values('book_id_id')
+    ratings_high = Book.objects.filter(pk__in=b)
+
+    c = Rating.objects.filter(rated_by=profile, rating=3)
+    d = c.values('book_id_id')
+    ratings_ok = Book.objects.filter(pk__in=d)
+
+    e = Rating.objects.filter(rated_by=profile, rating__lte=2)
+    f = e.values('book_id_id')
+    ratings_low = Book.objects.filter(pk__in=f)
 
 
     template = 'profiles/profile.html'

@@ -33,7 +33,7 @@ class Book(models.Model):
     image = models.ImageField(null=True, blank=True)
     pages = models.IntegerField()
     tags = TaggableManager()
-    age = models.IntegerField()
+    age_on_book = models.CharField(max_length=254, null=True, blank=True)
     gender = models.CharField(max_length=25)
     date_added = models.DateField(auto_now_add=False)
     featured_item = models.BooleanField()

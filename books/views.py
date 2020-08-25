@@ -94,12 +94,13 @@ def book_detail(request, book_id):
     
     book = get_object_or_404(Book, pk=book_id)
     current_book = book_id
-    user_logged_in=False
-    already_rated=False
-    user=request.user
-    userprofile=None
-    favorite=False
-    recommended_age= []
+    user_logged_in = False
+    already_rated = False
+    user = request.user
+    userprofile = None
+    favorite = False
+    recommended_age = None
+    not_recommended_by_age = None
     rating = Rating.objects.filter(book_id=current_book)
         
     # Check if user is logged in
@@ -225,6 +226,19 @@ def book_detail(request, book_id):
         else:
             recommended_age = 'not available'
 
+        # What age occurs most often in positive ratings? (mode not average)
+        all_ages_rating_low = Rating.objects.filter(book_id=current_book, rating__lte=2)
+
+        if all_ages_rating_low:
+            all_ages_rating_low_years = all_ages_rating_low.values_list('age_rating_years') 
+            age_mode_low = mode(all_ages_rating_low_years)
+                        
+            if age_mode_low:
+                not_recommended_by_age = age_mode_low[0]
+        
+        else:
+            not_recommended_by_age = 'not available'
+        
         Book.objects.update_or_create(
             pk=book.id,
             defaults={
@@ -236,6 +250,7 @@ def book_detail(request, book_id):
                 'girls_number_of_ratings': girls_number_of_ratings,
                 'most_liked_by': most_liked_by,
                 'recommended_age': recommended_age,
+                'not_recommended_by_age': not_recommended_by_age,
             },
         )
 
@@ -315,7 +330,6 @@ def book_detail(request, book_id):
         'sports_positive_ratings': sports_positive_ratings,
         'sports_negative_ratings': sports_negative_ratings,
         'no_ratings_info_at_all': no_ratings_info_at_all,
-        'messages':messages.get_messages(request),
     }
 
     return render(request, 'books/book_detail.html', context)

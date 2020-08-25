@@ -379,6 +379,11 @@ html, body {
   font-weight: 700;
 }
 
+.message-container {
+  position: absolute;
+  top: 88;
+}
+
 .scrolling-wrapper {
   overflow-x: scroll;
   overflow-y: hidden;

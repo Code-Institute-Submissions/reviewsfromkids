@@ -5,6 +5,7 @@ from .models import Book, Category, Rating
 
 class BookAdmin(admin.ModelAdmin): #6.2
     list_display = (
+        'pk',
         'isbn', 
         'title',
         'author',
@@ -18,6 +19,15 @@ class CategoryAdmin(admin.ModelAdmin): #6.2
         'name',
     )
 
+class RatingAdmin(admin.ModelAdmin): #6.2
+    list_display = (
+        'pk', 
+        'age_rating_years',
+        'rating',
+        'gender',
+        'book_id',
+    )
+
 admin.site.register(Book, BookAdmin) # 5.3 6.
 admin.site.register(Category, CategoryAdmin) # 5.3 6.
-admin.site.register(Rating)
+admin.site.register(Rating, RatingAdmin)

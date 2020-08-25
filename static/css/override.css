@@ -379,12 +379,6 @@ html, body {
   font-weight: 700;
 }
 
-.message-container {
-  position: absolute;
-  top: 88;
-  z-index: 2;
-}
-
 .scrolling-wrapper {
   overflow-x: scroll;
   overflow-y: hidden;
@@ -574,6 +568,38 @@ h2.book-details__title {
 
 .quickfix {
   margin-top: 5rem;
+}
+
+.message-container {
+  position: fixed;
+  top: 88;
+  right: 15;
+  z-index: 9999;
+}
+
+.toast-header {
+  color: white;
+}
+.toast-header--success {
+  background-color: #62B14C;
+}
+.toast-header--warning {
+  background-color: #fec944;
+}
+.toast-header--error {
+  background-color: #ff8d1a;
+}
+.toast-header--info {
+  background-color: #7d51a1;
+}
+.toast-header button.close {
+  color: white;
+  text-shadow: none;
+  opacity: 1;
+}
+
+.toast-body {
+  background-color: #F4F4F4;
 }
 
 /*# sourceMappingURL=override.css.map */

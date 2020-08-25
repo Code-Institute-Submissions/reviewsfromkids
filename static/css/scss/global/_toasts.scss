@@ -1,0 +1,49 @@
+.message-container {
+
+    position: fixed;
+    top: 88;
+    right: 15;
+    z-index: 9999;
+}
+
+.toast-header {
+    color: white;
+
+    &--success {
+
+        background-color: $mainGreen;
+
+    }
+
+    &--warning {
+
+        background-color: $mainYellow;
+
+    }
+
+    &--error {
+
+        background-color: $mainOrange;
+
+    }
+
+    &--info {
+
+        background-color: $mainPurple;
+
+    }
+
+    button.close{
+
+        color: white;
+        text-shadow: none;
+        opacity: 1;
+        
+    }
+    
+    
+}
+  
+.toast-body {
+    background-color: $lightGrey;
+}

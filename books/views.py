@@ -119,7 +119,7 @@ def book_detail(request, book_id):
     if request.POST:
         if request.POST.get('type_of_action')=='add_fav':
             userprofile.favorites.add(current_book)
-            messages.success(request, f'Added to your list')
+            messages.success(request, f'Added to your list. Hope you will read it soon!')
             
             return redirect('book_detail', book_id=book_id)
 
@@ -127,8 +127,7 @@ def book_detail(request, book_id):
     if request.POST:
         if request.POST.get('type_of_action')=='remove_fav':
             userprofile.favorites.remove(current_book)
-            messages.success(request, f'Removed from your list')
-            # show message with question why. If read, ask for rating.
+            messages.success(request, f'Removed from your list. Did you read it? Don\t forget to let other kids know if you liked it or not.')
             return redirect('book_detail', book_id=book_id)
 
     """ Handle ratings """
@@ -234,6 +233,8 @@ def book_detail(request, book_id):
                 'age_mode': age_mode,
             },
         )
+
+        messages.success(request, f'Rated with a {ratingOptions}')
 
         # Redirect to prevent re-submitting
         book_id = book.id

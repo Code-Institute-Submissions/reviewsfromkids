@@ -36,10 +36,10 @@ def all_books(request):
         author__icontains = request.GET['author__icontains']
         category = request.GET['category']
         most_liked_by = request.GET['most_liked_by']
-        age_mode__icontains = request.GET['age_mode__icontains']
+        recommended_age__icontains = request.GET['recommended_age__icontains']
         rating = request.GET['rating']
         
-        if not title__icontains and not author__icontains and not category and not most_liked_by and not age_mode__icontains and not rating:
+        if not title__icontains and not author__icontains and not category and not most_liked_by and not recommended_age__icontains and not rating:
             search_performed = False
         else:
             search_performed = True
@@ -54,7 +54,7 @@ def all_books(request):
         author__icontains = None
         category = None
         most_liked_by = None
-        age_mode__icontains = None
+        recommended_age__icontains = None
         rating = None
         search_performed = False
 
@@ -73,7 +73,7 @@ def all_books(request):
         'author': author__icontains,
         'category': category,
         'most_liked_by': most_liked_by,
-        'age_mode__icontains': age_mode__icontains,
+        'recommended_age__icontains': recommended_age__icontains,
         'rating': rating,
         'search_performed': search_performed,
         'noresults': noresults,
@@ -99,6 +99,7 @@ def book_detail(request, book_id):
     user=request.user
     userprofile=None
     favorite=False
+    recommended_age= []
     rating = Rating.objects.filter(book_id=current_book)
         
     # Check if user is logged in
@@ -217,12 +218,12 @@ def book_detail(request, book_id):
         if all_ages_rating:
             all_ages_rating_years = all_ages_rating.values_list('age_rating_years') 
             age_mode = mode(all_ages_rating_years)
-            
+                        
             if age_mode:
-                age_mode = mode(all_ages_rating_years)
+                recommended_age = age_mode[0]
         
         else:
-            age_mode = 'not available'
+            recommended_age = 'not available'
 
         Book.objects.update_or_create(
             pk=book.id,
@@ -234,17 +235,16 @@ def book_detail(request, book_id):
                 'girls_avg_rating': girls_avg_rating,
                 'girls_number_of_ratings': girls_number_of_ratings,
                 'most_liked_by': most_liked_by,
-                'age_mode': age_mode,
+                'recommended_age': recommended_age,
             },
         )
-            
+
         messages.success(request, f'Rated with a {ratingOptions}')
 
         # Redirect to prevent re-submitting
         book_id = book.id
         return redirect('book_detail', book_id=book_id)
 
-    
     """ Calculate avg age for ratings of this book """
     # Avg age for positive ratings
     positive_ratings = Rating.objects.filter(book_id=book_id, rating__gte=4)
@@ -309,6 +309,7 @@ def book_detail(request, book_id):
         'user_logged_in': user_logged_in,
         'avg_age_positive_ratings': avg_age_positive_ratings,
         'avg_age_negative_ratings': avg_age_negative_ratings,
+        'recommended_age': recommended_age,
         'hobbies_positive_ratings': hobbies_positive_ratings,
         'hobbies_negative_ratings': hobbies_negative_ratings,
         'sports_positive_ratings': sports_positive_ratings,

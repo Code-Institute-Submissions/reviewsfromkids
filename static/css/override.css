@@ -382,6 +382,7 @@ html, body {
 .message-container {
   position: absolute;
   top: 88;
+  z-index: 2;
 }
 
 .scrolling-wrapper {

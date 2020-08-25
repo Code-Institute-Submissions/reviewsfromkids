@@ -100,9 +100,7 @@ def book_detail(request, book_id):
     userprofile=None
     favorite=False
     rating = Rating.objects.filter(book_id=current_book)
-    messages.success(request, 'page loaded')
-    print(messages)
-    
+        
     # Check if user is logged in
     if user.is_authenticated:
         userprofile = get_object_or_404(UserProfile, user=request.user)
@@ -121,15 +119,15 @@ def book_detail(request, book_id):
     if request.POST:
         if request.POST.get('type_of_action')=='add_fav':
             userprofile.favorites.add(current_book)
-            messages.success(request, 'Added to your list')
-            print('added')
+            messages.success(request, f'Added to your list')
+            
             return redirect('book_detail', book_id=book_id)
 
     # Check if remove from favorites is in POST and remove from favorites
     if request.POST:
         if request.POST.get('type_of_action')=='remove_fav':
             userprofile.favorites.remove(current_book)
-            messages.success(request, 'Removed from your list')
+            messages.success(request, f'Removed from your list')
             # show message with question why. If read, ask for rating.
             return redirect('book_detail', book_id=book_id)
 
@@ -222,7 +220,6 @@ def book_detail(request, book_id):
             age_mode = mode(all_ages_rating_years)
         else:
             age_mode = 'not available'
-        print(age_mode)
 
         Book.objects.update_or_create(
             pk=book.id,
@@ -238,7 +235,6 @@ def book_detail(request, book_id):
             },
         )
 
-        messages.success(request, 'Successfully rated, thanks!')
         # Redirect to prevent re-submitting
         book_id = book.id
         return redirect('book_detail', book_id=book_id)
@@ -318,5 +314,4 @@ def book_detail(request, book_id):
         'messages':messages.get_messages(request),
     }
 
-    print(messages.get_messages(request))
     return render(request, 'books/book_detail.html', context)

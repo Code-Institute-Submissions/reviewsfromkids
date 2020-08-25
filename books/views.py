@@ -211,12 +211,16 @@ def book_detail(request, book_id):
         else:
             most_liked_by = 'boys and girls'
         
-        # What age occurs most often in ratings? (mode not average)
+        # What age occurs most often in positive ratings? (mode not average)
         all_ages_rating = Rating.objects.filter(book_id=current_book, rating__gte=4)
-        all_ages_rating_years = all_ages_rating.values_list('age_rating_years') 
-        age_mode = mode(all_ages_rating_years)
-        if age_mode:
+
+        if all_ages_rating:
+            all_ages_rating_years = all_ages_rating.values_list('age_rating_years') 
             age_mode = mode(all_ages_rating_years)
+            
+            if age_mode:
+                age_mode = mode(all_ages_rating_years)
+        
         else:
             age_mode = 'not available'
 
@@ -233,16 +237,14 @@ def book_detail(request, book_id):
                 'age_mode': age_mode,
             },
         )
-
+            
         messages.success(request, f'Rated with a {ratingOptions}')
 
         # Redirect to prevent re-submitting
         book_id = book.id
         return redirect('book_detail', book_id=book_id)
-    
-    
-    
 
+    
     """ Calculate avg age for ratings of this book """
     # Avg age for positive ratings
     positive_ratings = Rating.objects.filter(book_id=book_id, rating__gte=4)

@@ -10,7 +10,11 @@ class BookAdmin(admin.ModelAdmin): #6.2
         'title',
         'author',
         'category',
+        'rating',
         'age',
+        'age_mode',
+        'recommended_age',
+        'most_liked_by'
     )
 
 class CategoryAdmin(admin.ModelAdmin): #6.2

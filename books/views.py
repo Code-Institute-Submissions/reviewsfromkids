@@ -22,7 +22,12 @@ def all_books(request):
     title_hit = None
     description_hit = None
     noresults = False
+    recommended_age_boys = None
+    recommended_age_girls = None
+    not_recommended_by_age_boys = None
+    not_recommended_by_age_girls = None
     # most_liked_by = None
+    # most_disliked_by = None
 
     myFilter = BookFilter(request.GET, queryset=books)
     books = myFilter.qs
@@ -101,8 +106,16 @@ def book_detail(request, book_id):
     favorite = False
     recommended_age = None
     not_recommended_by_age = None
+    recommended_age_boys = None
+    not_recommended_by_age_boys = None
+    recommended_age_girls = None
+    not_recommended_by_age_girls = None
     current_user_rating = None
     rating = Rating.objects.filter(book_id=current_book)
+    most_disliked_by = None
+    age_mode = None
+
+
         
     # Check if user is logged in
     if user.is_authenticated:
@@ -233,21 +246,40 @@ def book_detail(request, book_id):
             girls_avg_rating = 0
 
         # Who rated positive the most?
-        # most_liked_by_girls = 'not known'
-
         if boys_number_of_ratings > girls_number_of_ratings:
             most_liked_by = 'boys'
         elif girls_number_of_ratings > boys_number_of_ratings:
             most_liked_by = 'girls'
+        elif girls_number_of_ratings == 0 and boys_number_of_ratings == 0:
+            most_liked_by = 'not known yet'
         else:
             most_liked_by = 'boys and girls'
+        
+        # Who rated negative the most?
+        boys_rating_negative = Rating.objects.filter(book_id=current_book, gender='BOY', rating__lte=2)
+        boys_number_of_ratings_negative = len(boys_rating_negative)
+
+        girls_rating_negative = Rating.objects.filter(book_id=current_book, gender='GIRL', rating__lte=2)
+        girls_number_of_ratings_negative = len(girls_rating_negative)
+
+        if boys_number_of_ratings_negative > girls_number_of_ratings_negative:
+            most_disliked_by = 'boys'
+        elif girls_number_of_ratings_negative > boys_number_of_ratings_negative:
+            most_disliked_by = 'girls'
+        elif girls_number_of_ratings_negative == 0 and boys_number_of_ratings_negative == 0:
+            most_disliked_by = 'not known yet'
+        else:
+            most_disliked_by = 'boys and girls'
         
         # What age occurs most often in positive ratings? (mode not average)
         all_ages_rating = Rating.objects.filter(book_id=current_book, rating__gte=4)
 
         if all_ages_rating:
             all_ages_rating_years = all_ages_rating.values_list('age_rating_years') 
-            age_mode = mode(all_ages_rating_years)
+            try:
+                age_mode = mode(all_ages_rating_years)
+            except:
+                recommended_age = 'not available'
                         
             if age_mode:
                 recommended_age = age_mode[0]
@@ -255,16 +287,19 @@ def book_detail(request, book_id):
         else:
             recommended_age = 'not available'
 
-        # What age occurs most often in positive ratings? (mode not average)
+        # What age occurs most often in negative ratings? (mode not average)
         all_ages_rating_low = Rating.objects.filter(book_id=current_book, rating__lte=2)
 
         if all_ages_rating_low:
             all_ages_rating_low_years = all_ages_rating_low.values_list('age_rating_years') 
-            age_mode_low = mode(all_ages_rating_low_years)
-                        
+            try:
+                age_mode_low = mode(all_ages_rating_low_years)
+            except:
+                not_recommended_by_age = 'not available'
+
             if age_mode_low:
                 not_recommended_by_age = age_mode_low[0]
-        
+            
         else:
             not_recommended_by_age = 'not available'
         
@@ -278,6 +313,7 @@ def book_detail(request, book_id):
                 'girls_avg_rating': girls_avg_rating,
                 'girls_number_of_ratings': girls_number_of_ratings,
                 'most_liked_by': most_liked_by,
+                'most_disliked_by': most_disliked_by,
                 'recommended_age': recommended_age,
                 'not_recommended_by_age': not_recommended_by_age,
             },
@@ -287,32 +323,54 @@ def book_detail(request, book_id):
         book_id = book.id
         return redirect('book_detail', book_id=book_id)
 
-    """ Calculate avg age for ratings of this book """
-    # Avg age for positive ratings
-    positive_ratings = Rating.objects.filter(book_id=book_id, rating__gte=4)
-    number_of_positive_ratings = len(positive_ratings)
-    total_positive_ratings_years = positive_ratings.aggregate(sum=Sum('age_rating_years'))['sum']
+    """ Calculate mode age for ratings of this book by gender"""
+    # Mode age for positive ratings boys
+    all_ages_rating_boys_positive = Rating.objects.filter(book_id=current_book, rating__gte=4, gender='BOY')
+    if all_ages_rating_boys_positive:
+        all_ages_rating_boys_positive_years = all_ages_rating_boys_positive.values_list('age_rating_years') 
+        age_mode_boys_positive = mode(all_ages_rating_boys_positive_years)
+                        
+        if age_mode_boys_positive:
+            recommended_age_boys = age_mode_boys_positive[0]
+        
+        else:
+            recommended_age_boys = 'not available'
 
-    if number_of_positive_ratings > 0:
-        avg_age_positive_ratings = round(total_positive_ratings_years / number_of_positive_ratings)
-    else:
-        avg_age_positive_ratings = None
+    # Mode age for negative ratings boys
+    all_ages_rating_boys_negative = Rating.objects.filter(book_id=current_book, rating__lte=2, gender='BOY')
+    if all_ages_rating_boys_negative:
+        all_ages_rating_boys_negative_years = all_ages_rating_boys_negative.values_list('age_rating_years') 
+        age_mode_boys_negative = mode(all_ages_rating_boys_negative_years)
+                        
+        if age_mode_boys_negative:
+            not_recommended_by_age_boys = age_mode_boys_negative[0]
+        
+        else:
+            not_recommended_by_age_boys = 'not available'
 
-    if avg_age_positive_ratings == 0:
-        avg_age_positive_ratings = None
-
-    # Avg age for negative ratings
-    negative_ratings = Rating.objects.filter(book_id=book_id, rating__lte=2)
-    number_of_negative_ratings = len(negative_ratings)
-    total_negative_ratings_years = negative_ratings.aggregate(sum=Sum('age_rating_years'))['sum']
+    # Mode age for positive ratings girls
+    all_ages_rating_girls_positive = Rating.objects.filter(book_id=current_book, rating__gte=4, gender='GIRL')
+    if all_ages_rating_girls_positive:
+        all_ages_rating_girls_positive_years = all_ages_rating_girls_positive.values_list('age_rating_years') 
+        age_mode_girls_positive = mode(all_ages_rating_girls_positive_years)
+                        
+        if age_mode_girls_positive:
+            recommended_age_girls = age_mode_girls_positive[0]
+        
+        else:
+            recommended_age_girls = 'not available'
     
-    if number_of_negative_ratings > 0:
-        avg_age_negative_ratings = round(total_negative_ratings_years / number_of_negative_ratings)
-    else:
-        avg_age_negative_ratings = None
-    
-    if avg_age_negative_ratings == 0:
-        avg_age_negative_ratings = None
+    # Mode age for negative ratings girls
+    all_ages_rating_girls_negative = Rating.objects.filter(book_id=current_book, rating__lte=2, gender='GIRL')
+    if all_ages_rating_girls_negative:
+        all_ages_rating_girls_negative_years = all_ages_rating_girls_negative.values_list('age_rating_years') 
+        age_mode_girls_negative = mode(all_ages_rating_girls_negative_years)
+                        
+        if age_mode_girls_negative:
+            not_recommended_by_age_girls = age_mode_girls_negative[0]
+        
+        else:
+            not_recommended_by_age_girls = 'not available'
 
     """Grab hobbies and sports connected to ratings of this book"""
     # Hobbies and positive ratings
@@ -333,16 +391,15 @@ def book_detail(request, book_id):
     
     # In case of a new book or a book without ratings infornation
     no_ratings_info_at_all = False
-    if hobbies_positive_ratings.exists()==False and sports_positive_ratings.exists()==False and avg_age_positive_ratings == None:
+    if hobbies_positive_ratings.exists()==False and sports_positive_ratings.exists()==False and recommended_age == None:
         no_positive_ratings_info = True
-        if hobbies_negative_ratings.exists()==False and sports_negative_ratings.exists()==False and avg_age_negative_ratings == None:   
+        if hobbies_negative_ratings.exists()==False and sports_negative_ratings.exists()==False and not_recommended_by_age == None:   
             no_negative_ratings_info = True
             no_ratings_info_at_all = True
     
-    if hobbies_positive_ratings.exists()==False and sports_positive_ratings.exists()==False and avg_age_positive_ratings == None and hobbies_negative_ratings.exists()==False and sports_negative_ratings.exists()==False and avg_age_negative_ratings == None:   
+    if hobbies_positive_ratings.exists()==False and sports_positive_ratings.exists()==False and recommended_age == None and hobbies_negative_ratings.exists()==False and sports_negative_ratings.exists()==False and not_recommended_by_age == None:   
         no_ratings_info_at_all = True       
 
-    
     context = {
 
         'book': book,
@@ -351,16 +408,17 @@ def book_detail(request, book_id):
         'already_rated': already_rated,
         'favorite': favorite,
         'user_logged_in': user_logged_in,
-        'avg_age_positive_ratings': avg_age_positive_ratings,
-        'avg_age_negative_ratings': avg_age_negative_ratings,
         'recommended_age': recommended_age,
         'hobbies_positive_ratings': hobbies_positive_ratings,
         'hobbies_negative_ratings': hobbies_negative_ratings,
         'sports_positive_ratings': sports_positive_ratings,
         'sports_negative_ratings': sports_negative_ratings,
         'no_ratings_info_at_all': no_ratings_info_at_all,
+        'not_recommended_by_age_girls': not_recommended_by_age_girls,
+        'recommended_age_girls': recommended_age_girls,
+        'not_recommended_by_age_boys': not_recommended_by_age_boys,
+        'recommended_age_boys': recommended_age_boys,
+        'most_disliked_by': most_disliked_by,
     }
 
-    
-    
     return render(request, 'books/book_detail.html', context)

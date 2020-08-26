@@ -1,0 +1,29 @@
+[
+    
+    {"pk": 13, "model": "books.book", 
+        "fields": {
+            "isbn": "978-0142410332", 
+            "title": "Danny the Champion of the World",
+            "author": "Roald Dahl",
+            "description": "Danny has a life any boy would love—his home is a gypsy caravan, he's the youngest master car mechanic around, and his best friend is his dad, who never runs out of wonderful stories to tell. But one night Danny discovers a shocking secret that his father has kept hidden for years. Soon Danny finds himself the mastermind behind the most incredible plot ever attempted against nasty Victor Hazell, a wealthy landowner with a bad attitude. Can they pull it off? If so, Danny will truly be the champion of the world.",
+            "image_url": "https://images-na.ssl-images-amazon.com/images/I/91oa7T-wJ+L.jpg", 
+            "image": "91oa7T-wJ+L.jpg",
+            "pages": 202,
+            "category": 6,
+            "age_on_book": "8 - 12",
+            "gender": "boys", 
+            "featured_item": "False",
+            "date_added": "2020-07-16",
+            "rating": 0.0,
+            "number_of_ratings": 0,
+            "boys_avg_rating": 0.0,
+            "boys_number_of_ratings": 0,
+            "girls_avg_rating": 0.0,
+            "girls_number_of_ratings": 0,
+            "most_liked_by": "not known yet",
+            "most_disliked_by": "not known yet",
+            "recommended_age": "not known yet",
+            "not_recommended_by_age": "not known yet"
+        }
+    }
+]

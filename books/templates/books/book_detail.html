@@ -46,6 +46,17 @@
             <div id="menu4" class="tab-pane fade">
               <div class="book-details__section">
                 <h4>Is this book for you?</h4>
+                Check variables:
+                <ul>
+                <li>'not_recommended_by_age_girls': {{ not_recommended_by_age_girls }},</li>
+                <li>'recommended_age_girls': {{ recommended_age_girls }},</li>
+                <li>'not_recommended_by_age_boys': {{ not_recommended_by_age_boys }},</li>
+                <li>'recommended_age_boys': {{ recommended_age_boys}} ,</li>
+                <li>'most_disliked_by': {{ book.most_disliked_by }},</li>
+                <li>'most_liked_by': {{ book.most_liked_by }},</li>
+                  </ul>
+
+
                 {% if no_ratings_info_at_all == True %}
                   Kids have not completed their profile or nobody has rated this book yet. Did you read this book? Let others know if you like it or not! <a  data-toggle="pill" href="#menu3" class=btn>rate it</a>
                 {% else %}

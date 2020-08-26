@@ -20,7 +20,7 @@ class Category(models.Model):
 GENDER_CHOICES = [
     ('girls', 'girls'),
     ('boys', 'boys'),
-    ('boys and girls', 'boys and girls'),
+    ('all, this most be really bad...', 'all, this most be really bad...'),
 ]
 
 class Book(models.Model):
@@ -34,7 +34,6 @@ class Book(models.Model):
     pages = models.IntegerField()
     tags = TaggableManager()
     age_on_book = models.CharField(max_length=254, null=True, blank=True)
-    gender = models.CharField(max_length=25)
     date_added = models.DateField(auto_now_add=False)
     featured_item = models.BooleanField()
     rating = models.DecimalField(max_digits=2, decimal_places=1, default=0.0)
@@ -43,8 +42,8 @@ class Book(models.Model):
     boys_number_of_ratings = models.IntegerField()
     girls_avg_rating = models.DecimalField(max_digits=2, decimal_places=1, default=0.0)
     girls_number_of_ratings = models.IntegerField()
-    most_liked_by = models.CharField(max_length=15, default='not known yet', choices=GENDER_CHOICES)
-    most_disliked_by = models.CharField(max_length=15, default='not known yet', choices=GENDER_CHOICES)
+    most_liked_by = models.CharField(max_length=150, default='not known yet', choices=GENDER_CHOICES)
+    most_disliked_by = models.CharField(max_length=150, default='not known yet', choices=GENDER_CHOICES)
     recommended_age = models.CharField(max_length=254, default='not known yet')
     not_recommended_by_age = models.CharField(max_length=54, default='not known yet')
 

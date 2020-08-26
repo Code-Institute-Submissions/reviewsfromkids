@@ -513,6 +513,21 @@ html, body {
   padding-top: 0rem;
 }
 
+.test-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 80%;
+  margin: 0 auto;
+  grid-gap: 2rem;
+}
+.test-grid .key {
+  grid-column: 1;
+  justify-self: end;
+}
+.test-grid .value {
+  grid-column: 2;
+}
+
 .book-details {
   margin-top: 5rem;
   padding: 0 1rem;

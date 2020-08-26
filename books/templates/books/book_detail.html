@@ -9,22 +9,24 @@
 
 {% block content %}
   <main>
+    </div>
     <div class="book-details">
       <h2 class="book-details__title">{{ book.title }}</h2>      
       <div class="book-details__image-container">
         <img class="card-img-top img-fluid" src="{{ book.image.url }}" alt="{{ book.name }}">
       </div>
-
+      <div> 
+        
       <ul class="nav book-details__pills scrolling-wrapper-flexbox">
-        <!-- <div class="scrolling-wrapper-flexbox"> -->
+        
             <li><a class="active" data-toggle="pill" href="#menu1">Description</a></li>
             <li><a data-toggle="pill" href="#menu4">For you?</a></li>
             <li><a data-toggle="pill" href="#menu2">Quick facts</a></li>
             <li><a data-toggle="pill" href="#menu3">Ratings</a></li>
             <li><a data-toggle="pill" href="#menu10">Info</a></li>
-        <!-- </div> -->
+   
       </ul>
-
+      
       <div class="container">
         <div class="tab-content">
             <div id="menu1" class="tab-pane fade in show active">

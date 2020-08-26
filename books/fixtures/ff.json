@@ -1,5 +1,4 @@
 [
-    
     {"pk": 13, "model": "books.book", 
         "fields": {
             "isbn": "978-0142410332", 
@@ -11,7 +10,6 @@
             "pages": 202,
             "category": 6,
             "age_on_book": "8 - 12",
-            "gender": "boys", 
             "featured_item": "False",
             "date_added": "2020-07-16",
             "rating": 0.0,

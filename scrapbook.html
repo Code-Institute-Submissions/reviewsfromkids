@@ -193,26 +193,27 @@ if request.POST.get('type_of_action')=='delete':
             messages.warning(request, f'Rating deleted')
 
 
-            # delete modal
-            <div class="modal fade" id="delete-rating" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Delete rating</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      Are you sure?
-                      <form method="POST" action="{% url 'book_detail' book.id %}">
-                        {% csrf_token %}
-                        <input type="hidden" value="delete" name="type_of_action">
-                        <div class="modal-footer">
-                          <button type="submit" class="btn btn-primary">Delete</button>
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        </div>
-                      </form>
-                    </div>
-                </div>
-            </div>
+# testing
+<div class="test-grid">
+  <h4 class="key">Book</h4>
+  <p class="key">age_on_book</p><p class="value">{{ book.age_on_book }}</p>
+  <p class="key">rating</p><p class="value">{{ book.rating }}</p>
+  <p class="key">number_of_ratings</p><p class="value">{{ book.number_of_ratings }}</p>
+  <p class="key">boys_avg_rating</p><p class="value">{{ book.boys_avg_rating }}</p>
+  <p class="key">boys_number_of_ratings</p><p class="value">{{ book.boys_number_of_ratings }}</p>
+  <p class="key">girls_avg_rating</p><p class="value">{{ book.girls_avg_rating }}</p>
+  <p class="key">girls_number_of_ratings</p><p class="value">{{ book.girls_number_of_ratings }}</p>
+  <p class="key">most_liked_by</p><p class="value">{{ book.most_liked_by }}</p>
+  <p class="key">most_disliked_by</p><p class="value">{{ book.most_disliked_by }}</p>
+  <p class="key">recommended_age</p><p class="value">{{ book.recommended_age }}</p>
+  <p class="key">not_recommended_by_age</p><p class="value">{{ book.not_recommended_by_age }}</p>
+  <p class="key">not_recommended_by_age_girls</p><p class="value">{{ not_recommended_by_age_girls }}</p>
+  <p class="key">not_recommended_by_age_boys</p><p class="value">{{ not_recommended_by_age_boys }}</p>
+</div>
+<div class="test-grid">
+  <h4 class="key">Rating</h4>
+  <p class="key">current_user_rating</p><p class="value">{{ current_user_rating }}</p>
+  <p class="key">already_rated</p><p class="value">{{ already_rated }}</p>
+  <p class="key">hobbies_positive_ratings</p><p class="value">{{ hobbies_positive_ratings }}</p>
+  <p class="key">hobbies_negative_ratings</p><p class="value">{{ hobbies_negative_ratings }}</p>
+</div>

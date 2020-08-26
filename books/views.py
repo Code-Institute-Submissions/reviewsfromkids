@@ -112,9 +112,10 @@ def book_detail(request, book_id):
     not_recommended_by_age_girls = None
     current_user_rating = None
     rating = Rating.objects.filter(book_id=current_book)
+    most_liked_by = None
     most_disliked_by = None
     age_mode = None
-
+    age_mode_low = None
 
         
     # Check if user is logged in
@@ -246,11 +247,17 @@ def book_detail(request, book_id):
             girls_avg_rating = 0
 
         # Who rated positive the most?
-        if boys_number_of_ratings > girls_number_of_ratings:
+        boys_rating_positive = Rating.objects.filter(book_id=current_book, gender='BOY', rating__gte=4)
+        boys_number_of_ratings_positive = len(boys_rating_positive)
+
+        girls_rating_positive = Rating.objects.filter(book_id=current_book, gender='GIRL', rating__gte=4)
+        girls_number_of_ratings_positive = len(girls_rating_positive)
+
+        if boys_number_of_ratings_positive > girls_number_of_ratings_positive:
             most_liked_by = 'boys'
-        elif girls_number_of_ratings > boys_number_of_ratings:
+        elif girls_number_of_ratings_positive > boys_number_of_ratings_positive:
             most_liked_by = 'girls'
-        elif girls_number_of_ratings == 0 and boys_number_of_ratings == 0:
+        elif girls_number_of_ratings_positive == 0 and boys_number_of_ratings_positive == 0:
             most_liked_by = 'not known yet'
         else:
             most_liked_by = 'boys and girls'
@@ -269,7 +276,7 @@ def book_detail(request, book_id):
         elif girls_number_of_ratings_negative == 0 and boys_number_of_ratings_negative == 0:
             most_disliked_by = 'not known yet'
         else:
-            most_disliked_by = 'boys and girls'
+            most_disliked_by = 'all, this most be really bad...'
         
         # What age occurs most often in positive ratings? (mode not average)
         all_ages_rating = Rating.objects.filter(book_id=current_book, rating__gte=4)

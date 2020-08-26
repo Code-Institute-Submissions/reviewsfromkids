@@ -1,3 +1,20 @@
+.test-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 80%;
+    margin: 0 auto;
+    grid-gap: 2rem;
+
+    .key {
+        grid-column: 1;
+        justify-self: end;
+    }
+
+    .value {
+        grid-column: 2;
+    }
+}
+
 .book-details {
 
     h4 {

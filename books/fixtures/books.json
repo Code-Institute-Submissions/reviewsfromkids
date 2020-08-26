@@ -2,15 +2,14 @@
     {"pk": 1, "model": "books.book", 
         "fields": {
             "isbn": "9780439064873", 
-            "title": "Harry Potter and the Sorcerer's Stone",
+            "title": "Harry Potter and the Chamber of Secrets",
             "author": "J.K. Rowling",
-            "description": "The Dursleys were so mean that hideous that summer that all Harry Potter wanted was to get back to the Hogwarts School for Witchcraft and Wizardry. But just as he's packing his bags, Harry receives a warning from a strange, impish creature named Dobby who says that if Harry Potter returns to Hogwarts, disaster will strike.",
+            "description": "The Dursleys were so mean and hideous that summer that all Harry Potter wanted was to get back to the Hogwarts School for Witchcraft and Wizardry. But just as he's packing his bags, Harry receives a warning from a strange, impish creature named Dobby who says that if Harry Potter returns to Hogwarts, disaster will strike.",
             "image_url": "https://images-na.ssl-images-amazon.com/images/I/51jNORv6nQL._SX340_BO1,204,203,200_.jpg", 
             "image": "51jNORv6nQL._SX340_BO1,204,203,200_.jpg",
             "pages": 341,
             "category": 1,
-            "age": 8,
-            "gender": "all", 
+            "age_on_book": "9 - 12 yrs",
             "featured_item": "True",
             "date_added": "2020-07-16",
             "rating": 0.0,
@@ -20,8 +19,9 @@
             "girls_avg_rating": 0.0,
             "girls_number_of_ratings": 0,
             "most_liked_by": "not known yet",
+            "most_disliked_by": "not known yet",
             "recommended_age": "not known yet",
-            "age_mode": "not available"
+            "not_recommended_by_age": "not known yet"
         }
     },
     {"pk": 2, "model": "books.book", 
@@ -34,8 +34,7 @@
             "image": "51IiQ4r35LL._SX345_BO1,204,203,200_.jpg",
             "pages": 448,
             "category": 3,
-            "age": 9,
-            "gender": "girls", 
+            "age_on_book": "9 - 12 yrs",
             "featured_item": "True",
             "date_added": "2020-07-16",
             "rating": 0.0,
@@ -45,8 +44,9 @@
             "girls_avg_rating": 0.0,
             "girls_number_of_ratings": 0,
             "most_liked_by": "not known yet",
+            "most_disliked_by": "not known yet",
             "recommended_age": "not known yet",
-            "age_mode": "not available"
+            "not_recommended_by_age": "not known yet"
         }
     },
     {"pk": 3, "model": "books.book", 
@@ -54,13 +54,12 @@
             "isbn": "9780439139601", 
             "title": "Harry Potter and the Goblet of Fire",
             "author": "J.K. Rowling",
-            "description": "The Dursleys were so mean that hideous that summer that all Harry Potter wanted was to get back to the Hogwarts School for Witchcraft and Wizardry. But just as he's packing his bags, Harry receives a warning from a strange, impish creature named Dobby who says that if Harry Potter returns to Hogwarts, disaster will strike.",
+            "description": "Harry Potter is midway through his training as a wizard and his coming of age. Harry wants to get away from the pernicious Dursleys and go to the International Quidditch Cup. He wants to find out about the mysterious event that's supposed to take place at Hogwarts this year, an event involving two other rival schools of magic, and a competition that hasn't happened for a hundred years. He wants to be a normal, fourteen-year-old wizard. But unfortunately for Harry Potter, he's not normal - even by wizarding standards. And in his case, different can be deadly.",
             "image_url": "https://images-na.ssl-images-amazon.com/images/I/513d-GGhWsL.jpg", 
             "image": "513d-GGhWsL.jpg",
             "pages": 752,
             "category": 6,
-            "age": 10,
-            "gender": "boys", 
+            "age_on_book": "9 - 12 yrs",
             "featured_item": "True",
             "date_added": "2020-07-16",
             "rating": 0.0,
@@ -70,8 +69,9 @@
             "girls_avg_rating": 0.0,
             "girls_number_of_ratings": 0,
             "most_liked_by": "not known yet",
+            "most_disliked_by": "not known yet",
             "recommended_age": "not known yet",
-            "age_mode": "not available"
+            "not_recommended_by_age": "not known yet"
         }
     },
     {"pk": 4, "model": "books.book", 
@@ -84,8 +84,7 @@
             "image": "51aXNkS2bjL._SX337_BO1,204,203,200_.jpg",
             "pages": 256,
             "category": 6,
-            "age": 8,
-            "gender": "boys", 
+            "age_on_book": "8 - 12 yrs",
             "featured_item": "False",
             "date_added": "2020-07-16",
             "rating": 0.0,
@@ -95,8 +94,9 @@
             "girls_avg_rating": 0.0,
             "girls_number_of_ratings": 0,
             "most_liked_by": "not known yet",
+            "most_disliked_by": "not known yet",
             "recommended_age": "not known yet",
-            "age_mode": "not available"
+            "not_recommended_by_age": "not known yet"
         }
     },
     {"pk": 5, "model": "books.book", 
@@ -109,8 +109,7 @@
             "image": "51W8IWdCSKL._SX322_BO1,204,203,200_.jpg",
             "pages": 192,
             "category": 6,
-            "age": 8,
-            "gender": "all", 
+            "age_on_book": "8 - 12 yrs", 
             "featured_item": "False",
             "date_added": "2020-07-16",
             "rating": 0.0,
@@ -120,8 +119,9 @@
             "girls_avg_rating": 0.0,
             "girls_number_of_ratings": 0,
             "most_liked_by": "not known yet",
+            "most_disliked_by": "not known yet",
             "recommended_age": "not known yet",
-            "age_mode": "not available"
+            "not_recommended_by_age": "not known yet"
         }
     },
     {"pk": 6, "model": "books.book", 
@@ -134,8 +134,7 @@
             "image": "51v+rlUkoGL._SX323_BO1,204,203,200_.jpg",
             "pages": 159,
             "category": 6,
-            "age": 8,
-            "gender": "all", 
+            "age_on_book": "8 - 12 yrs", 
             "featured_item": "False",
             "date_added": "2020-07-16",
             "rating": 0.0,
@@ -145,8 +144,9 @@
             "girls_avg_rating": 0.0,
             "girls_number_of_ratings": 0,
             "most_liked_by": "not known yet",
+            "most_disliked_by": "not known yet",
             "recommended_age": "not known yet",
-            "age_mode": "not available"
+            "not_recommended_by_age": "not known yet"
         }
     },
     {"pk": 7, "model": "books.book", 
@@ -159,8 +159,7 @@
             "image": "61+3z1o4oUL._SX334_BO1,204,203,200_.jpg",
             "pages": 192,
             "category": 6,
-            "age": 8,
-            "gender": "girls", 
+            "age_on_book": "8 - 12 yrs", 
             "featured_item": "False",
             "date_added": "2020-07-16",
             "rating": 0.0,
@@ -170,8 +169,9 @@
             "girls_avg_rating": 0.0,
             "girls_number_of_ratings": 0,
             "most_liked_by": "not known yet",
+            "most_disliked_by": "not known yet",
             "recommended_age": "not known yet",
-            "age_mode": "not available"
+            "not_recommended_by_age": "not known yet"
         }
     },
     {"pk": 8, "model": "books.book", 
@@ -184,8 +184,7 @@
             "image": "51+trz4Y98L._SY344_BO1,204,203,200_.jpg",
             "pages": 224,
             "category": 7,
-            "age": 8,
-            "gender": "boys", 
+            "age_on_book": "8 - 12 yrs", 
             "featured_item": "False",
             "date_added": "2020-07-16",
             "rating": 0.0,
@@ -195,8 +194,9 @@
             "girls_avg_rating": 0.0,
             "girls_number_of_ratings": 0,
             "most_liked_by": "not known yet",
+            "most_disliked_by": "not known yet",
             "recommended_age": "not known yet",
-            "age_mode": "not available"
+            "not_recommended_by_age": "not known yet"
         }
     },
     {"pk": 9, "model": "books.book", 
@@ -209,8 +209,7 @@
             "image": "51TOXFMBKLL._SX323_BO1,204,203,200_.jpg",
             "pages": 160,
             "category": 6,
-            "age": 5,
-            "gender": "all", 
+            "age_on_book": "5 - 8 yrs", 
             "featured_item": "False",
             "date_added": "2020-07-16",
             "rating": 0.0,
@@ -220,8 +219,9 @@
             "girls_avg_rating": 0.0,
             "girls_number_of_ratings": 0,
             "most_liked_by": "not known yet",
+            "most_disliked_by": "not known yet",
             "recommended_age": "not known yet",
-            "age_mode": "not available"
+            "not_recommended_by_age": "not known yet"
         }
     },
     {"pk": 10, "model": "books.book", 
@@ -234,8 +234,7 @@
             "image": "51V2lDZogPL._SX334_BO1,204,203,200_.jpg",
             "pages": 320,
             "category": 6,
-            "age": 10,
-            "gender": "boys", 
+            "age_on_book": "10 and up", 
             "featured_item": "False",
             "date_added": "2020-07-16",
             "rating": 0.0,
@@ -245,8 +244,9 @@
             "girls_avg_rating": 0.0,
             "girls_number_of_ratings": 0,
             "most_liked_by": "not known yet",
+            "most_disliked_by": "not known yet",
             "recommended_age": "not known yet",
-            "age_mode": "not available"
+            "not_recommended_by_age": "not known yet"
         }
     },
     {"pk": 11, "model": "books.book", 
@@ -259,8 +259,7 @@
             "image": "91I2ywLs1YL.jpg",
             "pages": 224,
             "category": 6,
-            "age": 8,
-            "gender": "all", 
+            "age_on_book": "8 - 12 yrs", 
             "featured_item": "False",
             "date_added": "2020-07-16",
             "rating": 0.0,
@@ -270,8 +269,9 @@
             "girls_avg_rating": 0.0,
             "girls_number_of_ratings": 0,
             "most_liked_by": "not known yet",
+            "most_disliked_by": "not known yet",
             "recommended_age": "not known yet",
-            "age_mode": "not available"
+            "not_recommended_by_age": "not known yet"
         }
     },
     {"pk": 12, "model": "books.book", 
@@ -284,8 +284,7 @@
             "image": "91Rd5VXqrcL.jpg",
             "pages": 112,
             "category": 6,
-            "age": 8,
-            "gender": "boys", 
+            "age_on_book": "8 - 12 yrs", 
             "featured_item": "False",
             "date_added": "2020-07-16",
             "rating": 0.0,
@@ -295,8 +294,9 @@
             "girls_avg_rating": 0.0,
             "girls_number_of_ratings": 0,
             "most_liked_by": "not known yet",
+            "most_disliked_by": "not known yet",
             "recommended_age": "not known yet",
-            "age_mode": "not available"
+            "not_recommended_by_age": "not known yet"
         }
     },
     {"pk": 13, "model": "books.book", 
@@ -309,8 +309,7 @@
             "image": "91oa7T-wJ+L.jpg",
             "pages": 202,
             "category": 6,
-            "age": 8,
-            "gender": "boys", 
+            "age_on_book": "8 - 12 yrs", 
             "featured_item": "False",
             "date_added": "2020-07-16",
             "rating": 0.0,
@@ -320,8 +319,9 @@
             "girls_avg_rating": 0.0,
             "girls_number_of_ratings": 0,
             "most_liked_by": "not known yet",
+            "most_disliked_by": "not known yet",
             "recommended_age": "not known yet",
-            "age_mode": "not available"
+            "not_recommended_by_age": "not known yet"
         }
     },
     {"pk": 14, "model": "books.book", 
@@ -334,8 +334,7 @@
             "image": "91VFZJOzyEL.jpg",
             "pages": 48,
             "category": 6,
-            "age": 7,
-            "gender": "boys", 
+            "age_on_book": "7 - 10 yrs", 
             "featured_item": "False",
             "date_added": "2020-07-16",
             "rating": 0.0,
@@ -345,8 +344,9 @@
             "girls_avg_rating": 0.0,
             "girls_number_of_ratings": 0,
             "most_liked_by": "not known yet",
+            "most_disliked_by": "not known yet",
             "recommended_age": "not known yet",
-            "age_mode": "not available"
+            "not_recommended_by_age": "not known yet"
         }
     },
 	{"pk": 15, "model": "books.book", 
@@ -359,8 +359,7 @@
             "image": "91SrkKiGfbL.jpg",
             "pages": 288,
             "category": 7,
-            "age": 8,
-            "gender": "all", 
+            "age_on_book": "7 - 11 yrs", 
             "featured_item": "False",
             "date_added": "2020-07-16",
             "rating": 0.0,
@@ -370,8 +369,9 @@
             "girls_avg_rating": 0.0,
             "girls_number_of_ratings": 0,
             "most_liked_by": "not known yet",
+            "most_disliked_by": "not known yet",
             "recommended_age": "not known yet",
-            "age_mode": "not available"
+            "not_recommended_by_age": "not known yet"
         }
     },
 	{"pk": 16, "model": "books.book", 
@@ -384,8 +384,7 @@
             "image": "61nJZjEuWiL.jpg",
             "pages": 344,
             "category": 7,
-            "age": 8,
-            "gender": "all", 
+            "age_on_book": "6 - 10 yrs", 
             "featured_item": "False",
             "date_added": "2020-07-16",
             "rating": 0.0,
@@ -395,8 +394,9 @@
             "girls_avg_rating": 0.0,
             "girls_number_of_ratings": 0,
             "most_liked_by": "not known yet",
+            "most_disliked_by": "not known yet",
             "recommended_age": "not known yet",
-            "age_mode": "not available"
+            "not_recommended_by_age": "not known yet"
         }
     },
 	{"pk": 17, "model": "books.book", 
@@ -409,8 +409,7 @@
             "image": "916IDZGOVZL.jpg",
             "pages": 288,
             "category": 7,
-            "age": 8,
-            "gender": "all", 
+            "age_on_book": "7 - 10 yrs", 
             "featured_item": "False",
             "date_added": "2020-07-16",
             "rating": 0.0,
@@ -420,8 +419,9 @@
             "girls_avg_rating": 0.0,
             "girls_number_of_ratings": 0,
             "most_liked_by": "not known yet",
+            "most_disliked_by": "not known yet",
             "recommended_age": "not known yet",
-            "age_mode": "not available"
+            "not_recommended_by_age": "not known yet"
         }
     },
 	{"pk": 18, "model": "books.book", 
@@ -434,9 +434,8 @@
             "image": "81Q7SE93DGL.jpg",
             "pages": 288,
             "category": 7,
-            "age": 8,
-            "gender": "all", 
-            "featured_item": "True",
+            "age_on_book": "7 - 10 yrs", 
+            "featured_item": "False",
             "date_added": "2020-07-16",
             "rating": 0.0,
             "number_of_ratings": 0,
@@ -445,8 +444,9 @@
             "girls_avg_rating": 0.0,
             "girls_number_of_ratings": 0,
             "most_liked_by": "not known yet",
+            "most_disliked_by": "not known yet",
             "recommended_age": "not known yet",
-            "age_mode": "not available"
+            "not_recommended_by_age": "not known yet"
         }
     },
 	{"pk": 19, "model": "books.book", 
@@ -459,8 +459,7 @@
             "image": "91SlUU6AeuL.jpg",
             "pages": 320,
             "category": 8,
-            "age": 9,
-            "gender": "all", 
+            "age_on_book": "8 - 12 yrs", 
             "featured_item": "False",
             "date_added": "2020-07-16",
             "rating": 0.0,
@@ -470,8 +469,9 @@
             "girls_avg_rating": 0.0,
             "girls_number_of_ratings": 0,
             "most_liked_by": "not known yet",
+            "most_disliked_by": "not known yet",
             "recommended_age": "not known yet",
-            "age_mode": "not available"
+            "not_recommended_by_age": "not known yet"
         }
     },
 	{"pk": 20, "model": "books.book", 
@@ -484,8 +484,7 @@
             "image": "91lSjK9tTeL.jpg",
             "pages": 336,
             "category": 8,
-            "age": 9,
-            "gender": "all", 
+            "age_on_book": "8 - 12 yrs", 
             "featured_item": "False",
             "date_added": "2020-07-16",
             "rating": 0.0,
@@ -495,8 +494,34 @@
             "girls_avg_rating": 0.0,
             "girls_number_of_ratings": 0,
             "most_liked_by": "not known yet",
+            "most_disliked_by": "not known yet",
             "recommended_age": "not known yet",
-            "age_mode": "not available"
+            "not_recommended_by_age": "not known yet"
+        }
+    },
+    {"pk": 21, "model": "books.book", 
+        "fields": {
+            "isbn": "978-0316085281", 
+            "title": "Cressida Cowell",
+            "author": "Chris Grabenstein",
+            "description": "When Hiccup finds a coffin at sea, he opens it to discover a riddle that will lead to the treasure of Grimbeard the Ghastly, the world's greatest pirate and Hiccup's ancestor. So Hiccup and his friends set out on a treasure hunt, determined to master the art of swordfighting. How else will they escape an island of murderous dragons, defeat a boatload of Viking pirates, and survive all the twists and turns their journey will bring? Join Hiccup and his friends on another rollicking illustrated adventure, and discover the brilliant combination of magic, action, humor, and heart that has made Cressida Cowell a beloved bestseller around the globe.",
+            "image_url": "https://images-na.ssl-images-amazon.com/images/I/719keJlDSqL.jpg", 
+            "image": "719keJlDSqL.jpg",
+            "pages": 240,
+            "category": 8,
+            "age_on_book": "8 - 12 yrs", 
+            "featured_item": "False",
+            "date_added": "2020-07-16",
+            "rating": 0.0,
+            "number_of_ratings": 0,
+            "boys_avg_rating": 0.0,
+            "boys_number_of_ratings": 0,
+            "girls_avg_rating": 0.0,
+            "girls_number_of_ratings": 0,
+            "most_liked_by": "not known yet",
+            "most_disliked_by": "not known yet",
+            "recommended_age": "not known yet",
+            "not_recommended_by_age": "not known yet"
         }
     }
 ]

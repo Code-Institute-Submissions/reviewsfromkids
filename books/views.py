@@ -216,7 +216,7 @@ def book_detail(request, book_id):
 
             current_user_rating.delete()
             
-            messages.warning(request, f'Rating deleted')
+            messages.success(request, f'Rating deleted')
 
         # Update ratings
         ## All ratings by boys and girls

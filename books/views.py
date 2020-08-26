@@ -118,6 +118,7 @@ def book_detail(request, book_id):
     age_mode = None
     age_mode_low = None
 
+    SUCCESS_ACTION = 26
         
     # Check if user is logged in
     if user.is_authenticated:
@@ -145,7 +146,7 @@ def book_detail(request, book_id):
     if request.POST:
         if request.POST.get('type_of_action')=='remove_fav':
             userprofile.favorites.remove(current_book)
-            messages.success(request, f'Removed from your list. Did you read it? Don\t forget to let other kids know if you liked it or not.')
+            messages.info(request, f'Removed from your list. Did you read it? Let other kids know whether you liked it or not!')
             return redirect('book_detail', book_id=book_id)
 
     """ Handle ratings """

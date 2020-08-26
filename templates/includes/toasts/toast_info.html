@@ -1,7 +1,10 @@
-<div class="toast custom-toast rounded-0 border-top-0" data-delay="1500">
-    <div class="toast-header toast-header--info">
+<div class="toast custom-toast rounded-0 border-top-0" data-autohide="false">
+    <div class="toast-header toast-header--success">
         <strong class="mr-auto">Info</strong>
     </div>
+    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
     <div class="toast-body">
         {{ message }}
     </div>

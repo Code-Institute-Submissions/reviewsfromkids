@@ -101,6 +101,7 @@ def book_detail(request, book_id):
     favorite = False
     recommended_age = None
     not_recommended_by_age = None
+    current_user_rating = None
     rating = Rating.objects.filter(book_id=current_book)
         
     # Check if user is logged in
@@ -138,9 +139,12 @@ def book_detail(request, book_id):
 
     if ratings_for_this_book.filter(rated_by=userprofile):
         already_rated=True
+        userprofile = get_object_or_404(UserProfile, user=request.user)
+        current_user_rating = get_object_or_404(Rating, book_id=book_id, rated_by=userprofile)
 
     # Grab all info about user and add this to rating instance
     if request.POST:
+        
         ratingOptions = request.POST.get('ratingOptions')
         rated_by = request.POST.get('rated_by')
         book_id = get_object_or_404(Book, pk=book_id)
@@ -154,26 +158,42 @@ def book_detail(request, book_id):
         hobbies_rating = userprofile.hobbies.all()
         sports_rating = userprofile.sports.all()
 
-        r = Rating(
+        if request.POST.get('type_of_action')=='new':
 
-            book_id=book_id, 
-            rating=ratingOptions,
-            gender=user_gender,
-            rated_by=userprofile,
-            age_rating_years=age_rating_years,
-            age_rating_months=age_rating_months,
-            date_added=datetime.now(),
-                                   
+            r = Rating(
+
+                book_id=book_id, 
+                rating=ratingOptions,
+                gender=user_gender,
+                rated_by=userprofile,
+                age_rating_years=age_rating_years,
+                age_rating_months=age_rating_months,
+                date_added=datetime.now(),
+                                    
+                )
+            
+            r.save()
+
+            # Due to the nature of the m2m fields these need to be saved separately
+            r.hobbies.set(hobbies_rating)
+            r.sports.set(sports_rating)
+
+        if request.POST.get('type_of_action')=='edit':
+
+            Rating.objects.update_or_create(
+
+                book_id=book.id,
+                rated_by=userprofile,
+
+                defaults={
+
+                'rating': ratingOptions,
+                
+                },
             )
+            
         
-        r.save()
-
-        # Due to the nature of the m2m fields these need to be saved separately
-        r.hobbies.set(hobbies_rating)
-        r.sports.set(sports_rating)
-
         # Update ratings
-
         ## All ratings by boys and girls
         number_of_ratings = len(rating)
         total_rating_sum = rating.aggregate(sum=Sum('rating'))['sum']
@@ -315,10 +335,13 @@ def book_detail(request, book_id):
     if hobbies_positive_ratings.exists()==False and sports_positive_ratings.exists()==False and avg_age_positive_ratings == None and hobbies_negative_ratings.exists()==False and sports_negative_ratings.exists()==False and avg_age_negative_ratings == None:   
         no_ratings_info_at_all = True       
 
+    
+    
     context = {
 
         'book': book,
         'rating': rating,
+        'current_user_rating': current_user_rating,
         'already_rated': already_rated,
         'favorite': favorite,
         'user_logged_in': user_logged_in,
@@ -332,4 +355,6 @@ def book_detail(request, book_id):
         'no_ratings_info_at_all': no_ratings_info_at_all,
     }
 
+    
+    
     return render(request, 'books/book_detail.html', context)

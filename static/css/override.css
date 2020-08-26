@@ -1,3 +1,5 @@
+@charset "UTF-8";
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
 .hero {
   width: 100%;
   margin-top: 2rem;
@@ -615,6 +617,99 @@ h2.book-details__title {
 
 .toast-body {
   background-color: #F4F4F4;
+}
+
+/* The rating stars are from https://stackoverflow.com/questions/58039721/issue-with-star-rating-css */
+/****** Style Star Rating Widget *****/
+.rating {
+  border: none;
+  float: left;
+}
+
+.rating > [id^=star] {
+  display: none;
+}
+
+.rating > label:before {
+  margin: 5px;
+  font-size: 1.25em;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "";
+}
+
+.rating > .half:before {
+  content: "";
+  position: absolute;
+}
+
+.rating > label {
+  color: #ddd;
+  float: right;
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+.rating > [id^=star]:checked ~ label {
+  color: #fec944;
+}
+
+/* show gold star when clicked */
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+  color: #FFD700;
+}
+
+/* hover previous stars in list */
+.rating > [id^=star]:checked + label:hover,
+.rating > [id^=star]:checked ~ label:hover,
+.rating > label:hover ~ [id^=star]:checked ~ label,
+.rating > [id^=star]:checked ~ label:hover ~ label {
+  color: #FFED85;
+}
+
+/* End rating stars */
+.rating-static-table {
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+.rating-static-table__rating-1 {
+  align-self: center;
+}
+.rating-static-table__rating-2 {
+  align-self: center;
+}
+
+/* CSS for displaying average rating - no form, no hover. Based on ratings from above*/
+.rating-static {
+  border: none;
+  float: left;
+}
+
+.rating-static > [id^=star-static] {
+  display: none;
+}
+
+.rating-static > label:before {
+  margin: 5px 5px 0px 5px;
+  padding-top: 0.3rem;
+  font-size: 1.5em;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "";
+}
+
+.rating-static > .half:before {
+  content: "";
+  position: absolute;
+}
+
+.rating-static > label {
+  color: #ddd;
+  float: right;
+}
+
+.rating-static > [id^=star]:checked ~ label {
+  color: #fec944;
 }
 
 /*# sourceMappingURL=override.css.map */

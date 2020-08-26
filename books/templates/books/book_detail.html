@@ -16,7 +16,7 @@
         <img class="card-img-top img-fluid" src="{{ book.image.url }}" alt="{{ book.name }}">
       </div>
       <div> 
-        
+
       <ul class="nav book-details__pills scrolling-wrapper-flexbox">
         
             <li><a class="active" data-toggle="pill" href="#menu1">Description</a></li>
@@ -48,19 +48,29 @@
             <div id="menu4" class="tab-pane fade">
               <div class="book-details__section">
                 <h4>Is this book for you?</h4>
-                Check variables:
-                <ul>
-                <li>'not_recommended_by_age_girls': {{ not_recommended_by_age_girls }},</li>
-                <li>'recommended_age_girls': {{ recommended_age_girls }},</li>
-                <li>'not_recommended_by_age_boys': {{ not_recommended_by_age_boys }},</li>
-                <li>'recommended_age_boys': {{ recommended_age_boys}} ,</li>
-                <li>'most_disliked_by': {{ book.most_disliked_by }},</li>
-                <li>'most_liked_by': {{ book.most_liked_by }},</li>
-                  </ul>
-
-
+                <div class="rating-static-table">
+                  <div class="rating-static-table__rating-1">
+                    <div class="rating-static">
+                      <input type="radio" id="star-static5" name="rating-static" value="5" {% if star_rating_all == 5 %}checked{% endif %}/><label class = "full" for="star-static5"></label>
+                      <input type="radio" id="star-static4half" name="rating-static" value="4 and a half" {% if star_rating_all == 4.5 %}checked{% endif %}/><label class="half" for="star-static4half"></label>
+                      <input type="radio" id="star-static4" name="rating-static" value="4" {% if star_rating_all == 4 %}checked{% endif %}/><label class = "full" for="star-static4"></label>
+                      <input type="radio" id="star-static3half" name="rating-static" value="3 and a half" {% if star_rating_all == 3.5 %}checked{% endif %}/><label class="half" for="star-static3half"></label>
+                      <input type="radio" id="star-static3" name="rating-static" value="3" {% if star_rating_all == 3 %}checked{% endif %}/><label class = "full" for="star-static3"></label>
+                      <input type="radio" id="star-static2half" name="rating-static" value="2 and a half" {% if star_rating_all == 2.5 %}checked{% endif %}/><label class="half" for="star-static2half"></label>
+                      <input type="radio" id="star-static2" name="rating-static" value="2" {% if star_rating_all == 2 %}checked{% endif %}/><label class = "full" for="star-static2"></label>
+                      <input type="radio" id="star-static1half" name="rating-static" value="1 and a half" {% if star_rating_all == 1.5 %}checked{% endif %}/><label class="half" for="star-static1half"></label>
+                      <input type="radio" id="star-static1" name="rating-static" value="1" {% if star_rating_all == 1 %}checked{% endif %}/><label class = "full" for="star-static1"></label>
+                      <input type="radio" id="star-statichalf" name="rating-static" value="half" {% if star_rating_all == 0.5 %}checked{% endif %}/><label class="half" for="star-statichalf"></label>
+                    </div>
+                  </div>
+                  <div class="rating-static-table__rating-2">({{ book.number_of_ratings }} ratings)</div>
+                </div>
+                
+                
                 {% if no_ratings_info_at_all == True %}
-                  Kids have not completed their profile or nobody has rated this book yet. Did you read this book? Let others know if you like it or not! <a  data-toggle="pill" href="#menu3" class=btn>rate it</a>
+                  <div>
+                    Kids have not completed their profile or nobody has rated this book yet. Did you read this book? Let others know if you like it or not! <a  data-toggle="pill" href="#menu3" class=btn>rate it</a>
+                  </div>
                 {% else %}
                   <p>Let's help you to find out. Below you see what other kids who rated this book like.</p>
 
@@ -159,27 +169,14 @@
                   Rate this book
                   <form method="POST" action="{% url 'book_detail' book.id %}">
                     {% csrf_token %}
+                    <fieldset class="rating">
+                      <input type="radio" id="star5" name="ratingOptions" value="5" /><label class="full" for="star5"></label>
+                      <input type="radio" id="star4" name="ratingOptions" value="4" /><label class="full" for="star4"></label>
+                      <input type="radio" id="star3" name="ratingOptions" value="3" /><label class="full" for="star3"></label>
+                      <input type="radio" id="star2" name="ratingOptions" value="2" /><label class="full" for="star2"></label>
+                      <input type="radio" id="star1" name="ratingOptions" value="1" /><label class="full" for="star1"></label>
+                    </fieldset>
                     <input type="hidden" value="new" name="type_of_action">
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="ratingOptions" id="inlineRadio1" value="1">
-                      <label class="form-check-label" for="inlineRadio1">1</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="ratingOptions" id="inlineRadio2" value="2">
-                      <label class="form-check-label" for="inlineRadio2">2</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="ratingOptions" id="inlineRadio3" value="3">
-                      <label class="form-check-label" for="inlineRadio3">3</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="ratingOptions" id="inlineRadio4" value="4">
-                      <label class="form-check-label" for="inlineRadio4">4</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="ratingOptions" id="inlineRadio5" value="5">
-                      <label class="form-check-label" for="inlineRadio5">5</label>
-                    </div>
                     <input class="text" name="rated_by" value="{{ request.user }}" hidden>
                     <input class="text" name="book_id" value="{{ book.pk }}" hidden>
                     <button type="submit">rate</button>
@@ -188,27 +185,14 @@
                   Your rating:
                   <form method="POST" action="{% url 'book_detail' book.id %}">
                     {% csrf_token %}
+                    <fieldset class="rating">
+                      <input type="radio" id="star5" name="ratingOptions" value="5" {% if current_user_rating.rating == 5 %}checked{% endif %}/><label class="full" for="star5"></label>
+                      <input type="radio" id="star4" name="ratingOptions" value="4" {% if current_user_rating.rating == 4 %}checked{% endif %}/><label class="full" for="star4"></label>
+                      <input type="radio" id="star3" name="ratingOptions" value="3" {% if current_user_rating.rating == 3 %}checked{% endif %}/><label class="full" for="star3"></label>
+                      <input type="radio" id="star2" name="ratingOptions" value="2" {% if current_user_rating.rating == 2 %}checked{% endif %}/><label class="full" for="star2"></label>
+                      <input type="radio" id="star1" name="ratingOptions" value="1" {% if current_user_rating.rating == 1 %}checked{% endif %}/><label class="full" for="star1"></label>
+                    </fieldset>
                     <input type="hidden" value="edit" name="type_of_action">
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="ratingOptions" id="inlineRadio1" value="1" {% if current_user_rating.rating == 1 %}checked{% endif %}>
-                      <label class="form-check-label" for="inlineRadio1">1</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="ratingOptions" id="inlineRadio2" value="2" {% if current_user_rating.rating == 2 %}checked{% endif %}>
-                      <label class="form-check-label" for="inlineRadio2">2</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="ratingOptions" id="inlineRadio3" value="3" {% if current_user_rating.rating == 3 %}checked{% endif %}> 
-                      <label class="form-check-label" for="inlineRadio3">3</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="ratingOptions" id="inlineRadio4" value="4" {% if current_user_rating.rating == 4 %}checked{% endif %}>
-                      <label class="form-check-label" for="inlineRadio4">4</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="ratingOptions" id="inlineRadio5" value="5" {% if current_user_rating.rating == 5 %}checked{% endif %}>
-                      <label class="form-check-label" for="inlineRadio5">5</label>
-                    </div>
                     <input class="text" name="rated_by" value="{{ request.user }}" hidden>
                     <input class="text" name="book_id" value="{{ book.pk }}" hidden>
                     <button type="submit">update</button>
@@ -240,9 +224,7 @@
             </div>
         </div>
     </div>
-      
- 
-    </div>
+  </div>
   </main>
 {% endblock %}
 {% block postloadjs %}
@@ -254,4 +236,5 @@ $(function () {
   });
 });
 </script> -->
+
 {% endblock %}

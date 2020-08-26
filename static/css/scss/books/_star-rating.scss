@@ -1,0 +1,89 @@
+/* The rating stars are from https://stackoverflow.com/questions/58039721/issue-with-star-rating-css */
+
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
+/****** Style Star Rating Widget *****/
+
+.rating { 
+    border: none;
+    float: left;
+  }
+  
+  .rating > [id^="star"] { display: none; } 
+  .rating > label:before { 
+    margin: 5px;
+    font-size: 1.25em;
+    font-family: FontAwesome;
+    display: inline-block;
+    content: "\f005";
+  }
+
+.rating > .half:before { 
+content: "\f089";
+position: absolute;
+}
+
+.rating > label { 
+color: #ddd; 
+float: right; 
+}
+  
+/***** CSS Magic to Highlight Stars on Hover *****/
+  
+.rating > [id^="star"]:checked ~ label { color: $mainYellow;  } /* show gold star when clicked */
+.rating:not(:checked) > label:hover, /* hover current star */
+.rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+
+.rating > [id^="star"]:checked + label:hover, /* hover current star when changing rating */
+.rating > [id^="star"]:checked ~ label:hover,
+.rating > label:hover ~ [id^="star"]:checked ~ label, /* lighten current selection */
+.rating > [id^="star"]:checked ~ label:hover ~ label { color: #FFED85;  }
+
+
+/* End rating stars */
+
+.rating-static-table {
+
+    display: grid;
+    grid-template-columns: auto 1fr;
+
+    &__rating-1 {
+
+        align-self: center;
+
+    }
+
+    &__rating-2 {
+
+        align-self: center;
+
+    }
+}
+
+/* CSS for displaying average rating - no form, no hover. Based on ratings from above*/
+.rating-static { 
+    border: none;
+    float: left;
+  }
+  
+  .rating-static > [id^="star-static"] { display: none; } 
+  .rating-static > label:before { 
+    margin: 5px 5px 0px 5px;
+    padding-top: 0.3rem;
+    font-size: 1.5em;
+    font-family: FontAwesome;
+    display: inline-block;
+    content: "\f005";
+  }
+
+.rating-static > .half:before { 
+content: "\f089";
+position: absolute;
+}
+
+.rating-static > label { 
+color: #ddd; 
+float: right; 
+}
+
+.rating-static > [id^="star"]:checked ~ label { color: $mainYellow;  }

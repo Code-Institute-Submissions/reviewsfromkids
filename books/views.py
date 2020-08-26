@@ -8,6 +8,7 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta, MO
 from django.contrib.auth.decorators import login_required
 from statistics import mode
+import math
 
 
 def all_books(request):
@@ -407,6 +408,11 @@ def book_detail(request, book_id):
     if hobbies_positive_ratings.exists()==False and sports_positive_ratings.exists()==False and recommended_age == None and hobbies_negative_ratings.exists()==False and sports_negative_ratings.exists()==False and not_recommended_by_age == None:   
         no_ratings_info_at_all = True       
 
+    # Handle round up to halfs
+    star_rating_all = (math.ceil(2*book.rating))/2
+    star_rating_boys = (math.ceil(2*book.boys_avg_rating))/2
+    star_rating_girls = (math.ceil(2*book.girls_avg_rating))/2
+    
     context = {
 
         'book': book,
@@ -426,6 +432,9 @@ def book_detail(request, book_id):
         'not_recommended_by_age_boys': not_recommended_by_age_boys,
         'recommended_age_boys': recommended_age_boys,
         'most_disliked_by': most_disliked_by,
+        'star_rating_all': star_rating_all,
+        'star_rating_girls': star_rating_girls,
+        'star_rating_boys': star_rating_boys,
     }
 
     return render(request, 'books/book_detail.html', context)

@@ -174,6 +174,8 @@ def book_detail(request, book_id):
             
             r.save()
 
+            messages.success(request, f'Rated with a {ratingOptions}')
+
             # Due to the nature of the m2m fields these need to be saved separately
             r.hobbies.set(hobbies_rating)
             r.sports.set(sports_rating)
@@ -188,11 +190,18 @@ def book_detail(request, book_id):
                 defaults={
 
                 'rating': ratingOptions,
-                
+
                 },
             )
+
+            messages.success(request, f'Rating changed to {ratingOptions}')
+
+        if request.POST.get('type_of_action')=='delete':
+
+            current_user_rating.delete()
             
-        
+            messages.warning(request, f'Rating deleted')
+
         # Update ratings
         ## All ratings by boys and girls
         number_of_ratings = len(rating)
@@ -274,8 +283,6 @@ def book_detail(request, book_id):
             },
         )
 
-        messages.success(request, f'Rated with a {ratingOptions}')
-
         # Redirect to prevent re-submitting
         book_id = book.id
         return redirect('book_detail', book_id=book_id)
@@ -335,7 +342,6 @@ def book_detail(request, book_id):
     if hobbies_positive_ratings.exists()==False and sports_positive_ratings.exists()==False and avg_age_positive_ratings == None and hobbies_negative_ratings.exists()==False and sports_negative_ratings.exists()==False and avg_age_negative_ratings == None:   
         no_ratings_info_at_all = True       
 
-    
     
     context = {
 

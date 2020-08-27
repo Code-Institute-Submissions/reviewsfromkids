@@ -6,7 +6,7 @@ from profiles.models import UserProfile
 # Create your views here.
 def index(request):
     """ A view to return the index page """
-
+    books = Book.objects.all()
     featured_books = Book.objects.filter(featured_item = True)
     recent_books = Book.objects.filter(date_added = "2020-07-16")
     
@@ -23,7 +23,7 @@ def index(request):
         'featured_books': featured_books,
         'recent_books': recent_books,
         'user_logged_in': user_logged_in,
-        # 'search_term': query,
+        # 'book': books
     }
 
     return render(request, 'home/index.html', context)

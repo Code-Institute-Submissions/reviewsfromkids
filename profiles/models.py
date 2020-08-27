@@ -30,6 +30,8 @@ class UserProfile(models.Model):
     only_hobbies_known = models.BooleanField(default=False)
     hobbies_and_sports_known = models.BooleanField(default=False)
     no_hobbies_and_sports_known = models.BooleanField(default=False)
+    profile_complete = models.CharField(max_length=7, default='lvl-0')
+    allowed_to_rate = models.BooleanField(default=False)
     
     def __str__(self):
         return self.user.username

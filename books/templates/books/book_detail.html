@@ -19,8 +19,9 @@
 
       <ul class="nav book-details__pills scrolling-wrapper-flexbox">
         
-            <li><a class="active" data-toggle="pill" href="#menu1">Description</a></li>
-            <li><a data-toggle="pill" href="#menu4">For you?</a></li>
+            
+            <li><a class="active" data-toggle="pill" href="#menu4">For you?</a></li>
+            <li><a data-toggle="pill" href="#menu1">Description</a></li>
             <li><a data-toggle="pill" href="#menu2">Quick facts</a></li>
             <li><a data-toggle="pill" href="#menu3">Ratings</a></li>
             <li><a data-toggle="pill" href="#menu10">Info</a></li>
@@ -164,9 +165,9 @@
             <div id="menu3" class="tab-pane fade">
               <div class="book-details__section">
                 <h4>Reviews & Ratings</h4>
-                {% if user_logged_in %}
+                <p>Did you read this book? Great! Or not great... that depends. Did you like to read it? Please help others and tell them what you think.</p>
+                {% if user_logged_in and allowed_to_rate %}
                   {% if not already_rated %}
-                  Rate this book
                   <form method="POST" action="{% url 'book_detail' book.id %}">
                     {% csrf_token %}
                     <fieldset class="rating">
@@ -201,11 +202,12 @@
                     {% csrf_token %}
                     <input type="hidden" value="delete" name="type_of_action">                    
                     <button type="submit">delete</button>
-                  </form>
-                    
+                  </form> 
                   {% endif %}
+                {% elif user_logged_in and not allowed_to_rate %}
+                  <p>We love your rating. To make your rating even better, we'd like to know a bit more about you. So, other kids can see if your rating is helpful for them. Please complete your profile first: <a href="{% url 'profile' %}">my profile</a>.</p>
                 {% else %}
-                  Please log in to rate.
+                  <p>We love your rating. Please <a href="{% url 'account_login' %}">log in</a>. No account? You can get one -completely free- over <a href="{% url 'account_signup' %}">here</a>!</p>
                 {% endif %}
               </div>
             </div>

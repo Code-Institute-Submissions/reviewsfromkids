@@ -102,6 +102,7 @@ def book_detail(request, book_id):
     current_book = book_id
     user_logged_in = False
     already_rated = False
+    allowed_to_rate = False
     user = request.user
     userprofile = None
     favorite = False
@@ -148,6 +149,15 @@ def book_detail(request, book_id):
             return redirect('book_detail', book_id=book_id)
 
     """ Handle ratings """
+    # Check if user is allowed to rate
+    if user_logged_in:
+        if userprofile.profile_complete == 'lvl-0':
+            allowed_to_rate = False
+        else:
+            allowed_to_rate = True
+    print('158 if user is logged in en profile complete is niet 0:',allowed_to_rate)
+    print('159',userprofile.profile_complete)
+
     # Check if user has rated before
     ratings_for_this_book = Rating.objects.filter(book_id=current_book)
 
@@ -415,6 +425,8 @@ def book_detail(request, book_id):
     if hobbies_positive_ratings.exists()==False and sports_positive_ratings.exists()==False and recommended_age == None and hobbies_negative_ratings.exists()==False and sports_negative_ratings.exists()==False and not_recommended_by_age == None:   
         no_ratings_info_at_all = True       
     
+    print('428 allowed_to_rate:', allowed_to_rate)
+
     context = {
 
         'book': book,
@@ -434,6 +446,7 @@ def book_detail(request, book_id):
         'not_recommended_by_age_boys': not_recommended_by_age_boys,
         'recommended_age_boys': recommended_age_boys,
         'most_disliked_by': most_disliked_by,
+        'allowed_to_rate': allowed_to_rate,
     }
 
     return render(request, 'books/book_detail.html', context)

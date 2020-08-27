@@ -375,6 +375,12 @@ html, body {
   font-weight: 700;
 }
 
+.emphasis-orange {
+  color: #fec944;
+  font-weight: 700;
+  font-size: 2rem;
+}
+
 .scrolling-wrapper {
   overflow-x: scroll;
   overflow-y: hidden;

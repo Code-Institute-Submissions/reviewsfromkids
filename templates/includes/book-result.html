@@ -1,0 +1,93 @@
+<div class="book-result">
+    <div class="book-result__image-area">
+        <a href="{% url 'book_detail' book.id %}"><img class="book-result__image-area--img" src="{{ book.image.url }}" alt="{{ book.name }}"></a>
+    </div>
+    <div class="book-result__content-area">
+        <div class="book-result__content-area--row1">
+            <small class="text-muted">{{ book.author }}</small>
+        </div>
+        <div class="book-result__content-area--row2">
+        {{ book.title }}
+        </div>
+        <div class="book-result__content-area--row3">
+            
+            <div class="rating-static-table">
+                <div class="rating-static-table__rating-1">
+                    <div class="rating-static">
+                        <input type="radio" id="star-static5-{{ book.id }}" name="rating-static" value="5" {% if book.star_rating_all == 5 %}checked{% endif %}/><label class = "full" for="star-static5-{{ book.id }}"></label>
+                        <input type="radio" id="star-static4half-{{ book.id }}" name="rating-static" value="4 and a half" {% if book.star_rating_all == 4.5 %}checked{% endif %}/><label class="half" for="star-static4half-{{ book.id }}"></label>
+                        <input type="radio" id="star-static4-{{ book.id }}" name="rating-static" value="4" {% if book.star_rating_all == 4 %}checked{% endif %}/><label class = "full" for="star-static4-{{ book.id }}"></label>
+                        <input type="radio" id="star-static3half-{{ book.id }}" name="rating-static" value="3 and a half" {% if book.star_rating_all == 3.5 %}checked{% endif %}/><label class="half" for="star-static3half-{{ book.id }}"></label>
+                        <input type="radio" id="star-static3-{{ book.id }}" name="rating-static" value="3" {% if book.star_rating_all == 3 %}checked{% endif %}/><label class = "full" for="star-static3-{{ book.id }}"></label>
+                        <input type="radio" id="star-static2half-{{ book.id }}" name="rating-static" value="2 and a half" {% if book.star_rating_all == 2.5 %}checked{% endif %}/><label class="half" for="star-static2half-{{ book.id }}"></label>
+                        <input type="radio" id="star-static2-{{ book.id }}" name="rating-static" value="2" {% if book.star_rating_all == 2 %}checked{% endif %}/><label class = "full" for="star-static2-{{ book.id }}"></label>
+                        <input type="radio" id="star-static1half-{{ book.id }}" name="rating-static" value="1 and a half" {% if book.star_rating_all == 1.5 %}checked{% endif %}/><label class="half" for="star-static1half-{{ book.id }}"></label>
+                        <input type="radio" id="star-static1-{{ book.id }}" name="rating-static" value="1" {% if book.star_rating_all == 1 %}checked{% endif %}/><label class = "full" for="star-static1-{{ book.id }}"></label>
+                        <input type="radio" id="star-statichalf-{{ book.id }}" name="rating-static" value="half" {% if book.star_rating_all == 0.5 %}checked{% endif %}/><label class="half" for="star-statichalf-{{ book.id }}"></label>
+                    </div>
+                </div>
+                <div class="rating-static-table__rating-2"><small class="text-muted">({{ book.number_of_ratings }} ratings)</small></div>
+            </div>
+            
+        </div>
+        <div class="book-result__content-area--row4">
+            {% if book.recommended_age == "not known yet" or book.recommended_age == "not available" %}<small class="text-muted">Recommended age is {{ book.recommended_age }}</small>{% else %}Recommended age: <span class="emphasis1">{{ book.recommended_age }}</span>{% endif %}
+        </div>
+        <div class="book-result__content-area--row5">
+            {% if book.most_liked_by == "not known yet" %}<small class="text-muted">Most liked by is {{ book.most_liked_by }}</small>{% else %}Most liked by: <span class="emphasis1">{{ book.most_liked_by }}</span>{% endif %}
+        </div>
+        <div class="book-result__content-area--row6">
+            <span class="badge badge-primary book-result__content-area--row6--tag">{{ book.category }} </span>{% for tag in book.tags.all %}{% if forloop.counter < 4 %}<span class="badge badge-info book-result__content-area--row6--tag">{{ tag }} </span>{% endif %}{% endfor %}
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- 
+  <img class="book-card__image" src="{{ book.image.url }}" alt="{{ book.name }}">
+  <div class="book-card__reveal">
+      <h5 class="book-card__reveal--row1">Recommended age</h5>
+      <h2 class="book-card__reveal--row2">{{ book.age }}</h2>
+      <h5 class="book-card__reveal--row3">Keywords</h5>
+      <div class="book-card__reveal--row4">
+          {% for tag in book.tags.all %}
+              <form method="GET" action="{% url 'books' %}">
+                  <div>
+                  <input type="hidden" name="q" value="{{ tag }}">
+                  <button class="tag btnize" type="submit">
+                      {{ tag }}
+                  </button>
+                  </div>
+              </form>
+          {% endfor %}
+      </div>
+      <div class="book-card__reveal--row5">
+          <h5 class="book-card__reveal--row5-item1">
+              Girls
+          </h5>
+          <h5 class="book-card__reveal--row5-item2">
+              Boys
+          </h5>
+      </div>
+      <div class="book-card__reveal--row6">
+          <h3 class="book-card__reveal--row6-item1">
+              46%
+          </h3>
+          <h3 class="book-card__reveal--row6-item2">
+              54%
+          </h3>
+      </div>
+      <div class="book-card__reveal--row7">
+          <h7 class="book-card__reveal--row7-item1">
+              # likes
+          </h7>
+          <h7 class="book-card__reveal--row7-item2">
+              # likes category: {{ book.category }}
+          </h7>
+      </div>
+          
+      <a href="{% url 'book_detail' book.id %}" class="btn text book-card__reveal--row8">view details</a>
+  </div>
+</div> -->

@@ -11,33 +11,47 @@
   {% block content %}
     {% load crispy_forms_tags %}
     <main id="main" class="quickfix">
-        
-        
-        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-            search
-        </button>
-        <div class="collapse" id="collapseExample">
-            <form method="GET">
-                {{ myFilter.form|crispy }}
-                <button class="btn" type="submit">go</button>
-                <a href="{% url 'books' %}">reset search</a>
-            </form>
+        <div class="books-search">
+            <div class="books-search__row">
+                <button class="btn btn-primary books-search__row--btn" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    search
+                </button>
+                <div class="books-search__row--results-counter">
+                    {% if search_performed %}
+                        {% if noresults %}
+                            Your search has no success. Try again!
+                        {% else %}
+                            Your search has {{ numresults }} results.
+                        {% endif %}
+                    {% else %}
+                    {% endif %}
+                </div>
+                <hr>
+            </div>
+            <div class="books-search__collapse">
+                <div class="collapse" id="collapseExample">
+                    <form method="GET">
+                        {{ myFilter.form|crispy }}
+                        <button class="btn" type="submit">go</button>
+                        <a href="{% url 'books' %}">reset search</a>
+                    </form>
+                </div>
+            </div>
         </div>
+           
+    
+        
+        
+
+        
         <div>
             
 
         
             <div class="">
-                {% if search_performed %}
-                    {% if noresults %}
-                        Your search has no success. Try again!
-                    {% else %}
-                        Your search has {{ numresults }} results.
-                    {% endif %}
-                {% else %}
-                {% endif %}
+                
                     {% for book in books %}
-                        {% include 'includes/book-card.html' %}
+                        {% include 'includes/book-result.html' %}
                        
                         {% if forloop.counter|divisibleby:1 %}
                             <div class="col-12 d-sm-none mb-5">

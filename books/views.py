@@ -117,8 +117,6 @@ def book_detail(request, book_id):
     most_disliked_by = None
     age_mode = None
     age_mode_low = None
-
-    SUCCESS_ACTION = 26
         
     # Check if user is logged in
     if user.is_authenticated:
@@ -312,6 +310,11 @@ def book_detail(request, book_id):
         else:
             not_recommended_by_age = 'not available'
         
+        # Handle round up to halfs for display as stars
+        star_rating_all = (math.ceil(2*avg_rating))/2
+        star_rating_boys = (math.ceil(2*boys_avg_rating))/2
+        star_rating_girls = (math.ceil(2*girls_avg_rating))/2
+
         Book.objects.update_or_create(
             pk=book.id,
             defaults={
@@ -325,6 +328,9 @@ def book_detail(request, book_id):
                 'most_disliked_by': most_disliked_by,
                 'recommended_age': recommended_age,
                 'not_recommended_by_age': not_recommended_by_age,
+                'star_rating_all': star_rating_all,
+                'star_rating_boys': star_rating_boys,
+                'star_rating_girls': star_rating_girls,
             },
         )
 
@@ -408,11 +414,6 @@ def book_detail(request, book_id):
     
     if hobbies_positive_ratings.exists()==False and sports_positive_ratings.exists()==False and recommended_age == None and hobbies_negative_ratings.exists()==False and sports_negative_ratings.exists()==False and not_recommended_by_age == None:   
         no_ratings_info_at_all = True       
-
-    # Handle round up to halfs
-    star_rating_all = (math.ceil(2*book.rating))/2
-    star_rating_boys = (math.ceil(2*book.boys_avg_rating))/2
-    star_rating_girls = (math.ceil(2*book.girls_avg_rating))/2
     
     context = {
 
@@ -433,9 +434,6 @@ def book_detail(request, book_id):
         'not_recommended_by_age_boys': not_recommended_by_age_boys,
         'recommended_age_boys': recommended_age_boys,
         'most_disliked_by': most_disliked_by,
-        'star_rating_all': star_rating_all,
-        'star_rating_girls': star_rating_girls,
-        'star_rating_boys': star_rating_boys,
     }
 
     return render(request, 'books/book_detail.html', context)

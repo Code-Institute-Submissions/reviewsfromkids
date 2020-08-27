@@ -46,6 +46,9 @@ class Book(models.Model):
     most_disliked_by = models.CharField(max_length=150, default='not known yet', choices=GENDER_CHOICES)
     recommended_age = models.CharField(max_length=254, default='not known yet')
     not_recommended_by_age = models.CharField(max_length=54, default='not known yet')
+    star_rating_all = models.DecimalField(max_digits=2, decimal_places=1, default=0.0)
+    star_rating_boys = models.DecimalField(max_digits=2, decimal_places=1, default=0.0)
+    star_rating_girls = models.DecimalField(max_digits=2, decimal_places=1, default=0.0)
 
     
     def __str__(self):

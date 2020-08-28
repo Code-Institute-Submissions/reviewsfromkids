@@ -155,8 +155,6 @@ def book_detail(request, book_id):
             allowed_to_rate = False
         else:
             allowed_to_rate = True
-    print('158 if user is logged in en profile complete is niet 0:',allowed_to_rate)
-    print('159',userprofile.profile_complete)
 
     # Check if user has rated before
     ratings_for_this_book = Rating.objects.filter(book_id=current_book)
@@ -423,9 +421,7 @@ def book_detail(request, book_id):
             no_ratings_info_at_all = True
     
     if hobbies_positive_ratings.exists()==False and sports_positive_ratings.exists()==False and recommended_age == None and hobbies_negative_ratings.exists()==False and sports_negative_ratings.exists()==False and not_recommended_by_age == None:   
-        no_ratings_info_at_all = True       
-    
-    print('428 allowed_to_rate:', allowed_to_rate)
+        no_ratings_info_at_all = True
 
     context = {
 

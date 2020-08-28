@@ -50,22 +50,6 @@ def profile(request):
         }
 
 
-    # Test settings for profile level
-    user_hobby = profile.hobbies.all()
-    user_sport = profile.sports.all()
-
-    if user_hobby.exists()==True:
-        print('hobbies aanwezig')
-    else:
-        print('hobbies niet aanwezig')
-
-    if user_sport.exists()==True:
-        print('sports aanwezig')
-    else:
-        print('sports niet aanwezig')
-
-    print(profile.profile_complete)
-
     return render(request, template, context)
 
 #Form with ModelForm
@@ -410,7 +394,7 @@ def book_finder_user(request):
     else:
         dob_available = True
 
-    if profile.gender == "":
+    if profile.gender == None:
         gender_available = False
     else:
         gender_available = True
@@ -432,7 +416,7 @@ def book_finder_user(request):
         'onlygender_available': onlygender_available,
         'onlyuser_available': onlyuser_available,
     }
-    
+    print('435:', profile.gender)
     return render(request, 'profiles/book_finder_user.html', context)
 
 

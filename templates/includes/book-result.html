@@ -13,15 +13,7 @@
             
             <div class="rating-static-table">
                 <div class="rating-static-table__rating-2 hard-coded-stars">
-                    {% if book.rating == 0 %}
-                    <i class="fa fa-star hard-coded-stars--empty" aria-hidden="true"></i>
-                    <i class="fa fa-star hard-coded-stars--empty" aria-hidden="true"></i>
-                    <i class="fa fa-star hard-coded-stars--empty" aria-hidden="true"></i>
-                    <i class="fa fa-star hard-coded-stars--empty" aria-hidden="true"></i>
-                    <i class="fa fa-star hard-coded-stars--empty" aria-hidden="true"></i>
-                {% else %}
                     {% include 'includes/star-rating-hard-coded.html' %}
-                {% endif %}
                 </div>
                 <div class="rating-static-table__rating-2"><small class="text-muted"> ({{ book.number_of_ratings }} ratings)</small></div>
             </div>

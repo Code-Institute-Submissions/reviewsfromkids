@@ -89,49 +89,32 @@ float: right;
 .rating-static > [id^="star"]:checked ~ label { color: $mainYellow;  }
 
 /* CSS for hard-coded rating stars */
-// .book-card__reveal--row1 {
-  
-//   &--empty {
-
-//     color: #ddd;
-//   }
-
-//   &--full {
-//     color: $mainYellow;
-//   }
-  
-// }
 
 .hard-coded-stars {
-  
-  &--empty {
 
-    color: #ddd;
-  }
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: 1;
 
-  &--full {
-    color: $mainYellow;
-  }
+    &__star {
 
-  &--half-span {
+      display: grid;
 
-    position: relative;
+      &--half {
+        grid-area: 1 / 1 / 2 / 2;
+        color: $mainYellow;
+      }
 
-    &--bg {
-      color: #ddd;
-      
+      &--full {
+        grid-area: 1 / 1 / 2 / 2;
+        color: $mainYellow;
+      }
+
+      &--empty {
+        grid-area: 1 / 1 / 2 / 2;
+        color: #ddd;
+      }
+
     }
-  
-    &--half {
-      position: absolute;
-      color: $mainYellow;
-      top: 3;
-      left: 0;
-  
-    }
 
-  }
-
-  
-  
 }

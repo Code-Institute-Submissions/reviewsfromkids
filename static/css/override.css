@@ -734,34 +734,26 @@ h2.book-details__title {
 }
 
 /* CSS for hard-coded rating stars */
-.hard-coded-stars--empty {
-  color: #ddd;
+.hard-coded-stars {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: 1;
 }
-.hard-coded-stars--full {
+.hard-coded-stars__star {
+  display: grid;
+}
+.hard-coded-stars__star--half {
+  grid-area: 1/1/2/2;
   color: #fec944;
 }
-.hard-coded-stars--half-span {
-  position: relative;
+.hard-coded-stars__star--full {
+  grid-area: 1/1/2/2;
+  color: #fec944;
 }
-.hard-coded-stars--half-span--bg {
+.hard-coded-stars__star--empty {
+  grid-area: 1/1/2/2;
   color: #ddd;
 }
-.hard-coded-stars--half-span--half {
-  position: absolute;
-  color: #fec944;
-  top: 3;
-  left: 0;
-}
-
-@media screen and (min-color-index:0) and(-webkit-min-device-pixel-ratio:0)
-{ @media {
-    .hard-coded-stars--half-span--half {
-      position: absolute;
-      color: #fec944;
-      top: 0;
-      left: 0;
-    }
-}}
 
 .book-result {
   max-height: 400px;

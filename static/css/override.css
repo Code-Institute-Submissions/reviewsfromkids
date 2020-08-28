@@ -733,6 +733,26 @@ h2.book-details__title {
   color: #fec944;
 }
 
+/* CSS for hard-coded rating stars */
+.hard-coded-stars--empty {
+  color: #ddd;
+}
+.hard-coded-stars--full {
+  color: #fec944;
+}
+.hard-coded-stars--half-span {
+  position: relative;
+}
+.hard-coded-stars--half-span--bg {
+  color: #ddd;
+}
+.hard-coded-stars--half-span--half {
+  position: absolute;
+  color: #fec944;
+  top: 3;
+  left: 0;
+}
+
 .book-result {
   max-height: 400px;
   width: 95%;

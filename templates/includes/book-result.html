@@ -12,21 +12,18 @@
         <div class="book-result__content-area--row3">
             
             <div class="rating-static-table">
-                <div class="rating-static-table__rating-1">
-                    <div class="rating-static">
-                        <input type="radio" id="star-static5-{{ book.id }}" name="rating-static" value="5" {% if book.star_rating_all == 5 %}checked{% endif %}/><label class = "full" for="star-static5-{{ book.id }}"></label>
-                        <input type="radio" id="star-static4half-{{ book.id }}" name="rating-static" value="4 and a half" {% if book.star_rating_all == 4.5 %}checked{% endif %}/><label class="half" for="star-static4half-{{ book.id }}"></label>
-                        <input type="radio" id="star-static4-{{ book.id }}" name="rating-static" value="4" {% if book.star_rating_all == 4 %}checked{% endif %}/><label class = "full" for="star-static4-{{ book.id }}"></label>
-                        <input type="radio" id="star-static3half-{{ book.id }}" name="rating-static" value="3 and a half" {% if book.star_rating_all == 3.5 %}checked{% endif %}/><label class="half" for="star-static3half-{{ book.id }}"></label>
-                        <input type="radio" id="star-static3-{{ book.id }}" name="rating-static" value="3" {% if book.star_rating_all == 3 %}checked{% endif %}/><label class = "full" for="star-static3-{{ book.id }}"></label>
-                        <input type="radio" id="star-static2half-{{ book.id }}" name="rating-static" value="2 and a half" {% if book.star_rating_all == 2.5 %}checked{% endif %}/><label class="half" for="star-static2half-{{ book.id }}"></label>
-                        <input type="radio" id="star-static2-{{ book.id }}" name="rating-static" value="2" {% if book.star_rating_all == 2 %}checked{% endif %}/><label class = "full" for="star-static2-{{ book.id }}"></label>
-                        <input type="radio" id="star-static1half-{{ book.id }}" name="rating-static" value="1 and a half" {% if book.star_rating_all == 1.5 %}checked{% endif %}/><label class="half" for="star-static1half-{{ book.id }}"></label>
-                        <input type="radio" id="star-static1-{{ book.id }}" name="rating-static" value="1" {% if book.star_rating_all == 1 %}checked{% endif %}/><label class = "full" for="star-static1-{{ book.id }}"></label>
-                        <input type="radio" id="star-statichalf-{{ book.id }}" name="rating-static" value="half" {% if book.star_rating_all == 0.5 %}checked{% endif %}/><label class="half" for="star-statichalf-{{ book.id }}"></label>
-                    </div>
+                <div class="rating-static-table__rating-2 hard-coded-stars">
+                    {% if book.rating == 0 %}
+                    <i class="fa fa-star hard-coded-stars--empty" aria-hidden="true"></i>
+                    <i class="fa fa-star hard-coded-stars--empty" aria-hidden="true"></i>
+                    <i class="fa fa-star hard-coded-stars--empty" aria-hidden="true"></i>
+                    <i class="fa fa-star hard-coded-stars--empty" aria-hidden="true"></i>
+                    <i class="fa fa-star hard-coded-stars--empty" aria-hidden="true"></i>
+                {% else %}
+                    {% include 'includes/star-rating-hard-coded.html' %}
+                {% endif %}
                 </div>
-                <div class="rating-static-table__rating-2"><small class="text-muted">({{ book.number_of_ratings }} ratings)</small></div>
+                <div class="rating-static-table__rating-2"><small class="text-muted"> ({{ book.number_of_ratings }} ratings)</small></div>
             </div>
             
         </div>

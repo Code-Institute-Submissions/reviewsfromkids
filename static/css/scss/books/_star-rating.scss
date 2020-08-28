@@ -87,3 +87,51 @@ float: right;
 }
 
 .rating-static > [id^="star"]:checked ~ label { color: $mainYellow;  }
+
+/* CSS for hard-coded rating stars */
+// .book-card__reveal--row1 {
+  
+//   &--empty {
+
+//     color: #ddd;
+//   }
+
+//   &--full {
+//     color: $mainYellow;
+//   }
+  
+// }
+
+.hard-coded-stars {
+  
+  &--empty {
+
+    color: #ddd;
+  }
+
+  &--full {
+    color: $mainYellow;
+  }
+
+  &--half-span {
+
+    position: relative;
+
+    &--bg {
+      color: #ddd;
+      
+    }
+  
+    &--half {
+      position: absolute;
+      color: $mainYellow;
+      top: 3;
+      left: 0;
+  
+    }
+
+  }
+
+  
+  
+}

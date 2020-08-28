@@ -753,6 +753,16 @@ h2.book-details__title {
   left: 0;
 }
 
+@media screen and (min-color-index:0) and(-webkit-min-device-pixel-ratio:0)
+{ @media {
+    .hard-coded-stars--half-span--half {
+      position: absolute;
+      color: #fec944;
+      top: 0;
+      left: 0;
+    }
+}}
+
 .book-result {
   max-height: 400px;
   width: 95%;

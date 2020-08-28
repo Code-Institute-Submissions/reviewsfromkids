@@ -33,13 +33,6 @@ def profile(request):
     e = Rating.objects.filter(rated_by=profile, rating__lte=2)
     f = e.values('book_id_id')
     ratings_low = Book.objects.filter(pk__in=f)
-   
-    
-
-    # if not ratings_high and not ratings_low and not ratings_ok:
-    #     no_ratings = True
-    # else:
-    #     no_ratings = False
     
     template = 'profiles/profile.html'
 
@@ -142,7 +135,6 @@ def edit_hobby(request):
                 profile.no_hobbies_and_sports_known = False
             
             # Update profile complete lvl
-            user_hobby = profile.hobbies.all()
             user_sport = profile.sports.all()
 
             if profile.first_name and profile.last_name and profile.date_of_birth and profile.gender:
@@ -585,7 +577,20 @@ def book_finder_user_2(request):
         else:
             profile.no_hobbies_and_sports_known = False
 
+        # Update profile complete lvl
+        if profile.first_name and profile.last_name and profile.date_of_birth and profile.gender:
+            profile.profile_complete = "lvl-1"
+    
+        if profile.profile_complete == "lvl-1" and user_hobby.exists()==True or user_sport.exists()==True:
+            profile.profile_complete = "lvl-2"
+
+        if profile.profile_complete == "lvl-2" and user_hobby.exists()==True and user_sport.exists()==True:
+            profile.profile_complete = "lvl-3"
+
         profile.save()
+        
+        messages.success(request, f'Profile updated, thank you')
+        
 
         if  no_hobbysport_available == True:
             return redirect('book_finder_user_3')
@@ -676,7 +681,19 @@ def book_finder_user_3(request):
             else:
                 profile.no_hobbies_and_sports_known = False
 
+            # Update profile complete lvl
+            if profile.first_name and profile.last_name and profile.date_of_birth and profile.gender:
+                profile.profile_complete = "lvl-1"
+        
+            if profile.profile_complete == "lvl-1" and user_hobby.exists()==True or user_sport.exists()==True:
+                profile.profile_complete = "lvl-2"
+
+            if profile.profile_complete == "lvl-2" and user_hobby.exists()==True and user_sport.exists()==True:
+                profile.profile_complete = "lvl-3"
+
             profile.save()
+            
+            messages.success(request, f'Profile updated, thank you')
 
             return redirect('book_finder_user_4')
     
@@ -750,6 +767,18 @@ def book_finder_user_5(request):
     profile = get_object_or_404(UserProfile, user=request.user)
     user_hobby = profile.hobbies.all().order_by('name')
     user_sport = profile.sports.all().order_by('name')
+
+    # Update profile complete lvl
+    if profile.first_name and profile.last_name and profile.date_of_birth and profile.gender:
+        profile.profile_complete = "lvl-1"
+
+    if profile.profile_complete == "lvl-1" and user_hobby.exists()==True or user_sport.exists()==True:
+        profile.profile_complete = "lvl-2"
+
+    if profile.profile_complete == "lvl-2" and user_hobby.exists()==True and user_sport.exists()==True:
+        profile.profile_complete = "lvl-3"
+
+    profile.save()
     
     context = {
         'user': user,

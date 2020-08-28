@@ -25,12 +25,12 @@
 
 {% block content %}
     <ul class="nav profile__pills scrolling-wrapper-flexbox"> 
-        <!-- <div class="scrolling-wrapper-flexbox"> -->
+        
             <li><a class="active" data-toggle="pill" href="#menu1">Account</a></li>
             <li><a data-toggle="pill" href="#menu2">Hobby & Sport</a></li>
             <li><a data-toggle="pill" href="#menu3">Ratings</a></li>
-            <li><a data-toggle="pill" href="#menu4">Favorites</a></li>
-        <!-- </div> -->
+            <li><a data-toggle="pill" href="#menu4">Want to read</a></li>
+       
     </ul>
     
     <div class="container">
@@ -124,44 +124,55 @@
             <div id="menu3" class="tab-pane fade">
                 <section class="profile__hobbysport card-body">
                     <div class="profile__title">
-                        <h3>Ratings</h3>
-                        <a href="#"><i class="fas profile__icon--edit fa-edit"></i></a>
+                        <h3>Your ratings</h3>
                     </div>
-                    <p>All your rated books are here:</p>
-                    <h5>Books that are great!</h5>
-                    <div class="scrolling-wrapper-flexbox">
-                        {% for book in ratings_high %}
-                          {% include 'includes/book-card-hs.html' %}
-                        {% endfor %}
-                    </div>
+                    {% if not ratings_high and not ratings_ok and not ratings_low %}
+                        <p>You have not rated any books yet.</p>
+                    {% else %}
+                        {% if ratings_high %}
+                            <h5>Books that are great!</h5>
+                            <div class="scrolling-wrapper-flexbox">
+                                {% for book in ratings_high %}
+                                {% include 'includes/book-card.html' %}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
 
-                    <h5>Books that are ok-ish</h5>
-                    <div class="scrolling-wrapper-flexbox">
-                        {% for book in ratings_ok %}
-                          {% include 'includes/book-card-hs.html' %}
-                        {% endfor %}
-                    </div>
+                        {% if ratings_ok %}
+                            <h5>Books that are ok-ish</h5>
+                            <div class="scrolling-wrapper-flexbox">
+                                {% for book in ratings_ok %}
+                                {% include 'includes/book-card.html' %}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
 
-                    <h5>Books that are meh</h5>
-                    <div class="scrolling-wrapper-flexbox">
-                        {% for book in ratings_low %}
-                          {% include 'includes/book-card-hs.html' %}
-                        {% endfor %}
-                    </div>
+                        {% if ratings_low %}
+                            <h5>Books that are meh</h5>
+                            <div class="scrolling-wrapper-flexbox">
+                                {% for book in ratings_low %}
+                                {% include 'includes/book-card.html' %}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    {% endif %}
+                    
                 </section>  
             </div>
             <div id="menu4" class="tab-pane fade">
-                <section class="profile__hobbysport card-body">
+                <section class="profile__hobbysport">
                     <div class="profile__title">
-                        <h3>Favorites</h3>
-                        <a href="#"><i class="fas profile__icon--edit fa-edit"></i></a>
+                        <h3>Want to read</h3>
                     </div>
-                    <p>All your favorites are here:</p>
-                    <div class="scrolling-wrapper-flexbox">
+                    <p>Your want to read list:</p>
+                    
                         {% for book in favorites %}
-                          {% include 'includes/book-card-hs.html' %}
+                          {% include 'includes/book-result.html' %}
+                          <div class="col-12 d-sm-none mb-5">
+                            <hr>
+                        </div>
                         {% endfor %}
-                    </div>
+                    
                     
                     
                 </section>  

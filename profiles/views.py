@@ -34,6 +34,13 @@ def profile(request):
     f = e.values('book_id_id')
     ratings_low = Book.objects.filter(pk__in=f)
    
+    
+
+    # if not ratings_high and not ratings_low and not ratings_ok:
+    #     no_ratings = True
+    # else:
+    #     no_ratings = False
+    
     template = 'profiles/profile.html'
 
     context = {
@@ -47,8 +54,8 @@ def profile(request):
         'ratings_low': ratings_low,
         'ratings_ok': ratings_ok,
         'favorites': favorites,
+        # 'no_ratings': no_ratings,
         }
-
 
     return render(request, template, context)
 
@@ -416,7 +423,7 @@ def book_finder_user(request):
         'onlygender_available': onlygender_available,
         'onlyuser_available': onlyuser_available,
     }
-    print('435:', profile.gender)
+    
     return render(request, 'profiles/book_finder_user.html', context)
 
 

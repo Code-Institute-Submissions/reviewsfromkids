@@ -350,8 +350,7 @@ def book_detail(request, book_id):
                 'star_rating_girls': star_rating_girls,
             },
         )
-        print('357, most liked by:', most_liked_by)
-        print('357, most disliked by:', most_disliked_by)
+        
         # Redirect to prevent re-submitting
         book_id = book.id
         return redirect('book_detail', book_id=book_id)

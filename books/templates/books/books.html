@@ -8,75 +8,61 @@
 {% block hero %} 
 {% endblock %}
 
-  {% block content %}
-    {% load crispy_forms_tags %}
-    <main id="main" class="quickfix">
-        <div class="books-search">
-            <div class="books-search__row">
-                <button class="btn btn-primary books-search__row--btn" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                    search
-                </button>
-                <div class="books-search__row--results-counter">
-                    {% if search_performed %}
-                        {% if noresults %}
-                            Your search has no success. Try again!
-                        {% else %}
-                            Your search has {{ numresults }} results.
-                        {% endif %}
+{% block content %}
+{% load crispy_forms_tags %}
+<main id="main" class="quickfix">
+    <div class="books-search">
+        <div class="books-search__row">
+            <button class="btn btn-primary books-search__row--btn" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                search
+            </button>
+            <div class="books-search__row--results-counter">
+                {% if search_performed %}
+                    {% if noresults %}
+                        Your search has no success. Try again!
                     {% else %}
+                        Your search has {{ numresults }} results.
                     {% endif %}
-                </div>
-                <hr>
+                {% else %}
+                {% endif %}
             </div>
-            <div class="books-search__collapse">
-                <div class="collapse" id="collapseExample">
-                    <form method="GET">
-                        {{ myFilter.form|crispy }}
-                        <button class="btn" type="submit">go</button>
-                        <a href="{% url 'books' %}">reset search</a>
-                    </form>
-                </div>
+            <hr>
+        </div>
+        <div class="books-search__collapse">
+            <div class="collapse" id="collapseExample">
+                <form method="GET">
+                    {{ myFilter.form|crispy }}
+                    <button class="btn" type="submit">go</button>
+                    <a href="{% url 'books' %}">reset search</a>
+                </form>
             </div>
         </div>
-           
-    
-        
-        
-
-        
-        <div>
+    </div>
+    <div class="">
+        {% for book in books %}
+            {% include 'includes/book-result.html' %}
             
-
-        
-            <div class="">
-                
-                    {% for book in books %}
-                        {% include 'includes/book-result.html' %}
-                       
-                        {% if forloop.counter|divisibleby:1 %}
-                            <div class="col-12 d-sm-none mb-5">
-                                <hr>
-                            </div>
-                        {% endif %}                        
-                        {% if forloop.counter|divisibleby:2 %}
-                            <div class="col-12 d-none d-sm-block d-md-block d-lg-none mb-5">
-                                <hr>
-                            </div>
-                        {% endif %}
-                        {% if forloop.counter|divisibleby:3 %}
-                            <div class="col-12 d-none d-lg-block d-xl-none mb-5">
-                                <hr>
-                            </div>
-                        {% endif %}
-                        {% if forloop.counter|divisibleby:4 %}
-                            <div class="col-12 d-none d-xl-block mb-5">
-                                <hr>
-                            </div>
-                        {% endif %}
-                    {% endfor %}
+            {% if forloop.counter|divisibleby:1 %}
+                <div class="col-12 d-sm-none mb-5">
+                    <hr>
                 </div>
-            </div>
-        </div>
-    </main>
-
-  {% endblock %}
+            {% endif %}                        
+            {% if forloop.counter|divisibleby:2 %}
+                <div class="col-12 d-none d-sm-block d-md-block d-lg-none mb-5">
+                    <hr>
+                </div>
+            {% endif %}
+            {% if forloop.counter|divisibleby:3 %}
+                <div class="col-12 d-none d-lg-block d-xl-none mb-5">
+                    <hr>
+                </div>
+            {% endif %}
+            {% if forloop.counter|divisibleby:4 %}
+                <div class="col-12 d-none d-xl-block mb-5">
+                    <hr>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</main>
+{% endblock %}

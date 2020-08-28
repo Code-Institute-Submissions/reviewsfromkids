@@ -5,68 +5,56 @@
     
 {% endblock %}
 
-<!-- show landing page if user is not logged in-->
-{% if not 'username' in session %} 
-  {% include 'landing-page.html' %}
+{% block hero %}
+  <div class="hero">
+    <h1>Find your next favorite book.</h1>
+    <i class="fas fa-thumbs-up fa-5x hero__icon"></i>
+    {% if user_logged_in %}
+      <a class="btn hero__btn" href="{% url 'book_finder_user' %}">start</a>
+    {% else %}
+      <a class="btn hero__btn" href="{% url 'book_finder' %}">start</a>
+    {% endif %}
+  </div>
+{% endblock %}
 
-<!-- show home page if user is logged in-->
-{% else %}
+{% block content %}
+  <main>
+    <section class="featured-books">
 
-  {% block hero %}
-    <div class="hero">
-      <h1>Find your next favorite book.</h1>
-      <i class="fas fa-thumbs-up fa-5x hero__icon"></i>
-      {% if user_logged_in %}
-        <a class="btn hero__btn" href="{% url 'book_finder_user' %}">start</a>
-      {% else %}
-        <a class="btn hero__btn" href="{% url 'book_finder' %}">start</a>
-      {% endif %}
-    </div>
-    
-  {% endblock %}
+      <h2 class="featured-books__header">Featured books</h2>
 
-  {% block content %}
-    <main>
-      
-
-        <section class="featured-books">
-
-          <h2 class="featured-books__header">Featured books</h2>
-  
-          <div class="scrolling-wrapper-flexbox">
-            {% for book in featured_books %}
-              {% include 'includes/book-card.html' %}
-            {% endfor %}
-          </div>
-  
-        </section>
-        
-        <section class="recent-books">
-  
-          <h2 class="recent-books__header">Recently added books</h2>
-  
-          <div class="scrolling-wrapper-flexbox">
-            {% for book in recent_books %}
-              {% include 'includes/book-card.html' %}
-            {% endfor %}
-          </div>
-          
-        </section>
-  
-      <div class="wrapper wrapper-home">
-        <section class="search-books">
-          <h2 class="search-books__header">Find the perfect book!</h2>
-          <p>You can look for a book yourself with help of our advanced search functions.</p>
-          <p>Or, you let other kids help you find the books that fit you!</p>
-          <p>The more you tell us about yourself, the better we can help you.</p>
-          {% if user_logged_in %}
-            <a class="btn hero__btn" href="{% url 'book_finder_user' %}">find my perfect books!</a>
-          {% else %}
-            <a class="btn hero__btn" href="{% url 'book_finder' %}">find my perfect books!</a>
-          {% endif %}
-        </section>
+      <div class="scrolling-wrapper-flexbox">
+        {% for book in featured_books %}
+          {% include 'includes/book-card.html' %}
+        {% endfor %}
       </div>
-    </main>
-  {% endblock %}
 
-{% endif %}
+    </section>
+    
+    <section class="recent-books">
+
+      <h2 class="recent-books__header">Recently added books</h2>
+
+      <div class="scrolling-wrapper-flexbox">
+        {% for book in recent_books %}
+          {% include 'includes/book-card.html' %}
+        {% endfor %}
+      </div>
+      
+    </section>
+
+    <div class="wrapper wrapper-home">
+      <section class="search-books">
+        <h2 class="search-books__header">Find the perfect book!</h2>
+        <p>You can look for a book yourself with help of our advanced search functions.</p>
+        <p>Or, you let other kids help you find the books that fit you!</p>
+        <p>The more you tell us about yourself, the better we can help you.</p>
+        {% if user_logged_in %}
+          <a class="btn hero__btn" href="{% url 'book_finder_user' %}">find my perfect books!</a>
+        {% else %}
+          <a class="btn hero__btn" href="{% url 'book_finder' %}">find my perfect books!</a>
+        {% endif %}
+      </section>
+    </div>
+  </main>
+{% endblock %}

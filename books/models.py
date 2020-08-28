@@ -17,7 +17,15 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
-GENDER_CHOICES = [
+GENDER_CHOICES_POSITIVE = [
+    ('not known yet', 'not known yet'),
+    ('girls', 'girls'),
+    ('boys', 'boys'),
+    ('all, this most be really good!', 'all, this most be really good!'),
+]
+
+GENDER_CHOICES_NEGATIVE = [
+    ('not known yet', 'not known yet'),
     ('girls', 'girls'),
     ('boys', 'boys'),
     ('all, this most be really bad...', 'all, this most be really bad...'),
@@ -42,8 +50,8 @@ class Book(models.Model):
     boys_number_of_ratings = models.IntegerField()
     girls_avg_rating = models.DecimalField(max_digits=2, decimal_places=1, default=0.0)
     girls_number_of_ratings = models.IntegerField()
-    most_liked_by = models.CharField(max_length=150, default='not known yet', choices=GENDER_CHOICES)
-    most_disliked_by = models.CharField(max_length=150, default='not known yet', choices=GENDER_CHOICES)
+    most_liked_by = models.CharField(max_length=150, default='not known yet', choices=GENDER_CHOICES_POSITIVE)
+    most_disliked_by = models.CharField(max_length=150, default='not known yet', choices=GENDER_CHOICES_NEGATIVE)
     recommended_age = models.CharField(max_length=254, default='not known yet')
     not_recommended_by_age = models.CharField(max_length=54, default='not known yet')
     star_rating_all = models.DecimalField(max_digits=2, decimal_places=1, default=0.0)

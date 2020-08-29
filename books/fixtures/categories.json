@@ -1,42 +1,42 @@
 [
     {"pk": 1, "model": "books.category", 
         "fields": {
-            "name": "Action & Adventure"
+            "name": "action & adventure"
             }
     }, 
     {"pk": 2, "model": "books.category",
          "fields": {
-             "name": "Animals & Nature"
+             "name": "animals & nature"
          }
     }, 
     {"pk": 3, "model": "books.category", 
         "fields": {
-            "name": "Fantasy & Magic"
+            "name": "fantasy & magic"
         }
     },
     {"pk": 4, "model": "books.category", 
         "fields": {
-            "name": "History"
+            "name": "history"
         }
     },
     {"pk": 5, "model": "books.category", 
         "fields": {
-            "name": "Sports"
+            "name": "sports"
         }
     },
     {"pk": 6, "model": "books.category", 
         "fields": {
-            "name": "Friendship"
+            "name": "friendship"
         }
     },
     {"pk": 7, "model": "books.category", 
         "fields": {
-            "name": "Humor"
+            "name": "humor"
         }
     },
     {"pk": 8, "model": "books.category", 
         "fields": {
-            "name": "Mystery & Detective"
+            "name": "mystery & detective"
         }
     }
 ]

@@ -50,87 +50,122 @@
                 </div>
                 <div class="rating-static-table__rating-2">({{ book.number_of_ratings }} ratings)</div>
               </div>
+              <p>54 kids say they want to read this book.</p>
               
-              
-              {% if no_ratings_info_at_all == True %}
-                <div>
-                  Kids have not completed their profile or nobody has rated this book yet. Did you read this book? Let others know if you like it or not! <a  data-toggle="pill" href="#menu3" class=btn>rate it</a>
-                </div>
-              {% else %}
-                <p>Let's help you to find out. Below you see what other kids who rated this book like.</p>
+                              
+              <div class="accordion" id="accordionExample">
 
-                <!-- Age, hobbies and sports of positive ratings -->
-                <h5>Kids who <span class="emphasis1">like</span> this book</h5>
-                {% if avg_age_positive_ratings == None and not hobbies_positive_ratings and not sports_positive_ratings %}
-                  No information available yet.
-                {% else %}
-                  {% if avg_age_positive_ratings == None %}
-                  {% else %}
-                    Have an average age of {{ avg_age_positive_ratings }}
-                  {% endif %}
-                  {% if hobbies_positive_ratings %}
-                  Have these hobbies:
-                    {% for i in hobbies_positive_ratings %}
-                      {{ i.name }} ({{ i.name__count }} kids)
-                    {% endfor %}
-                  {% else %}
-                  {% endif %}
-                  {% if sports_positive_ratings %}
-                    Do these sports:
-                    {% for i in sports_positive_ratings %}
-                      {{ i.name }} ({{ i.name__count }} kids)
-                    {% endfor %}
-                  {% else %}
-                  {% endif %}
-                {% endif %}
-                
-                <!-- Age, hobbies and sports of negative ratings -->
-                <h5>Kids who <span class="emphasis1">don't like</span> this book</h5>
-                {% if avg_age_negative_ratings == None and not hobbies_negative_ratings and not sports_negative_ratings %}
-                  No information available yet. This must be a good book :)
-                {% else %}
-                  {% if avg_age_negative_ratings == None %}
-                  {% else %}
-                    Have an age of {{ avg_age_negative_ratings }}
-                  {% endif %}
-                  {% if hobbies_negative_ratings %}
-                  Have these hobbies:
-                    {% for i in hobbies_negative_ratings %}
-                      {{ i.name }} ({{ i.name__count }} kids)
-                    {% endfor %}
-                  {% else %}
-                  {% endif %}
-                  {% if sports_negative_ratings %}
-                    Do these sports:
-                    {% for i in sports_negative_ratings %}
-                      {{ i.name }} ({{ i.name__count }} kids)
-                    {% endfor %}
-                  {% else %}
-                  {% endif %}
-                {% endif %}
-              {% endif %}
-              <!-- Add to favorites-->
-              {% if favorite %}
-                <h4>This book is in your favorites. You want to read it!</h4>
-                <form method="POST">
-                  {% csrf_token %}
-                  <input type="hidden" value="remove_fav" name="type_of_action">
-                  <button class="iconify" value="submit"><i class="book-details__title-bar-icon fa fa-heart" aria-hidden="true"></i></button>
-                </form>
-              {% else %}  
-                <h4>Add to your want to read list</h4>
-                {% if user_logged_in %}
-                  <form method="POST">
-                    {% csrf_token %}
-                    <input type="hidden" value="add_fav" name="type_of_action">
-                    <button class="iconify" value="submit"><i class="book-details__title-bar-icon far fa-heart" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Tooltip on top"></i></button>
-                  </form>
-                {% else %}
-                  Please log in to add to your list.
-                {% endif %}
-              {% endif %}
-              <div class="book-details__title-bar">
-          
+                <div class="card">
+
+                  <div class="card-header" id="headingOne">
+                    <h4 class="mb-0">
+                      <div class="btn-block text-left" type="button" data-toggle="collapse" data-target="#kidsLike" aria-expanded="true" aria-controls="collapseOne">
+                        Kids who <span class="emphasis1">like</span> this book
+                      </div>
+                    </h4>
+                  </div>
+                  <div id="kidsLike" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body">
+                      {% if avg_age_positive_ratings == None and not hobbies_positive_ratings and not sports_positive_ratings %}
+                        <p>No information available yet.</p>
+                      {% else %}
+                        {% if avg_age_positive_ratings == None %}
+                        {% else %}
+                          Have an average age of {{ avg_age_positive_ratings }}
+                        {% endif %}
+  
+                        {% if hobbies_positive_ratings %}
+                          Have these hobbies:
+                            {% for i in hobbies_positive_ratings %}
+                              {{ i.name }} ({{ i.name__count }} kids)
+                            {% endfor %}
+                        {% else %}
+                        {% endif %}
+  
+                        {% if sports_positive_ratings %}
+                          Do these sports:
+                            {% for i in sports_positive_ratings %}
+                              {{ i.name }} ({{ i.name__count }} kids)
+                            {% endfor %}
+                        {% else %}
+                        {% endif %}
+                      {% endif %}
+                    </div> 
+                  </div>
+
+                  <div class="card-header" id="headingTwo">
+                    <h4 class="mb-0">
+                      <div class="btn-block text-left" type="button" data-toggle="collapse" data-target="#kidsDislike" aria-expanded="true" aria-controls="collapseOne">
+                        Kids who <span class="emphasis1">don't like</span> this book
+                      </div>
+                    </h4>
+                  </div>
+                  <div id="kidsDislike" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                    <div class="card-body">
+                      <!-- Age, hobbies and sports of negative ratings -->       
+                      {% if avg_age_negative_ratings == None and not hobbies_negative_ratings and not sports_negative_ratings %}
+                        No negative opinions! This must be a good book :)
+                      {% else %}
+                        {% if avg_age_negative_ratings == None %}
+                        {% else %}
+                          Have an age of {{ avg_age_negative_ratings }}
+                        {% endif %}
+                      
+                        {% if hobbies_negative_ratings %}
+                          Have these hobbies:
+                          {% for i in hobbies_negative_ratings %}
+                            {{ i.name }} ({{ i.name__count }} kids)
+                          {% endfor %}
+                        {% else %}
+                        {% endif %}
+                      
+                        {% if sports_negative_ratings %}
+                          Do these sports:
+                          {% for i in sports_negative_ratings %}
+                            {{ i.name }} ({{ i.name__count }} kids)
+                          {% endfor %}
+                        {% else %}
+                        {% endif %}
+                      {% endif %}
+                      
+                    </div> 
+                  </div>
+
+                  <div class="card-header" id="headingThree">
+                    <h4 class="mb-0">
+                      <div class="btn-block text-left" type="button" data-toggle="collapse" data-target="#onYourList" aria-expanded="true" aria-controls="collapseOne">
+                        {% if favorite %}This book is on <span class="emphasis1">your</span> list{% else %}Do <span class="emphasis1">you</span> want to read this book?{% endif %}
+                      </div>
+                    </h4>
+                  </div>
+                  <div id="onYourList" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                    <div class="card-body book-details__favorites">
+                      <!-- Add to favorites-->
+                    {% if favorite %}
+                      <form method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" value="remove_fav" name="type_of_action">
+                        <button class="iconify" value="submit"><i class="book-details__icon--fav fas fa-heart fa-3x" aria-hidden="true"></i></button>
+                      </form>
+                      <p>You have this book on your 'want to read list'</p>
+                    {% else %}
+                      {% if user_logged_in %}
+                        <form method="POST">
+                          {% csrf_token %}
+                          <input type="hidden" value="add_fav" name="type_of_action">
+                          <button class="iconify" value="submit"><i class="book-details__icon--not-fav fas fa-heart fa-3x" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Tooltip on top"></i></button>
+                        </form>
+                        <p>Do you want to read this book (someday)? Add it to your list!</p>
+                      {% else %}
+                        <i class="book-details__icon--not-fav fas fa-heart fa-3x" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Tooltip on top"></i>
+                        <p>Please log in to add to your list.</p>
+                      {% endif %}
+                    {% endif %}
+                    </div> 
+                  </div>
+
+                </div>
+
               </div>
             </div>
           </div>
@@ -237,12 +272,9 @@
 {% endblock %}
 {% block postloadjs %}
 <!-- <script>
-$(function () {
-  $('input[name="ratingOptions"]').on('change',function(){
-    $('form').submit();
-    console.log('rating selected');
-  });
-});
+  $('#kidsLike').collapse({
+    toggle: true
+  })
 </script> -->
 
 {% endblock %}

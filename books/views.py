@@ -29,7 +29,19 @@ def all_books(request):
     not_recommended_by_age_girls = None
     # most_liked_by = None
     # most_disliked_by = None
+    user = request.user
+    userprofile = None
+    user_favorites_id = None
 
+    if user.is_authenticated:
+        userprofile = get_object_or_404(UserProfile, user=request.user)
+        user_favorites_id = []
+        # user_favorites_id = userprofile.favorites.values("id")
+        a =  userprofile.favorites.values("id")
+        for id in a:
+            user_favorites_id.append(id["id"])
+
+    # Search
     myFilter = BookFilter(request.GET, queryset=books)
     books = myFilter.qs
     
@@ -83,6 +95,8 @@ def all_books(request):
         'rating': rating,
         'search_performed': search_performed,
         'noresults': noresults,
+        'userprofile': userprofile,
+        'user_favorites_id': user_favorites_id,
 
     }
 

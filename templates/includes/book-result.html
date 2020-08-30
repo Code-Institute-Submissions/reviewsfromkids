@@ -59,24 +59,28 @@
         </div>
 
         <div class="book-result__content-area--row6">
-            <span class="tag tag--category book-result__content-area--row6--tag">
+            <span class="book-result__content-area--row6--tag">
                 <form method="GET" action="{% url 'books' %}">
                     <input type="hidden" value="cat-search" name="type_of_action"/>
                     <input type="hidden" value="{{ book.category.id }}" name="category"/>
                     <button class="tag tag--category tag--category--link">{{ book.category }}</button>
                 </form>
             </span>
-            {% for tag in book.tags.all %}
-                {% if forloop.counter < 4 %}
-                    <span class="tag tag--tag book-result__content-area--row6--tag">
-                        <form method="GET" action="{% url 'books' %}">
-                            <input type="hidden" value="tag-search" name="type_of_action"/>
-                            <input type="hidden" value="{{ tag }}" name="tags"/>
-                            <button class="tag tag--tag tag--tag--link">{{ tag }}</button>
-                          </form> 
-                    </span>
-                {% endif %}
-            {% endfor %}
+        </div>
+        <div class="book-result__content-area--row7">
+            
+            <span class="book-result__content-area--row7--tag">
+                {% for tag in book.tags.all %}
+                    {% if forloop.counter < 4 %}
+                    <form method="GET" action="{% url 'books' %}">
+                        <input type="hidden" value="tag-search" name="type_of_action"/>
+                        <input type="hidden" value="{{ tag }}" name="tags"/>
+                        <button class="tag tag--tag tag--tag--link">{{ tag }}</button>
+                    </form> 
+                    {% endif %}
+                {% endfor %}
+            </span>
+                
         </div>
     </div>
 </div>

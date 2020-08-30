@@ -161,20 +161,27 @@
             </div>
             <div id="menu4" class="tab-pane fade">
                 <section class="profile__hobbysport">
+
                     <div class="profile__title">
                         <h3>Want to read</h3>
                     </div>
-                    <p>Your want to read list:</p>
-                    
+
+                    {% if favorites %}
+                        <p>Your want to read list:</p>
                         {% for book in favorites %}
-                          {% include 'includes/book-result.html' %}
-                          <div class="col-12 d-sm-none mb-5">
-                            <hr>
-                        </div>
+
+                            {% include 'includes/book-result.html' %}
+
+                            <div class="col-12 d-sm-none mb-5">
+                                <hr>
+                            </div>
+
                         {% endfor %}
-                    
-                    
-                    
+                    {% else %}
+                        <p>You have no books on your list. Don't you like reading? :)</p>
+                        <p>You can find books that fit you in the <a href="{% url 'book_finder_user' %}">book finder</a>.
+                    {% endif %}
+
                 </section>  
             </div>
         </div>

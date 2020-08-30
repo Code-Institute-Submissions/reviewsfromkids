@@ -20,7 +20,7 @@ class UserProfile(models.Model):
     first_name = models.CharField(max_length=254, null=True, blank=True)
     last_name = models.CharField(max_length=254, null=True, blank=True)
     gender = models.CharField(max_length=25, choices=GENDER_CHOICES, null=True)
-    date_of_birth = models.DateField(null=True, blank=True, default=None)
+    date_of_birth = models.DateField(null=True, blank=True, default=None, help_text="Format is year-month-day, e.g. 2010-12-26")
     hobbies = models.ManyToManyField('Hobby', blank=True)
     sports = models.ManyToManyField('Sport', blank=True)
     favorites = models.ManyToManyField('books.Book', blank=True)

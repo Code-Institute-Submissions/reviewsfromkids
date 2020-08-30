@@ -28,12 +28,13 @@
   </div>
 {% endblock %}
 
+{% load crispy_forms_tags %}
 {% block content %}
   <main id="main">
     And now for sports! Are you active, sport?
     <form class="profile__hobbysport--edit" method="POST">
       {% csrf_token %}
-      {{ form_sport.as_p }}
+      {{ form_sport|crispy }}
       <input class="btn" type='submit' value='Save' />
     </form>
   </main>

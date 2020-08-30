@@ -4,6 +4,7 @@
 
 {% endblock %}
 
+{% load crispy_forms_tags %}
 {% block content %}
 <br>
 <br><br>
@@ -11,7 +12,7 @@
 
     <form class="profile__hobbysport--edit" method="POST">
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ form|crispy }}
         <input class="btn" type='submit' value='Save' />
     </form>
 {% endblock %}

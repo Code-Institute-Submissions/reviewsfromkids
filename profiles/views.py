@@ -16,11 +16,11 @@ def profile(request):
     hobby=Hobby.objects.all()
     sport=Sport.objects.all()
     user = get_object_or_404(User, username=request.user)
-
     profile = get_object_or_404(UserProfile, user=request.user)
     user_hobby = profile.hobbies.all().order_by('name')
     user_sport = profile.sports.all().order_by('name')
     favorites = profile.favorites.all()
+    user_favorites_id = None
 
     a = Rating.objects.filter(rated_by=profile, rating__gte=4)
     b = a.values('book_id_id')
@@ -33,6 +33,13 @@ def profile(request):
     e = Rating.objects.filter(rated_by=profile, rating__lte=2)
     f = e.values('book_id_id')
     ratings_low = Book.objects.filter(pk__in=f)
+
+    if user.is_authenticated:
+        userprofile = get_object_or_404(UserProfile, user=request.user)
+        user_favorites_id = []
+        a =  userprofile.favorites.values("id")
+        for id in a:
+            user_favorites_id.append(id["id"])
     
     template = 'profiles/profile.html'
 
@@ -47,7 +54,7 @@ def profile(request):
         'ratings_low': ratings_low,
         'ratings_ok': ratings_ok,
         'favorites': favorites,
-        # 'no_ratings': no_ratings,
+        'user_favorites_id': user_favorites_id,
         }
 
     return render(request, template, context)

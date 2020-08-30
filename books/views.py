@@ -44,7 +44,6 @@ def all_books(request):
     if user.is_authenticated:
         userprofile = get_object_or_404(UserProfile, user=request.user)
         user_favorites_id = []
-        # user_favorites_id = userprofile.favorites.values("id")
         a =  userprofile.favorites.values("id")
         for id in a:
             user_favorites_id.append(id["id"])

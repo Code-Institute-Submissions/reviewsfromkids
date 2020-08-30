@@ -28,12 +28,13 @@
   </div>
 {% endblock %}
 
+{% load crispy_forms_tags %}
 {% block content %}
   <main id="main">
     Please complete or update the following fields:
     <form method="POST" >
       {% csrf_token %}
-      {{ form.as_p }}
+      {{ form|crispy }}
       <input class="btn" type='submit' value='next' />
     </form>
 

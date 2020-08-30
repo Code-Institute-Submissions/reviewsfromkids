@@ -3,11 +3,11 @@
     <div class="book-card__reveal">
         <div class="book-card__reveal--row1">
             <div class="hard-coded-stars">
-                    {% include 'includes/star-rating-hard-coded.html' %}
-                <div class="rating-static-table__rating-2">
-                    <small class="text-muted">({{ book.number_of_ratings }} ratings)</small>
-                </div>
+                {% include 'includes/star-rating-hard-coded.html' %}
             </div>
+            <div class="rating-static-table__rating-2">
+                <small class="text-muted">({{ book.number_of_ratings }} ratings)</small>
+            </div>  
         </div>
         <div class="book-card__reveal--row2">
             {% if book.recommended_age == "not known yet" or book.recommended_age == "not available" %}
@@ -24,10 +24,10 @@
             {% endif %}
         </div>
         <div class="book-card__reveal--row4">
-            <span class="badge badge-primary book-card__reveal--row4--tag">{{ book.category }} </span>
+            <span class="tag tag--category book-card__reveal--row4--tag">{{ book.category }} </span>
             {% for tag in book.tags.all %}
-                {% if forloop.counter < 4 %}
-                    <span class="badge badge-info book-card__reveal--row4--tag">{{ tag }} </span>
+                {% if forloop.counter < 3 %}
+                    <span class="tag tag--tag book-card__reveal--row4--tag">{{ tag }}</span>
                 {% endif %}
             {% endfor %}
         </div>

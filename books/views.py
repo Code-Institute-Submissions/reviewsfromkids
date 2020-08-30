@@ -32,6 +32,14 @@ def all_books(request):
     user = request.user
     userprofile = None
     user_favorites_id = None
+    title__icontains = None
+    author__icontains = None
+    category = None
+    most_liked_by = None
+    recommended_age__icontains = None
+    rating = None
+    search_performed = None
+    
 
     if user.is_authenticated:
         userprofile = get_object_or_404(UserProfile, user=request.user)
@@ -50,22 +58,38 @@ def all_books(request):
     # Grab search results to show context in template
     if request.GET:
         
-        title__icontains = request.GET['title__icontains']
-        author__icontains = request.GET['author__icontains']
-        category = request.GET['category']
-        most_liked_by = request.GET['most_liked_by']
-        recommended_age__icontains = request.GET['recommended_age__icontains']
-        rating = request.GET['rating']
+        if request.GET.get('type_of_action')=='tag-search':
+
+            query = request.GET['tags']
+            books = books.filter(tags__name__icontains=query).distinct()
+            myFilter = BookFilter(request.GET, queryset=books)
+            books = myFilter.qs
+
+        elif request.GET.get('type_of_action')=='cat-search':
+
+            query = request.GET['category']
+            books = books.filter(category=query).distinct()
+            myFilter = BookFilter(request.GET, queryset=books)
+            books = myFilter.qs
         
-        if not title__icontains and not author__icontains and not category and not most_liked_by and not recommended_age__icontains and not rating:
-            search_performed = False
         else:
-            search_performed = True
 
-        if numresults == 0:
-            noresults = True
+            title__icontains = request.GET['title__icontains']
+            author__icontains = request.GET['author__icontains']
+            category = request.GET['category']
+            most_liked_by = request.GET['most_liked_by']
+            recommended_age__icontains = request.GET['recommended_age__icontains']
+            rating = request.GET['rating']
+            
+            if not title__icontains and not author__icontains and not category and not most_liked_by and not recommended_age__icontains and not rating:
+                search_performed = False
+            else:
+                search_performed = True
 
+            if numresults == 0:
+                noresults = True
 
+    # When no search query: just render all books.
     else:
 
         title__icontains = None

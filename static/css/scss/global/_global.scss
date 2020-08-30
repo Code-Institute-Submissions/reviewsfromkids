@@ -32,16 +32,47 @@ html, body {
 
 .tag {
 
-    color: #70AD47;
-    background-color: white;
-    border: solid 1px #70AD47;
-    border-radius: 4px;
     
-    &:hover {
-        color:  white;
-        background-color: #70AD47;
-        border: solid 1px  white;
+    border: solid 1px $mainTeal;
+    border-radius: 4px;
+    display: inline-block;
+    padding: 0 0.5rem;
+
+    &--category {
+
+        color: #fff;
+        background-color: $mainTeal;
+
+        &--link {
+
+            &:hover {
+                
+                color: $mainTeal;
+                background-color: #fff;
+            
+            }
+        }
     }
+
+    &--tag {
+        
+        color: $mainTeal;
+        background-color: white;
+        margin-bottom: 0.5rem;
+
+        &--link {
+
+            &:hover {
+
+                color:  white;
+                background-color: $mainTeal;
+                border: solid 1px  white;
+
+            }
+        } 
+    }
+    
+    
 }
 
 .text-divider {

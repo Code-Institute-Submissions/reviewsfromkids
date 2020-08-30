@@ -284,6 +284,7 @@
 }
 .book-card__reveal--row4 {
   grid-row: 4;
+  font-size: 75%;
 }
 .book-card__reveal--row4--tag {
   margin: 0.3rem 0.3rem 0.3rem 0;
@@ -338,14 +339,27 @@ html, body {
 }
 
 .tag {
-  color: #70AD47;
-  background-color: white;
-  border: solid 1px #70AD47;
+  border: solid 1px #25b8c0;
   border-radius: 4px;
+  display: inline-block;
+  padding: 0 0.5rem;
 }
-.tag:hover {
+.tag--category {
+  color: #fff;
+  background-color: #25b8c0;
+}
+.tag--category--link:hover {
+  color: #25b8c0;
+  background-color: #fff;
+}
+.tag--tag {
+  color: #25b8c0;
+  background-color: white;
+  margin-bottom: 0.5rem;
+}
+.tag--tag--link:hover {
   color: white;
-  background-color: #70AD47;
+  background-color: #25b8c0;
   border: solid 1px white;
 }
 
@@ -568,6 +582,14 @@ html, body {
 }
 .book-details__section__category, .book-details__section__tags {
   margin-bottom: 1rem;
+}
+.book-details__section__tags {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 1rem;
+}
+.book-details__section__tags--col form {
+  display: inline-block;
 }
 .book-details__quick-facts {
   display: grid;
@@ -822,6 +844,7 @@ h2.book-details__title {
 }
 .book-result__content-area--row6 {
   justify-self: start;
+  font-size: 75%;
 }
 .book-result__content-area--row6--tag {
   margin: 0.3rem 0.3rem 0.3rem 0;

@@ -71,6 +71,22 @@
             margin-bottom: 1rem;
         }
 
+        &__tags {
+
+            display: grid;
+            grid-template-columns: auto 1fr;
+            column-gap: 1rem;
+
+            &--col {
+
+                form {
+
+                    display: inline-block;
+                }
+            }
+            
+        }
+
     }
 
     &__quick-facts {

@@ -177,12 +177,26 @@
                 {{ book.description }}
               </p>                
               <div class="book-details__section__category">
-              Category: <span class="badge badge-primary">{{ book.category }}</span>
+                <p>Category:</p>
+                <div class="book-details__section__category--col">
+                  <form class="book-details__section__category--col--item" method="GET" action="{% url 'books' %}">
+                    <input type="hidden" value="cat-search" name="type_of_action"/>
+                    <input type="hidden" value="{{ book.category.id }}" name="category"/>
+                    <button class="tag tag--category tag--category--link">{{ book.category }}</button>
+                  </form>
+                </div>
               </div>
               <div class="book-details__section__tags">
-              Tags:  {% for tag in book.tags.all %}
-                  <span class="badge badge-info">{{ tag }}</span>
-                {% endfor %}
+              <p>Tags:</p>
+                <div class="book-details__section__tags--col">
+                  {% for tag in book.tags.all %}
+                  <form class="book-details__section__tags--col--item" method="GET" action="{% url 'books' %}">
+                    <input type="hidden" value="tag-search" name="type_of_action"/>
+                    <input type="hidden" value="{{ tag }}" name="tags"/>
+                    <button class="tag tag--tag tag--tag--link">{{ tag }}</button>
+                  </form>
+                  {% endfor %}
+                </div>
               </div>
             </div>  
           </div>

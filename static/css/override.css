@@ -957,4 +957,47 @@ h2.book-details__title {
   margin-top: 1rem;
 }
 
+.site-footer {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  font-weight: 300;
+  font-size: 0.8rem;
+  line-height: 1.2rem;
+  /* border-bottom: 10px solid $mainTurq; */
+}
+.site-footer__social ul {
+  text-align: center;
+  padding: 0;
+  font-size: 1rem;
+  padding-bottom: 2rem;
+}
+.site-footer a {
+  color: #fff;
+  text-decoration: none;
+}
+.site-footer a:hover {
+  color: #ff8d1a;
+}
+.site-footer__nav ul {
+  text-align: center;
+  list-style: none;
+  padding: 0;
+}
+.site-footer li {
+  display: inline;
+  padding: 0 10px;
+}
+.site-footer__newsletter {
+  text-align: center;
+  font-size: 1rem;
+}
+.site-footer__copyright {
+  text-align: center;
+  font-size: 0.6rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
 /*# sourceMappingURL=override.css.map */

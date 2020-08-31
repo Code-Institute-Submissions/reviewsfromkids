@@ -22,6 +22,16 @@ html, body {
 
 }
 
+.btn-link {
+    border: none;
+    background-color: initial;
+
+    &--red {
+        color: red;
+    }
+
+}
+
 .iconify {
 
     background: none;

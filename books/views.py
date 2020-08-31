@@ -197,7 +197,7 @@ def book_detail(request, book_id):
             allowed_to_rate = False
         else:
             allowed_to_rate = True
-
+    
     # Check if user has rated before
     ratings_for_this_book = Rating.objects.filter(book_id=current_book)
 

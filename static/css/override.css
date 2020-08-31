@@ -391,6 +391,14 @@ html, body {
   border: none;
 }
 
+.btn-link {
+  border: none;
+  background-color: initial;
+}
+.btn-link--red {
+  color: red;
+}
+
 .iconify {
   background: none;
   border: none;
@@ -599,19 +607,8 @@ html, body {
   padding-top: 0rem;
 }
 
-.test-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  width: 80%;
-  margin: 0 auto;
-  grid-gap: 2rem;
-}
-.test-grid .key {
-  grid-column: 1;
-  justify-self: end;
-}
-.test-grid .value {
-  grid-column: 2;
+.container {
+  padding: 0 0.5rem;
 }
 
 .book-details {
@@ -648,21 +645,55 @@ html, body {
   border: none;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
 }
+.book-details .kidslike__genderage, .book-details .kidsdislike__genderage {
+  display: grid;
+  grid-template-columns: 30% 1fr;
+}
+.book-details .kidslike__genderage--right, .book-details .kidsdislike__genderage--right {
+  padding-left: 1rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.book-details .kidslike__hobbysport, .book-details .kidsdislike__hobbysport {
+  display: grid;
+  grid-template-columns: 30% 1fr;
+}
+.book-details .kidslike__hobbysport--left, .book-details .kidsdislike__hobbysport--left {
+  grid-column: 1;
+}
+.book-details .kidslike__hobbysport--right, .book-details .kidsdislike__hobbysport--right {
+  padding-left: 1rem;
+  grid-column: 2;
+}
+.book-details__section__description {
+  font-size: 1.2rem;
+  margin-bottom: 2.4rem;
+}
 .book-details__section__category, .book-details__section__tags {
   margin-bottom: 1rem;
-}
-.book-details__section__category {
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: 20% 1fr;
   column-gap: 0.5rem;
 }
-.book-details__section__tags {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  column-gap: 0.5rem;
-}
-.book-details__section__tags--col form {
+.book-details__section__category--col form, .book-details__section__tags--col form {
   display: inline-block;
+}
+.book-details__section__rating form {
+  display: grid;
+  grid-template-columns: 50% auto;
+}
+.book-details__section__rating form button {
+  width: 115px;
+}
+.book-details__section__rating--stars {
+  justify-self: start;
+}
+.book-details__section__rating p {
+  font-size: 1.2rem;
+}
+.book-details__section__rating--btn {
+  grid-column: 2;
+  margin-top: -0.6rem;
 }
 .book-details__quick-facts {
   display: grid;

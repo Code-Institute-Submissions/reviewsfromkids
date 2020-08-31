@@ -1,18 +1,23 @@
-.test-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    width: 80%;
-    margin: 0 auto;
-    grid-gap: 2rem;
+// .test-grid {
+//     display: grid;
+//     grid-template-columns: 1fr 1fr;
+//     width: 80%;
+//     margin: 0 auto;
+//     grid-gap: 2rem;
 
-    .key {
-        grid-column: 1;
-        justify-self: end;
-    }
+//     .key {
+//         grid-column: 1;
+//         justify-self: end;
+//     }
 
-    .value {
-        grid-column: 2;
-    }
+//     .value {
+//         grid-column: 2;
+//     }
+// }
+
+.container {
+
+    padding: 0 0.5rem;
 }
 
 .book-details {
@@ -64,24 +69,55 @@
 
     }
 
+    .kidslike, .kidsdislike {
+
+        &__genderage {
+
+            display: grid;
+            grid-template-columns: 30% 1fr;
+
+            &--right {
+                padding-left: 1rem;
+                font-size: 1.5rem;
+                font-weight: 700;
+            }
+        }
+
+        &__hobbysport {
+
+            display: grid;
+            grid-template-columns: 30% 1fr;
+
+            &--left {
+
+                grid-column: 1;
+            }
+
+            &--right {
+                
+                // grid-row: 2;
+                // justify-items: start;
+                padding-left: 1rem;
+                // margin-bottom: 0.5rem;
+                grid-column: 2;
+                
+            }
+        }
+    }
+
     &__section {
+
+        &__description {
+
+            font-size: 1.2rem;
+            margin-bottom: 2.4rem;
+        }
 
         &__category, &__tags {
 
             margin-bottom: 1rem;
-        }
-
-        &__category {
-
             display: grid;
-            grid-template-columns: auto 1fr;
-            column-gap: 0.5rem;
-        }
-
-        &__tags {
-
-            display: grid;
-            grid-template-columns: auto 1fr;
+            grid-template-columns: 20% 1fr;
             column-gap: 0.5rem;
 
             &--col {
@@ -90,6 +126,37 @@
 
                     display: inline-block;
                 }
+            }
+        }
+
+        &__rating {
+
+            form {
+
+                display: grid;
+                grid-template-columns: 50% auto;
+    
+                button {
+    
+                    width: 115px;
+                }
+    
+            }
+
+            &--stars {
+
+                justify-self: start;
+            }
+
+            p {
+
+                font-size: 1.2rem;
+            }
+
+            &--btn {
+
+                grid-column: 2;
+                margin-top: - 0.6rem;
             }
             
         }

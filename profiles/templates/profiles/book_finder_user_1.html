@@ -6,39 +6,46 @@
 
 
 {% block hero %}
-  <div class="hero profile">
+  <div class="hero__bookfinder">
     {% if dobgender_available %}
       <!-- If age and gender-->
-      <h3>Alright {% if profile.first_name%}{{ profile.first_name }}{% else %}{{ profile.user }}{% endif %}, </h3>
-      <h4>let's look for books that other {% if profile.gender == 'BOY' %}boys{% elif profile.gender == 'GIRL' %}girls{% elif profile.gender == 'UNKNOWN' %}kids{% endif %} of your age like.</h4>
-      <i class="fas fa-search fa-5x hero__icon"></i>
+      <h3 class="hero__bookfinder--row1">Alright {% if profile.first_name%}{{ profile.first_name }}{% else %}{{ profile.user }}{% endif %}, </h3>
+      <i class="fas fa-search fa-5x hero__bookfinder--row2"></i>
+      <h4 class="hero__bookfinder--row3">let's look for books that other {% if profile.gender == 'BOY' %}boys{% elif profile.gender == 'GIRL' %}girls{% elif profile.gender == 'UNKNOWN' %}kids{% endif %} of your age like.</h4>
+      
     {% elif onlygender_available %}
       <!-- If only gender -->
-      <h3>Alright {% if profile.first_name%}{{ profile.first_name }}{% else %}{{ profile.user }}{% endif %}, </h3>
-      <h4>let's look for books that other {% if profile.gender == 'BOY' %}boys{% elif profile.gender == 'GIRL' %}girls{% elif profile.gender == 'UNKNOWN' %}kids{% endif %} like.</h4>
+      <h3 class="hero__bookfinder--row1">Alright {% if profile.first_name%}{{ profile.first_name }}{% else %}{{ profile.user }}{% endif %}, </h3>
+      <i class="fas fa-search fa-5x hero__bookfinder--row2"></i>
+      <h4 class="hero__bookfinder--row3">let's look for books that other {% if profile.gender == 'BOY' %}boys{% elif profile.gender == 'GIRL' %}girls{% elif profile.gender == 'UNKNOWN' %}kids{% endif %} like.</h4>
     {% elif onlydob_available %}
       <!-- If only age -->
-      <h3>Alright Mr. or Mrs. {% if profile.first_name%}{{ profile.first_name }}{% else %}{{ profile.user }}{% endif %}, </h3>
-      <h4>let's look for books that other kids of your age like.</h4>
+      <h3 class="hero__bookfinder--row1">Alright Mr. or Mrs. {% if profile.first_name%}{{ profile.first_name }}{% else %}{{ profile.user }}{% endif %}, </h3>
+      <i class="fas fa-search fa-5x hero__bookfinder--row2"></i>
+      <h4 class="hero__bookfinder--row3">let's look for books that other kids of your age like.</h4>
     {% else %}
       <!-- If only user -->
-      <h3>Alright Mr. or Mrs. {% if profile.first_name%}{{ profile.first_name }}{% else %}{{ profile.user }}{% endif %}, </h3>
-      <h4>let's look for books that other kids like.</h4>
+      <h3 class="hero__bookfinder--row1">Alright Mr. or Mrs. {% if profile.first_name%}{{ profile.first_name }}{% else %}{{ profile.user }}{% endif %}, </h3>
+      <i class="fas fa-search fa-5x hero__bookfinder--row2"></i>
+      <h4 class="hero__bookfinder--row3">let's look for books that other kids like.</h4>
     {% endif %}
+    <div class="hero__bookfinder--row4">
+      Step 1/3
+    </div>
   </div>
 {% endblock %}
 
 {% load crispy_forms_tags %}
 {% block content %}
-  <main id="main">
-    Please complete or update the following fields:
-    <form method="POST" >
-      {% csrf_token %}
-      {{ form|crispy }}
-      <input class="btn" type='submit' value='next' />
-    </form>
-
-    
-    
-  </main>
+  <div class="form-wrapper">
+    <main>
+      Please complete or update the following fields:
+      <form method="POST" >
+        {% csrf_token %}
+        {{ form|crispy }}
+        <input class="btn bookfinder__btn" type='submit' value='next' />
+        <a href="{% url 'book_finder_user' %}" class="bookfinder__back">back</a>
+      </form>  
+    </main>
+  </div>
 {% endblock %}

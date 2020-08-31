@@ -1,26 +1,31 @@
 {% extends "base.html" %}
 {% load static %}
 {% block hero %}
-<div class="hero profile">
-    <h3>
-        {% if profile.first_name %}
-            Hello {{ profile.first_name }}!
+    <div class="hero hero__profile">
+        <h3>
+            {% if profile.first_name %}
+                Hello {{ profile.first_name }}!
+            {% else %}
+                Hello anonymous!
+            {% endif %}
+        </h3>
+        {% if profile.profile_complete == 'lvl-3' %}
+            
         {% else %}
-            Hello anonymous!
+            <p>This is your personal profile page. In here you can tell as much (or as little) about yourself as you want.</p>
+            <p>The more you tell, the better the recommendations for a book will be!</p>
         {% endif %}
-    </h3>
-    <p>This is your personal profile page. In here you can tell as much (or as little) about yourself as you want.</p>
-    <p>The more you tell, the better the recommendations for a book will be!</p>
-    {% if profile.profile_complete == "lvl-0" %}
-        Profile at<span class="emphasis-orange">0%</span>
-    {% elif profile.profile_complete == "lvl-1" %}
-        Profile at <span class="emphasis-orange">50%</span> Way to go!
-    {% elif profile.profile_complete == "lvl-2" %}
-        Profile at <span class="emphasis-orange">75%</span> Almost there!
-    {% elif profile.profile_complete == "lvl-3" %}
-        Your profile is <span class="emphasis-orange">100%</span> complete! You are the best!
-    {% endif %}
-</div>
+        
+        {% if profile.profile_complete == "lvl-0" %}
+            Profile at<span class="emphasis-orange">0%</span>
+        {% elif profile.profile_complete == "lvl-1" %}
+            Profile at <span class="emphasis-orange">50%</span> Way to go!
+        {% elif profile.profile_complete == "lvl-2" %}
+            Profile at <span class="emphasis-orange">75%</span> Almost there!
+        {% elif profile.profile_complete == "lvl-3" %}
+            Your profile is <span class="emphasis-orange">100%</span> complete! You are the best!
+        {% endif %}
+    </div>
 {% endblock %}
 
 {% block content %}

@@ -45,3 +45,82 @@
     }
 }
 
+.hero__profile {
+        
+    color: white;
+    grid-template: none;
+    background-color: $mainTeal;
+    padding-right: 2rem;
+    padding-left: 2rem;
+    text-align: center;
+
+    &--icon {
+
+        text-align: center;
+    }
+}
+
+.profile__hero {
+        
+    color: white;
+    grid-template: none;
+    background-color: $mainTeal;
+    padding-right: 2rem;
+    padding-left: 2rem;
+    text-align: center;
+
+    &--icon {
+
+        text-align: center;
+    }
+}
+
+.hero__bookfinder {
+
+    width: 100%;
+    margin-top: 2rem;
+    padding-top: 5rem;
+    padding-bottom: 2rem;
+    height: auto;
+    background-image: url("/media/waves.svg");
+    background-position: center;
+    background-size: cover;
+    background-color: $mainTeal;
+    display: grid;
+    grid-template-columns: 5% 1fr 5%;
+    grid-template-rows: auto 1fr 1fr auto;
+    color: white;
+    text-align: center;
+
+    &--row1 {
+        
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    &--row2 {
+
+        grid-column: 2;
+        grid-row: 2;
+        align-self: center;
+        justify-self: center;
+        
+    }
+
+    &--row3 {
+
+        grid-column: 2;
+        grid-row: 3;
+        align-self: center;
+        justify-self: center;
+    }
+
+    &--row4 {
+
+        grid-column: 2;
+        grid-row: 4;
+        align-self: center;
+        justify-self: center;
+    }
+
+}

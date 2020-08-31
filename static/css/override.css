@@ -38,6 +38,69 @@
   background-color: #ff8d1a;
 }
 
+.hero__profile {
+  color: white;
+  grid-template: none;
+  background-color: #25b8c0;
+  padding-right: 2rem;
+  padding-left: 2rem;
+  text-align: center;
+}
+.hero__profile--icon {
+  text-align: center;
+}
+
+.profile__hero {
+  color: white;
+  grid-template: none;
+  background-color: #25b8c0;
+  padding-right: 2rem;
+  padding-left: 2rem;
+  text-align: center;
+}
+.profile__hero--icon {
+  text-align: center;
+}
+
+.hero__bookfinder {
+  width: 100%;
+  margin-top: 2rem;
+  padding-top: 5rem;
+  padding-bottom: 2rem;
+  height: auto;
+  background-image: url("/media/waves.svg");
+  background-position: center;
+  background-size: cover;
+  background-color: #25b8c0;
+  display: grid;
+  grid-template-columns: 5% 1fr 5%;
+  grid-template-rows: auto 1fr 1fr auto;
+  color: white;
+  text-align: center;
+}
+.hero__bookfinder--row1 {
+  grid-column: 2;
+  grid-row: 1;
+}
+.hero__bookfinder--row2 {
+  grid-column: 2;
+  grid-row: 2;
+  align-self: center;
+  justify-self: center;
+}
+.hero__bookfinder--row3 {
+  grid-column: 2;
+  grid-row: 3;
+  align-self: center;
+  justify-self: center;
+}
+.hero__bookfinder--row4 {
+  grid-column: 2;
+  grid-row: 4;
+  align-self: center;
+  justify-self: center;
+}
+
 .is-hidden {
   opacity: 0;
   transition: transform 0.4s, opacity 0.2s;
@@ -182,7 +245,7 @@
   text-transform: uppercase;
   padding: 0.75rem 1.5rem;
   font-weight: 600;
-  width: 100px;
+  width: 125px;
   justify-self: center;
   line-height: 2rem;
 }
@@ -313,6 +376,14 @@
 
 html, body {
   width: 100%;
+}
+
+.generic-wrapper {
+  width: 95%;
+  margin: 2rem auto;
+}
+.generic-wrapper--no-hero {
+  margin-top: 5rem;
 }
 
 .btnize {
@@ -456,14 +527,6 @@ html, body {
   padding: 0.75rem 1rem;
 }
 
-.profile {
-  color: white;
-  grid-template: none;
-  background-color: #25b8c0;
-  padding-right: 2rem;
-  padding-left: 2rem;
-  text-align: center;
-}
 .profile__title {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -525,6 +588,11 @@ html, body {
 }
 .profile__icon--edit {
   color: #25b8c0;
+}
+
+.form-wrapper {
+  width: 75%;
+  margin: 2rem auto;
 }
 
 .profile-modal__personal--edit {
@@ -871,6 +939,22 @@ h2.book-details__title {
   color: #ff8d1a;
   background-color: #FFF;
   border: solid 1px #ff8d1a;
+}
+
+.bookfinder {
+  font-size: 1.2rem;
+  padding: 1rem;
+}
+.bookfinder__btn {
+  margin: 2rem auto 0 auto;
+  display: block;
+  width: 125px;
+}
+.bookfinder__back {
+  display: block;
+  text-align: center;
+  font-size: 0.8rem;
+  margin-top: 1rem;
 }
 
 /*# sourceMappingURL=override.css.map */

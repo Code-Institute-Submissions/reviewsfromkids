@@ -6,16 +6,16 @@
 
 
 {% block hero %}
-  <div class="hero profile">
-    <h4>When ready use this button to go back to the book finder.</h4>
-    <a class="btn" href="{% url 'book_finder_user_4' %}">take me back</a>
+  <div class="hero__bookfinder">
+    <h4 class="hero__bookfinder--row1">When ready use this button to go back to the book finder.</h4>
+    <i class="fas fa-search fa-5x hero__bookfinder--row2"></i>
+    <a class="btn hero__bookfinder--row3" href="{% url 'book_finder_user_4' %}">take me back</a>
   </div>
 {% endblock %}
 
 {% block content %}
-  <main id="main">
-
-    <div class="container">
+  <main>
+    <div class="generic-wrapper">
 
       <section class="profile__hobbysport card-body">
 
@@ -53,7 +53,7 @@
                     <li class="profile__hobbysport--tag">{{ sport }}</li>
                 {% endfor %}
             {% else %}
-            No sports provided yet. Go <a href="{% url 'book_finder_edit_sport' %}">here</a> to complete.
+              No sports provided yet. Go <a href="{% url 'book_finder_edit_sport' %}">here</a> to complete.
             {% endif %}
         </ul>
 

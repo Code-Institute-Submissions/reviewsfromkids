@@ -4,17 +4,22 @@
 
 {% endblock %}
 
-{% block content %}
 {% load crispy_forms_tags %}
-<br>
-<br><br>
-<h4>Hobby ModelForm</h4>
-
-    <form class="profile__hobbysport--edit" method="POST" >
-        {% csrf_token %}
-        {{ form|crispy }}
-        <input class="btn" type="submit" value="Save" />
-    </form>
+{% block content %}
+    <div class="generic-wrapper generic-wrapper--no-hero">
+        <main>
+            <div>
+                <h4>Select your hobbies</h4>
+                <p>Pick your hobbies. You can choose as many as you like.</p>
+                <p>Do you miss your hobby in the list? Let us know with a <a href="">message</a> and we'll add it right away!</p>
+                <form class="form-wrapper" method="POST" >
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <input class="btn" type="submit" value="Save" />
+                </form>
+            </div>
+        </main>
+    </div>
 {% endblock %}
 
 {% block postloadjs %}

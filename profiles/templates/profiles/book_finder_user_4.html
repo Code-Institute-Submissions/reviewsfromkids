@@ -6,48 +6,25 @@
 
 
 {% block hero %}
-  <div class="hero profile">
-    
-    
-      <h4>Here you are, {{ profile.first_name }}, </h4>
-      <h4>this are the books recommended by {% if profile.gender == 'BOY' %}boys{% elif profile.gender == 'GIRL' %}girls{% elif profile.gender == 'UNKNOWN' %}kids{% endif %} of your age ({{ age_rating_years }} years).</h4>
-      <i class="fas fa-search fa-5x hero__icon"></i>
-    
+  <div class="hero__bookfinder">
+      <h4 class="hero__bookfinder--row1">{{ profile.first_name }}, </h4>
+      <i class="fas fa-book-open fa-5x hero__bookfinder--row2"></i>
+      <h4 class="hero__bookfinder--row3">here are the books recommended by {% if profile.gender == 'BOY' %}boys{% elif profile.gender == 'GIRL' %}girls{% elif profile.gender == 'UNKNOWN' %}kids{% endif %} of your age ({{ age_rating_years }} years).</h4>
   </div>
 {% endblock %}
 
 {% block content %}
-  <main id="main">
-    <p>These are the books that fit you because of your age, your gender, your hobbies and sports. Also, books you like and dislike are removed from the list.</p>
-
-    {% for book in books %}
-      {% include 'includes/book-result.html' %}
-    
-
-{% if forloop.counter|divisibleby:1 %}
-    <div class="col-12 d-sm-none mb-5">
-        <hr>
+    <div class="generic-wrapper">
+        <main">
+            <p>These are the books that fit you because of your age, your gender, your hobbies and sports. Also, books you like and dislike are removed from the list.</p>
+            <p>We find books based on your hobbies and sports. If you want to adjust these go <a href="{% url 'book_finder_user_5' %}">here</a>.</p>
+            <hr>
+            {% for book in books %}
+                {% include 'includes/book-result.html' %}
+                <div class="col-12 d-sm-none mb-5">
+                <hr>
+                </div>
+            {% endfor %}
+        </main>
     </div>
-{% endif %}                        
-{% if forloop.counter|divisibleby:2 %}
-    <div class="col-12 d-none d-sm-block d-md-block d-lg-none mb-5">
-        <hr>
-    </div>
-{% endif %}
-{% if forloop.counter|divisibleby:3 %}
-    <div class="col-12 d-none d-lg-block d-xl-none mb-5">
-        <hr>
-    </div>
-{% endif %}
-{% if forloop.counter|divisibleby:4 %}
-    <div class="col-12 d-none d-xl-block mb-5">
-        <hr>
-    </div>
-{% endif %}
-{% endfor %}
-
-<p>We find books based on your hobbies and sports. If you want to adjust these go <a href="{% url 'book_finder_user_5' %}">here</a>.</p>
-
-
-  </main>
 {% endblock %}

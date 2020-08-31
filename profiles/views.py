@@ -446,7 +446,7 @@ def book_finder_user_1(request):
     else:
         dob_available = True
 
-    if profile.gender == "":
+    if profile.gender == None:
         gender_available = False
     else:
         gender_available = True
@@ -485,7 +485,7 @@ def book_finder_user_1(request):
             messages.success(request, f'Profile updated, thank you')
 
             return redirect('book_finder_user_2')
-
+    
     context = {
         'profile': profile,
         'dobgender_available': dobgender_available,
@@ -521,7 +521,7 @@ def book_finder_user_2(request):
     else:
         dob_available = True
 
-    if profile.gender == "":
+    if profile.gender == None:
         gender_available = False
     else:
         gender_available = True
@@ -641,7 +641,7 @@ def book_finder_user_3(request):
     else:
         dob_available = True
 
-    if profile.gender == "":
+    if profile.gender == None:
         gender_available = False
     else:
         gender_available = True

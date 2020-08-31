@@ -23,7 +23,7 @@ def index(request):
         'featured_books': featured_books,
         'recent_books': recent_books,
         'user_logged_in': user_logged_in,
-        # 'book': books
+        'profile': userprofile,
     }
 
     return render(request, 'home/index.html', context)

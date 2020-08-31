@@ -7,11 +7,19 @@
 
 {% block hero %}
   <div class="hero">
-    <h1>Find your next favorite book.</h1>
-    <i class="fas fa-thumbs-up fa-5x hero__icon"></i>
     {% if user_logged_in %}
-      <a class="btn hero__btn" href="{% url 'book_finder_user' %}">start</a>
+      {% if profile.profile_complete == "lvl-3" %}
+        <h1>Check your recommendations</h1>
+        <i class="fas fa-thumbs-up fa-5x hero__icon"></i>
+        <a class="btn hero__btn" href="{% url 'book_finder_user_4' %}">start</a>
+      {% else %}
+        <h1>Find your next favorite book.</h1>
+        <i class="fas fa-thumbs-up fa-5x hero__icon"></i>
+        <a class="btn hero__btn" href="{% url 'book_finder_user' %}">start</a>
+      {% endif %}
     {% else %}
+      <h1>Find your next favorite book.</h1>
+      <i class="fas fa-thumbs-up fa-5x hero__icon"></i>
       <a class="btn hero__btn" href="{% url 'book_finder' %}">start</a>
     {% endif %}
   </div>

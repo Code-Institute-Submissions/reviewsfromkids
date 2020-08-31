@@ -6,22 +6,25 @@
 
 
 {% block hero %}
-  <div class="hero profile">
-    <h1>Hello there!</h1>
-    <h4>Good to see you here.</h4>
-    <i class="far fa-smile fa-5x hero__icon"></i>
+  <div class="hero__bookfinder">
+    <h1 class="hero__bookfinder--row1">Hello there!</h1>
+    <i class="far fa-smile fa-5x hero__bookfinder--row2"></i>
+    <h4 class="hero__bookfinder--row3">Good to see you here.</h4>
+    
   </div>
 {% endblock %}
 
 {% block content %}
-<main id="main">
-  <div>
-    <p>Let's find you the perfect books. Books that you most probably like.</p>
-    <p>Before other kids can help you, they need to know who you are and what you like. The first step is to create an account.</p>
-    <p>Then you can complete your profile and get books that fit you!</p>
-    <p>Are you ready?</p>
-    <a href="{% url 'account_signup' %}" class="btn">go!</a>
-    Already have an account? Then please <a href="{% url 'account_login' %}" class="">sign in</a>.
+  <div class="generic-wrapper">
+    <main class="bookfinder">
+      <div>
+        <p>Let's find you the perfect books. Books that you most probably like.</p>
+        <p>Before other kids can help you, they need to know who you are and what you like. The first step is to create an account.</p>
+        <p>Then you can complete your profile and get books that fit you!</p>
+        <p>Are you ready?</p>
+        <a href="{% url 'account_signup' %}" class="btn bookfinder__btn">go!</a>
+        <small class="bookfinder__back text-muted">Already have an account? Then please <a href="{% url 'account_login' %}">sign in</a>.</small>
+      </div>
+    </main>
   </div>
-</main>
 {% endblock %}

@@ -1,12 +1,5 @@
 .profile {
     
-    color: white;
-    grid-template: none;
-    background-color: $mainTeal;
-    padding-right: 2rem;
-    padding-left: 2rem;
-    text-align: center;
-
     &__title {
 
         display: grid;
@@ -105,4 +98,11 @@
 
         color: $mainTeal;
     }
+}
+
+.form-wrapper {
+    
+    width: 75%;
+    margin: 2rem auto;
+
 }

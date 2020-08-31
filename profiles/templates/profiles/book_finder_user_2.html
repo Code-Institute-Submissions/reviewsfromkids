@@ -6,56 +6,66 @@
 
 
 {% block hero %}
-  <div class="hero profile">
+  <div class="hero__bookfinder">
     {% if dobgender_available %}
       <!-- If age and gender-->
-      <h3>Alright {% if profile.first_name%}{{ profile.first_name }}{% else %}{{ profile.user }}{% endif %}, </h3>
-      <h4>let's look for books that other {% if profile.gender == 'BOY' %}boys{% elif profile.gender == 'GIRL' %}girls{% elif profile.gender == 'UNKNOWN' %}kids{% endif %} of your age like.</h4>
-      <i class="fas fa-search fa-5x hero__icon"></i>
+      <h3 class="hero__bookfinder--row1">Alright {% if profile.first_name%}{{ profile.first_name }}{% else %}{{ profile.user }}{% endif %}, </h3>
+      <i class="fas fa-search fa-5x hero__bookfinder--row2"></i>
+      <h4 class="hero__bookfinder--row3">let's look for books that other {% if profile.gender == 'BOY' %}boys{% elif profile.gender == 'GIRL' %}girls{% elif profile.gender == 'UNKNOWN' %}kids{% endif %} of your age like.</h4>
     {% elif onlygender_available %}
       <!-- If only gender -->
-      <h3>Alright {% if profile.first_name%}{{ profile.first_name }}{% else %}{{ profile.user }}{% endif %}, </h3>
-      <h4>let's look for books that other {% if profile.gender == 'BOY' %}boys{% elif profile.gender == 'GIRL' %}girls{% elif profile.gender == 'UNKNOWN' %}kids{% endif %} like.</h4>
+      <h3 class="hero__bookfinder--row1">Alright {% if profile.first_name%}{{ profile.first_name }}{% else %}{{ profile.user }}{% endif %}, </h3>
+      <i class="fas fa-search fa-5x hero__bookfinder--row2"></i>
+      <h4 class="hero__bookfinder--row3">let's look for books that other {% if profile.gender == 'BOY' %}boys{% elif profile.gender == 'GIRL' %}girls{% elif profile.gender == 'UNKNOWN' %}kids{% endif %} like.</h4>
     {% elif onlydob_available %}
       <!-- If only age -->
-      <h3>Alright Mr. or Mrs. {% if profile.first_name%}{{ profile.first_name }}{% else %}{{ profile.user }}{% endif %}, </h3>
-      <h4>let's look for books that other kids of your age like.</h4>
+      <h3 class="hero__bookfinder--row1">Alright Mr. or Mrs. {% if profile.first_name%}{{ profile.first_name }}{% else %}{{ profile.user }}{% endif %}, </h3>
+      <i class="fas fa-search fa-5x hero__bookfinder--row2"></i>
+      <h4 class="hero__bookfinder--row3">let's look for books that other kids of your age like.</h4>
     {% else %}
       <!-- If only user -->
-      <h3>Alright Mr. or Mrs. {% if profile.first_name%}{{ profile.first_name }}{% else %}{{ profile.user }}{% endif %}, </h3>
-      <h4>let's look for books that other kids like.</h4>
+      <h3 class="hero__bookfinder--row1">Alright Mr. or Mrs. {% if profile.first_name%}{{ profile.first_name }}{% else %}{{ profile.user }}{% endif %}, </h3>
+      <i class="fas fa-search fa-5x hero__bookfinder--row2"></i>
+      <h4 class="hero__bookfinder--row3">let's look for books that other kids like.</h4>
     {% endif %}
+    <div class="hero__bookfinder--row4">
+      Step 2/3
+    </div>
   </div>
 {% endblock %}
 
 {% load crispy_forms_tags %}
 {% block content %}
-  <main id="main">
-    {% if profile.only_hobbies_known %}
-    <p>Do you sport? Of course you do! Please select the ones you do.</p>
-    <p>If you do not actively sport: select the ones you like to watch.</p>
-      <form class="profile__hobbysport--edit" method="POST">
-        {% csrf_token %}
-        {{ form_sport|crispy }}
-        <input type="hidden" name="type_of_action" value="onlyhobby_available">
-        <input class="btn" type='submit' value='Save' />
-      </form>
-    {% elif profile.only_sports_known %}
-    <p>What hobbies do you have?</p>
-      <form class="profile__hobbysport--edit" method="POST" >
-        {% csrf_token %}
-        {{ form_hobby|crispy }}
-        <input type="hidden" name="type_of_action" value="onlysport_available">
-        <input class="btn" type="submit" value="Save" />
-      </form>
-    {% else %}
-      <p>Let's start with hobbies! What do you like to do?</p>
-      <form class="profile__hobbysport--edit" method="POST" >
-        {% csrf_token %}
-        {{ form_hobby|crispy }}
-        <input type="hidden" name="type_of_action" value="no_hobbysport_available">
-        <input class="btn" type="submit" value="Save" />
-      </form>
-    {% endif %}
-  </main>
+  <div class="form-wrapper">
+    <main>
+      {% if profile.only_hobbies_known %}
+      <p>Do you sport? Of course you do! Please select the ones you do.</p>
+      <p>If you do not actively sport: select the ones you like to watch.</p>
+        <form class="profile__hobbysport--edit" method="POST">
+          {% csrf_token %}
+          {{ form_sport|crispy }}
+          <input type="hidden" name="type_of_action" value="onlyhobby_available">
+          <input class="btn" type='submit' value='Save' />
+        </form>
+      {% elif profile.only_sports_known %}
+      <p>What hobbies do you have?</p>
+        <form class="profile__hobbysport--edit" method="POST" >
+          {% csrf_token %}
+          {{ form_hobby|crispy }}
+          <input type="hidden" name="type_of_action" value="onlysport_available">
+          <input class="btn" type="submit" value="Save" />
+        </form>
+      {% else %}
+        <p>Let's start with hobbies! What do you like to do?</p>
+        <form class="profile__hobbysport--edit" method="POST" >
+          {% csrf_token %}
+          {{ form_hobby|crispy }}
+          <input type="hidden" name="type_of_action" value="no_hobbysport_available">
+          <input class="btn bookfinder__btn" type="submit" value="next" />
+          <a href="{% url 'book_finder_user_1' %}" class="bookfinder__back">back</a>
+        </form>
+      {% endif %}
+    </main>
+  </div>
+  
 {% endblock %}

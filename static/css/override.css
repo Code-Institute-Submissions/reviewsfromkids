@@ -50,7 +50,7 @@
   text-align: center;
 }
 
-.hero__bookfinder, .hero__donations {
+.hero__bookfinder, .hero__donations, .hero__allauth {
   width: 100%;
   margin-top: 2rem;
   padding-top: 5rem;
@@ -66,23 +66,23 @@
   color: white;
   text-align: center;
 }
-.hero__bookfinder--row1, .hero__donations--row1 {
+.hero__bookfinder--row1, .hero__donations--row1, .hero__allauth--row1 {
   grid-column: 2;
   grid-row: 1;
 }
-.hero__bookfinder--row2, .hero__donations--row2 {
+.hero__bookfinder--row2, .hero__donations--row2, .hero__allauth--row2 {
   grid-column: 2;
   grid-row: 2;
   align-self: center;
   justify-self: center;
 }
-.hero__bookfinder--row3, .hero__donations--row3 {
+.hero__bookfinder--row3, .hero__donations--row3, .hero__allauth--row3 {
   grid-column: 2;
   grid-row: 3;
   align-self: center;
   justify-self: center;
 }
-.hero__bookfinder--row4, .hero__donations--row4 {
+.hero__bookfinder--row4, .hero__donations--row4, .hero__allauth--row4 {
   grid-column: 2;
   grid-row: 4;
   align-self: center;
@@ -396,6 +396,25 @@ html, body {
 }
 .generic-wrapper--no-hero {
   margin-top: 5rem;
+}
+
+.allauth-wrapper {
+  width: 95%;
+  padding: 1rem;
+  margin: 2rem auto;
+}
+.allauth-wrapper h1, .allauth-wrapper h4 {
+  color: #7d51a1;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+.allauth-wrapper p {
+  font-size: 1.2rem;
+}
+.allauth-wrapper .btn {
+  display: block;
+  margin: 3rem auto 0 auto;
+  width: 125px;
 }
 
 .btnize {

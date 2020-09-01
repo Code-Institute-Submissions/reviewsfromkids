@@ -2,20 +2,33 @@
 
 {% load i18n %}
 
-{% block head_title %}{% trans "Sign Out" %}{% endblock %}
+
+{% block hero %}
+    <div class="hero__allauth">
+        
+        <h1 class="hero__allauth--row1">{% trans "Log out" %}</h1>
+        <i class="fas fa-lock fa-5x hero__allauth--row2"></i>
+        <h4 class="hero__allauth--row3">Come back anytime!</h4>
+    
+    </div>
+{% endblock %}
+
 
 {% block inner_content %}
-<h1>{% trans "Sign Out" %}</h1>
 
-<p>{% trans 'Are you sure you want to sign out?' %}</p>
+    <h1>There is a time to come and go</h1>
+    <p>We hope you enjoyed your visit. Make sure to check back regularly fir new books, recommendations and more!</p>
+    <p>Thank you for your time!</p>
+    <form method="post" action="{% url 'account_logout' %}">
 
-<form method="post" action="{% url 'account_logout' %}">
-  {% csrf_token %}
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
-  {% endif %}
-  <button type="submit">{% trans 'Sign Out' %}</button>
-</form>
+        {% csrf_token %}
 
+        {% if redirect_field_value %}
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+        {% endif %}
+
+        <button class="btn" type="submit">{% trans 'Sign Out' %}</button>
+
+    </form>
 
 {% endblock %}

@@ -3,11 +3,20 @@
 {% load i18n %}
 {% load account socialaccount %}
 
-{% block head_title %}{% trans "Sign In" %}{% endblock %}
+{% block hero %}
+    <div class="hero__allauth">
+        
+        <h1 class="hero__allauth--row1">{% trans "Log in" %}</h1>
+        <i class="fas fa-unlock fa-5x hero__allauth--row2"></i>
+        <h4 class="hero__allauth--row3">Welcome (back)!</h4>
+    
+    </div>
+{% endblock %}
+
 
 {% block inner_content %}
 
-<h1>{% trans "Sign In" %}</h1>
+<h1>Log in</h1>
 
 {% get_providers as socialaccount_providers %}
 
@@ -40,7 +49,7 @@ for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
   <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
   {% endif %}
   <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
-  <button class="primaryAction" type="submit">{% trans "Sign In" %}</button>
+  <button class="btn" type="submit">{% trans "Sign In" %}</button>
 </form>
 
 {% endblock %}

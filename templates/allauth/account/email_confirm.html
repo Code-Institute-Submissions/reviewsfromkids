@@ -3,7 +3,15 @@
 {% load i18n %}
 {% load account %}
 
-{% block head_title %}{% trans "Confirm E-mail Address" %}{% endblock %}
+{% block hero %}
+    <div class="hero__allauth">
+        
+        <h1 class="hero__allauth--row1">Almost there!</h1>
+        <i class="fas fa-user-check fa-5x hero__allauth--row2"></i>
+        <h4 class="hero__allauth--row3">One last click</h4>
+    
+    </div>
+{% endblock %}
 
 
 {% block inner_content %}
@@ -17,7 +25,7 @@
 
 <form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
 {% csrf_token %}
-    <button type="submit">{% trans 'Confirm' %}</button>
+    <button class="btn" type="submit">{% trans 'Confirm' %}</button>
 </form>
 
 {% else %}

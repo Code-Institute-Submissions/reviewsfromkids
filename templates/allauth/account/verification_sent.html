@@ -2,11 +2,20 @@
 
 {% load i18n %}
 
-{% block head_title %}{% trans "Verify Your E-mail Address" %}{% endblock %}
+{% block hero %}
+    <div class="hero__allauth">
+        
+        <h1 class="hero__allauth--row1">Thank you</h1>
+        <i class="fas fa-envelope-open fa-5x hero__allauth--row2"></i>
+        <h4 class="hero__allauth--row3">Verifying email ...</h4>
+    
+    </div>
+{% endblock %}
 
 {% block inner_content %}
-    <h1>{% trans "Verify Your E-mail Address" %}</h1>
-
-    <p>{% blocktrans %}We have sent an e-mail to you for verification. Follow the link provided to finalize the signup process. Please contact us if you do not receive it within a few minutes. Make sure you also check your spam folder!{% endblocktrans %}</p>
-
+    <h1>Verify email address</h1>
+    <p>Just checking if it was really you who created an account (we hope it was you!)</p>
+    <p>{% blocktrans %}We have sent an e-mail to you for verification. Follow the link provided to finalize the signup process.{% endblocktrans %}</p>
+    <p>Please contact us if you do not receive it within a few minutes.</p>
+    <p>Make sure you also check your spam folder!</p>
 {% endblock %}

@@ -60,22 +60,22 @@
     }
 }
 
-.profile__hero {
+// .profile__hero {
         
-    color: white;
-    grid-template: none;
-    background-color: $mainTeal;
-    padding-right: 2rem;
-    padding-left: 2rem;
-    text-align: center;
+//     color: white;
+//     grid-template: none;
+//     background-color: $mainTeal;
+//     padding-right: 2rem;
+//     padding-left: 2rem;
+//     text-align: center;
 
-    &--icon {
+//     &--icon {
 
-        text-align: center;
-    }
-}
+//         text-align: center;
+//     }
+// }
 
-.hero__bookfinder {
+.hero__bookfinder, .hero__donations {
 
     width: 100%;
     margin-top: 2rem;
@@ -85,7 +85,7 @@
     background-image: url("/media/waves.svg");
     background-position: center;
     background-size: cover;
-    background-color: $mainTeal;
+    background-color: $mainHero;
     display: grid;
     grid-template-columns: 5% 1fr 5%;
     grid-template-rows: auto 1fr 1fr auto;

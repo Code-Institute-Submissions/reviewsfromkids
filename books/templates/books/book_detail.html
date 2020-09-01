@@ -92,7 +92,7 @@
                                             {% if avg_age_positive_ratings == None and not hobbies_positive_ratings and not sports_positive_ratings %}
                                                 <p>No information available yet.</p>
                                             {% else %}
-                                                {% if most_liked_by == "not known yet"%}
+                                                {% if most_liked_by == "not known yet" or most_liked_by == "not available" %}
                                                     <!-- Show nothing -->
                                                 {% else %}
                                                     <div class="kidslike__genderage">

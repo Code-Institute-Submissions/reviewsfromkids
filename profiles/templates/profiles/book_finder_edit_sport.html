@@ -11,7 +11,7 @@
             <div>
                 <h4>Select your sports</h4>
                 <p>Pick your sports. You can choose as many as you like.</p>
-                <p>Do you miss your sport in the list? Let us know with a <a href="">message</a> and we'll add it right away!</p>
+                <p>Do you miss your sport in the list? Let us know with a <a href="{% url 'contact' %}">message</a> and we'll add it right away!</p>
                 <form class="form-wrapper" method="POST" >
                     {% csrf_token %}
                     {{ form|crispy }}

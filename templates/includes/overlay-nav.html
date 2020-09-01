@@ -9,7 +9,7 @@
         <ul>
           <li><a href="{% url 'home' %}">Home</a></li>
           <li><a href="{% url 'books' %}">All books</a></li>
-          <li><a href="">Contact</a></li>
+          <li><a href="{% url 'contact' %}">Contact</a></li>
           <li><a href="">About</a></li>
           {% if request.user.is_authenticated %}
           You are logged in as {{ request.user }}

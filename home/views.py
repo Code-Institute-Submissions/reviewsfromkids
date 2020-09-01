@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Book
 from profiles.models import UserProfile
+from django.core.mail import send_mail
+from .forms import ContactForm
 
 
 # Create your views here.
@@ -27,3 +29,68 @@ def index(request):
     }
 
     return render(request, 'home/index.html', context)
+
+
+# Create your views here.
+def contact(request):
+    """ A view to render the contact page """
+    
+    user=request.user
+    userprofile=None
+    user_logged_in=False
+    form=ContactForm
+
+    # Check if user is logged in
+    if user.is_authenticated:
+        userprofile = get_object_or_404(UserProfile, user=request.user)
+        user_logged_in=True
+
+    # Check if POST request
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            message = form.cleaned_data['message']
+            email = form.cleaned_data['email']
+            copy_to_myself = form.cleaned_data['copy_to_myself']
+
+        recipients = ['sangho.grolleman@gmail.com']
+
+        if cc_myself:
+            recipients.append(sender)
+
+        send_mail(name, message, email, recipients)
+
+        messages.info(request, f'Mail sent successfully, thank you')
+
+        return redirect('contact')
+
+    context = {
+
+        'user_logged_in': user_logged_in,
+        'profile': userprofile,
+        'form': form,
+    }
+
+    return render(request, 'home/contact.html', context)
+
+def about(request):
+    """ A view to render the about page """
+    
+    user=request.user
+    userprofile=None
+    user_logged_in=False
+
+    # Check if user is logged in
+    if user.is_authenticated:
+        userprofile = get_object_or_404(UserProfile, user=request.user)
+        user_logged_in=True
+
+    context = {
+
+        'user_logged_in': user_logged_in,
+        'profile': userprofile,
+    }
+
+    return render(request, 'home/about.html', context)

@@ -60,21 +60,6 @@
     }
 }
 
-// .profile__hero {
-        
-//     color: white;
-//     grid-template: none;
-//     background-color: $mainTeal;
-//     padding-right: 2rem;
-//     padding-left: 2rem;
-//     text-align: center;
-
-//     &--icon {
-
-//         text-align: center;
-//     }
-// }
-
 .hero__bookfinder, .hero__donations {
 
     width: 100%;
@@ -119,6 +104,40 @@
 
         grid-column: 2;
         grid-row: 4;
+        align-self: center;
+        justify-self: center;
+    }
+
+}
+
+.hero__generic {
+
+    color: white;
+    grid-template: none;
+    background-color: $mainBlue;
+    padding-right: 2rem;
+    padding-left: 2rem;
+    text-align: center;
+
+    &--row1 {
+        
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    &--row2 {
+
+        grid-column: 2;
+        grid-row: 2;
+        align-self: center;
+        justify-self: center;
+        
+    }
+
+    &--row3 {
+
+        grid-column: 2;
+        grid-row: 3;
         align-self: center;
         justify-self: center;
     }

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+    
+{% endblock %}
+
+{% block hero %}
+  <div class="hero hero__generic">
+    <h1 class="hero__generic--row1">I like post!</h1>
+    <i class="fas fa-envelope fa-5x hero__generic--row2"></i>
+    <h4 class="hero__generic--row3">Mail me your questions and suggestions</h4>
+  </div>
+{% endblock %}
+
+{% load crispy_forms_tags %}
+{% block content %}
+  <main>
+    <div class="generic-wrapper">
+        <div class="contact">
+            <H4>Send me a message!</H4>
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button class="btn btn-contact" type="submit">send</button>
+        </div>
+    </div>
+  </main>
+{% endblock %}

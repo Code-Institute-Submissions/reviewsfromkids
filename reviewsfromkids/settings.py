@@ -23,10 +23,10 @@ else:
 
 if os.path.exists("env.py"):
     DEBUG = True
-    ALLOWED_HOSTS = []
+    ALLOWED_HOSTS = ['localhost']
 else:
-    DEBUG = True
-    # DEBUG = 'DEVELOPMENT' in os.environ
+    # DEBUG = True # For testing production environment in pre-launch stage
+    DEBUG = 'DEVELOPMENT' in os.environ
     ALLOWED_HOSTS = ['reviewsfromkids.herokuapp.com', 'localhost']
 
 

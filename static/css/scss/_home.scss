@@ -2,9 +2,10 @@
 
     width: 90%;
     margin: 0 auto;
+
 }
 
-.featured-books, .recent-books, .search-books {
+.featured-books, .recent-books, .explanation {
 
     &__header {
 
@@ -15,7 +16,7 @@
     p {
 
         font-size: 1.2rem;
-        font-weight: 300;
+        
     }
 
 }
@@ -23,8 +24,8 @@
 .home-btn {
 
     display: block;
-    width: 70%;
-    margin: 2rem auto 5rem auto;
+    width: 125px;
+    margin: 3rem auto 5rem auto;
     padding: 0.75rem 1rem
     
 }

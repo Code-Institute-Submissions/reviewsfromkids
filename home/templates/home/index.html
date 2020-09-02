@@ -27,42 +27,49 @@
 
 {% block content %}
   <main>
-    <section class="featured-books">
+    <div class="wrapper-home">
 
-      <h2 class="featured-books__header">Featured books</h2>
+        <section class="featured-books">
 
-      <div class="scrolling-wrapper-flexbox">
-        {% for book in featured_books %}
-          {% include 'includes/book-card.html' %}
-        {% endfor %}
-      </div>
+            <h2 class="featured-books__header">Featured books</h2>
 
-    </section>
-    
-    <section class="recent-books">
+            <div class="scrolling-wrapper-flexbox">
+                {% for book in featured_books %}
+                    {% include 'includes/book-card.html' %}
+                {% endfor %}
+            </div>
 
-      <h2 class="recent-books__header">Recently added books</h2>
+        </section>
+        
+        <section class="recent-books">
 
-      <div class="scrolling-wrapper-flexbox">
-        {% for book in recent_books %}
-          {% include 'includes/book-card.html' %}
-        {% endfor %}
-      </div>
-      
-    </section>
+        <h2 class="recent-books__header">Recently added books</h2>
 
-    <div class="wrapper wrapper-home">
-      <section class="search-books">
-        <h2 class="search-books__header">Find the perfect book!</h2>
-        <p>You can look for a book yourself with help of our advanced search functions.</p>
-        <p>Or, you let other kids help you find the books that fit you!</p>
-        <p>The more you tell us about yourself, the better we can help you.</p>
+        <div class="scrolling-wrapper-flexbox">
+            {% for book in recent_books %}
+                {% include 'includes/book-card.html' %}
+            {% endfor %}
+        </div>
+        
+        </section>
+
+   
+
+      <section class="explanation">
+
+        <h2>How it works</h2>
+        <p>Thousands of kids have have rated hundreds of books. Their rating is not only a matter of some stars. No, their ratings have extra details!</p>
+        <p>Do you like rugby, play with Lego and are you 10 years old? There are other kids like you and now you can find what their favorite books are.</p>
+        <p>The more you tell us about yourself, the better other kids can help you.</p>
         {% if user_logged_in %}
-          <a class="btn hero__btn" href="{% url 'book_finder_user' %}">find my perfect books!</a>
+          <a class="btn home-btn" href="{% url 'book_finder_user' %}">start</a>
         {% else %}
-          <a class="btn hero__btn" href="{% url 'book_finder' %}">find my perfect books!</a>
+          <a class="btn home-btn" href="{% url 'book_finder' %}">join</a>
         {% endif %}
+
       </section>
+
     </div>
+
   </main>
 {% endblock %}

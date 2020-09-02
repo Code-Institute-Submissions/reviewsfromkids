@@ -5,9 +5,9 @@
 {% block hero %} 
     <div class="hero__error-page">
 
-        <h1 class="hero__error-page--row1">This site will</h1>
-        <i class="fas fa-bomb fa-5x hero__error-page--row2"></i>
-        <h4 class="hero__error-page--row3">self destruct in 3....2...</h4>
+        <h1 class="hero__error-page--row1">Not for you</h1>
+        <i class="fas fa-eye-slash fa-5x hero__error-page--row2"></i>
+        <h4 class="hero__error-page--row3">yet...</h4>
 
     </div>
 {% endblock %}
@@ -20,16 +20,16 @@
 
             <div class="error-page">
 
-                <h1>Server error</h1>
-                <p>Wow, that is uncommon. You broke the internet!</p>
-                <p>Just kidding. Something went wrong at our place, so nothing you can help.</p> 
-                <p>You can try the following:</p>
+                <h1>Forbidden</h1>
+                <p>For some things you need to log in first. And some things are simply not for you and only for the site admin.</p>
+                <p>Try the following:</p>
                 
                 <div class="error-page__choices">
 
                     <ul>
 
                         <li>Hit your back button and try again.</li>
+                        <li>Log in <a href="{% url 'account_login' %}">here</a></li>
                         <li>Go <a href="{% url 'home' %}">home</a>.</li>
                         <li>Go to the books overview <a href="{% url 'books' %}">page</a></li>
 

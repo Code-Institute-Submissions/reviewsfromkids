@@ -795,4 +795,3 @@ def book_finder_user_5(request):
         }
     
     return render(request, 'profiles/book_finder_user_5.html', context)
-

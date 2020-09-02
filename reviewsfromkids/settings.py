@@ -23,7 +23,7 @@ else:
 
 if os.path.exists("env.py"):
     DEBUG = True
-    ALLOWED_HOSTS = ['localhost']
+    ALLOWED_HOSTS = []
 else:
     # DEBUG = True # For testing production environment in pre-launch stage
     DEBUG = 'DEVELOPMENT' in os.environ

@@ -1,1 +1,44 @@
-Sorry
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block hero %} 
+    <div class="hero__error-page">
+
+        <h1 class="hero__error-page--row1">Computer says no...</h1>
+        <i class="fas fa-book-dead fa-5x hero__error-page--row2"></i>
+        <h4 class="hero__error-page--row3">Let's get you going!</h4>
+
+    </div>
+{% endblock %}
+
+{% block content %}
+
+    <div class="generic-wrapper">
+
+        <main>
+
+            <div class="error-page">
+
+                <h1>Page not found</h1>
+                <p>We got you. You can try the following:</p>
+                
+                <div class="error-page__choices">
+
+                    <ul>
+
+                        <li>Hit your back button and try again.</li>
+                        <li>Go <a href="{% url 'home' %}">home</a>.</li>
+                        <li>Go to the books overview <a href="{% url 'books' %}">page</a></li>
+
+                    </ul>
+
+                </div>
+            
+            </div>
+
+        </main>
+        
+    </div>
+
+{% endblock %}

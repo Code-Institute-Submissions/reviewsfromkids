@@ -41,6 +41,28 @@ html, body {
 
 }
 
+.error-page {
+    
+    h1, h4 {
+
+        color: $mainPurple;
+        font-weight: 600;
+        margin-bottom: 1rem;;
+    }
+
+    p {
+        font-size: 1.2rem;
+    }
+
+    .btn {
+
+        display: block;
+        margin: 3rem auto 0 auto;
+        width: 125px;
+    }
+
+}
+
 .btnize {
 
     background-color: inherit;

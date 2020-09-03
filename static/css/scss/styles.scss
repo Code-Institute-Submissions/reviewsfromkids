@@ -1,5 +1,6 @@
 // sass --watch static/css/scss/styles.scss static/css/override.css
 @import 'global/colors';
+@import 'global/media_queries';
 @import 'hero';
 @import 'global/nav';
 @import 'books/book-card';

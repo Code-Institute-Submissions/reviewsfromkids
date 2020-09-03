@@ -3,6 +3,11 @@
     width: 90%;
     margin: 0 auto;
 
+    @include laptop {
+
+        width: 45%;
+    }
+
 }
 
 .featured-books, .recent-books, .explanation {
@@ -17,6 +22,11 @@
 
         font-size: 1.2rem;
         
+    }
+
+    @include laptop {
+
+        text-align: center;
     }
 
 }

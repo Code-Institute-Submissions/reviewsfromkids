@@ -1,24 +1,72 @@
+.books {
+
+    display: grid;
+    grid-template-columns: 1fr;
+    // grid-template-rows: 1fr 1fr;
+
+    @include laptop {
+        
+        grid-template-columns: 25% 1fr;
+
+    }
+
+    // @include l_laptop {
+
+    //     grid-template-columns: 20% 1fr;
+
+    // }
+
+}
+
 .books-search {
 
-    
+    @include laptop {
+
+        grid-row: 2;
+        grid-column: 1;
+    }
 
     &__row {
         
         display: grid;
-        grid-template-columns: 35% 68%;
-        margin-bottom: 1rem;
+        grid-template-columns: 35% 65%;
+        margin-bottom: 2rem;
 
+        @include laptop {
+
+            grid-column: 1 / 3;
+            justify-self: center;
+            display: initial;
+            
+        }
+
+        .hide {
+
+            display: none;
+            
+        }
+        
         &--btn {
 
             width: 115px;
             justify-self: center;
             align-self: center;
+
+            @include laptop {
+
+                display: none;
+            }
         }
 
         &--results-counter {
 
             justify-self: center;
             align-self: center;
+
+            @include laptop {
+
+                padding-top: 1rem;
+            }
         }
 
     }
@@ -28,12 +76,56 @@
         width: 90%;
         margin: 0 auto;
 
+        &__footer {
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            padding-bottom: 2rem;
+
+            &--left {
+
+                grid-column: 1;
+                justify-self: start;
+            }
+
+            &--right {
+
+                grid-column: 2;
+                justify-self: end;
+                align-self: flex-end;
+            }
+
+        }
+
+        @include laptop {
+
+            display: none;
+        }
+
+    }
+
+    &__side-bar {
+
+        display: none;
+
+        @include laptop {
+
+            width: 50%;
+            display: initial;
+            
+        }
+
     }
 
 }
 
-.quickfix {
-    margin-top: 5rem;
-    
+.books-results {
 
+    @include laptop {
+
+        width: 380px;
+        margin: 0 auto;
+        grid-row: 2;
+        grid-column: 2;
+    }
 }

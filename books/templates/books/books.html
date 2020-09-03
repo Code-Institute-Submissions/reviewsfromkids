@@ -10,59 +10,98 @@
 
 {% block content %}
 {% load crispy_forms_tags %}
-<main id="main" class="quickfix">
-    <div class="books-search">
-        <div class="books-search__row">
-            <button class="btn btn-primary books-search__row--btn" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                search
-            </button>
-            <div class="books-search__row--results-counter">
-                {% if search_performed %}
-                    {% if noresults %}
-                        Your search has no success. Try again!
+<main>
+
+    <div class="generic-wrapper generic-wrapper--no-hero">
+
+        <div class="books">
+
+            <div class="books-search__row">
+                <button id="searchBtn" class="btn btn-primary books-search__row--btn" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    search
+                </button>
+                <div class="books-search__row--results-counter">
+                    {% if search_performed %}
+                        {% if noresults %}
+                            Your search has no success. Try again!
+                        {% else %}
+                            Your search has {{ numresults }} results.
+                        {% endif %}
                     {% else %}
-                        Your search has {{ numresults }} results.
                     {% endif %}
-                {% else %}
-                {% endif %}
+                </div>
             </div>
-            <hr>
-        </div>
-        <div class="books-search__collapse">
-            <div class="collapse" id="collapseExample">
-                <form method="GET">
-                    {{ myFilter.form|crispy }}
-                    <button class="btn" type="submit">go</button>
-                    <a href="{% url 'books' %}">reset search</a>
-                </form>
+
+            <div class="books-search">
+    
+                <div class="books-search__collapse">
+                    <div class="collapse" id="collapseExample">
+                        <form method="GET">
+                            {{ myFilter.form|crispy }}
+                            <div class="books-search__collapse__footer">
+                                <button class="btn books-search__collapse__footer--left" type="submit">go</button>
+                                {% if search_performed %}
+                                    <a class="books-search__collapse__footer--right" href="{% url 'books' %}">reset search</a>
+                                {% else %}
+                                    <button class="btn-link books-search__collapse__footer--right" id="cancel">cancel</button>
+                                {% endif %}
+                            </div>
+                            
+                        </form>
+                    </div>
+                </div>
+
+                <div class="books-search__side-bar">
+                    <form class="books-search__side-bar" method="GET">
+                        {{ myFilter.form|crispy }}
+                        <button class="btn" type="submit">go</button>
+                        
+                    </form>
+                    <br>
+                    <br>
+                    {% if search_performed %}
+                        <a href="{% url 'books' %}">reset search</a>
+                    {% endif %}
+                </div>
+    
+            </div>
+    
+            <div class="books-results">
+                {% for book in books %}
+
+                    {% include 'includes/book-result.html' %}
+                    <hr>
+                    
+                {% endfor %}
             </div>
         </div>
+        
+
     </div>
-    <div class="">
-        {% for book in books %}
-            {% include 'includes/book-result.html' %}
-            
-            {% if forloop.counter|divisibleby:1 %}
-                <div class="col-12 d-sm-none mb-5">
-                    <hr>
-                </div>
-            {% endif %}                        
-            {% if forloop.counter|divisibleby:2 %}
-                <div class="col-12 d-none d-sm-block d-md-block d-lg-none mb-5">
-                    <hr>
-                </div>
-            {% endif %}
-            {% if forloop.counter|divisibleby:3 %}
-                <div class="col-12 d-none d-lg-block d-xl-none mb-5">
-                    <hr>
-                </div>
-            {% endif %}
-            {% if forloop.counter|divisibleby:4 %}
-                <div class="col-12 d-none d-xl-block mb-5">
-                    <hr>
-                </div>
-            {% endif %}
-        {% endfor %}
-    </div>
+    <script>
+        const searchBtn = document.getElementById('searchBtn');
+        // const cancelSearch = document.getElementById('cancel');
+        let collapse = document.getElementById('collapseExample');
+        let searchOpen = false;
+
+        searchBtn.addEventListener('click', event => {
+
+            if(searchOpen == false) {
+
+                searchOpen = true;
+                searchBtn.classList.add('hide');
+     
+        });
+        
+        // cancelSearch.addEventListener('click', event => {
+
+        //     collapse.classList.remove('show');
+
+        // });
+    </script>
 </main>
+{% endblock %}
+
+{% block postloadjs %}
+    
 {% endblock %}

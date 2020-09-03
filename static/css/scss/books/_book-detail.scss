@@ -1,26 +1,23 @@
-// .test-grid {
-//     display: grid;
-//     grid-template-columns: 1fr 1fr;
-//     width: 80%;
-//     margin: 0 auto;
-//     grid-gap: 2rem;
-
-//     .key {
-//         grid-column: 1;
-//         justify-self: end;
-//     }
-
-//     .value {
-//         grid-column: 2;
-//     }
-// }
-
-.container {
-
-    padding: 0 0.5rem;
-}
-
 .book-details {
+
+    @include laptop {
+
+        width: 600px;
+        margin: 0 auto;
+        
+        ul {
+            margin: 1rem auto;
+            // padding: 0;
+            text-align: center;
+        }
+
+        &__content {
+
+            width: 400px;
+            margin: 0 auto;
+
+        }
+    }
 
     h4 {
 
@@ -36,17 +33,24 @@
         position: relative;
 
     }
+    
 
     &__pills {
 
         display: flex;
-        // flex-wrap: wrap;
         padding-left: 0;
         margin: 1.5rem 0;
         list-style: none;
-        // justify-content: space-evenly;
+
+        @include laptop {
+
+            width: 520px;
+            justify-content: space-evenly;
+        
+        }
 
         a {
+
             color: $mainPurple;
             background-color: white;
             padding: 0.5rem 1rem;
@@ -80,6 +84,12 @@
                 padding-left: 1rem;
                 font-size: 1.5rem;
                 font-weight: 700;
+
+                @include laptop {
+
+                    text-align: center;
+
+                }
             }
         }
 
@@ -146,6 +156,12 @@
             &--stars {
 
                 justify-self: start;
+
+                @include laptop {
+
+                    justify-self: center;
+
+                }
             }
 
             p {
@@ -153,12 +169,37 @@
                 font-size: 1.2rem;
             }
 
+            @include laptop {
+
+                &--btn-1 {
+
+                    justify-self: center;
+
+                }
+            }
+
             &--btn {
 
                 grid-column: 2;
                 margin-top: - 0.6rem;
+
+                @include laptop {
+
+                    justify-self: center;
+                    
+                }
             }
             
+        }
+
+        &__info {
+
+            @include laptop {
+
+                width: 50%;
+                margin: 0 auto;
+            }
+
         }
 
     }

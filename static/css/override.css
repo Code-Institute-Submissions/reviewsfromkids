@@ -681,13 +681,23 @@ html, body {
   padding-top: 0rem;
 }
 
-.container {
-  padding: 0 0.5rem;
-}
-
 .book-details {
   margin-top: 5rem;
   padding: 0 1rem;
+}
+@media (min-width: 992px) {
+  .book-details {
+    width: 600px;
+    margin: 0 auto;
+  }
+  .book-details ul {
+    margin: 1rem auto;
+    text-align: center;
+  }
+  .book-details__content {
+    width: 400px;
+    margin: 0 auto;
+  }
 }
 .book-details h4 {
   color: #7d51a1;
@@ -701,6 +711,12 @@ html, body {
   padding-left: 0;
   margin: 1.5rem 0;
   list-style: none;
+}
+@media (min-width: 992px) {
+  .book-details__pills {
+    width: 520px;
+    justify-content: space-evenly;
+  }
 }
 .book-details__pills a {
   color: #7d51a1;
@@ -727,6 +743,11 @@ html, body {
   padding-left: 1rem;
   font-size: 1.5rem;
   font-weight: 700;
+}
+@media (min-width: 992px) {
+  .book-details .kidslike__genderage--right, .book-details .kidsdislike__genderage--right {
+    text-align: center;
+  }
 }
 .book-details .kidslike__hobbysport, .book-details .kidsdislike__hobbysport {
   display: grid;
@@ -762,12 +783,33 @@ html, body {
 .book-details__section__rating--stars {
   justify-self: start;
 }
+@media (min-width: 992px) {
+  .book-details__section__rating--stars {
+    justify-self: center;
+  }
+}
 .book-details__section__rating p {
   font-size: 1.2rem;
+}
+@media (min-width: 992px) {
+  .book-details__section__rating--btn-1 {
+    justify-self: center;
+  }
 }
 .book-details__section__rating--btn {
   grid-column: 2;
   margin-top: -0.6rem;
+}
+@media (min-width: 992px) {
+  .book-details__section__rating--btn {
+    justify-self: center;
+  }
+}
+@media (min-width: 992px) {
+  .book-details__section__info {
+    width: 50%;
+    margin: 0 auto;
+  }
 }
 .book-details__quick-facts {
   display: grid;

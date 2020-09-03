@@ -14,27 +14,26 @@
 {% block content %}
     <main>
 
-        <div class="book-details">
-            
-            <h2 class="book-details__title">{{ book.title }}</h2>      
-            
-            <div class="book-details__image-container">
-            <img class="card-img-top img-fluid" src="{{ book.image_detail.url }}" alt="{{ book.name }}">
-            </div>
+        <div class="generic-wrapper generic-wrapper--no-hero">
 
-            <ul class="nav book-details__pills scrolling-wrapper-flexbox">
-            
-                <li><a class="active" data-toggle="pill" href="#menu1">For you?</a></li>
-                <li><a data-toggle="pill" href="#menu2">Description</a></li>
-                <li><a data-toggle="pill" href="#menu3">Your rating</a></li>
-                <li><a data-toggle="pill" href="#menu4">Suggestions</a></li>
-                <li><a data-toggle="pill" href="#menu5">Info</a></li>
+            <div class="book-details">
+                    
+                <h2 class="book-details__title">{{ book.title }}</h2>      
+                
+                <div class="book-details__image-container">
+                    <img class="card-img-top img-fluid" src="{{ book.image_detail.url }}" alt="{{ book.name }}">
+                </div>
 
-            </ul>
-            
-            <div class="container">
+                <ul class="nav book-details__pills scrolling-wrapper-flexbox">
+                
+                    <li><a class="active" data-toggle="pill" href="#menu1">For you?</a></li>
+                    <li><a data-toggle="pill" href="#menu2">Description</a></li>
+                    <li><a data-toggle="pill" href="#menu3">Your rating</a></li>
+                    <li><a data-toggle="pill" href="#menu4">Info</a></li>
 
-                <div class="tab-content">
+                </ul>
+
+                <div class="tab-content book-details__content">
 
                     <div id="menu1" class="tab-pane fade in show active">
                         
@@ -68,9 +67,8 @@
                                 </div>
 
                             </div>
-
-                            <p>54 kids say they want to read this book.</p>
-                                     
+                            
+                            <!-- Show rating info, if any, in accordion format -->
                             <div class="accordion" id="accordionExample">
 
                                 <div class="card">
@@ -78,9 +76,11 @@
                                     <div class="card-header" id="headingOne">
                                     
                                         <h4 class="mb-0">
+
                                             <div class="btn-block text-left" type="button" data-toggle="collapse" data-target="#kidsLike" aria-expanded="true" aria-controls="collapseOne">
                                                 Kids who <span class="emphasis1">like</span> this book
                                             </div>
+
                                         </h4>
 
                                     </div>
@@ -89,58 +89,95 @@
                                         
                                         <div class="card-body kidslike">
 
+                                            <!-- Check if there is any meta data for positive ratings -->
                                             {% if avg_age_positive_ratings == None and not hobbies_positive_ratings and not sports_positive_ratings %}
+
                                                 <p>No information available yet.</p>
+
                                             {% else %}
+
+                                                <!-- Check if statistical mode is possible for gender -->
                                                 {% if most_liked_by == "not known yet" or most_liked_by == "not available" %}
-                                                    <!-- Show nothing -->
+
+                                                <!-- If not possible to calculate mode or when no positive ratings: show nothing -->
+
                                                 {% else %}
+
                                                     <div class="kidslike__genderage">
+
                                                         <p class="kidslike__genderage--left">Most liked by:</p>
                                                         <h5 class="emphasis1 kidslike__genderage--right">{{ book.most_liked_by }}</h5>
+
                                                     </div>
+
                                                 {% endif %}
 
+                                                <!-- Check if statistical mode is possible for age -->
                                                 {% if book.recommended_age == "not known yet" or book.recommended_age == "not available" %}
-                                                    <!-- Show nothing -->
-                                                {% else %}
+
+                                                    <!-- If not possible to calculate mode or when no positive ratings: show nothing -->
+                                                
+                                                    {% else %}
+
                                                     <div class="kidslike__genderage">
+
                                                         <p class="kidslike__genderage--left">Age:</p>
                                                         <h5 class="emphasis1 kidslike__genderage--right">{{ book.recommended_age }}</h5>
-                                                    </div>
-                                                {% endif %}
 
+                                                    </div>
+
+                                                {% endif %}
+                                                
+                                                <!-- If meta data hobbies available: show hobbies -->
                                                 {% if hobbies_positive_ratings %}
+
                                                     <div class="kidslike__hobbysport">
 
                                                         <div class="kidslike__hobbysport--left">Hobbies:</div>
 
                                                         <ul class="kidslike__hobbysport--right">
+
                                                             {% for i in hobbies_positive_ratings %}
+
                                                                 <li class="profile__hobbysport--tag">{{ i.name }} <small class="text-muted">({{ i.name__count }}x)</small></li>
+
                                                             {% endfor %}
+
                                                         </ul>
 
                                                     </div>
+
                                                 {% else %}
+
                                                     <!-- Show nothing -->
+
                                                 {% endif %}
 
+                                                <!-- If meta data sports available: show sports -->
                                                 {% if sports_positive_ratings %}
+
                                                     <div class="kidslike__hobbysport">
 
                                                         <div class="kidslike__hobbysport--left">Sports:</div>
                                                         
                                                         <ul class="kidslike__hobbysport--right">
+
                                                             {% for i in sports_positive_ratings %}
+
                                                                 <li class="profile__hobbysport--tag">{{ i.name }} <small class="text-muted">({{ i.name__count }}x)</small></li>
+
                                                             {% endfor %}
+
                                                         </ul>
 
                                                     </div>
+
                                                 {% else %}
+
                                                 <!-- Show nothing -->
+
                                                 {% endif %}
+
                                             {% endif %}
                                         </div> 
                                     
@@ -149,68 +186,104 @@
                                     <div class="card-header" id="headingTwo">
 
                                         <h4 class="mb-0">
+
                                             <div class="btn-block text-left" type="button" data-toggle="collapse" data-target="#kidsDislike" aria-expanded="true" aria-controls="collapseOne">
                                                 Kids who <span class="emphasis1">don't like</span> this book
                                             </div>
+
                                         </h4>
 
                                     </div>
 
                                     <div id="kidsDislike" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
 
-                                        <div class="card-body kidsdislike">     
+                                        <div class="card-body kidsdislike">
+
+                                            <!-- Check if there is any meta data for positive ratings -->  
                                             {% if avg_age_negative_ratings == None and not hobbies_negative_ratings and not sports_negative_ratings %}
+
                                                 <p>No negative opinions! This must be a good book :)</p>
+
                                             {% else %}
 
+                                                <!-- Check if statistical mode is possible for gender -->
                                                 {% if most_disliked_by == "not known yet"%}
-                                                    <!-- Show nothing -->
+
+                                                    <!-- If not possible to calculate mode or when no negative ratings: show nothing -->
+
                                                 {% else %}
+
                                                     <div class="kidsdislike__genderage">
                                                         <p class="kidsdislike__genderage--left">Most disliked by:</p>
                                                         <h5 class="emphasis1 kidsdislike__genderage--right">{{ book.most_disliked_by }}</h5>
                                                     </div>
+
                                                 {% endif %}
 
+                                                <!-- Check if statistical mode is possible for age -->
                                                 {% if book.not_recommended_by_age == "not known yet" or book.not_recommended_by_age == "not available" %}
-                                                    <!-- Show nothing -->
+
+                                                    <!-- If not possible to calculate mode or when no negative ratings: show nothing -->
+
                                                 {% else %}
+
                                                     <div class="kidsdislike__genderage">
+
                                                         <p class="kidsdislike__genderage--left">Age:</p>
                                                         <h5 class="emphasis1 kidsdislike__genderage--right">{{ book.not_recommended_by_age }}</h5>
+
                                                     </div>
+
                                                 {% endif %}
 
+                                                <!-- If meta data hobbies available: show hobbies -->
                                                 {% if hobbies_negative_ratings %}
+
                                                     <div class="kidsdislike__hobbysport">
 
                                                         <div class="kidsdislike__hobbysport--left">Hobbies:</div>
                                                         
                                                         <ul class="kidsdislike__hobbysport--right">
+
                                                             {% for i in hobbies_negative_ratings %}
+
                                                                 <li class="profile__hobbysport--tag">{{ i.name }} <small class="text-muted">({{ i.name__count }}x)</small></li>
+
                                                             {% endfor %}
+
                                                         </ul>
 
                                                     </div>
-                                                {% else %}
-                                                    <!-- Show nothing -->
-                                                {% endif %}
 
+                                                {% else %}
+
+                                                    <!-- Show nothing -->
+
+                                                {% endif %}
+                                                
+                                                <!-- If meta data sports available: show hobbies -->
                                                 {% if sports_negative_ratings %}
+
                                                     <div class="kidsdislike__hobbysport">
 
                                                         <div class="kidsdislike__hobbysport--left">Sports:</div>
 
                                                         <ul class="kidsdislike__hobbysport--right">
+
                                                             {% for i in sports_negative_ratings %}
+
                                                                 <li class="profile__hobbysport--tag">{{ i.name }} <small class="text-muted">({{ i.name__count }}x)</small></li>
+
                                                             {% endfor %}
+
                                                         </ul>
 
                                                     </div>
+
                                                 {% else %}
+
                                                     <!-- Show nothing -->
+
                                                 {% endif %}
                                             {% endif %}
                                             
@@ -219,36 +292,68 @@
                                     </div>
 
                                     <div class="card-header" id="headingThree">
-                                    <h4 class="mb-0">
-                                        <div class="btn-block text-left" type="button" data-toggle="collapse" data-target="#onYourList" aria-expanded="true" aria-controls="collapseOne">
-                                        {% if favorite %}This book is on <span class="emphasis1">your</span> list{% else %}Do <span class="emphasis1">you</span> want to read this book?{% endif %}
-                                        </div>
-                                    </h4>
+
+                                        <h4 class="mb-0">
+                                            <div class="btn-block text-left" type="button" data-toggle="collapse" data-target="#onYourList" aria-expanded="true" aria-controls="collapseOne">
+
+                                                {% if favorite %}
+
+                                                    This book is on <span class="emphasis1">your</span> list
+
+                                                {% else %}
+
+                                                    Do <span class="emphasis1">you</span> want to read this book?
+
+                                                {% endif %}
+
+                                            </div>
+                                        </h4>
+
                                     </div>
+
                                     <div id="onYourList" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                                    <div class="card-body book-details__favorites">
-                                        <!-- Add to favorites-->
-                                    {% if favorite %}
-                                        <form method="POST">
-                                        {% csrf_token %}
-                                        <input type="hidden" value="remove_fav" name="type_of_action">
-                                        <button class="iconify" value="submit"><i class="book-details__icon--fav fas fa-heart fa-3x" aria-hidden="true"></i></button>
-                                        </form>
-                                        <p>You have this book on your 'want to read list'</p>
-                                    {% else %}
-                                        {% if user_logged_in %}
-                                        <form method="POST">
-                                            {% csrf_token %}
-                                            <input type="hidden" value="add_fav" name="type_of_action">
-                                            <button class="iconify" value="submit"><i class="book-details__icon--not-fav fas fa-heart fa-3x" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Tooltip on top"></i></button>
-                                        </form>
-                                        <p>Do you want to read this book (someday)? Add it to your list!</p>
-                                        {% else %}
-                                        <i class="book-details__icon--not-fav fas fa-heart fa-3x" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Tooltip on top"></i>
-                                        <p>Please log in to add to your list.</p>
-                                        {% endif %}
-                                    {% endif %}
-                                    </div> 
+
+                                        <div class="card-body book-details__favorites">
+
+                                            <!-- Check if already on list-->
+                                            {% if favorite %}
+                                                
+                                                <form method="POST">
+
+                                                    {% csrf_token %}
+                                                    <input type="hidden" value="remove_fav" name="type_of_action">
+                                                    <button class="iconify" value="submit"><i class="book-details__icon--fav fas fa-heart fa-3x" aria-hidden="true"></i></button>
+
+                                                </form>
+
+                                                <p>You have this book on your 'want to read list'</p>
+
+                                            {% else %}
+
+                                                {% if user_logged_in %}
+
+                                                    <!-- Add to list-->
+                                                    <form method="POST">
+
+                                                        {% csrf_token %}
+                                                        <input type="hidden" value="add_fav" name="type_of_action">
+                                                        <button class="iconify" value="submit"><i class="book-details__icon--not-fav fas fa-heart fa-3x" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Tooltip on top"></i></button>
+                                                    
+                                                    </form>
+
+                                                    <p>Do you want to read this book (someday)? Add it to your list!</p>
+
+                                                {% else %}
+
+                                                    <i class="book-details__icon--not-fav fas fa-heart fa-3x" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Tooltip on top"></i>
+                                                    <p>Please log in to add to your list.</p>
+
+                                                {% endif %}
+
+                                            {% endif %}
+
+                                        </div>
+
                                     </div>
 
                                 </div>
@@ -273,11 +378,15 @@
                                 <p>Category:</p>
 
                                 <div class="book-details__section__category--col">
+
                                     <form class="book-details__section__category--col--item" method="GET" action="{% url 'books' %}">
+
                                         <input type="hidden" value="cat-search" name="type_of_action"/>
                                         <input type="hidden" value="{{ book.category.id }}" name="category"/>
                                         <button class="tag tag--category tag--category--link">{{ book.category }}</button>
+
                                     </form>
+
                                 </div>
 
                             </div>
@@ -287,12 +396,17 @@
                                 <p>Tags:</p>
                                 
                                 <div class="book-details__section__tags--col">
+
                                     {% for tag in book.tags.all %}
-                                    <form class="book-details__section__tags--col--item" method="GET" action="{% url 'books' %}">
-                                        <input type="hidden" value="tag-search" name="type_of_action"/>
-                                        <input type="hidden" value="{{ tag }}" name="tags"/>
-                                        <button class="tag tag--tag tag--tag--link">{{ tag }}</button>
-                                    </form>
+
+                                        <form class="book-details__section__tags--col--item" method="GET" action="{% url 'books' %}">
+
+                                            <input type="hidden" value="tag-search" name="type_of_action"/>
+                                            <input type="hidden" value="{{ tag }}" name="tags"/>
+                                            <button class="tag tag--tag tag--tag--link">{{ tag }}</button>
+
+                                        </form>
+
                                     {% endfor %}
 
                                 </div>
@@ -312,20 +426,24 @@
                             <p>Did you read this book? Great! Or not great... that depends. Did you like to read it? Please help others and tell them what you think.</p>
 
                             {% if user_logged_in and allowed_to_rate %}
+
                                 {% if not already_rated %}
+
                                     <form method="POST" action="{% url 'book_detail' book.id %}">
                                         {% csrf_token %}
 
                                         <div class="book-details__section__rating--stars">
 
                                             <fieldset class="rating">
+
                                                 <input type="radio" id="star5" name="ratingOptions" value="5" /><label class="full" for="star5"></label>
                                                 <input type="radio" id="star4" name="ratingOptions" value="4" /><label class="full" for="star4"></label>
                                                 <input type="radio" id="star3" name="ratingOptions" value="3" /><label class="full" for="star3"></label>
                                                 <input type="radio" id="star2" name="ratingOptions" value="2" /><label class="full" for="star2"></label>
                                                 <input type="radio" id="star1" name="ratingOptions" value="1" /><label class="full" for="star1"></label>
+
                                             </fieldset>
-    
+
                                             <input type="hidden" value="new" name="type_of_action">
                                             <input class="text" name="rated_by" value="{{ request.user }}" hidden>
                                             <input class="text" name="book_id" value="{{ book.pk }}" hidden>
@@ -335,19 +453,25 @@
                                         <button class="btn book-details__rating--btn" type="submit">rate</button>
                                         
                                     </form>
+
                                 {% else %}
-                                    Your rating:
+
+                                    <h5>Your rated this book with:</h5>
+                                    <br>
+
                                     <form class="book-details__rating" method="POST" action="{% url 'book_detail' book.id %}">
                                         {% csrf_token %}
                                         
                                         <div class="book-details__section__rating--stars">
 
                                             <fieldset class="rating">
+
                                                 <input type="radio" id="star5" name="ratingOptions" value="5" {% if current_user_rating.rating == 5 %}checked{% endif %}/><label class="full" for="star5"></label>
                                                 <input type="radio" id="star4" name="ratingOptions" value="4" {% if current_user_rating.rating == 4 %}checked{% endif %}/><label class="full" for="star4"></label>
                                                 <input type="radio" id="star3" name="ratingOptions" value="3" {% if current_user_rating.rating == 3 %}checked{% endif %}/><label class="full" for="star3"></label>
                                                 <input type="radio" id="star2" name="ratingOptions" value="2" {% if current_user_rating.rating == 2 %}checked{% endif %}/><label class="full" for="star2"></label>
                                                 <input type="radio" id="star1" name="ratingOptions" value="1" {% if current_user_rating.rating == 1 %}checked{% endif %}/><label class="full" for="star1"></label>
+
                                             </fieldset>
 
                                             <input type="hidden" value="edit" name="type_of_action">
@@ -356,7 +480,7 @@
 
                                         </div>
                                         
-                                        <button class="btn" type="submit">update</button>
+                                        <button class="btn book-details__section__rating--btn-1" type="submit">update</button>
 
                                     </form>
 
@@ -368,49 +492,49 @@
                                         <button class="btn-link btn-link--red book-details__section__rating--btn" type="submit">delete rating</button>
 
                                     </form> 
+
                                 {% endif %}
+
                                 <p>Let the world know what you think!</p>
                                 <div class="sharethis-inline-share-buttons"></div>
+
                             {% elif user_logged_in and not allowed_to_rate %}
+
                                 <p>We love your rating. To make your rating even better, we'd like to know a bit more about you. So, other kids can see if your rating is helpful for them.</p>
                                 <p>Please complete your profile <a href="{% url 'profile' %}">here</a>.</p>
+
                             {% else %}
+
                                 <p>We love your rating. Please <a href="{% url 'account_login' %}">log in</a>.</p>
                                 <p>No account? You can get one -completely free- over <a href="{% url 'account_signup' %}">here</a>!</p>
+
                             {% endif %}
+
                         </div>
                     
                     </div>
-
+                    
                     <div id="menu4" class="tab-pane fade">
 
-                        <div class="book-details__section book-details__section__suggestions">
-                            
-                            Other books based on same author, category and tags.
+                        <div class="book-details__section book-details__section__info">
 
-                        </div>
-
-                    </div>
-                    
-                    <div id="menu5" class="tab-pane fade">
-
-                        <div class="book-details__section">
                             <h4>Book info</h4>
                             <p class="mt-3">Author: {{ book.author }}</p>
                             <p class="mt-3">ISBN: {{ book.isbn }}</p>
                             <p class="mt-3">Pages: {{ book.pages }}</p>
                             <p class="mt-3">Age on book: {{ book.age_on_book }}</p>
+
                         </div>
 
                     </div>
 
                 </div>
-
+                
             </div>
-            
+
         </div>
 
-</main>
+    </main>
 {% endblock %}
 
 {% block postloadjs %}

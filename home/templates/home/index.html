@@ -49,7 +49,11 @@
 
                 {% for book in featured_books %}
 
-                    {% include 'includes/book-card.html' %}
+                    {% if forloop.counter < 5 %}
+
+                        {% include 'includes/book-card.html' %}
+
+                    {% endif %}
 
                 {% endfor %}
 
@@ -65,7 +69,11 @@
 
                 {% for book in recent_books %}
 
-                    {% include 'includes/book-card.html' %}
+                    {% if forloop.counter < 9 %}
+
+                        {% include 'includes/book-card.html' %}
+
+                    {% endif %}
 
                 {% endfor %}
 

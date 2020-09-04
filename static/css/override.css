@@ -587,6 +587,14 @@ html, body {
   flex-wrap: nowrap;
   overflow-x: auto;
 }
+@media (min-width: 992px) {
+  .scrolling-wrapper-flexbox {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    row-gap: 1.5rem;
+    margin-left: 0.5rem;
+  }
+}
 
 .scrolling-wrapper, .scrolling-wrapper-flexbox {
   margin-bottom: 20px;
@@ -632,6 +640,10 @@ html, body {
   }
 }
 
+.featured-books, .recent-books, .explanation {
+  width: 90%;
+  margin: 0 auto;
+}
 .featured-books__header, .recent-books__header, .explanation__header {
   text-align: center;
   margin-top: 1rem;
@@ -642,14 +654,7 @@ html, body {
 
 @media (min-width: 992px) {
   .featured-books, .recent-books {
-    margin: 0 auto;
-    width: 75%;
-  }
-}
-@media (min-width: 1200px) {
-  .featured-books, .recent-books {
-    margin: 0 auto;
-    width: 40%;
+    width: 870px;
   }
 }
 .home-btn {

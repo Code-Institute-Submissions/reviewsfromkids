@@ -19,6 +19,9 @@
 
 .featured-books, .recent-books, .explanation {
 
+    width: 90%;
+    margin: 0 auto;
+
     &__header {
 
         text-align: center;
@@ -37,21 +40,9 @@
 
     .featured-books, .recent-books {
         
-        margin: 0 auto;
-        width: 75%;
+        width: 870px;
 
     }
-}
-
-@include l_laptop {
-
-    .featured-books, .recent-books {
-        
-        margin: 0 auto;
-        width: 40%;
-
-    }
-
 }
 
 .home-btn {

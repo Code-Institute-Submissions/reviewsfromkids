@@ -16,15 +16,15 @@
     flex-wrap: nowrap;
     overflow-x: auto;
 
+    @include laptop {
+
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        row-gap: 1.5rem;
+        margin-left: 0.5rem;
+    }
+
 }
-  
-  // .card {
-  //   border: 2px solid red;
-  //   width: 150px;
-  //   height: 225px;
-  //   background: black;
-    
-  // }
   
   .scrolling-wrapper, .scrolling-wrapper-flexbox {
     

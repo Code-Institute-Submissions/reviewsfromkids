@@ -14,6 +14,9 @@ $screen-lg-min: 992px;
 // Large tablets and desktops
 $screen-xl-min: 1200px;
 
+// Extra large tablets and desktops
+$screen-xxl-min: 2400px;
+
 // Small devices
 @mixin s_tablet {
     @media (min-width: #{$screen-sm-min}) {
@@ -28,16 +31,23 @@ $screen-xl-min: 1200px;
     }
  }
  
- // Large devices
+ // Normal laptop devices
  @mixin laptop {
     @media (min-width: #{$screen-lg-min}) {
         @content;
     }
  }
  
- // Extra large devices
+ // Large devices
  @mixin l_laptop {
     @media (min-width: #{$screen-xl-min}) {
+        @content;
+    }
+ }
+
+ // Extra large devices
+ @mixin xl_laptop {
+    @media (min-width: #{$screen-xxl-min}) {
         @content;
     }
  }

@@ -1,0 +1,54 @@
+.about {
+
+    margin: 0 auto;
+
+    @include tablet {
+
+        width: 80%;
+
+    }
+
+    @include l_laptop {
+
+        width: 60%;
+
+    }
+
+    @include xl_laptop {
+
+        width: 70%;
+        
+    }
+}
+
+.contact {
+
+    width: 90%;
+    margin: 0 auto;
+
+    @include tablet {
+
+        width: 60%;
+
+    }
+
+    @include laptop {
+
+        width: 70%;
+
+    }
+
+    @include l_laptop {
+
+        width: 60%;
+
+    }
+
+    @include xl_laptop {
+
+        width: 50%;
+        
+    }
+
+
+}

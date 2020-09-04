@@ -1,4 +1,17 @@
 .profile {
+
+    padding: 0 1rem;
+    margin: 0 auto;
+
+    @include tablet {
+
+        width: 585px;
+
+        .tab-content {
+
+            width: 585px;
+        }
+    }
     
     &__title {
 
@@ -8,14 +21,35 @@
         align-items: center;
     }
 
+    @include tablet {
+        
+        ul {
+            
+        margin: 1rem auto;
+        text-align: center;
+
+        }
+    }
+
     &__pills {
 
         display: flex;
-        // flex-wrap: wrap;
         padding-left: 0;
-        margin: 1.5rem 0;
         list-style: none;
-        // justify-content: space-evenly;
+        margin-top: 1rem;
+
+        @include tablet {
+
+            width: 620px;
+            justify-content: space-evenly;
+            margin: 1.5rem auto;
+        
+        }
+
+        @include l_laptop {
+
+            width: 580px;
+        }
 
         a {
             color: $mainTeal;
@@ -47,6 +81,13 @@
             color: $mainTeal;
         }
 
+        &--btn {
+
+            width: 125px;
+            margin: 2rem auto;
+            display: block;
+        }
+
         &-grid {
 
             display: grid;
@@ -71,6 +112,13 @@
 
             margin-top: 0.3rem;
             padding: 0;
+
+            @include tablet {
+
+                text-align: start;
+
+            }
+           
         }
 
         &--edit {
@@ -81,6 +129,7 @@
             }
 
         }
+
         &--tag {
 
             display: inline-block;
@@ -98,11 +147,4 @@
 
         color: $mainTeal;
     }
-}
-
-.form-wrapper {
-    
-    width: 75%;
-    margin: 2rem auto;
-
 }

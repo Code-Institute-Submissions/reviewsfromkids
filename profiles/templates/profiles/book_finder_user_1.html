@@ -37,15 +37,16 @@
 
 {% load crispy_forms_tags %}
 {% block content %}
-  <div class="form-wrapper">
-    <main>
-      Please complete or update the following fields:
-      <form method="POST" >
+  
+    <main class="bookfinder">
+      <p class="align-center">Please complete or update the following fields:</p>
+
+      <form class="form-wrapper" method="POST">
         {% csrf_token %}
         {{ form|crispy }}
         <input class="btn bookfinder__btn" type='submit' value='next' />
         <a href="{% url 'book_finder_user' %}" class="bookfinder__back">back</a>
       </form>  
     </main>
-  </div>
+ 
 {% endblock %}

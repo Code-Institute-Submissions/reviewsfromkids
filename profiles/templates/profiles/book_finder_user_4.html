@@ -15,16 +15,31 @@
 
 {% block content %}
     <div class="generic-wrapper">
-        <main">
-            <p>These are the books that fit you because of your age, your gender, your hobbies and sports. Also, books you like and dislike are removed from the list.</p>
-            <p>We find books based on your hobbies and sports. If you want to adjust these go <a href="{% url 'book_finder_user_5' %}">here</a>.</p>
-            <hr>
-            {% for book in books %}
-                {% include 'includes/book-result.html' %}
-                <div class="col-12 d-sm-none mb-5">
+
+        <div class="bookfinder">
+
+            <main>
+
+                <p>These are the books that fit you because of your age, your gender, your hobbies and sports. Also, books you like and dislike are removed from the list.</p>
+                <p>We find books based on your hobbies and sports. If you want to adjust these go <a href="{% url 'book_finder_user_5' %}">here</a>.</p>
                 <hr>
+    
+                <div class="bookfinder__books-results">
+    
+                    {% for book in books %}
+        
+                        {% include 'includes/book-result.html' %}
+
+                        <div class="col-12">
+                            <hr>
+                        </div>
+
+                    {% endfor %}
                 </div>
-            {% endfor %}
-        </main>
+                
+            </main>
+
+        </div>
+        
     </div>
 {% endblock %}

@@ -17,6 +17,8 @@
 {% block inner_content %}
 <h1>{% trans "Sign Up" %}</h1>
 
+<p>With an account you can get the best out of Reviewsfromkids. You get the best recommendations based on your profile. You see books that you most likey want to read.</p>
+<p>Sign up, it's free and fun!</p>
 <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">log in</a>.{% endblocktrans %}</p>
 
 <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">

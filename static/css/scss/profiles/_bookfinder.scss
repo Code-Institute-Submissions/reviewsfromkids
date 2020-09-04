@@ -2,6 +2,29 @@
 
     font-size: 1.2rem;
     padding: 1rem;
+    margin: 0 auto;
+
+    &__books-results {
+
+        margin: 0 auto;
+
+        @include tablet {
+
+            width: 585px;
+
+            @include laptop {
+
+                width: 380px;
+
+            }
+        }
+    }
+
+    @include tablet {
+
+        width: 650px;
+
+    }
 
     &__btn {
 
@@ -16,4 +39,16 @@
         font-size: 0.8rem;
         margin-top: 1rem;
     }
+}
+
+.form-wrapper {
+    
+    width: 75%;
+    margin: 2rem auto;
+
+    @include tablet {
+
+        width: 300px;
+    }
+
 }

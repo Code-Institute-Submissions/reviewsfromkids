@@ -1,10 +1,23 @@
 .book-result {
+
     max-height: 400px;
     width: 95%;
     margin: 0 auto;
     display: grid;
     grid-template-columns: 30% 65%;
     column-gap: 2rem;
+
+    @include tablet {
+
+        width: 75%;
+
+    }
+
+    @include laptop {
+
+        width: 95%;
+
+    }
 
     &__image-area {
 
@@ -24,8 +37,19 @@
             height: 35px;
             border-radius: 50%;
             background-color: #fff;
-            // z-index: 99;
             display: grid;
+
+            @include tablet {
+
+                right: -1;
+
+            }
+
+            @include laptop {
+
+                right: -25;
+
+            }
 
             &--icon {
 

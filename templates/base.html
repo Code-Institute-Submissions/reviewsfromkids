@@ -56,7 +56,7 @@
     <!-- 2.4 -->
     <title>Reviews from kids for kids | {% block extra_title %}{% endblock %}</title>
   </head>
-  <body>
+  <body class="push-footer-body">
     <header class="site-header toggle">
         
         {% include 'includes/main-nav.html' %}
@@ -98,8 +98,15 @@
     
     {% block content %}
     {% endblock %}
+
+    
+    
+    
+    <!-- push footer down on short pages -->
+    <div class="push-footer"></div>
+
     {% include 'includes/footer.html' %}
-  
+
     {% block postloadjs %}  
     {% endblock %}
 

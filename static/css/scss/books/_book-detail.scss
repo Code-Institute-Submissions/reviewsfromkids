@@ -1,13 +1,16 @@
 .book-details {
 
-    @include laptop {
+    margin-top: 5rem;
+    padding: 0 1rem;
+
+    @include tablet {
 
         width: 600px;
         margin: 0 auto;
         
         ul {
+            
             margin: 1rem auto;
-            // padding: 0;
             text-align: center;
         }
 
@@ -23,9 +26,6 @@
 
         color: $mainPurple;
     }
-    
-    margin-top: 5rem;
-    padding: 0 1rem;
 
     &__image-container {
 
@@ -42,7 +42,7 @@
         margin: 1.5rem 0;
         list-style: none;
 
-        @include laptop {
+        @include tablet {
 
             width: 520px;
             justify-content: space-evenly;
@@ -85,7 +85,7 @@
                 font-size: 1.5rem;
                 font-weight: 700;
 
-                @include laptop {
+                @include tablet {
 
                     text-align: center;
 
@@ -157,7 +157,7 @@
 
                 justify-self: start;
 
-                @include laptop {
+                @include tablet {
 
                     justify-self: center;
 
@@ -169,7 +169,7 @@
                 font-size: 1.2rem;
             }
 
-            @include laptop {
+            @include tablet {
 
                 &--btn-1 {
 
@@ -183,7 +183,7 @@
                 grid-column: 2;
                 margin-top: - 0.6rem;
 
-                @include laptop {
+                @include tablet {
 
                     justify-self: center;
                     
@@ -194,7 +194,7 @@
 
         &__info {
 
-            @include laptop {
+            @include tablet {
 
                 width: 50%;
                 margin: 0 auto;
@@ -240,11 +240,3 @@ h2.book-details__title {
     align-self: center;
 
 }
-
-// #onYourList button .book-details__icon--fav {
-//     color: $mainYellow;
-// }
-
-// .book-details__icon--not-fav {
-//     color: #ddd;
-// }

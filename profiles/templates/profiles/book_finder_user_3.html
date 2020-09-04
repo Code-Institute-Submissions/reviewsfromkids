@@ -36,15 +36,13 @@
 
 {% load crispy_forms_tags %}
 {% block content %}
-  <div class="form-wrapper">
-    <main">
-      <p>And now for sports! Are you active, sport?</p>
-      <form class="profile__hobbysport--edit" method="POST">
+    <main class="bookfinder">
+      <p class="align-center">And now for sports! Are you active, sport?</p>
+      <form class="profile__hobbysport--edit form-wrapper" method="POST">
         {% csrf_token %}
         {{ form_sport|crispy }}
         <input class="btn bookfinder__btn" type="submit" value="finish" />
           <a href="{% url 'book_finder_user_2' %}" class="bookfinder__back">back</a>
       </form>
     </main>
-  </div>
 {% endblock %}

@@ -6,6 +6,13 @@
     @include laptop {
 
         width: 45%;
+
+    }
+
+    @include l_laptop {
+
+        width: 30%;
+        
     }
 
 }
@@ -24,9 +31,25 @@
         
     }
 
-    @include laptop {
+}
 
-        text-align: center;
+@include laptop {
+
+    .featured-books, .recent-books {
+        
+        margin: 0 auto;
+        width: 75%;
+
+    }
+}
+
+@include l_laptop {
+
+    .featured-books, .recent-books {
+        
+        margin: 0 auto;
+        width: 40%;
+
     }
 
 }

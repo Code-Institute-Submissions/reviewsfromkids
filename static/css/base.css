@@ -3,37 +3,22 @@ html {
   margin: 0;
   padding: 0;
 }
-/* -------------------------------- Media Queries */
 
-/* Slightly larger container on xl screens */
-@media (min-width: 1200px) {
-  .container {
-    max-width: 80%;
-  }
+/* Taken from: https://stackoverflow.com/questions/4575826/how-to-push-a-footer-to-the-bottom-of-page-when-content-is-short-or-missing */
+.push-footer-body {
+
+    min-height: 100vh; 
+    display: flex; 
+    flex-direction: column;
+
 }
 
-/* fixed top navbar only on medium and up */
-@media (min-width: 992px) {
-    .fixed-top-desktop-only {
-        position: fixed;
-        top: 0;
-        right: 0;
-        left: 0;
-        z-index: 1030;
-    }
+.push-footer {
 
-    .header-container {
-        padding-top: 164px;
-    }
+    flex-grow:1;
 }
 
 .allauth-form-inner-content {
   margin-top: 5rem;
-}
-
-.temp-wrapper {
-
-  max-width: 1000px;
-  margin: 0 auto;
 }
 

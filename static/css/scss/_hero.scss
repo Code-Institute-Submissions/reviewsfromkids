@@ -77,10 +77,21 @@
     color: white;
     text-align: center;
 
+    @include tablet {
+
+        h1, h4 {
+
+            width: 650px;
+
+        }
+        
+    }
+
     &--row1 {
         
         grid-column: 2;
         grid-row: 1;
+        justify-self: center;
     }
 
     &--row2 {

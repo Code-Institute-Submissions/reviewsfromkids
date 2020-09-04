@@ -36,28 +36,28 @@
 
 {% load crispy_forms_tags %}
 {% block content %}
-  <div class="form-wrapper">
-    <main>
+  
+    <main class="bookfinder">
       {% if profile.only_hobbies_known %}
-      <p>Do you sport? Of course you do! Please select the ones you do.</p>
-      <p>If you do not actively sport: select the ones you like to watch.</p>
-        <form class="profile__hobbysport--edit" method="POST">
+      <p class="align-center">Do you sport? Of course you do! Please select the ones you do.</p>
+      <p class="align-center">If you do not actively sport: select the ones you like to watch.</p>
+        <form class="profile__hobbysport--edit form-wrapper" method="POST">
           {% csrf_token %}
           {{ form_sport|crispy }}
           <input type="hidden" name="type_of_action" value="onlyhobby_available">
           <input class="btn" type='submit' value='Save' />
         </form>
       {% elif profile.only_sports_known %}
-      <p>What hobbies do you have?</p>
-        <form class="profile__hobbysport--edit" method="POST" >
+      <p class="align-center">What hobbies do you have?</p>
+        <form class="profile__hobbysport--edit form-wrapper" method="POST" >
           {% csrf_token %}
           {{ form_hobby|crispy }}
           <input type="hidden" name="type_of_action" value="onlysport_available">
           <input class="btn" type="submit" value="Save" />
         </form>
       {% else %}
-        <p>Let's start with hobbies! What do you like to do?</p>
-        <form class="profile__hobbysport--edit" method="POST" >
+        <p class="align-center">Let's start with hobbies! What do you like to do?</p>
+        <form class="profile__hobbysport--edit form-wrapper" method="POST" >
           {% csrf_token %}
           {{ form_hobby|crispy }}
           <input type="hidden" name="type_of_action" value="no_hobbysport_available">
@@ -66,6 +66,5 @@
         </form>
       {% endif %}
     </main>
-  </div>
   
 {% endblock %}

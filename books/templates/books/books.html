@@ -78,28 +78,26 @@
         
 
     </div>
+
     <script>
         const searchBtn = document.getElementById('searchBtn');
-        // const cancelSearch = document.getElementById('cancel');
         let collapse = document.getElementById('collapseExample');
         let searchOpen = false;
 
         searchBtn.addEventListener('click', event => {
 
             if(searchOpen == false) {
-
+                
                 searchOpen = true;
                 searchBtn.classList.add('hide');
-     
-        });
+                
+            }
+        })
         
-        // cancelSearch.addEventListener('click', event => {
-
-        //     collapse.classList.remove('show');
-
-        // });
     </script>
+
 </main>
+
 {% endblock %}
 
 {% block postloadjs %}

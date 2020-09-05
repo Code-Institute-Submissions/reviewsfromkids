@@ -224,6 +224,11 @@ def book_detail(request, book_id):
 
         if request.POST.get('type_of_action')=='new':
 
+            if ratingOptions == None:
+                messages.error(request, f'Make sure you select a rating!')
+                book_id = book.id
+                return redirect('book_detail', book_id=book_id)
+
             r = Rating(
 
                 book_id=book_id, 
@@ -235,7 +240,7 @@ def book_detail(request, book_id):
                 date_added=datetime.now(),
                                     
                 )
-            
+
             r.save()
 
             messages.success(request, f'Rated with a {ratingOptions}')
@@ -509,7 +514,7 @@ def book_detail(request, book_id):
         'not_recommended_by_age_boys': not_recommended_by_age_boys,
         'recommended_age_boys': recommended_age_boys,
         'most_disliked_by': most_disliked_by,
-        'allowed_to_rate': allowed_to_rate,
+        'profile': userprofile,
     }
 
     return render(request, 'books/book_detail.html', context)

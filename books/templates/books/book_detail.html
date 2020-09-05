@@ -425,7 +425,7 @@
 
                             <p>Did you read this book? Great! Or not great... that depends. Did you like to read it? Please help others and tell them what you think.</p>
 
-                            {% if user_logged_in and allowed_to_rate %}
+                            {% if user_logged_in and profile.allowed_to_rate %}
 
                                 {% if not already_rated %}
 
@@ -498,7 +498,7 @@
                                 <p>Let the world know what you think!</p>
                                 <div class="sharethis-inline-share-buttons"></div>
 
-                            {% elif user_logged_in and not allowed_to_rate %}
+                            {% elif user_logged_in and not userprofile.allowed_to_rate %}
 
                                 <p>We love your rating. To make your rating even better, we'd like to know a bit more about you. So, other kids can see if your rating is helpful for them.</p>
                                 <p>Please complete your profile <a href="{% url 'profile' %}">here</a>.</p>

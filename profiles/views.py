@@ -87,6 +87,7 @@ def edit_personal(request):
 
             if profile.profile_complete == "lvl-2" and user_hobby.exists()==True and user_sport.exists()==True:
                 profile.profile_complete = "lvl-3"
+                profile.allowed_to_rate = True
 
             profile.save()
             
@@ -152,6 +153,7 @@ def edit_hobby(request):
 
             if profile.profile_complete == "lvl-2" and user_hobby.exists()==True and user_sport.exists()==True:
                 profile.profile_complete = "lvl-3"
+                profile.allowed_to_rate = True
 
             profile.save()
 
@@ -215,8 +217,9 @@ def edit_sport(request):
             if profile.profile_complete == "lvl-1" and user_hobby.exists()==True or user_sport.exists()==True:
                 profile.profile_complete = "lvl-2"
 
-            if profile.profile_complete == "lvl-1" and user_hobby.exists()==True and user_sport.exists()==True:
+            if profile.profile_complete == "lvl-2" and user_hobby.exists()==True and user_sport.exists()==True:
                 profile.profile_complete = "lvl-3"
+                profile.allowed_to_rate = True
 
             profile.save()
 
@@ -283,6 +286,7 @@ def book_finder_edit_hobby(request):
 
             if profile.profile_complete == "lvl-2" and user_hobby.exists()==True and user_sport.exists()==True:
                 profile.profile_complete = "lvl-3"
+                profile.allowed_to_rate = True
 
             profile.save()
             
@@ -350,6 +354,7 @@ def book_finder_edit_sport(request):
 
             if profile.profile_complete == "lvl-2" and user_hobby.exists()==True and user_sport.exists()==True:
                 profile.profile_complete = "lvl-3"
+                profile.allowed_to_rate = True
 
             profile.save()
             
@@ -479,6 +484,7 @@ def book_finder_user_1(request):
 
             if profile.profile_complete == "lvl-2" and user_hobby.exists()==True and user_sport.exists()==True:
                 profile.profile_complete = "lvl-3"
+                profile.allowed_to_rate = True
 
             profile.save()
             
@@ -593,6 +599,7 @@ def book_finder_user_2(request):
 
         if profile.profile_complete == "lvl-2" and user_hobby.exists()==True and user_sport.exists()==True:
             profile.profile_complete = "lvl-3"
+            profile.allowed_to_rate = True
 
         profile.save()
         
@@ -697,6 +704,7 @@ def book_finder_user_3(request):
 
             if profile.profile_complete == "lvl-2" and user_hobby.exists()==True and user_sport.exists()==True:
                 profile.profile_complete = "lvl-3"
+                profile.allowed_to_rate = True
 
             profile.save()
             
@@ -784,6 +792,7 @@ def book_finder_user_5(request):
 
     if profile.profile_complete == "lvl-2" and user_hobby.exists()==True and user_sport.exists()==True:
         profile.profile_complete = "lvl-3"
+        profile.allowed_to_rate = True
 
     profile.save()
     

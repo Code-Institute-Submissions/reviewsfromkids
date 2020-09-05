@@ -104,45 +104,45 @@
 
                     </div>
 
-                    {% if profile.first_name %}
+                    {% if profile.profile_complete == "lvl-0" %}
 
-                        <div class="profile__basic-grid">
-
-                            <div class="profile__basic-grid-row">
-
-                                <div class="profile__basic-grid-row--key">First name: </div>
-                                <div class="profile__basic-grid-row--value">{{ profile.first_name }}</div>
-
-                            </div>
-
-                            <div class="profile__basic-grid-row">
-
-                                <div class="profile__basic-grid-row--key">Last name: </div>
-                                <div class="profile__basic-grid-row--value">{{ profile.last_name }}</div>
-
-                            </div>
-
-                            <div class="profile__basic-grid-row">
-
-                                <div class="profile__basic-grid-row--key">Date of birth: </div>
-                                <div class="profile__basic-grid-row--value">{{ profile.date_of_birth|date:'Y-m-d' }}</div>
-
-                            </div>
-
-                            <div class="profile__basic-grid-row">
-
-                                <div class="profile__basic-grid-row--key">Gender: </div>
-                                <div class="profile__basic-grid-row--value">{% if profile.gender == 'BOY' %}boy{% elif profile.gender == 'GIRL' %}girl{% elif profile.gender == 'UNKNOWN' %}prefer not to say{% endif %}</div>
-
-                            </div>
-
-                        </div>
+                        <p>Complete your personal details. Then you get better recommendations!</p>
+                        
+                        <a href="{% url 'edit_personal' %}" class="btn profile__basic--btn">start</a>
 
                     {% else %}
 
-                        <p>Tell us your age and if you are a boy or a girl. Then you get better recommendations!</p>
-                        
-                        <a href="{% url 'edit_personal' %}" class="btn profile__basic--btn">start</a>
+                    <div class="profile__basic-grid">
+
+                        <div class="profile__basic-grid-row">
+
+                            <div class="profile__basic-grid-row--key">First name: </div>
+                            <div class="profile__basic-grid-row--value">{{ profile.first_name }}</div>
+
+                        </div>
+
+                        <div class="profile__basic-grid-row">
+
+                            <div class="profile__basic-grid-row--key">Last name: </div>
+                            <div class="profile__basic-grid-row--value">{{ profile.last_name }}</div>
+
+                        </div>
+
+                        <div class="profile__basic-grid-row">
+
+                            <div class="profile__basic-grid-row--key">Date of birth: </div>
+                            <div class="profile__basic-grid-row--value">{{ profile.date_of_birth|date:'Y-m-d' }}</div>
+
+                        </div>
+
+                        <div class="profile__basic-grid-row">
+
+                            <div class="profile__basic-grid-row--key">Gender: </div>
+                            <div class="profile__basic-grid-row--value">{% if profile.gender == 'BOY' %}boy{% elif profile.gender == 'GIRL' %}girl{% elif profile.gender == 'UNKNOWN' %}prefer not to say{% endif %}</div>
+
+                        </div>
+
+                    </div>
 
                     {% endif %}
 

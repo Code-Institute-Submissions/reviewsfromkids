@@ -150,18 +150,22 @@
   justify-items: center;
   align-items: center;
 }
-.site-header h1 {
-  padding-top: 25px;
-  text-align: center;
-  font-size: 3rem;
+.site-header a:hover {
+  color: #fec944;
 }
-.site-header h2 {
-  position: relative;
-  top: 310px;
-  text-align: center;
+@media (min-width: 992px) {
+  .site-header {
+    grid-template-columns: 1fr 330px 1fr;
+    grid-template-rows: 1fr;
+  }
 }
 .site-header__logo {
   grid-column: 2;
+}
+@media (min-width: 992px) {
+  .site-header__logo {
+    grid-row: 1;
+  }
 }
 .site-header__logo--img {
   height: 55px;
@@ -173,6 +177,11 @@
   grid-column: 1;
   display: grid;
   align-items: center;
+}
+@media (min-width: 992px) {
+  .site-header__menu-icon {
+    display: none;
+  }
 }
 .site-header__menu-icon::before {
   content: "";
@@ -243,6 +252,55 @@
   color: #fec944;
 }
 
+.nav-desktop {
+  display: none;
+}
+@media (min-width: 992px) {
+  .nav-desktop {
+    display: initial;
+  }
+}
+.nav-desktop__left {
+  grid-column: 1;
+  align-self: flex-end;
+}
+.nav-desktop__right {
+  grid-column: 3;
+  align-self: flex-end;
+}
+.nav-desktop__right .dropdown {
+  position: relative;
+  display: inline-block;
+}
+.nav-desktop__right .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #7d51a1;
+  min-width: 100px;
+  width: 100%;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+.nav-desktop__right .dropdown-content li {
+  display: block;
+  margin-top: 0.5rem;
+}
+.nav-desktop__right .dropdown:hover .dropdown-content {
+  display: block;
+}
+.nav-desktop ul li {
+  list-style: none;
+  display: inline-block;
+}
+.nav-desktop ul li a {
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 1rem;
+  color: white;
+  padding: 0 0.3rem;
+}
+
 .search {
   display: grid;
   border: none;
@@ -252,6 +310,11 @@
   width: 90%;
   margin: 0 auto;
   background-image: url("/media/waves.svg");
+}
+@media (min-width: 768px) {
+  .search {
+    width: 400px;
+  }
 }
 .search p.search__text {
   margin: 0 0 1rem 0;
@@ -268,11 +331,6 @@
   line-height: 2rem;
 }
 
-.primary-nav-desktop {
-  display: none;
-  grid-column: 1;
-}
-
 .primary-nav ul {
   padding: 2rem 0;
 }
@@ -284,6 +342,9 @@
   text-transform: uppercase;
   font-weight: 500;
   font-size: 1.2rem;
+}
+.primary-nav__logged-in {
+  margin-top: 3rem;
 }
 
 .scrolling-wrapper {

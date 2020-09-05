@@ -12,9 +12,12 @@
           <li><a href="{% url 'contact' %}">Contact</a></li>
           <li><a href="{% url 'about' %}">About</a></li>
           {% if request.user.is_authenticated %}
-          You are logged in as {{ request.user }}
+          <div class="primary-nav__logged-in primary-nav">
+            <i class="fas fa-user"></i> {{ request.user }}
             <li><a href="{% url 'account_logout' %}">Logout</a></li>
             <li><a href="{% url 'profile' %}">My Profile</a></li>
+          </div>
+            
           {% else %}
             <li><a href="{% url 'account_signup' %}">Register</a></li>
             <li><a href="{% url 'account_login' %}">Login</a></li>

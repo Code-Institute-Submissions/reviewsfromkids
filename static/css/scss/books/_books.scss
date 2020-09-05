@@ -51,18 +51,14 @@
             display: initial;
             
         }
-
-        .hide {
-
-            display: none;
-            
-        }
         
         &--btn {
 
             width: 115px;
             justify-self: center;
             align-self: center;
+
+            
 
             @include laptop {
 
@@ -87,15 +83,26 @@
                 margin-left: 0;
             }
 
-            
         }
 
     }
 
-    &__collapse {
+    &__overlay {
 
         width: 90%;
         margin: 0 auto;
+        display: none;
+
+        @include laptop {
+
+            display: none;
+            
+        }
+
+        &--is-visible {
+
+            display: block;
+        }
 
         &__footer {
 

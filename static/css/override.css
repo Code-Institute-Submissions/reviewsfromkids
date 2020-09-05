@@ -1079,9 +1079,6 @@ h2.book-details__title {
     display: initial;
   }
 }
-.books-search__row .hide {
-  display: none;
-}
 .books-search__row--btn {
   width: 115px;
   justify-self: center;
@@ -1108,26 +1105,35 @@ h2.book-details__title {
     margin-left: 0;
   }
 }
-.books-search__collapse {
+.books-search__overlay {
   width: 90%;
   margin: 0 auto;
+  display: none;
 }
-.books-search__collapse__footer {
+@media (min-width: 992px) {
+  .books-search__overlay {
+    display: none;
+  }
+}
+.books-search__overlay--is-visible {
+  display: block;
+}
+.books-search__overlay__footer {
   display: grid;
   grid-template-columns: 1fr 1fr;
   padding-bottom: 2rem;
 }
-.books-search__collapse__footer--left {
+.books-search__overlay__footer--left {
   grid-column: 1;
   justify-self: start;
 }
-.books-search__collapse__footer--right {
+.books-search__overlay__footer--right {
   grid-column: 2;
   justify-self: end;
   align-self: flex-end;
 }
 @media (min-width: 992px) {
-  .books-search__collapse {
+  .books-search__overlay {
     display: none;
   }
 }

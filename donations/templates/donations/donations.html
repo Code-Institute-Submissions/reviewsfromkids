@@ -3,6 +3,7 @@
 {% load static %}
 
 {% block extra_css %}
+
     <link rel="stylesheet" href="{% static 'css/stripe.css' %}">
 
 {% endblock %}
@@ -11,22 +12,30 @@
 {% endblock %}
 
 
-{% block hero %} 
+{% block hero %}
+
 <div class="hero hero__donations">
+
     <h1 class="hero__donations--row1">A little help</h1>
     <i class="fas fa-gift fa-5x hero__donations--row2"></i>
     <h4 class="hero__donations--row3">goes a long way!</h4>
+
 </div>
+
 {% endblock %}
 
 {% block content %}
+
 <div class="generic-wrapper">
+
     <main>
+
         <div class="donations">
             <p>Do you like this site? Does it help your kids to find fun books to read? Then consider making a small donation. With your support we can make this site even better!</p>
         </div>
 
         <form class="donations__grid" action="{% url 'charge' %}" method="post" id="payment-form">
+
                 {% csrf_token %}
 
                 <div class="donations__grid--col1 donations__grid--row1">
@@ -34,16 +43,21 @@
                 </div>
 
                 <div class="donations__grid--col3 donations__grid--row1">
+
                     <select name="amount" id="amount" required>
+
                         <option selected value="5">5 euro</option>
                         <option value="10">10 euro</option>
                         <option value="25">25 euro</option>
+
                     </select>
                 </div>
+
             
                 <div class="donations__grid--col1 donations__grid--row2">
                     Your name
                 </div>
+
                 <div class="donations__grid--row3">
                     <input type="text" name="name" required>                    
                 </div>
@@ -51,6 +65,7 @@
                 <div class="donations__grid--col1 donations__grid--row4">
                     Your email
                 </div>
+
                 <div class="donations__grid--row5">
                     <input type="email" name="email" required>
                 </div>
@@ -58,16 +73,13 @@
                 <div class="donations__grid--col1 donations__grid--row6">
                     Message (optional)
                 </div>
+
                 <div class="donations__grid--row7">
                     <input type="text" name="description" placeholder="keep up the good work!">
                 </div>
                 
                 <div class="form-row donations__grid--row8">
-            
-                    <!-- <label for="card-element">
-                        Credit card
-                    </label> -->
-            
+
                     <div id="card-element" style="width:30em">
                         <!-- A Stripe Element will be inserted here. -->
                     </div>
@@ -82,9 +94,9 @@
                 <div class="form-row donations__grid--row9">
                     <button class="btn">Submit Payment</button>
                 </div>
-                
             
             </form>
+
     </main>
     
 </div>
@@ -93,5 +105,7 @@
 {% endblock %}
 
 {% block postloadjs %}
+
     <script type="module" src="{% static 'scripts/modules/Stripe.js' %}"></script>
+    
 {% endblock %}  

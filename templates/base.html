@@ -98,20 +98,17 @@
     
     {% block content %}
     {% endblock %}
-
-    
-    
-    
+   
     <!-- push footer down on short pages -->
     <div class="push-footer"></div>
 
     {% include 'includes/footer.html' %}
 
-    {% block postloadjs %}  
-    {% endblock %}
-
     <script src="{% static 'scripts/PostLoad.js' %}">
     </script>
+
+    {% block postloadjs %}  
+    {% endblock %}
        
   </body>
 </html>

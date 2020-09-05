@@ -6,21 +6,34 @@
 
 
 {% block hero %}
+
 <div class="hero hero__donations">
+
     <h1 class="hero__donations--row1">Thank you</h1>
     <i class="fas fa-heart fa-5x hero__donations--row2"></i>
     <h4 class="hero__donations--row3">Much appreciated!</h4>
+
 </div>
+
 {% endblock %}
 
 
-{% block content %}    
+{% block content %}   
+
     <div class="generic-wrapper">
+
 		<div class="donations donations__success">
+
             <h4>Thank you for your contribution of EUR{{amount}}!</h4>
-            <p>Your support helps me helping kids read more!</p>
+            <p>Children today read less frequently than any previous generation and enjoy reading less than young people did in the past, according to <a href="https://www.theguardian.com/education/2020/feb/29/children-reading-less-says-new-research" target="blank">new research</a>.</p>
+            <p>With your support we can try to get kids read more!</p>
+            <h4>Thank you!</h4>
+
         </div>
+        
 		<hr>
-		<a class="btn-link align-center" href="{% url 'home' %}">home</a>
-	</div>
+        <a class="btn-link align-center" href="{% url 'home' %}">home</a>
+        
+    </div>
+    
 {% endblock content %}

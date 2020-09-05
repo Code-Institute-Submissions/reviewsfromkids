@@ -17,9 +17,11 @@
         <div class="books">
 
             <div class="books-search__row">
-                <button id="searchBtn" class="btn btn-primary books-search__row--btn" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+
+                <button id="searchBtn" class="btn btn-primary books-search__row--btn" type="button">
                     search
                 </button>
+
                 <div class="books-search__row--results-counter">
                     {% if search_performed %}
                         {% if noresults %}
@@ -34,21 +36,19 @@
 
             <div class="books-search">
     
-                <div class="books-search__collapse">
-                    <div class="collapse" id="collapseExample">
+                <div class="books-search__overlay">
+
                         <form method="GET">
                             {{ myFilter.form|crispy }}
-                            <div class="books-search__collapse__footer">
-                                <button class="btn books-search__collapse__footer--left" type="submit">go</button>
+                            <div class="books-search__overlay__footer">
+                                <button class="btn books-search__overlay__footer--left" type="submit">go</button>
                                 {% if search_performed %}
-                                    <a class="books-search__collapse__footer--right" href="{% url 'books' %}">reset search</a>
-                                {% else %}
-                                    <button class="btn-link books-search__collapse__footer--right" id="cancel">cancel</button>
+                                    <a class="books-search__overlay__footer--right" href="{% url 'books' %}">reset search</a>                                    
                                 {% endif %}
                             </div>
                             
                         </form>
-                    </div>
+
                 </div>
 
                 <div class="books-search__side-bar">
@@ -79,27 +79,10 @@
 
     </div>
 
-    <script>
-        const searchBtn = document.getElementById('searchBtn');
-        let collapse = document.getElementById('collapseExample');
-        let searchOpen = false;
-
-        searchBtn.addEventListener('click', event => {
-
-            if(searchOpen == false) {
-                
-                searchOpen = true;
-                searchBtn.classList.add('hide');
-                
-            }
-        })
-        
-    </script>
-
 </main>
 
 {% endblock %}
 
 {% block postloadjs %}
-    
+    <script src="{% static 'scripts/modules/Search.js' %}"></script>
 {% endblock %}

@@ -1,37 +1,72 @@
 <div class="book-card">
+
     <img class="book-card__image" src="{{ book.image_card.url }}" alt="{{ book.name }}">
+
     <div class="book-card__reveal">
+
         <div class="book-card__reveal--row1">
+
             <div class="hard-coded-stars">
+
                 {% include 'includes/star-rating-hard-coded.html' %}
+
             </div>
+
             <div class="rating-static-table__rating-2">
+
                 <small class="text-muted">({{ book.number_of_ratings }} ratings)</small>
-            </div>  
+
+            </div>
+
         </div>
+
         <div class="book-card__reveal--row2">
+
             {% if book.recommended_age == "not known yet" or book.recommended_age == "not available" %}
+
                 <small class="text-muted">Recommended age is {{ book.recommended_age }}</small>
+
             {% else %}
+
                 Recommended age: <span class="emphasis1">{{ book.recommended_age }}</span>
+
             {% endif %}
+
         </div>
+
         <div class="book-card__reveal--row3">
+
             {% if book.most_liked_by == "not known yet" %}
+
                 <small class="text-muted">Most liked by is {{ book.most_liked_by }}</small>
+
             {% else %}
+
                 Most liked by: <span class="emphasis1">{{ book.most_liked_by }}</span>
+                
             {% endif %}
+
         </div>
+
         <div class="book-card__reveal--row4">
+
             <span class="tag tag--category book-card__reveal--row4--tag">{{ book.category }} </span>
+
             {% for tag in book.tags.all %}
+
                 {% if forloop.counter < 3 %}
+
                     <span class="tag tag--tag book-card__reveal--row4--tag">{{ tag }}</span>
+
                 {% endif %}
+
             {% endfor %}
+
         </div>
+
         <a href="{% url 'book_detail' book.id %}" class="btn text book-card__reveal--row5">view</a>
+
     </div>
+    
 </div>
 

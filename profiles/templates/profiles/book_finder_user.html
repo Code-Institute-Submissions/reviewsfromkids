@@ -5,58 +5,76 @@
     Bookfinder
 {% endblock %}
 
-{% block page_header %}
-{% endblock %}
-
-
 {% block hero %}
-  <div class="hero__bookfinder">
-    {% if dobgender_available %}
-      <!-- If age and gender-->
-      <h3 class="hero__bookfinder--row1">Alright {% if profile.first_name%}{{ profile.first_name }}{% else %}{{ profile.user }}{% endif %}, </h3>
-      <i class="fas fa-search fa-5x hero__bookfinder--row2"></i>
-      <h4 class="hero__bookfinder--row3">let's look for books that other {% if profile.gender == 'BOY' %}boys{% elif profile.gender == 'GIRL' %}girls{% elif profile.gender == 'UNKNOWN' %}kids{% endif %} of your age like.</h4>
-      
-    {% elif onlygender_available %}
-      <!-- If only gender -->
-      <h3 class="hero__bookfinder--row1">Alright {% if profile.first_name%}{{ profile.first_name }}{% else %}{{ profile.user }}{% endif %}, </h3>
-      <i class="fas fa-search fa-5x hero__bookfinder--row2"></i>
-      <h4 class="hero__bookfinder--row3">let's look for books that other {% if profile.gender == 'BOY' %}boys{% elif profile.gender == 'GIRL' %}girls{% elif profile.gender == 'UNKNOWN' %}kids{% endif %} like.</h4>
-    {% elif onlydob_available %}
-      <!-- If only age -->
-      <h3 class="hero__bookfinder--row1">Alright Mr. or Mrs. {% if profile.first_name%}{{ profile.first_name }}{% else %}{{ profile.user }}{% endif %}, </h3>
-      <i class="fas fa-search fa-5x hero__bookfinder--row2"></i>
-      <h4 class="hero__bookfinder--row3">let's look for books that other kids of your age like.</h4>
-    {% else %}
-      <!-- If only user -->
-      <h3 class="hero__bookfinder--row1">Alright Mr. or Mrs. {% if profile.first_name%}{{ profile.first_name }}{% else %}{{ profile.user }}{% endif %}, </h3>
-      <i class="fas fa-search fa-5x hero__bookfinder--row2"></i>
-      <h4 class="hero__bookfinder--row3">let's look for books that other kids like.</h4>
-    {% endif %}
-    <div class="hero__bookfinder--row4">
-      Step 0/3
+
+    <!-- Create dynamice welcome message based on profile completeness -->
+    <div class="hero__bookfinder">
+
+        {% if dobgender_available %}
+            <!-- If age and gender-->
+            <h3 class="hero__bookfinder--row1">Alright {% if profile.first_name%}{{ profile.first_name }}{% else %}{{ profile.user }}{% endif %}, </h3>
+            <i class="fas fa-search fa-5x hero__bookfinder--row2"></i>
+            <h4 class="hero__bookfinder--row3">let's look for books that other {% if profile.gender == 'BOY' %}boys{% elif profile.gender == 'GIRL' %}girls{% elif profile.gender == 'UNKNOWN' %}kids{% endif %} of your age like.</h4>
+            
+        {% elif onlygender_available %}
+            <!-- If only gender -->
+            <h3 class="hero__bookfinder--row1">Alright {% if profile.first_name%}{{ profile.first_name }}{% else %}{{ profile.user }}{% endif %}, </h3>
+            <i class="fas fa-search fa-5x hero__bookfinder--row2"></i>
+            <h4 class="hero__bookfinder--row3">let's look for books that other {% if profile.gender == 'BOY' %}boys{% elif profile.gender == 'GIRL' %}girls{% elif profile.gender == 'UNKNOWN' %}kids{% endif %} like.</h4>
+
+        {% elif onlydob_available %}
+            <!-- If only age -->
+            <h3 class="hero__bookfinder--row1">Alright Mr. or Mrs. {% if profile.first_name%}{{ profile.first_name }}{% else %}{{ profile.user }}{% endif %}, </h3>
+            <i class="fas fa-search fa-5x hero__bookfinder--row2"></i>
+            <h4 class="hero__bookfinder--row3">let's look for books that other kids of your age like.</h4>
+
+        {% else %}
+            <!-- If only user -->
+            <h3 class="hero__bookfinder--row1">Alright Mr. or Mrs. {% if profile.first_name%}{{ profile.first_name }}{% else %}{{ profile.user }}{% endif %}, </h3>
+            <i class="fas fa-search fa-5x hero__bookfinder--row2"></i>
+            <h4 class="hero__bookfinder--row3">let's look for books that other kids like.</h4>
+
+        {% endif %}
+
+        <div class="hero__bookfinder--row4">
+            Step 0/3
+        </div>
+
     </div>
-  </div>
+
 {% endblock %}
 
 {% block content %}
-  <div class="generic-wrapper">
-    <main class="bookfinder">
-      {% if profile.first_name and profile.last_name and dobgender_available and profile.hobbies_and_sports_known %}
-        <p>There are thousands of nice books out there. So, we need to start with a rough selection. Ready?</p>
-        <a href="{% url 'book_finder_user_4' %}" class="btn bookfinder__btn">go!</a>
-      {% elif profile.first_name and profile.last_name and dobgender_available %}
-        <p>There are thousands of nice books out there. So, we need to start smart.</p>
-        <p>The more information you share, the better other kids can help you.</p>
-        <p>Let's finish your profile, shall we?</p>
-        <a href="{% url 'book_finder_user_2' %}" class="btn bookfinder__btn">sure</a>
-      {% else %}
-        <p>There are thousands of nice books out there. So, we need to start smart.</p>
-        <p>The more information you share, the better other kids can help you.</p>
-        <p>Let's start with completing your profile, shall we?</p>
-        <a href="{% url 'book_finder_user_1' %}" class="btn bookfinder__btn">sure</a>
-      {% endif %}
-      <a href="{% url 'home' %}" class="bookfinder__back">back</a>
-    </main>
-  </div>
+
+    <div class="generic-wrapper">
+
+        <main class="bookfinder">
+
+            {% if profile.first_name and profile.last_name and dobgender_available and profile.hobbies_and_sports_known %}
+            
+                <p>There are thousands of nice books out there. So, we need to start with a rough selection. Ready?</p>
+                <a href="{% url 'book_finder_user_4' %}" class="btn bookfinder__btn">go!</a>
+            
+            {% elif profile.first_name and profile.last_name and dobgender_available %}
+                
+                <p>There are thousands of nice books out there. So, we need to start smart.</p>
+                <p>The more information you share, the better other kids can help you.</p>
+                <p>Let's finish your profile, shall we?</p>
+                <a href="{% url 'book_finder_user_2' %}" class="btn bookfinder__btn">sure</a>
+            
+            {% else %}
+
+                <p>There are thousands of nice books out there. So, we need to start smart.</p>
+                <p>The more information you share, the better other kids can help you.</p>
+                <p>Let's start with completing your profile, shall we?</p>
+                <a href="{% url 'book_finder_user_1' %}" class="btn bookfinder__btn">sure</a>
+
+            {% endif %}
+            
+            <a href="{% url 'home' %}" class="bookfinder__back">back</a>
+
+        </main>
+
+    </div>
+
 {% endblock %}

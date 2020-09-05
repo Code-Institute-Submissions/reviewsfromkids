@@ -1,14 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block extra_title %}
-
-{% endblock %}
-
-{% block page_header %}
-    
-{% endblock %}
-
 {% block hero %}
 
     <div class="hero">
@@ -85,7 +77,6 @@
         
         </section>
 
-   
         <div class="wrapper-home">
 
             <section class="explanation">
@@ -99,11 +90,11 @@
                 
                 {% if user_logged_in %}
 
-                  <a class="btn home-btn" href="{% url 'book_finder_user' %}">start</a>
+                    <a class="btn home-btn" href="{% url 'book_finder_user' %}">start</a>
 
                 {% else %}
 
-                  <a class="btn home-btn" href="{% url 'book_finder' %}">join</a>
+                    <a class="btn home-btn" href="{% url 'book_finder' %}">join</a>
                   
                 {% endif %}
         
@@ -111,6 +102,6 @@
 
         </div>
 
-
   </main>
+  
 {% endblock %}

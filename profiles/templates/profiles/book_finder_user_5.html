@@ -5,10 +5,6 @@
     Bookfinder
 {% endblock %}
 
-{% block page_header %}
-{% endblock %}
-
-
 {% block hero %}
   <div class="hero__bookfinder">
     <h4 class="hero__bookfinder--row1">When ready use this button<br> to go back to the book finder.</h4>
@@ -18,58 +14,85 @@
 {% endblock %}
 
 {% block content %}
-  <main>
-    <div class="generic-wrapper">
 
-        <div class="bookfinder">
+    <main>
 
-            <section class="profile__hobbysport card-body">
+        <div class="generic-wrapper">
 
-                <div class="profile__title">
-                    <h3>Hobbies</h3>
-                    {% if user_hobby %}
-                        <a href="{% url 'book_finder_edit_hobby' %}"><i class="fas profile__icon--edit fa-edit"></i></a>
-                    {% endif %}
-                </div>
-        
-                <ul>
-                    {% if user_hobby %}
-                        {% for hobby in user_hobby %}
-                        <li class="profile__hobbysport--tag">{{ hobby }}</li>
-                        {% endfor %}
-                    {% else %}
-                    No hobbies provided yet. Go <a href="{% url 'book_finder_edit_hobby' %}">here</a> to complete.
-                    {% endif %}
-                </ul>
-        
-              </section>
-        
-              <section class="profile__hobbysport card-body">
-        
-                <div class="profile__title">
-                    <h3>Sports</h3>
-                    {% if user_sport %}
-                        <a href="{% url 'book_finder_edit_sport' %}"><i class="fas profile__icon--edit fa-edit"></i></a>
-                    {% endif %}
-                </div>
-        
-                <ul>
-                    {% if user_sport %}
-                        {% for sport in user_sport %}
-                            <li class="profile__hobbysport--tag">{{ sport }}</li>
-                        {% endfor %}
-                    {% else %}
-                      No sports provided yet. Go <a href="{% url 'book_finder_edit_sport' %}">here</a> to complete.
-                    {% endif %}
-                </ul>
-        
-              </section>
+            <div class="bookfinder">
 
+                <section class="profile__hobbysport card-body">
+
+                    <div class="profile__title">
+
+                        <h3>Hobbies</h3>
+
+                        {% if user_hobby %}
+
+                            <a href="{% url 'book_finder_edit_hobby' %}"><i class="fas profile__icon--edit fa-edit"></i></a>
+
+                        {% endif %}
+
+                    </div>
+            
+                    <ul>
+
+                        {% if user_hobby %}
+
+                            {% for hobby in user_hobby %}
+
+                                <li class="profile__hobbysport--tag">{{ hobby }}</li>
+
+                            {% endfor %}
+
+                        {% else %}
+
+                            No hobbies provided yet. Go <a href="{% url 'book_finder_edit_hobby' %}">here</a> to complete.
+
+                        {% endif %}
+                    
+                    </ul>
+            
+                </section>
+            
+                <section class="profile__hobbysport card-body">
+            
+                    <div class="profile__title">
+
+                        <h3>Sports</h3>
+
+                        {% if user_sport %}
+
+                            <a href="{% url 'book_finder_edit_sport' %}"><i class="fas profile__icon--edit fa-edit"></i></a>
+
+                        {% endif %}
+
+                    </div>
+            
+                    <ul>
+
+                        {% if user_sport %}
+
+                            {% for sport in user_sport %}
+
+                                <li class="profile__hobbysport--tag">{{ sport }}</li>
+
+                            {% endfor %}
+
+                        {% else %}
+
+                            No sports provided yet. Go <a href="{% url 'book_finder_edit_sport' %}">here</a> to complete.
+
+                        {% endif %}
+
+                    </ul>
+            
+                </section>
+
+            </div>
+        
         </div>
 
-      
-     
-    </div>
+    </main>
 
-  </main>
 {% endblock %}

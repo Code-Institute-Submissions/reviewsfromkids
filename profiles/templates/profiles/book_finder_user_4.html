@@ -5,19 +5,20 @@
     Bookfinder
 {% endblock %}
 
-{% block page_header %}
-{% endblock %}
-
-
 {% block hero %}
+
   <div class="hero__bookfinder">
-      <h4 class="hero__bookfinder--row1">{{ profile.first_name }}, </h4>
-      <i class="fas fa-book-open fa-5x hero__bookfinder--row2"></i>
-      <h4 class="hero__bookfinder--row3">here are the books recommended by {% if profile.gender == 'BOY' %}boys{% elif profile.gender == 'GIRL' %}girls{% elif profile.gender == 'UNKNOWN' %}kids{% endif %} of your age ({{ age_rating_years }} years).</h4>
+
+        <h4 class="hero__bookfinder--row1">{{ profile.first_name }}, </h4>
+        <i class="fas fa-book-open fa-5x hero__bookfinder--row2"></i>
+        <h4 class="hero__bookfinder--row3">here are the books recommended by {% if profile.gender == 'BOY' %}boys{% elif profile.gender == 'GIRL' %}girls{% elif profile.gender == 'UNKNOWN' %}kids{% endif %} of your age ({{ age_rating_years }} years).</h4>
+
   </div>
+
 {% endblock %}
 
 {% block content %}
+
     <div class="generic-wrapper">
 
         <div class="bookfinder">
@@ -46,4 +47,5 @@
         </div>
         
     </div>
+    
 {% endblock %}

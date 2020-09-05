@@ -1,41 +1,64 @@
 <div class="site-header__overlay">
+
     <div class="site-header__overlay-content">
 
-      <a class="site-header__logo" href="{% url 'home' %}">
-        <img class="site-header__logo--img" src="{{ MEDIA_URL }}logo.jpg" alt="logo voorkidsdoorkids">
-      </a>
+        <a class="site-header__logo" href="{% url 'home' %}">
+            <img class="site-header__logo--img" src="{{ MEDIA_URL }}logo.jpg" alt="logo voorkidsdoorkids">
+        </a>
 
-      <nav class="primary-nav">
-        <ul>
-          <li><a href="{% url 'home' %}">Home</a></li>
-          <li><a href="{% url 'books' %}">All books</a></li>
-          <li><a href="{% url 'donations' %}">Donate</a></li>
-          {% if request.user.is_authenticated %}
-          <div class="primary-nav__logged-in primary-nav">
-            <i class="fas fa-user"></i> {{ request.user }}
-            <li><a href="{% url 'account_logout' %}">Logout</a></li>
-            <li><a href="{% url 'profile' %}">My Profile</a></li>
-          </div>
+        <nav class="primary-nav">
+
+            <ul>
+
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'books' %}">All books</a></li>
+                <li><a href="{% url 'donations' %}">Donate</a></li>
+                
+                {% if request.user.is_authenticated %}
+
+                    <div class="primary-nav__logged-in primary-nav">
+                        
+                        <i class="fas fa-user"></i> {{ request.user }}
+                        <li><a href="{% url 'account_logout' %}">Logout</a></li>
+                        <li><a href="{% url 'profile' %}">My Profile</a></li>
+
+                    </div>
+                
+                {% else %}
+
+                    <li><a href="{% url 'account_signup' %}">Register</a></li>
+                    <li><a href="{% url 'account_login' %}">Login</a></li>
+
+            {% endif %}
+
+            </ul>
+
+        </nav>
+
+        <div class="search">
+
+            <p class="search__text">Let other kids help you find the perfect books!</p>
             
-          {% else %}
-            <li><a href="{% url 'account_signup' %}">Register</a></li>
-            <li><a href="{% url 'account_login' %}">Login</a></li>
-          {% endif %}
-        </ul>
-      </nav>
+            {% if request.user.is_authenticated %}
 
-      <div class="search">
-        <p class="search__text">Let other kids help you find the perfect books!</p>
-        {% if request.user.is_authenticated %}
-          {% if profile.profile_complete == "lvl-3" %}
-            <a class="btn search__btn" href="{% url 'book_finder_user_4' %}">see books</a>
-          {% else %}
-            <a class="btn search__btn" href="{% url 'book_finder_user' %}">start</a>
-          {% endif %}
-        {% else %}
-          <a class="btn search__btn" href="{% url 'book_finder' %}">start</a>
-        {% endif %}
-      </div>
+                {% if profile.profile_complete == "lvl-3" %}
+
+                    <a class="btn search__btn" href="{% url 'book_finder_user_4' %}">see books</a>
+
+                {% else %}
+
+                    <a class="btn search__btn" href="{% url 'book_finder_user' %}">start</a>
+
+                {% endif %}
+
+            {% else %}
+
+                <a class="btn search__btn" href="{% url 'book_finder' %}">start</a>
+                
+            {% endif %}
+
+        </div>
       
     </div>
+
 </div>

@@ -9,12 +9,6 @@
     <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5e86e668b4e52f001290ee85&product=inline-share-buttons' async='async'></script>
 {% endblock %}
 
-{% block page_header %}
-{% endblock %}
-
-{% block hero %} 
-{% endblock %}
-
 {% block content %}
     <main>
 
@@ -218,8 +212,10 @@
                                                 {% else %}
 
                                                     <div class="kidsdislike__genderage">
+
                                                         <p class="kidsdislike__genderage--left">Most disliked by:</p>
                                                         <h5 class="emphasis1 kidsdislike__genderage--right">{{ book.most_disliked_by }}</h5>
+
                                                     </div>
 
                                                 {% endif %}
@@ -289,6 +285,7 @@
                                                     <!-- Show nothing -->
 
                                                 {% endif %}
+
                                             {% endif %}
                                             
                                         </div> 
@@ -298,6 +295,7 @@
                                     <div class="card-header" id="headingThree">
 
                                         <h4 class="mb-0">
+
                                             <div class="btn-block text-left" type="button" data-toggle="collapse" data-target="#onYourList" aria-expanded="true" aria-controls="collapseOne">
 
                                                 {% if favorite %}
@@ -311,6 +309,7 @@
                                                 {% endif %}
 
                                             </div>
+
                                         </h4>
 
                                     </div>
@@ -363,6 +362,7 @@
                                 </div>
 
                             </div>
+
                         </div>
 
                     </div>
@@ -431,6 +431,7 @@
 
                             {% if user_logged_in and profile.allowed_to_rate %}
 
+                                <!-- User can rate book -->
                                 {% if not already_rated %}
 
                                     <form method="POST" action="{% url 'book_detail' book.id %}">
@@ -460,6 +461,7 @@
 
                                 {% else %}
 
+                                    <!-- User can update or delete rating -->
                                     <h5>Your rated this book with:</h5>
                                     <br>
 
@@ -539,7 +541,5 @@
         </div>
 
     </main>
-{% endblock %}
-
-{% block postloadjs %}
+    
 {% endblock %}

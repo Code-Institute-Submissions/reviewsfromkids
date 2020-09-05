@@ -4,13 +4,18 @@
 
         <a href="{% url 'book_detail' book.id %}"><img class="book-result__image-area--img" src="{{ book.image_thumb.url }}" alt="{{ book.name }}"></a>
         
-        
         <div class="book-result__image-area--fav">
+
             {% if book.id in user_favorites_id %}
+
                 <i class="fas fa-heart book-result__image-area--fav--icon book-result__image-area--fav--icon--yellow"></i>
+
             {% else %}
+
                 <i class="fas fa-heart book-result__image-area--fav--icon"></i>
+
             {% endif %}
+
         </div>
 
     </div>
@@ -18,24 +23,31 @@
     <div class="book-result__content-area">
 
         <div class="book-result__content-area--row1">
+
             <small class="text-muted">{{ book.author }}</small>
+
         </div>
 
         <div class="book-result__content-area--row2">
+
         {{ book.title }}
+
         </div>
 
         <div class="book-result__content-area--row3">
-            
-            
+                
             <div class="rating-static-table">
 
                 <div class="rating-static-table__rating-2 hard-coded-stars">
+
                     {% include 'includes/star-rating-hard-coded.html' %}
+
                 </div>
 
                 <div class="rating-static-table__rating-2">
+
                     <small class="text-muted"> ({{ book.number_of_ratings }} ratings)</small>
+
                 </div>
 
             </div>
@@ -43,44 +55,73 @@
         </div>
 
         <div class="book-result__content-area--row4">
+
             {% if book.recommended_age == "not known yet" or book.recommended_age == "not available" %}
+
                 <small class="text-muted">Recommended age is {{ book.recommended_age }}</small>
+
             {% else %}
+
                 Recommended age: <span class="emphasis1">{{ book.recommended_age }}</span>
+
             {% endif %}
+
         </div>
 
         <div class="book-result__content-area--row5">
+
             {% if book.most_liked_by == "not known yet" %}
+
                 <small class="text-muted">Most liked by is {{ book.most_liked_by }}</small>
+
             {% else %}
+
                 Most liked by: <span class="emphasis1">{{ book.most_liked_by }}</span>
+
             {% endif %}
+
         </div>
 
         <div class="book-result__content-area--row6">
+
             <span class="book-result__content-area--row6--tag">
+
                 <form method="GET" action="{% url 'books' %}">
+
                     <input type="hidden" value="cat-search" name="type_of_action"/>
                     <input type="hidden" value="{{ book.category.id }}" name="category"/>
                     <button class="tag tag--category tag--category--link">{{ book.category }}</button>
+
                 </form>
+
             </span>
+
         </div>
+
         <div class="book-result__content-area--row7">
             
             <span class="book-result__content-area--row7--tag">
+
                 {% for tag in book.tags.all %}
+
                     {% if forloop.counter < 4 %}
-                    <form method="GET" action="{% url 'books' %}">
-                        <input type="hidden" value="tag-search" name="type_of_action"/>
-                        <input type="hidden" value="{{ tag }}" name="tags"/>
-                        <button class="tag tag--tag tag--tag--link">{{ tag }}</button>
-                    </form> 
+
+                        <form method="GET" action="{% url 'books' %}">
+
+                            <input type="hidden" value="tag-search" name="type_of_action"/>
+                            <input type="hidden" value="{{ tag }}" name="tags"/>
+                            <button class="tag tag--tag tag--tag--link">{{ tag }}</button>
+
+                        </form>
+
                     {% endif %}
+
                 {% endfor %}
+
             </span>
                 
         </div>
+
     </div>
+    
 </div>

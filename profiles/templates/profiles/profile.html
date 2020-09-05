@@ -5,7 +5,6 @@
     Profile - {{ user.username }}
 {% endblock %}
 
-
 {% block hero %}
 
     <div class="hero hero__profile">
@@ -15,6 +14,7 @@
             {% if profile.first_name %}
 
                 Hello {{ profile.first_name }}!
+
             {% else %}
 
                 Hello anonymous!
@@ -117,37 +117,37 @@
 
                     {% else %}
 
-                    <div class="profile__basic-grid">
+                        <div class="profile__basic-grid">
 
-                        <div class="profile__basic-grid-row">
+                            <div class="profile__basic-grid-row">
 
-                            <div class="profile__basic-grid-row--key">First name: </div>
-                            <div class="profile__basic-grid-row--value">{{ profile.first_name }}</div>
+                                <div class="profile__basic-grid-row--key">First name: </div>
+                                <div class="profile__basic-grid-row--value">{{ profile.first_name }}</div>
+
+                            </div>
+
+                            <div class="profile__basic-grid-row">
+
+                                <div class="profile__basic-grid-row--key">Last name: </div>
+                                <div class="profile__basic-grid-row--value">{{ profile.last_name }}</div>
+
+                            </div>
+
+                            <div class="profile__basic-grid-row">
+
+                                <div class="profile__basic-grid-row--key">Date of birth: </div>
+                                <div class="profile__basic-grid-row--value">{{ profile.date_of_birth|date:'Y-m-d' }}</div>
+
+                            </div>
+
+                            <div class="profile__basic-grid-row">
+
+                                <div class="profile__basic-grid-row--key">Gender: </div>
+                                <div class="profile__basic-grid-row--value">{% if profile.gender == 'BOY' %}boy{% elif profile.gender == 'GIRL' %}girl{% elif profile.gender == 'UNKNOWN' %}prefer not to say{% endif %}</div>
+
+                            </div>
 
                         </div>
-
-                        <div class="profile__basic-grid-row">
-
-                            <div class="profile__basic-grid-row--key">Last name: </div>
-                            <div class="profile__basic-grid-row--value">{{ profile.last_name }}</div>
-
-                        </div>
-
-                        <div class="profile__basic-grid-row">
-
-                            <div class="profile__basic-grid-row--key">Date of birth: </div>
-                            <div class="profile__basic-grid-row--value">{{ profile.date_of_birth|date:'Y-m-d' }}</div>
-
-                        </div>
-
-                        <div class="profile__basic-grid-row">
-
-                            <div class="profile__basic-grid-row--key">Gender: </div>
-                            <div class="profile__basic-grid-row--value">{% if profile.gender == 'BOY' %}boy{% elif profile.gender == 'GIRL' %}girl{% elif profile.gender == 'UNKNOWN' %}prefer not to say{% endif %}</div>
-
-                        </div>
-
-                    </div>
 
                     {% endif %}
 
@@ -157,91 +157,163 @@
 
             <!-- Hobby, sport, instrument, etc. -->
             <div id="menu2" class="tab-pane fade">
+
                 <section class="profile__hobbysport card-body">
+
                     <div class="profile__title">
+
                         <h3>Hobbies</h3>
+
                         {% if user_hobby %}
+
                             <a href="{% url 'edit_hobby' %}"><i class="fas profile__icon--edit fa-edit"></i></a>
+
                         {% endif %}
+
                     </div>
+
                     <ul>
+
                         {% if user_hobby %}
+
                             {% for hobby in user_hobby %}
-                            <li class="profile__hobbysport--tag">{{ hobby }}</li>
+
+                                <li class="profile__hobbysport--tag">{{ hobby }}</li>
+
                             {% endfor %}
+
                         {% else %}
-                        No hobbies provided yet. Go <a href="{% url 'edit_hobby' %}">here</a> to complete.
+
+                            No hobbies provided yet. Go <a href="{% url 'edit_hobby' %}">here</a> to complete.
+
                         {% endif %}
+
                     </ul>
+
                 </section>
 
                 <section class="profile__hobbysport card-body">
+
                     <div class="profile__title">
+
                         <h3>Sports</h3>
+
                         {% if user_sport %}
+
                             <a href="{% url 'edit_sport' %}"><i class="fas profile__icon--edit fa-edit"></i></a>
+
                         {% endif %}
+
                     </div>
+
                     <ul>
+
                         {% if user_sport %}
+
                             {% for sport in user_sport %}
+
                                 <li class="profile__hobbysport--tag">{{ sport }}</li>
+
                             {% endfor %}
+
                         {% else %}
-                        No sports provided yet. Go <a href="{% url 'edit_sport' %}">here</a> to complete.
+
+                            No sports provided yet. Go <a href="{% url 'edit_sport' %}">here</a> to complete.
+
                         {% endif %}
+
                     </ul>
+
                 </section>
+
             </div>
+
             <div id="menu3" class="tab-pane fade">
+
                 <section class="profile__hobbysport card-body">
+
                     <div class="profile__title">
+
                         <h3>Your ratings</h3>
+
                     </div>
+
                     {% if not ratings_high and not ratings_ok and not ratings_low %}
+
                         <p>You have not rated any books yet.</p>
+
                     {% else %}
+
                         {% if ratings_high %}
+
                             <h5>Books that are great!</h5>
+
                             <div class="scrolling-wrapper-flexbox">
+
                                 {% for book in ratings_high %}
-                                {% include 'includes/book-card.html' %}
+
+                                    {% include 'includes/book-card.html' %}
+
                                 {% endfor %}
+
                             </div>
+
                         {% endif %}
 
                         {% if ratings_ok %}
+
                             <h5>Books that are ok-ish</h5>
+
                             <div class="scrolling-wrapper-flexbox">
+
                                 {% for book in ratings_ok %}
-                                {% include 'includes/book-card.html' %}
+
+                                    {% include 'includes/book-card.html' %}
+
                                 {% endfor %}
+
                             </div>
+
                         {% endif %}
 
                         {% if ratings_low %}
+
                             <h5>Books that are meh</h5>
+
                             <div class="scrolling-wrapper-flexbox">
+
                                 {% for book in ratings_low %}
-                                {% include 'includes/book-card.html' %}
+
+                                    {% include 'includes/book-card.html' %}
+
                                 {% endfor %}
+
                             </div>
+
                         {% endif %}
+
                     {% endif %}
                     
                 </section>  
+
             </div>
+
             <div id="menu4" class="tab-pane fade">
+
                 <section class="profile__hobbysport">
 
                     <div class="profile__title">
+
                         <h3>Want to read</h3>
+
                     </div>
 
                     {% if favorites %}
+
                         <p>Your want to read list:</p>
 
                         <div class="books-results">
+
                             {% for book in favorites %}
 
                                 {% include 'includes/book-result.html' %}
@@ -256,21 +328,22 @@
                         </div>
                         
                     {% else %}
+
                         <p>You have no books on your list. Don't you like reading? :)</p>
-                        <p>You can find books that fit you in the <a href="{% url 'book_finder_user' %}">book finder</a>.
+                        <p>You can find books that fit you in the <a href="{% url 'book_finder_user' %}">book finder</a>.</p>
+
                     {% endif %}
 
                 </section>  
+
             </div>
+
         </div>
+
     </div>
 
     {% include 'includes/profile-modal.html' %}    
 
 
 {% endblock %}
-
-{% block postloadjs %}
-
-{% endblock %} 
 

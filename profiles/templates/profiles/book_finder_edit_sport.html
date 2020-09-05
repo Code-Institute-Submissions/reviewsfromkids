@@ -5,27 +5,31 @@
     Bookfinder - edit sport
 {% endblock %}
 
-{% block hero %}
-{% endblock %}
-
 {% load crispy_forms_tags %}
 {% block content %}
+
     <div class="generic-wrapper generic-wrapper--no-hero">
+
         <main>
+
             <div class="bookfinder">
+
                 <h4>Select your sports</h4>
                 <p>Pick your sports. You can choose as many as you like.</p>
                 <p>Do you miss your sport in the list? Let us know with a <a href="{% url 'contact' %}">message</a> and we'll add it right away!</p>
+
                 <form class="form-wrapper" method="POST" >
+
                     {% csrf_token %}
                     {{ form|crispy }}
                     <input class="btn" type="submit" value="Save" />
+
                 </form>
+
             </div>
+
         </main>
+
     </div>
+
 {% endblock %}
-
-{% block postloadjs %}
-
-{% endblock %} 

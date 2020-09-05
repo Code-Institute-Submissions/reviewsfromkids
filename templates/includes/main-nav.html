@@ -1,29 +1,43 @@
 <nav class="nav-desktop nav-desktop__left">
+
     <ul>
+
         <li><a href="{% url 'home' %}">Home</a></li>
-          <li><a href="{% url 'books' %}">All books</a></li>
-          <li><a href="{% url 'donations' %}">Donate</a></li>
+        <li><a href="{% url 'books' %}">All books</a></li>
+        <li><a href="{% url 'donations' %}">Donate</a></li>
+
     </ul>
+
 </nav>
 
 <nav class="nav-desktop nav-desktop__right">
+    
     <ul>
-        {% if request.user.is_authenticated %}
-        <div class="dropdown">
-            <li><a class="dropbtn" href="#"><i class="fas fa-user"></i> {{ request.user }}</a></li>
-            <div class="dropdown-content">
-                <li><a href="{% url 'profile' %}">My Profile</a></li>
-                <li><a href="{% url 'account_logout' %}">Logout</a></li>
-            </div>
-        </div>
-            
-            
 
-          {% else %}
+        {% if request.user.is_authenticated %}
+
+            <div class="dropdown">
+
+                <li><a class="dropbtn" href="#"><i class="fas fa-user"></i> {{ request.user }}</a></li>
+
+                <div class="dropdown-content">
+
+                    <li><a href="{% url 'profile' %}">My Profile</a></li>
+                    <li><a href="{% url 'account_logout' %}">Logout</a></li>
+                
+                </div>
+
+            </div>
+        
+        {% else %}
+
             <li><a href="{% url 'account_signup' %}">Register</a></li>
             <li><a href="{% url 'account_login' %}">Login</a></li>
-          {% endif %}
+
+        {% endif %}
+
     </ul>
+    
 </nav>
 
 

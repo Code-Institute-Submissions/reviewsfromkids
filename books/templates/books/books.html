@@ -5,85 +5,103 @@
     Books
 {% endblock %}
 
-{% block page_header %}
-{% endblock %}
-
-
-{% block hero %} 
-{% endblock %}
-
-{% block content %}
 {% load crispy_forms_tags %}
-<main>
+{% block content %}
 
-    <div class="generic-wrapper generic-wrapper--no-hero">
+    <main>
 
-        <div class="books">
+        <div class="generic-wrapper generic-wrapper--no-hero">
 
-            <div class="books-search__row">
+            <div class="books">
 
-                <button id="searchBtn" class="btn btn-primary books-search__row--btn" type="button">
-                    search
-                </button>
+                <div class="books-search__row">
 
-                <div class="books-search__row--results-counter">
-                    {% if search_performed %}
-                        {% if noresults %}
-                            Your search has no success. Try again!
-                        {% else %}
-                            Your search has {{ numresults }} results.
+                    <button id="searchBtn" class="btn btn-primary books-search__row--btn" type="button">
+                        search
+                    </button>
+
+                    <div class="books-search__row--results-counter">
+
+                        {% if search_performed %}
+
+                            {% if noresults %}
+
+                                Your search has no success. Try again!
+
+                            {% else %}
+
+                                Your search has {{ numresults }} results.
+
+                            {% endif %}
+
                         {% endif %}
-                    {% else %}
-                    {% endif %}
+
+                    </div>
+
                 </div>
-            </div>
 
-            <div class="books-search">
-    
-                <div class="books-search__overlay">
+                <div class="books-search">
 
-                        <form method="GET">
+                    <!-- Search form for mobile devices -->
+                    <div class="books-search__overlay">
+
+                            <form method="GET">
+
+                                {{ myFilter.form|crispy }}
+                                
+                                <div class="books-search__overlay__footer">
+
+                                    <button class="btn books-search__overlay__footer--left" type="submit">go</button>
+
+                                    {% if search_performed %}
+
+                                        <a class="books-search__overlay__footer--right" href="{% url 'books' %}">reset search</a>  
+
+                                    {% endif %}
+
+                                </div>
+                                
+                            </form>
+
+                    </div>
+
+                    <!-- Search form for non-mobile devices -->
+                    <div class="books-search__side-bar">
+
+                        <form class="books-search__side-bar" method="GET">
+
                             {{ myFilter.form|crispy }}
-                            <div class="books-search__overlay__footer">
-                                <button class="btn books-search__overlay__footer--left" type="submit">go</button>
-                                {% if search_performed %}
-                                    <a class="books-search__overlay__footer--right" href="{% url 'books' %}">reset search</a>                                    
-                                {% endif %}
-                            </div>
+                            <button class="btn" type="submit">go</button>
                             
                         </form>
+                        <br>
+                        <br>
 
-                </div>
+                        {% if search_performed %}
 
-                <div class="books-search__side-bar">
-                    <form class="books-search__side-bar" method="GET">
-                        {{ myFilter.form|crispy }}
-                        <button class="btn" type="submit">go</button>
-                        
-                    </form>
-                    <br>
-                    <br>
-                    {% if search_performed %}
-                        <a href="{% url 'books' %}">reset search</a>
-                    {% endif %}
-                </div>
-    
-            </div>
-    
-            <div class="books-results">
-                {% for book in books %}
+                            <a href="{% url 'books' %}">reset search</a>
 
-                    {% include 'includes/book-result.html' %}
-                    <hr>
-                    
-                {% endfor %}
-            </div>
-        </div>
+                        {% endif %}
+
+                    </div>
         
+                </div>
+        
+                <div class="books-results">
 
-    </div>
+                    {% for book in books %}
 
-</main>
+                        {% include 'includes/book-result.html' %}
+                        <hr>
+                        
+                    {% endfor %}
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
 
 {% endblock %}
 

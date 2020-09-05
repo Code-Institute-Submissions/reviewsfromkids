@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block extra_title %}
+    Profile - {{ user.username }}
+{% endblock %}
+
+
 {% block hero %}
 
     <div class="hero hero__profile">

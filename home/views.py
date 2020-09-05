@@ -55,7 +55,7 @@ def contact(request):
             email = form.cleaned_data['email']
             copy_to_myself = form.cleaned_data['copy_to_myself']
 
-        recipients = ['sangho.grolleman@gmail.com']
+        recipients = ['teamreviewsfromkids@gmail.com']
 
         if cc_myself:
             recipients.append(sender)

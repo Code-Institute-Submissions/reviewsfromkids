@@ -102,7 +102,7 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
-# SITE_ID = 1 # 1.4 Used by socialaccount app to create callback URLS
+SITE_ID = 1 # 1.4 Used by socialaccount app to create callback URLS
 
 # 1.8
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'

@@ -7,6 +7,7 @@
 
         width: 80%;
         margin: 0 auto;
+
     }
 
     @include laptop {
@@ -30,6 +31,7 @@
 
         grid-row: 2;
         grid-column: 1;
+
     }
 
     &__row {
@@ -41,6 +43,7 @@
         @include tablet {
 
             grid-template-columns: 45% 55%;
+
         }
 
         @include laptop {
@@ -58,12 +61,12 @@
             justify-self: center;
             align-self: center;
 
-            
-
             @include laptop {
 
                 display: none;
+
             }
+
         }
 
         &--results-counter {
@@ -75,12 +78,14 @@
 
                 justify-self: start;
                 margin-left: -1.5rem;
+
             }
 
             @include laptop {
 
                 padding-top: 1rem;
                 margin-left: 0;
+
             }
 
         }
@@ -102,6 +107,7 @@
         &--is-visible {
 
             display: block;
+
         }
 
         &__footer {
@@ -114,6 +120,7 @@
 
                 grid-column: 1;
                 justify-self: start;
+
             }
 
             &--right {
@@ -121,6 +128,7 @@
                 grid-column: 2;
                 justify-self: end;
                 align-self: flex-end;
+
             }
 
         }
@@ -128,6 +136,7 @@
         @include laptop {
 
             display: none;
+
         }
 
     }
@@ -155,5 +164,7 @@
         margin: 0 auto;
         grid-row: 2;
         grid-column: 2;
+
     }
+    
 }

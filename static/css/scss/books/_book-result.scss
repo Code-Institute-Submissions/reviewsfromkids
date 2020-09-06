@@ -27,9 +27,11 @@
 
             max-height: 280px;
             width: 115px;
+
         }
 
         &--fav {
+
             position: absolute;
             right: -25;
             top: -15;
@@ -58,7 +60,9 @@
                 align-self: center;
 
                 &--yellow {
+
                     color: $mainYellow;
+
                 }
 
             }
@@ -72,33 +76,44 @@
         grid-template-rows: 1.3rem auto 1fr auto auto auto;
 
         &--row1 {
+
             //Author
             grid-row: 1;
+
         }
 
         &--row2 {
+            
             //Title
             grid-row: 2;
             font-weight: 600;
+        
         }
 
         &--row3 {
+
             //Rating
             grid-row: 3;
+
         }
 
         &--row4 {
+            
             //Recommended age
             align-self: center;
             padding: 0.3rem 0;
+        
         }
 
         &--row5 {
+            
             //Most liked by
             padding: 0.3rem 0;
+        
         }
 
         &--row6 {
+
             //Category
             justify-self: start;
             font-size: 75%;
@@ -106,6 +121,7 @@
         }
 
         &--row7 {
+            
             //Tags
             justify-self: start;
             font-size: 75%;
@@ -115,27 +131,36 @@
                 margin: 0.3rem 0.3rem 0.3rem 0;
 
                 form {
+
                     display: inline-block;
+
                 }
+
             }
 
         }
 
         &--row8 {
+
             grid-row: 8 / 10;
+
         }
 
         &--row9 {
+
             grid-row: 9;
+
         }
 
         a:hover {
+
             color:  $mainOrange;
             background-color: #FFF;
             border: solid 1px  $mainOrange;
+
         }
+
     }
     
-
 }
 

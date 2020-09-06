@@ -1,13 +1,17 @@
 
 .scrolling-wrapper {
+
     overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;
     
     .card {
+
       display: inline-block;
+
     }
-  }
+
+}
   
 .scrolling-wrapper-flexbox {
 
@@ -22,11 +26,13 @@
         grid-template-columns: repeat(4, 1fr);
         row-gap: 1.5rem;
         margin-left: 0.5rem;
+
     }
 
 }
   
-  .scrolling-wrapper, .scrolling-wrapper-flexbox {
+.scrolling-wrapper, 
+.scrolling-wrapper-flexbox {
     
     margin-bottom: 20px;
     width: 100%;
@@ -38,12 +44,15 @@
 
         @include laptop {
 
-        display: initial;
+            display: initial;
+
         }
+
     }
+    
 }
 
-  .book-card-hs {
+.book-card-hs {
 
     max-height: 280px;
     width: 180px;
@@ -53,13 +62,12 @@
     flex: 0 0 auto;
     box-shadow: 0 5px 1rem rgba(0,0,0,.16);
     overflow: hidden;
-    
 
     &__image {
 
-      height: 280px;
-      border-radius: 4px;
+        height: 280px;
+        border-radius: 4px;
+        
     }
 
-  
-  }
+}

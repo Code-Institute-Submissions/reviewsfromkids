@@ -5,7 +5,7 @@ import dj_database_url
 # Running locally pull keys from env.py
 if os.path.exists("env.py"):
   import env
-  from env import SECRET_KEY, POSTGRES_PASS, STRIPE_API_KEY_TEST, DATABASE_URL
+  from env import SECRET_KEY, POSTGRES_PASS, STRIPE_API_KEY_TEST, DATABASE_URL, GMAIL_KEY
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -102,7 +102,7 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
-SITE_ID = 1 # 1.4 Used by socialaccount app to create callback URLS
+# SITE_ID = 1 # 1.4 Used by socialaccount app to create callback URLS
 
 # 1.8
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
@@ -213,4 +213,13 @@ else:
     DEFAULT_FROM_EMAIL = 'info@reviewsfromkids.com'
 
 
-# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' # For testing signup process
+
+# Testing contactform
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_USE_TLS = True
+# EMAIL_PORT = 587
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST_USER = 'teamreviewsfromkids@gmail.com'
+# EMAIL_HOST_PASSWORD = GMAIL_KEY
+# DEFAULT_FROM_EMAIL = 'teamreviewsfromkids@gmail.com'

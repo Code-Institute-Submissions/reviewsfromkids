@@ -4,6 +4,7 @@ from profiles.models import UserProfile
 from django.core.mail import send_mail
 from .forms import ContactForm
 from django.contrib import messages
+from django.contrib.sites.shortcuts import get_current_site
 
 
 # Create your views here.
@@ -46,9 +47,8 @@ def contact(request):
             name = form.cleaned_data['name']
             message = form.cleaned_data['message']
             email = form.cleaned_data['email']
-            recipients = ['info@reviewsfromkids.com']
 
-            send_mail(name, message, email, recipients)
+            send_mail(name, message, email, ['teamreviewsfromkids@gmail.com'])
 
             messages.info(request, f'Mail sent successfully, thank you')
 

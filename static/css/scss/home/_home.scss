@@ -17,7 +17,9 @@
 
 }
 
-.featured-books, .recent-books, .explanation {
+.featured-books, 
+.recent-books, 
+.explanation {
 
     width: 90%;
     margin: 0 auto;
@@ -38,7 +40,8 @@
 
 @include laptop {
 
-    .featured-books, .recent-books {
+    .featured-books, 
+    .recent-books {
         
         width: 870px;
 

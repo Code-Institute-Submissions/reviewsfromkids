@@ -624,63 +624,6 @@ html, body {
   justify-self: center;
 }
 
-/* From: https://codeburst.io/how-to-create-horizontal-scrolling-containers-d8069651e9c6 */
-.scrolling-wrapper {
-  overflow-x: scroll;
-  overflow-y: hidden;
-  white-space: nowrap;
-}
-.scrolling-wrapper .card {
-  display: inline-block;
-}
-
-.scrolling-wrapper-flexbox {
-  padding: 1rem;
-  display: flex;
-  flex-wrap: nowrap;
-  overflow-x: auto;
-}
-@media (min-width: 992px) {
-  .scrolling-wrapper-flexbox {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    row-gap: 1.5rem;
-    margin-left: 0.5rem;
-  }
-}
-
-.scrolling-wrapper,
-.scrolling-wrapper-flexbox {
-  margin-bottom: 20px;
-  width: 100%;
-  -webkit-overflow-scrolling: touch;
-}
-.scrolling-wrapper::-webkit-scrollbar,
-.scrolling-wrapper-flexbox::-webkit-scrollbar {
-  display: none;
-}
-@media (min-width: 992px) {
-  .scrolling-wrapper::-webkit-scrollbar,
-.scrolling-wrapper-flexbox::-webkit-scrollbar {
-    display: initial;
-  }
-}
-
-.book-card-hs {
-  max-height: 280px;
-  width: 180px;
-  margin: 0 auto;
-  position: relative;
-  margin-right: 1.5rem;
-  flex: 0 0 auto;
-  box-shadow: 0 5px 1rem rgba(0, 0, 0, 0.16);
-  overflow: hidden;
-}
-.book-card-hs__image {
-  height: 280px;
-  border-radius: 4px;
-}
-
 .wrapper-home {
   width: 90%;
   margin: 0 auto;
@@ -696,20 +639,27 @@ html, body {
   }
 }
 
-.featured-books, .recent-books, .explanation {
+.featured-books,
+.recent-books,
+.explanation {
   width: 90%;
   margin: 0 auto;
 }
-.featured-books__header, .recent-books__header, .explanation__header {
+.featured-books__header,
+.recent-books__header,
+.explanation__header {
   text-align: center;
   margin-top: 1rem;
 }
-.featured-books p, .recent-books p, .explanation p {
+.featured-books p,
+.recent-books p,
+.explanation p {
   font-size: 1.2rem;
 }
 
 @media (min-width: 992px) {
-  .featured-books, .recent-books {
+  .featured-books,
+.recent-books {
     width: 870px;
   }
 }
@@ -761,154 +711,6 @@ html, body {
 @media (min-width: 2400px) {
   .contact {
     width: 50%;
-  }
-}
-
-.profile {
-  padding: 0 1rem;
-  margin: 0 auto;
-}
-@media (min-width: 768px) {
-  .profile {
-    width: 585px;
-  }
-  .profile .tab-content {
-    width: 585px;
-  }
-}
-.profile__title {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  column-gap: 0.5rem;
-  align-items: center;
-}
-@media (min-width: 768px) {
-  .profile ul {
-    margin: 1rem auto;
-    text-align: center;
-  }
-}
-.profile__pills {
-  display: flex;
-  padding-left: 0;
-  list-style: none;
-  margin-top: 1rem;
-}
-@media (min-width: 768px) {
-  .profile__pills {
-    width: 620px;
-    justify-content: space-evenly;
-    margin: 1.5rem auto;
-  }
-}
-@media (min-width: 1200px) {
-  .profile__pills {
-    width: 580px;
-  }
-}
-.profile__pills a {
-  color: #25b8c0;
-  background-color: white;
-  padding: 0.5rem 1rem;
-  border: 1px solid #25b8c0;
-  border-radius: 4px;
-  margin: 0 0.5rem;
-  white-space: nowrap;
-  text-transform: uppercase;
-  text-decoration: none;
-}
-.profile__pills a.active {
-  color: white;
-  background-color: #25b8c0;
-  border: none;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
-}
-.profile__basic h3, .profile__account h3 {
-  color: #25b8c0;
-}
-.profile__basic--btn, .profile__account--btn {
-  width: 125px;
-  margin: 2rem auto;
-  display: block;
-}
-.profile__basic-grid, .profile__account-grid {
-  display: grid;
-  row-gap: 0.5rem;
-}
-.profile__basic-grid-row, .profile__account-grid-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-.profile__hobbysport h3 {
-  color: #25b8c0;
-}
-.profile__hobbysport ul {
-  margin-top: 0.3rem;
-  padding: 0;
-}
-@media (min-width: 768px) {
-  .profile__hobbysport ul {
-    text-align: start;
-  }
-}
-.profile__hobbysport--edit ul li {
-  list-style: none;
-}
-.profile__hobbysport--tag {
-  display: inline-block;
-  border: 1px solid #929292;
-  border-radius: 4px;
-  color: #929292;
-  padding: 0.2rem 0.4rem;
-  margin: 0.3rem;
-  list-style: none;
-}
-.profile__icon--edit {
-  color: #25b8c0;
-}
-
-.bookfinder {
-  font-size: 1.2rem;
-  padding: 1rem;
-  margin: 0 auto;
-}
-.bookfinder__books-results {
-  margin: 0 auto;
-}
-@media (min-width: 768px) {
-  .bookfinder__books-results {
-    width: 585px;
-  }
-}
-@media (min-width: 768px) and (min-width: 992px) {
-  .bookfinder__books-results {
-    width: 380px;
-  }
-}
-@media (min-width: 768px) {
-  .bookfinder {
-    width: 650px;
-  }
-}
-.bookfinder__btn {
-  margin: 2rem auto 0 auto;
-  display: block;
-  width: 125px;
-}
-.bookfinder__back {
-  display: block;
-  text-align: center;
-  font-size: 0.8rem;
-  margin-top: 1rem;
-}
-
-.form-wrapper {
-  width: 75%;
-  margin: 2rem auto;
-}
-@media (min-width: 768px) {
-  .form-wrapper {
-    width: 300px;
   }
 }
 
@@ -1600,6 +1402,211 @@ h2.book-details__title {
 }
 .donations__success {
   text-align: center;
+}
+
+/* From: https://codeburst.io/how-to-create-horizontal-scrolling-containers-d8069651e9c6 */
+.scrolling-wrapper {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+.scrolling-wrapper .card {
+  display: inline-block;
+}
+
+.scrolling-wrapper-flexbox {
+  padding: 1rem;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
+@media (min-width: 992px) {
+  .scrolling-wrapper-flexbox {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    row-gap: 1.5rem;
+    margin-left: 0.5rem;
+  }
+}
+
+.scrolling-wrapper,
+.scrolling-wrapper-flexbox {
+  margin-bottom: 20px;
+  width: 100%;
+  -webkit-overflow-scrolling: touch;
+}
+.scrolling-wrapper::-webkit-scrollbar,
+.scrolling-wrapper-flexbox::-webkit-scrollbar {
+  display: none;
+}
+@media (min-width: 992px) {
+  .scrolling-wrapper::-webkit-scrollbar,
+.scrolling-wrapper-flexbox::-webkit-scrollbar {
+    display: initial;
+  }
+}
+
+.book-card-hs {
+  max-height: 280px;
+  width: 180px;
+  margin: 0 auto;
+  position: relative;
+  margin-right: 1.5rem;
+  flex: 0 0 auto;
+  box-shadow: 0 5px 1rem rgba(0, 0, 0, 0.16);
+  overflow: hidden;
+}
+.book-card-hs__image {
+  height: 280px;
+  border-radius: 4px;
+}
+
+.profile {
+  padding: 0 1rem;
+  margin: 0 auto;
+}
+@media (min-width: 768px) {
+  .profile {
+    width: 585px;
+  }
+  .profile .tab-content {
+    width: 585px;
+  }
+}
+.profile__title {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 0.5rem;
+  align-items: center;
+}
+@media (min-width: 768px) {
+  .profile ul {
+    margin: 1rem auto;
+    text-align: center;
+  }
+}
+.profile__pills {
+  display: flex;
+  padding-left: 0;
+  list-style: none;
+  margin-top: 1rem;
+}
+@media (min-width: 768px) {
+  .profile__pills {
+    width: 620px;
+    justify-content: space-evenly;
+    margin: 1.5rem auto;
+  }
+}
+@media (min-width: 1200px) {
+  .profile__pills {
+    width: 580px;
+  }
+}
+.profile__pills a {
+  color: #25b8c0;
+  background-color: white;
+  padding: 0.5rem 1rem;
+  border: 1px solid #25b8c0;
+  border-radius: 4px;
+  margin: 0 0.5rem;
+  white-space: nowrap;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.profile__pills a.active {
+  color: white;
+  background-color: #25b8c0;
+  border: none;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+}
+.profile__basic h3, .profile__account h3 {
+  color: #25b8c0;
+}
+.profile__basic--btn, .profile__account--btn {
+  width: 125px;
+  margin: 2rem auto;
+  display: block;
+}
+.profile__basic-grid, .profile__account-grid {
+  display: grid;
+  row-gap: 0.5rem;
+}
+.profile__basic-grid-row, .profile__account-grid-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.profile__hobbysport h3 {
+  color: #25b8c0;
+}
+.profile__hobbysport ul {
+  margin-top: 0.3rem;
+  padding: 0;
+}
+@media (min-width: 768px) {
+  .profile__hobbysport ul {
+    text-align: start;
+  }
+}
+.profile__hobbysport--edit ul li {
+  list-style: none;
+}
+.profile__hobbysport--tag {
+  display: inline-block;
+  border: 1px solid #929292;
+  border-radius: 4px;
+  color: #929292;
+  padding: 0.2rem 0.4rem;
+  margin: 0.3rem;
+  list-style: none;
+}
+.profile__icon--edit {
+  color: #25b8c0;
+}
+
+.bookfinder {
+  font-size: 1.2rem;
+  padding: 1rem;
+  margin: 0 auto;
+}
+.bookfinder__books-results {
+  margin: 0 auto;
+}
+@media (min-width: 768px) {
+  .bookfinder__books-results {
+    width: 585px;
+  }
+}
+@media (min-width: 768px) and (min-width: 992px) {
+  .bookfinder__books-results {
+    width: 380px;
+  }
+}
+@media (min-width: 768px) {
+  .bookfinder {
+    width: 650px;
+  }
+}
+.bookfinder__btn {
+  margin: 2rem auto 0 auto;
+  display: block;
+  width: 125px;
+}
+.bookfinder__back {
+  display: block;
+  text-align: center;
+  font-size: 0.8rem;
+  margin-top: 1rem;
+}
+
+.form-wrapper {
+  width: 75%;
+  margin: 2rem auto;
+}
+@media (min-width: 768px) {
+  .form-wrapper {
+    width: 300px;
+  }
 }
 
 /*# sourceMappingURL=override.css.map */

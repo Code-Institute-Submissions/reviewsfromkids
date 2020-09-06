@@ -35,7 +35,6 @@ def index(request):
 # Create your views here.
 def contact(request):
     """ A view to render the contact page """
-    cc_myself = False
     
     if request.method == 'GET':
         form = ContactForm()
@@ -47,12 +46,7 @@ def contact(request):
             name = form.cleaned_data['name']
             message = form.cleaned_data['message']
             email = form.cleaned_data['email']
-            copy_to_myself = form.cleaned_data['copy_to_myself']
-
             recipients = ['info@reviewsfromkids.com']
-
-            if cc_myself:
-                recipients.append(sender)
 
             send_mail(name, message, email, recipients)
 

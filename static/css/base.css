@@ -1,8 +1,29 @@
 html {
+
   width: 100%;
   margin: 0;
   padding: 0;
+
 }
+
+body {
+
+    font-family: 'Open Sans', sans-serif;
+
+}
+
+h1, h2, h3, h4, h5 {
+
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+
+}
+
+/* .btn {
+
+    font-family: 'Roboto', sans-serif;
+
+} */
 
 /* Taken from: https://stackoverflow.com/questions/4575826/how-to-push-a-footer-to-the-bottom-of-page-when-content-is-short-or-missing */
 .push-footer-body {
@@ -21,6 +42,8 @@ html {
 .allauth-form-inner-content {
   margin-top: 5rem;
 }
+
+
 
 
 

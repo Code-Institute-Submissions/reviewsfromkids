@@ -427,12 +427,12 @@
 
                             <h4>Your rating</h4>
 
-                            <p>Did you read this book? Great! Or not great... that depends. Did you like to read it? Please help others and tell them what you think.</p>
-
                             {% if user_logged_in and profile.allowed_to_rate %}
 
                                 <!-- User can rate book -->
                                 {% if not already_rated %}
+
+                                <p>Did you read this book? Great! Or not great... that depends. Did you like to read it? Please help others and tell them what you think.</p>
 
                                     <form method="POST" action="{% url 'book_detail' book.id %}">
                                         {% csrf_token %}
@@ -462,7 +462,7 @@
                                 {% else %}
 
                                     <!-- User can update or delete rating -->
-                                    <h5>Your rated this book with:</h5>
+                                    <h5>You rated this book with:</h5>
                                     <br>
 
                                     <form class="book-details__rating" method="POST" action="{% url 'book_detail' book.id %}">
@@ -506,10 +506,14 @@
 
                             {% elif user_logged_in and not userprofile.allowed_to_rate %}
 
+                                <p>Did you read this book? Great! Or not great... that depends. Did you like to read it? Please help others and tell them what you think.</p>
+
                                 <p>We love your rating. To make your rating even better, we'd like to know a bit more about you. So, other kids can see if your rating is helpful for them.</p>
                                 <p>Please complete your profile <a href="{% url 'profile' %}">here</a>.</p>
 
                             {% else %}
+
+                                <p>Did you read this book? Great! Or not great... that depends. Did you like to read it? Please help others and tell them what you think.</p>
 
                                 <p>We love your rating. Please <a href="{% url 'account_login' %}">log in</a>.</p>
                                 <p>No account? You can get one -completely free- over <a href="{% url 'account_signup' %}">here</a>!</p>

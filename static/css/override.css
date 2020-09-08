@@ -1467,6 +1467,9 @@ h2.book-details__title {
   font-size: 0.8rem;
   margin-top: 1rem;
 }
+.bookfinder__back--left {
+  text-align: start;
+}
 
 .form-wrapper {
   width: 75%;

@@ -89,6 +89,12 @@ def edit_personal(request):
                 profile.profile_complete = "lvl-3"
                 profile.allowed_to_rate = True
 
+
+            if profile.date_of_birth:
+                date_calc = datetime.now()
+                age_now = relativedelta(date_calc, profile.date_of_birth)
+                profile.age_in_years = age_now.years
+
             profile.save()
             
             messages.success(request, f'Profile updated, thank you')
@@ -486,6 +492,11 @@ def book_finder_user_1(request):
                 profile.profile_complete = "lvl-3"
                 profile.allowed_to_rate = True
 
+            if profile.date_of_birth:
+                date_calc = datetime.now()
+                age_now = relativedelta(date_calc, profile.date_of_birth)
+                profile.age_in_years = age_now.years
+
             profile.save()
             
             messages.success(request, f'Profile updated, thank you')
@@ -737,19 +748,15 @@ def book_finder_user_4(request):
     user_hobby = profile.hobbies.all().order_by('name')
     user_sport = profile.sports.all().order_by('name')
     categories = Category.objects.all()
-    user_dob = profile.date_of_birth
-    date_calc = datetime.now()
-    age_rating = relativedelta(date_calc, user_dob)
-    age_rating_years = age_rating.years
     
     # Collect users' hobbies and find ratings with the same hobbies. Then filter on high rating and users' gender and age 
     hobby_ids = user_hobby.values('id')
-    a = Rating.objects.filter(hobbies__in=hobby_ids, gender=profile.gender, rating__gte=4, age_rating_years=age_rating_years)
+    a = Rating.objects.filter(hobbies__in=hobby_ids, gender=profile.gender, rating__gte=4, age_rating_years=profile.age_in_years)
     b = a.values('book_id_id')
 
     # Same for sports
     sport_ids = user_sport.values('id')
-    c = Rating.objects.filter(hobbies__in=sport_ids, gender=profile.gender, rating__gte=4, age_rating_years=age_rating_years)
+    c = Rating.objects.filter(hobbies__in=sport_ids, gender=profile.gender, rating__gte=4, age_rating_years=profile.age_in_years)
     d = c.values('book_id_id')
 
     # Grab user's own ratings to remove from recommendation, take both positive and negative ratings
@@ -758,15 +765,16 @@ def book_finder_user_4(request):
    
     # Convert QuerySet Rating to QuerySet Book to show in template
     books = Book.objects.filter(pk__in=[b, d]).exclude(pk__in=f).distinct()
-
+    results = len(books)
+    
     context = {
         'user': user,
         'user_hobby':user_hobby,
         'user_sport': user_sport,
         'profile': profile,
         'categories': categories,
-        'age_rating_years': age_rating_years,
         'books': books,
+        'results': results,
         }
     
     return render(request, 'profiles/book_finder_user_4.html', context)

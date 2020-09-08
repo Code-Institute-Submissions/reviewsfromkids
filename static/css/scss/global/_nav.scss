@@ -1,7 +1,12 @@
 .is-hidden {
     opacity: 0;
-    transition: transform 0.4s, opacity 0.2s;
+    transition: transform .4s, opacity 0.2s;
   }
+
+// .is-visible {
+
+//     transition: transform 2.4s;
+// }
   
 .fixed-top {
 position: fixed;
@@ -223,9 +228,13 @@ opacity: 0;
             }
         }
         
-        .dropdown:hover .dropdown-content {display: block;}
+        .dropdown:hover 
+        .dropdown-content {
+            
+            display: block;
         
-        
+        }
+
     }
 
     ul {

@@ -14,7 +14,7 @@
             <!-- If age and gender-->
             <h3 class="hero__bookfinder--row1">Alright {% if profile.first_name%}{{ profile.first_name }}{% else %}{{ profile.user }}{% endif %}, </h3>
             <i class="fas fa-search fa-5x hero__bookfinder--row2"></i>
-            <h4 class="hero__bookfinder--row3">let's look for books that other {% if profile.gender == 'BOY' %}boys{% elif profile.gender == 'GIRL' %}girls{% elif profile.gender == 'UNKNOWN' %}kids{% endif %} of your age like.</h4>
+            <h4 class="hero__bookfinder--row3">let's look for books that other {% if profile.gender == 'BOY' %}boys{% elif profile.gender == 'GIRL' %}girls{% elif profile.gender == 'UNKNOWN' %}kids{% endif %} of your age ({{ profile.age_in_years }} years) like.</h4>
             
         {% elif onlygender_available %}
             <!-- If only gender -->
@@ -26,7 +26,7 @@
             <!-- If only age -->
             <h3 class="hero__bookfinder--row1">Alright Mr. or Mrs. {% if profile.first_name%}{{ profile.first_name }}{% else %}{{ profile.user }}{% endif %}, </h3>
             <i class="fas fa-search fa-5x hero__bookfinder--row2"></i>
-            <h4 class="hero__bookfinder--row3">let's look for books that other kids of your age like.</h4>
+            <h4 class="hero__bookfinder--row3">let's look for books that other kids of your age ({{ profile.age_in_years }} years) like.</h4>
 
         {% else %}
             <!-- If only user -->

@@ -11,7 +11,16 @@
 
         <h4 class="hero__bookfinder--row1">{{ profile.first_name }}, </h4>
         <i class="fas fa-book-open fa-5x hero__bookfinder--row2"></i>
-        <h4 class="hero__bookfinder--row3">here are the books recommended by {% if profile.gender == 'BOY' %}boys{% elif profile.gender == 'GIRL' %}girls{% elif profile.gender == 'UNKNOWN' %}kids{% endif %} of your age ({{ age_rating_years }} years).</h4>
+
+        {% if results == 0 %}
+
+            <h4 class="hero__bookfinder--row3">unfortunately, we cannot find books yet.</h4>
+
+        {% else %}
+
+            <h4 class="hero__bookfinder--row3">here are the books recommended by {% if profile.gender == 'BOY' %}boys{% elif profile.gender == 'GIRL' %}girls{% elif profile.gender == 'UNKNOWN' %}kids{% endif %} of your age ({{ profile.age_in_years }} years).</h4>
+
+        {% endif %}
 
   </div>
 
@@ -24,23 +33,48 @@
         <div class="bookfinder">
 
             <main>
+                
+                {% if results == 0 %}
 
-                <p>These are the books that fit you because of your age, your gender, your hobbies and sports. Also, books you like and dislike are removed from the list.</p>
-                <p>We find books based on your hobbies and sports. If you want to adjust these go <a href="{% url 'book_finder_user_5' %}">here</a>.</p>
-                <hr>
-    
-                <div class="bookfinder__books-results">
-    
-                    {% for book in books %}
+                    <p>We cannot find books that other kids of your age with your hobbies and sports like.</p>
+                    
+                    <p>You can try to add more hobbies and sports <a href="{% url 'book_finder_user_5' %}">here</a>.</p>
+
+                    <p>If this does not help, you can try again in a week. More kids have left reviews by then.</p>
+
+                    <p>For now you can browse all books <a href="{% url 'books' %}">here</a>.</p>
+
+                {% else %}
+
+                    <p>Here {% if results == 1 %}is one book that fits{% else %} are {{ results }} books that fit{% endif %} you because of your age, your gender, your hobbies and sports.</p>
+
+                    <hr>
         
-                        {% include 'includes/book-result.html' %}
+                    <div class="bookfinder__books-results">
+        
+                        {% for book in books %}
+            
+                            {% include 'includes/book-result.html' %}
 
-                        <div class="col-12">
-                            <hr>
-                        </div>
+                            <div class="col-12">
+                                <hr>
+                            </div>
 
-                    {% endfor %}
-                </div>
+                        {% endfor %}
+
+                    </div>
+
+                    <small class="text-muted">Books that you like and dislike are removed from the results.</small>
+
+                    <br><br>
+
+                    <p>Recommended books are based on your hobbies and sports. If you want to adjust these go <a href="{% url 'book_finder_user_5' %}">here</a>.</p>
+
+                    <hr>
+
+                    <p>If you want to browse all books go <a href="{% url 'books' %}">here</a>.</p>
+
+                {% endif %}
                 
             </main>
 

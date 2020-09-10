@@ -1,5 +1,4 @@
 {% load static %}
-<script type="module" src="{% static 'scripts/App.js' %}"></script>
 
 <!doctype html>
 <html lang="en">
@@ -121,6 +120,7 @@
 
         {% include 'includes/footer.html' %}
 
+        <script type="module" src="{% static 'scripts/App.js' %}"></script>
         <script src="{% static 'scripts/PostLoad.js' %}">
         </script>
 

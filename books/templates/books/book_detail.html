@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block extra_js %}
-    <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5e86e668b4e52f001290ee85&product=inline-share-buttons' async='async'></script>
+    <script src='https://platform-api.sharethis.com/js/sharethis.js#property=5e86e668b4e52f001290ee85&product=inline-share-buttons' async='async'></script>
 {% endblock %}
 
 {% block content %}
@@ -48,18 +48,16 @@
                                 </div>
                 
                                 <div class="rating-static-table__rating-2">
-                
-                                    <small class="text-muted"> 
-                                        
-                                        {% if book.number_of_ratings == 1 %}
+                                                       
+                                    {% if book.number_of_ratings == 1 %}
 
-                                            (1 rating)</small>
+                                        <small class="text-muted">(1 rating)</small>
 
-                                        {% else %}
+                                    {% else %}
 
-                                            ({{ book.number_of_ratings }} ratings)</small>
+                                        <small class="text-muted">({{ book.number_of_ratings }} ratings)</small>
 
-                                        {% endif %}
+                                    {% endif %}
                 
                                 </div>
 
@@ -72,13 +70,13 @@
 
                                     <div class="card-header" id="headingOne">
                                     
-                                        <h4 class="mb-0">
+                                        <div class="mb-0">
 
-                                            <div class="btn-block text-left" type="button" data-toggle="collapse" data-target="#kidsLike" aria-expanded="true" aria-controls="collapseOne">
+                                            <h4 class="btn-block text-left" data-toggle="collapse" data-target="#kidsLike" aria-expanded="true" aria-controls="kidsLike">
                                                 Kids who <span class="emphasis1">like</span> this book
-                                            </div>
+                                            </h4>
 
-                                        </h4>
+                                        </div>
 
                                     </div>
 
@@ -182,13 +180,13 @@
 
                                     <div class="card-header" id="headingTwo">
 
-                                        <h4 class="mb-0">
+                                        <div class="mb-0">
 
-                                            <div class="btn-block text-left" type="button" data-toggle="collapse" data-target="#kidsDislike" aria-expanded="true" aria-controls="collapseOne">
+                                            <h4 class="btn-block text-left" data-toggle="collapse" data-target="#kidsDislike" aria-expanded="true" aria-controls="kidsDislike">
                                                 Kids who <span class="emphasis1">don't like</span> this book
-                                            </div>
+                                            </h4>
 
-                                        </h4>
+                                        </div>
 
                                     </div>
 
@@ -293,9 +291,9 @@
 
                                     <div class="card-header" id="headingThree">
 
-                                        <h4 class="mb-0">
+                                        <div class="mb-0">
 
-                                            <div class="btn-block text-left" type="button" data-toggle="collapse" data-target="#onYourList" aria-expanded="true" aria-controls="collapseOne">
+                                            <h4 class="btn-block text-left" data-toggle="collapse" data-target="#onYourList" aria-expanded="true" aria-controls="onYourList">
 
                                                 {% if favorite %}
 
@@ -307,9 +305,9 @@
 
                                                 {% endif %}
 
-                                            </div>
+                                            </h4>
 
-                                        </h4>
+                                        </div>
 
                                     </div>
 

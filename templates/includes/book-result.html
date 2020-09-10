@@ -94,7 +94,7 @@
 
         <div class="book-result__content-area--row6">
 
-            <span class="book-result__content-area--row6--tag">
+            <div class="book-result__content-area--row6--tag">
 
                 <form method="GET" action="{% url 'books' %}">
 
@@ -104,13 +104,13 @@
 
                 </form>
 
-            </span>
+            </div>
 
         </div>
 
         <div class="book-result__content-area--row7">
             
-            <span class="book-result__content-area--row7--tag">
+            <div class="book-result__content-area--row7--tag">
 
                 {% for tag in book.tags.all %}
 
@@ -128,7 +128,7 @@
 
                 {% endfor %}
 
-            </span>
+            </div>
                 
         </div>
 

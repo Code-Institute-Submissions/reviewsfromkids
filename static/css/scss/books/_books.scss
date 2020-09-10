@@ -11,14 +11,16 @@
     }
 
     @include laptop {
-        
-        grid-template-columns: 30% 1fr;
+
+        width: 90%;
+        grid-template-columns: 40% 1fr;
         column-gap: 2rem;
 
     }
 
     @include l_laptop {
-
+        
+        width: 80%;
         grid-template-columns: 35% 1fr;
 
     }
@@ -100,7 +102,8 @@
 
         @include laptop {
 
-            display: none;
+            grid-column: 1;
+            display: block;
             
         }
 
@@ -130,12 +133,6 @@
                 align-self: flex-end;
 
             }
-
-        }
-
-        @include laptop {
-
-            display: none;
 
         }
 

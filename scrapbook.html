@@ -1,3 +1,52 @@
+<div class="books-search">
+
+    <!-- Search form for mobile devices -->
+    <div class="books-search__overlay">
+
+            <form method="GET">
+
+                {{ myFilter.form|crispy }}
+                
+                <div class="books-search__overlay__footer">
+
+                    <button class="btn books-search__overlay__footer--left" type="submit">go</button>
+
+                    {% if search_performed %}
+
+                        <a class="books-search__overlay__footer--right" href="{% url 'books' %}">reset search</a>  
+
+                    {% endif %}
+
+                </div>
+                
+            </form>
+
+    </div>
+
+    <!-- Search form for non-mobile devices -->
+    <div class="books-search__side-bar">
+
+        <form class="books-search__side-bar" method="GET">
+
+            {{ myFilter.form|crispy }}
+            <button class="btn" type="submit">go</button>
+            
+        </form>
+        <br>
+        <br>
+
+        {% if search_performed %}
+
+            <a href="{% url 'books' %}">reset search</a>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+
+
 <small class="text-muted"> 
                                         
     {% if book.number_of_ratings == 1 %}

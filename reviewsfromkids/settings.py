@@ -25,8 +25,8 @@ if os.path.exists("env.py"):
     DEBUG = True
     ALLOWED_HOSTS = []
 else:
-    # DEBUG = True # For testing production environment in pre-launch stage
-    DEBUG = 'DEVELOPMENT' in os.environ
+    DEBUG = True # For testing production environment in pre-launch stage
+    # DEBUG = 'DEVELOPMENT' in os.environ
     ALLOWED_HOSTS = ['reviewsfromkids.herokuapp.com', 'localhost']
 
 # Application definition
@@ -199,7 +199,7 @@ if 'USE_AWS' in os.environ:
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
 
 
-
+"""For production"""
 if 'DEVELOPMENT' in os.environ:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
     
@@ -212,10 +212,16 @@ else:
     EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASS')
     DEFAULT_FROM_EMAIL = 'teamreviewsfromkids@gmail.com'
 
-# SITE_ID = 1 # for local 
 SITE_ID = 2 # for production
+"""end production"""
 
+
+"""For local"""
+# SITE_ID = 1 # for local
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' # For testing signup process
+"""End local"""
+
+
 
 # Testing contactform
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

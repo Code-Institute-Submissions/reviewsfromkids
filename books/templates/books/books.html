@@ -64,26 +64,6 @@
                             </form>
 
                     </div>
-
-                    <!-- Search form for non-mobile devices -->
-                    <div class="books-search__side-bar">
-
-                        <form class="books-search__side-bar" method="GET">
-
-                            {{ myFilter.form|crispy }}
-                            <button class="btn" type="submit">go</button>
-                            
-                        </form>
-                        <br>
-                        <br>
-
-                        {% if search_performed %}
-
-                            <a href="{% url 'books' %}">reset search</a>
-
-                        {% endif %}
-
-                    </div>
         
                 </div>
         

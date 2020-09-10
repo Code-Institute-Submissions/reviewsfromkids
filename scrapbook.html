@@ -1,8 +1,14 @@
-{% load i18n %}
-{% autoescape off %}
-{% blocktrans %}Please Confirm Your E-mail Address{% endblocktrans %}
-{% endautoescape %}
+<small class="text-muted"> 
+                                        
+    {% if book.number_of_ratings == 1 %}
 
+        (1 rating)
+
+    {% else %}
+
+        ({{ book.number_of_ratings }} ratings)</small>
+
+    {% endif %}
 
 
 

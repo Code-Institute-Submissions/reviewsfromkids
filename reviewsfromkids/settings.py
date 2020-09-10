@@ -200,22 +200,22 @@ if 'USE_AWS' in os.environ:
 
 
 
-# if 'DEVELOPMENT' in os.environ:
-#     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+if 'DEVELOPMENT' in os.environ:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
     
-# else:
-#     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-#     EMAIL_USE_TLS = True
-#     EMAIL_PORT = 587
-#     EMAIL_HOST = 'smtp.gmail.com'
-#     EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
-#     EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASS')
-#     DEFAULT_FROM_EMAIL = 'info@reviewsfromkids.com'
+else:
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_USE_TLS = True
+    EMAIL_PORT = 587
+    EMAIL_HOST = 'smtp.gmail.com'
+    EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+    EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASS')
+    DEFAULT_FROM_EMAIL = 'teamreviewsfromkids@gmail.com'
 
-SITE_ID = 1 # for local 
-# SITE_ID = 2 # for production
+# SITE_ID = 1 # for local 
+SITE_ID = 2 # for production
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' # For testing signup process
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' # For testing signup process
 
 # Testing contactform
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

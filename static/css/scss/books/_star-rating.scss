@@ -66,10 +66,20 @@
 /****** Style Star Rating Widget END*****/
 /* End rating stars */
 
+
+/* CSS for hard-coded rating stars */
+
 .rating-static-table {
 
     display: grid;
     grid-template-columns: auto 1fr;
+
+    &--book-details {
+
+        font-size: 1.5rem;
+        margin: 1rem auto;
+
+    }
 
     &__rating-1 {
 
@@ -84,63 +94,16 @@
     }
 }
 
-/* CSS for displaying average rating - no form, no hover. Based on ratings from above*/
-.rating-static {
-
-    border: none;
-    float: left;
-  
-}
-  
-.rating-static > [id^="star-static"] {
-    
-    display: none;
-
-}
-
-.rating-static > label:before {
-
-    margin: 5px 5px 0px 5px;
-    padding-top: 0.3rem;
-    font-size: 1.5em;
-    font-family: FontAwesome;
-    display: inline-block;
-    content: "\f005";
-
-}
-
-.rating-static > .half:before { 
-
-    content: "\f089";
-    position: absolute;
-
-}
-
-.rating-static > label {
-
-    color: #ddd; 
-    float: right;
-
-}
-
-.rating-static > [id^="star"]:checked ~ label { 
-    
-    color: $mainYellow;
-
-}
-
-/* CSS for hard-coded rating stars */
-
 .hard-coded-stars {
 
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: 1;
+  grid-template-rows: 1fr; 
 
     &__star {
 
       display: grid;
-
+      
         &--half {
 
         grid-area: 1 / 1 / 2 / 2;

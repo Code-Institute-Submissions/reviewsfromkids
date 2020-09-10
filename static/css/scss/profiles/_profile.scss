@@ -19,6 +19,11 @@
         grid-template-columns: auto 1fr;
         column-gap: 0.5rem;
         align-items: center;
+
+        &--sub {
+
+            margin: 1rem auto 2rem auto;
+        }
     }
 
     @include tablet {
@@ -147,4 +152,5 @@
 
         color: $mainTeal;
     }
+
 }

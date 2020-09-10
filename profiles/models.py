@@ -32,7 +32,7 @@ class UserProfile(models.Model):
     no_hobbies_and_sports_known = models.BooleanField(default=False)
     profile_complete = models.CharField(max_length=7, default='lvl-0')
     allowed_to_rate = models.BooleanField(default=False)
-    age_in_years = models.IntegerField()
+    age_in_years = models.IntegerField(null=True, blank=True)
     
     def __str__(self):
         return self.user.username
@@ -48,9 +48,22 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
     instance.userprofile.save()
 
 class UserProfileForm(ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        for field in self.Meta.required:
+            self.fields[field].required = True
+
     class Meta:
         model = UserProfile
         fields = [
+            'first_name', 
+            'last_name', 
+            'gender', 
+            'date_of_birth',
+            ]
+        required = [
             'first_name', 
             'last_name', 
             'gender', 

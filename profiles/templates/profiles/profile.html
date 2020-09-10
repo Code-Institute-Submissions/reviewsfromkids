@@ -230,7 +230,7 @@
 
             <div id="menu3" class="tab-pane fade">
 
-                <section class="profile__hobbysport card-body">
+                <section class="profile__hobbysport">
 
                     <div class="profile__title">
 
@@ -238,62 +238,73 @@
 
                     </div>
 
-                    {% if not ratings_high and not ratings_ok and not ratings_low %}
+                    {% if profile.profile_complete == 'lvl-3' %}
 
-                        <p>You have not rated any books yet.</p>
+                        {% if not ratings_high and not ratings_ok and not ratings_low %}
+
+                            <p>You have not rated any books yet.</p>
+
+                        {% else %}
+
+                            {% if ratings_high %}
+
+                                <h5 class="profile__title--sub">Your great books</h5>
+
+                                <div class="books-results">
+
+                                    {% for book in ratings_high %}
+
+                                        {% include 'includes/book-result.html' %}
+                                        <hr>
+
+                                    {% endfor %}
+
+                                </div>
+
+                            {% endif %}
+
+                            {% if ratings_ok %}
+
+                            <h5 class="profile__title--sub">Your ok-ish books</h5>
+
+                                <div class="books-results">
+
+                                    {% for book in ratings_ok %}
+
+                                        {% include 'includes/book-result.html' %}
+                                        <hr>
+                                        
+                                    {% endfor %}
+
+                                </div>
+
+                            {% endif %}
+
+                            {% if ratings_low %}
+
+                            <h5 class="profile__title--sub">Your meh books</h5>
+
+                                <div class="books-results">
+
+                                    {% for book in ratings_low %}
+
+                                        {% include 'includes/book-result.html' %}
+                                        <hr>
+
+                                    {% endfor %}
+
+                                </div>
+
+                            {% endif %}
+
+                        {% endif %}
 
                     {% else %}
 
-                        {% if ratings_high %}
-
-                            <h5>Books that are great!</h5>
-
-                            <div class="scrolling-wrapper-flexbox">
-
-                                {% for book in ratings_high %}
-
-                                    {% include 'includes/book-card.html' %}
-
-                                {% endfor %}
-
-                            </div>
-
-                        {% endif %}
-
-                        {% if ratings_ok %}
-
-                            <h5>Books that are ok-ish</h5>
-
-                            <div class="scrolling-wrapper-flexbox">
-
-                                {% for book in ratings_ok %}
-
-                                    {% include 'includes/book-card.html' %}
-
-                                {% endfor %}
-
-                            </div>
-
-                        {% endif %}
-
-                        {% if ratings_low %}
-
-                            <h5>Books that are meh</h5>
-
-                            <div class="scrolling-wrapper-flexbox">
-
-                                {% for book in ratings_low %}
-
-                                    {% include 'includes/book-card.html' %}
-
-                                {% endfor %}
-
-                            </div>
-
-                        {% endif %}
+                    <p>You have not rated any books yet.</p>
+                    <p>If your profile is 100% complete, you are allowed to leave ratings.</p>
 
                     {% endif %}
-                    
                 </section>  
 
             </div>
@@ -317,13 +328,9 @@
                             {% for book in favorites %}
 
                                 {% include 'includes/book-result.html' %}
-
-                                <div class="col-12 d-sm-none mb-5">
-                                    <hr>
-                                </div>
+                                <hr>
 
                             {% endfor %}
-
 
                         </div>
                         

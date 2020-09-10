@@ -46,7 +46,17 @@
 
                 <div class="rating-static-table__rating-2">
 
-                    <small class="text-muted"> ({{ book.number_of_ratings }} ratings)</small>
+                    <small class="text-muted"> 
+                                        
+                                        {% if book.number_of_ratings == 1 %}
+
+                                            (1 rating)</small>
+
+                                        {% else %}
+
+                                            ({{ book.number_of_ratings }} ratings)</small>
+
+                                        {% endif %}
 
                 </div>
 

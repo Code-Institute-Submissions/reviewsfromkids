@@ -39,29 +39,28 @@
 
                             <h4>Is this book for you?</h4>
 
-                            <div class="rating-static-table">
+                            <div class="rating-static-table rating-static-table--book-details">
 
-                                <div class="rating-static-table__rating-1">
-
-                                    <div class="rating-static">
-
-                                        <input type="radio" id="star-static5" name="rating-static" value="5" {% if book.star_rating_all == 5 %}checked{% endif %}/><label class = "full" for="star-static5"></label>
-                                        <input type="radio" id="star-static4half" name="rating-static" value="4 and a half" {% if book.star_rating_all == 4.5 %}checked{% endif %}/><label class="half" for="star-static4half"></label>
-                                        <input type="radio" id="star-static4" name="rating-static" value="4" {% if book.star_rating_all == 4 %}checked{% endif %}/><label class = "full" for="star-static4"></label>
-                                        <input type="radio" id="star-static3half" name="rating-static" value="3 and a half" {% if book.star_rating_all == 3.5 %}checked{% endif %}/><label class="half" for="star-static3half"></label>
-                                        <input type="radio" id="star-static3" name="rating-static" value="3" {% if book.star_rating_all == 3 %}checked{% endif %}/><label class = "full" for="star-static3"></label>
-                                        <input type="radio" id="star-static2half" name="rating-static" value="2 and a half" {% if book.star_rating_all == 2.5 %}checked{% endif %}/><label class="half" for="star-static2half"></label>
-                                        <input type="radio" id="star-static2" name="rating-static" value="2" {% if book.star_rating_all == 2 %}checked{% endif %}/><label class = "full" for="star-static2"></label>
-                                        <input type="radio" id="star-static1half" name="rating-static" value="1 and a half" {% if book.star_rating_all == 1.5 %}checked{% endif %}/><label class="half" for="star-static1half"></label>
-                                        <input type="radio" id="star-static1" name="rating-static" value="1" {% if book.star_rating_all == 1 %}checked{% endif %}/><label class = "full" for="star-static1"></label>
-                                        <input type="radio" id="star-statichalf" name="rating-static" value="half" {% if book.star_rating_all == 0.5 %}checked{% endif %}/><label class="half" for="star-statichalf"></label>
-                                    
-                                    </div>
-
+                                <div class="rating-static-table__rating-1 hard-coded-stars">
+                
+                                    {% include 'includes/star-rating-hard-coded.html' %}
+                
                                 </div>
-
+                
                                 <div class="rating-static-table__rating-2">
-                                    ({{ book.number_of_ratings }} ratings)
+                
+                                    <small class="text-muted"> 
+                                        
+                                        {% if book.number_of_ratings == 1 %}
+
+                                            (1 rating)</small>
+
+                                        {% else %}
+
+                                            ({{ book.number_of_ratings }} ratings)</small>
+
+                                        {% endif %}
+                
                                 </div>
 
                             </div>
@@ -349,7 +348,7 @@
                                                 {% else %}
 
                                                     <i class="book-details__icon--not-fav fas fa-heart fa-3x" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Tooltip on top"></i>
-                                                    <p>Please log in to add to your list.</p>
+                                                    <p>Please <a href="{% url 'account_login' %}">log in</a> to add to your list.</p>
 
                                                 {% endif %}
 

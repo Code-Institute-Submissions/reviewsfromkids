@@ -1003,6 +1003,9 @@ html, body {
 .book-details__section__rating form button {
   width: 115px;
 }
+.book-details__section__rating--delete {
+  margin-top: 1rem;
+}
 .book-details__section__rating--stars {
   justify-self: start;
 }

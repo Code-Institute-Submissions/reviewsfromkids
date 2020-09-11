@@ -15,15 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.conf import settings # 4.6
-from django.conf.urls.static import static # 4.7
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/', include('allauth.urls')), # 1.5
+    path('accounts/', include('allauth.urls')),
     path('', include('home.urls')),
-    # path('home/', include('home.urls')), #3.5
     path('books/', include('books.urls')),
     path('profile/', include('profiles.urls')),
     path('donations/', include('donations.urls')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #4.8
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -11,17 +11,17 @@ from django.contrib.sites.shortcuts import get_current_site
 def index(request):
     """ A view to return the index page """
     books = Book.objects.all()
-    featured_books = Book.objects.filter(featured_item = True)
-    recent_books = Book.objects.filter(date_added = "2020-07-16")
-    
-    user=request.user
-    userprofile=None
-    user_logged_in=False
+    featured_books = Book.objects.filter(featured_item=True)
+    recent_books = Book.objects.filter(date_added="2020-07-16")
+
+    user = request.user
+    userprofile = None
+    user_logged_in = False
 
     # Check if user is logged in
     if user.is_authenticated:
         userprofile = get_object_or_404(UserProfile, user=request.user)
-        user_logged_in=True
+        user_logged_in = True
 
     context = {
         'featured_books': featured_books,
@@ -36,11 +36,11 @@ def index(request):
 # Create your views here.
 def contact(request):
     """ A view to render the contact page """
-    
+
     if request.method == 'GET':
         form = ContactForm()
 
-    else: 
+    else:
         form = ContactForm(request.POST)
 
         if form.is_valid():
@@ -60,17 +60,18 @@ def contact(request):
 
     return render(request, 'home/contact.html', context)
 
+
 def about(request):
     """ A view to render the about page """
-    
-    user=request.user
-    userprofile=None
-    user_logged_in=False
+
+    user = request.user
+    userprofile = None
+    user_logged_in = False
 
     # Check if user is logged in
     if user.is_authenticated:
         userprofile = get_object_or_404(UserProfile, user=request.user)
-        user_logged_in=True
+        user_logged_in = True
 
     context = {
 
@@ -79,4 +80,3 @@ def about(request):
     }
 
     return render(request, 'home/about.html', context)
-

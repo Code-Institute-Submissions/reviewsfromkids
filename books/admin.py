@@ -3,10 +3,11 @@ from .models import Book, Category, Rating
 
 # Register your models here.
 
-class BookAdmin(admin.ModelAdmin): #6.2
+
+class BookAdmin(admin.ModelAdmin):
     list_display = (
         'pk',
-        'isbn', 
+        'isbn',
         'title',
         'author',
         'category',
@@ -19,21 +20,23 @@ class BookAdmin(admin.ModelAdmin): #6.2
         'most_disliked_by',
     )
 
-class CategoryAdmin(admin.ModelAdmin): #6.2
+
+class CategoryAdmin(admin.ModelAdmin):
     list_display = (
-        'pk', 
+        'pk',
         'name',
     )
 
-class RatingAdmin(admin.ModelAdmin): #6.2
+
+class RatingAdmin(admin.ModelAdmin):
     list_display = (
-        'pk', 
+        'pk',
         'age_rating_years',
         'rating',
         'gender',
         'book_id',
     )
 
-admin.site.register(Book, BookAdmin) # 5.3 6.
-admin.site.register(Category, CategoryAdmin) # 5.3 6.
+admin.site.register(Book, BookAdmin)
+admin.site.register(Category, CategoryAdmin)
 admin.site.register(Rating, RatingAdmin)

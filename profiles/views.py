@@ -6,15 +6,14 @@ from django.contrib.auth.decorators import login_required
 from datetime import datetime
 from dateutil.relativedelta import relativedelta, MO
 from django.contrib import messages
-# from .forms import *
 
 
 # Create your views here.
 def profile(request):
     """ Display user profile """
 
-    hobby=Hobby.objects.all()
-    sport=Sport.objects.all()
+    hobby = Hobby.objects.all()
+    sport = Sport.objects.all()
     user = get_object_or_404(User, username=request.user)
     profile = get_object_or_404(UserProfile, user=request.user)
     user_hobby = profile.hobbies.all().order_by('name')
@@ -37,17 +36,17 @@ def profile(request):
     if user.is_authenticated:
         userprofile = get_object_or_404(UserProfile, user=request.user)
         user_favorites_id = []
-        a =  userprofile.favorites.values("id")
+        a = userprofile.favorites.values("id")
         for id in a:
             user_favorites_id.append(id["id"])
-    
+
     template = 'profiles/profile.html'
 
     context = {
         'user': user,
         'hobby': hobby,
         'sport': sport,
-        'user_hobby':user_hobby,
+        'user_hobby': user_hobby,
         'user_sport': user_sport,
         'profile': profile,
         'ratings_high': ratings_high,
@@ -59,9 +58,8 @@ def profile(request):
 
     return render(request, template, context)
 
-#Form with ModelForm
-def edit_personal(request):
 
+def edit_personal(request):
     # Get userprofile
     profile = get_object_or_404(UserProfile, user=request.user)
 
@@ -70,25 +68,27 @@ def edit_personal(request):
 
     # Check if form is updated via submit button i.e. POST
     if request.method == "POST":
-        
-        form = UserProfileForm(instance=profile, data = request.POST)
+
+        form = UserProfileForm(instance=profile, data=request.POST)
         if form.is_valid():
             form.save()
-            
+
             # Update profile complete lvl
             user_hobby = profile.hobbies.all()
             user_sport = profile.sports.all()
 
-            if profile.first_name and profile.last_name and profile.date_of_birth and profile.gender:
-                profile.profile_complete = "lvl-1"
-        
-            if profile.profile_complete == "lvl-1" and user_hobby.exists()==True or user_sport.exists()==True:
-                profile.profile_complete = "lvl-2"
+            if profile.first_name and profile.last_name and \
+                    profile.date_of_birth and profile.gender:
+                        profile.profile_complete = "lvl-1"
 
-            if profile.profile_complete == "lvl-2" and user_hobby.exists()==True and user_sport.exists()==True:
-                profile.profile_complete = "lvl-3"
-                profile.allowed_to_rate = True
+            if profile.profile_complete == "lvl-1" and \
+                    user_hobby.exists() is True or user_sport.exists() is True:
+                        profile.profile_complete = "lvl-2"
 
+            if profile.profile_complete == "lvl-2" and user_hobby.exists() is \
+                    True and user_sport.exists() is True:
+                        profile.profile_complete = "lvl-3"
+                        profile.allowed_to_rate = True
 
             if profile.date_of_birth:
                 date_calc = datetime.now()
@@ -96,7 +96,7 @@ def edit_personal(request):
                 profile.age_in_years = age_now.years
 
             profile.save()
-            
+
             messages.success(request, f'Profile updated, thank you')
 
             return redirect('profile')
@@ -109,7 +109,7 @@ def edit_personal(request):
 
 def edit_hobby(request):
     """ User can add his/her hobbies """
-    
+
     # Get userprofile
     profile = get_object_or_404(UserProfile, user=request.user)
     user_hobby = profile.hobbies.all()
@@ -118,48 +118,52 @@ def edit_hobby(request):
     form = UserProfileHobbyForm(instance=profile)
 
     if request.method == "POST":
-        form = UserProfileHobbyForm(instance=profile, data = request.POST)
+        form = UserProfileHobbyForm(instance=profile, data=request.POST)
         if form.is_valid():
             form.save()
-            
+
             # Set bools needed for bookfinder functionality
-            if profile.hobbies.all().exists()==True:
+            if profile.hobbies.all().exists() is True:
                 profile.hobbies_known = True
             else:
                 profile.hobbies_known = False
-            
-            if profile.hobbies_known == True and profile.sports_known == True:
+
+            if profile.hobbies_known is True and profile.sports_known is True:
                 profile.hobbies_and_sports_known = True
             else:
                 profile.hobbies_and_sports_known = False
 
-            if profile.hobbies_known == True and profile.sports_known == False:
+            if profile.hobbies_known is True and profile.sports_known is False:
                 profile.only_hobbies_known = True
             else:
                 profile.only_hobbies_known = False
 
-            if profile.hobbies_known == False and profile.sports_known == True:
+            if profile.hobbies_known is False and profile.sports_known is True:
                 profile.only_sports_known = True
             else:
                 profile.only_sports_known = False
 
-            if profile.hobbies_known == False and profile.sports_known == False:
-                profile.no_hobbies_and_sports_known = True
+            if profile.hobbies_known is False and profile.sports_known \
+                    is False:
+                        profile.no_hobbies_and_sports_known = True
             else:
                 profile.no_hobbies_and_sports_known = False
-            
+
             # Update profile complete lvl
             user_sport = profile.sports.all()
 
-            if profile.first_name and profile.last_name and profile.date_of_birth and profile.gender:
-                profile.profile_complete = "lvl-1"
-        
-            if profile.profile_complete == "lvl-1" and user_hobby.exists()==True or user_sport.exists()==True:
-                profile.profile_complete = "lvl-2"
+            if profile.first_name and profile.last_name and \
+                    profile.date_of_birth and profile.gender:
+                        profile.profile_complete = "lvl-1"
 
-            if profile.profile_complete == "lvl-2" and user_hobby.exists()==True and user_sport.exists()==True:
-                profile.profile_complete = "lvl-3"
-                profile.allowed_to_rate = True
+            if profile.profile_complete == "lvl-1" and user_hobby.exists() is \
+                    True or user_sport.exists() is True:
+                        profile.profile_complete = "lvl-2"
+
+            if profile.profile_complete == "lvl-2" and user_hobby.exists() \
+                    is True and user_sport.exists() is True:
+                        profile.profile_complete = "lvl-3"
+                        profile.allowed_to_rate = True
 
             profile.save()
 
@@ -175,7 +179,7 @@ def edit_hobby(request):
 
 def edit_sport(request):
     """ User can add his/her sports """
-    
+
     # Get userprofile
     profile = get_object_or_404(UserProfile, user=request.user)
 
@@ -183,33 +187,34 @@ def edit_sport(request):
     form = UserProfileSportForm(instance=profile)
 
     if request.method == "POST":
-        form = UserProfileSportForm(instance=profile, data = request.POST)
+        form = UserProfileSportForm(instance=profile, data=request.POST)
         if form.is_valid():
             form.save()
 
             # Set bools needed for bookfinder functionality
-            if profile.sports.all().exists()==True:
+            if profile.sports.all().exists() is True:
                 profile.sports_known = True
             else:
                 profile.sports_known = False
-            
-            if profile.hobbies_known == True and profile.sports_known == True:
+
+            if profile.hobbies_known is True and profile.sports_known is True:
                 profile.hobbies_and_sports_known = True
             else:
                 profile.hobbies_and_sports_known = False
 
-            if profile.hobbies_known == True and profile.sports_known == False:
+            if profile.hobbies_known is True and profile.sports_known is False:
                 profile.only_hobbies_known = True
             else:
                 profile.only_hobbies_known = False
 
-            if profile.hobbies_known == False and profile.sports_known == True:
+            if profile.hobbies_known is False and profile.sports_known is True:
                 profile.only_sports_known = True
             else:
                 profile.only_sports_known = False
 
-            if profile.hobbies_known == False and profile.sports_known == False:
-                profile.no_hobbies_and_sports_known = True
+            if profile.hobbies_known is False and \
+                    profile.sports_known is False:
+                        profile.no_hobbies_and_sports_known = True
             else:
                 profile.no_hobbies_and_sports_known = False
 
@@ -217,21 +222,25 @@ def edit_sport(request):
             user_hobby = profile.hobbies.all()
             user_sport = profile.sports.all()
 
-            if profile.first_name and profile.last_name and profile.date_of_birth and profile.gender:
-                profile.profile_complete = "lvl-1"
-        
-            if profile.profile_complete == "lvl-1" and user_hobby.exists()==True or user_sport.exists()==True:
-                profile.profile_complete = "lvl-2"
+            if profile.first_name and profile.last_name and \
+                    profile.date_of_birth and profile.gender:
+                        profile.profile_complete = "lvl-1"
 
-            if profile.profile_complete == "lvl-2" and user_hobby.exists()==True and user_sport.exists()==True:
-                profile.profile_complete = "lvl-3"
-                profile.allowed_to_rate = True
+            if profile.profile_complete == "lvl-1" and \
+                    user_hobby.exists() is True or user_sport.exists() is True:
+                        profile.profile_complete = "lvl-2"
+
+            if profile.profile_complete == "lvl-2" and \
+                user_hobby.exists() is True and \
+                    user_sport.exists() is True:
+                        profile.profile_complete = "lvl-3"
+                        profile.allowed_to_rate = True
 
             profile.save()
 
             messages.success(request, f'Sports updated, thank you')
             profile.save()
-            
+
             return redirect('profile')
 
     # Load edit sport page
@@ -242,7 +251,7 @@ def edit_sport(request):
 
 def book_finder_edit_hobby(request):
     """ User can add his/her hobbies """
-    
+
     # Get userprofile
     profile = get_object_or_404(UserProfile, user=request.user)
 
@@ -250,52 +259,56 @@ def book_finder_edit_hobby(request):
     form = UserProfileHobbyForm(instance=profile)
 
     if request.method == "POST":
-        form = UserProfileHobbyForm(instance=profile, data = request.POST)
+        form = UserProfileHobbyForm(instance=profile, data=request.POST)
         if form.is_valid():
             form.save()
 
             # Set bools needed for bookfinder functionality
-            if profile.hobbies.all().exists()==True:
+            if profile.hobbies.all().exists() is True:
                 profile.hobbies_known = True
             else:
                 profile.hobbies_known = False
-            
-            if profile.hobbies_known == True and profile.sports_known == True:
+
+            if profile.hobbies_known is True and profile.sports_known is True:
                 profile.hobbies_and_sports_known = True
             else:
                 profile.hobbies_and_sports_known = False
 
-            if profile.hobbies_known == True and profile.sports_known == False:
+            if profile.hobbies_known is True and profile.sports_known is False:
                 profile.only_hobbies_known = True
             else:
                 profile.only_hobbies_known = False
 
-            if profile.hobbies_known == False and profile.sports_known == True:
+            if profile.hobbies_known is False and profile.sports_known is True:
                 profile.only_sports_known = True
             else:
                 profile.only_sports_known = False
 
-            if profile.hobbies_known == False and profile.sports_known == False:
-                profile.no_hobbies_and_sports_known = True
+            if profile.hobbies_known is False and \
+                    profile.sports_known is False:
+                        profile.no_hobbies_and_sports_known = True
             else:
                 profile.no_hobbies_and_sports_known = False
-            
+
             # Update profile complete lvl
             user_hobby = profile.hobbies.all()
             user_sport = profile.sports.all()
 
-            if profile.first_name and profile.last_name and profile.date_of_birth and profile.gender:
-                profile.profile_complete = "lvl-1"
-        
-            if profile.profile_complete == "lvl-1" and user_hobby.exists()==True or user_sport.exists()==True:
-                profile.profile_complete = "lvl-2"
+            if profile.first_name and profile.last_name and \
+                    profile.date_of_birth and profile.gender:
+                        profile.profile_complete = "lvl-1"
 
-            if profile.profile_complete == "lvl-2" and user_hobby.exists()==True and user_sport.exists()==True:
-                profile.profile_complete = "lvl-3"
-                profile.allowed_to_rate = True
+            if profile.profile_complete == "lvl-1" and user_hobby.exists() \
+                    is True or user_sport.exists() is True:
+                        profile.profile_complete = "lvl-2"
+
+            if profile.profile_complete == "lvl-2" and user_hobby.exists() \
+                    is True and user_sport.exists() is True:
+                        profile.profile_complete = "lvl-3"
+                        profile.allowed_to_rate = True
 
             profile.save()
-            
+
             messages.success(request, f'Hobbies updated, thank you')
 
             profile.save()
@@ -310,7 +323,7 @@ def book_finder_edit_hobby(request):
 
 def book_finder_edit_sport(request):
     """ User can add his/her sports """
-    
+
     # Get userprofile
     profile = get_object_or_404(UserProfile, user=request.user)
 
@@ -749,41 +762,49 @@ def book_finder_user_4(request):
     user_sport = profile.sports.all().order_by('name')
     categories = Category.objects.all()
     
-    # Collect users' hobbies and find ratings with the same hobbies. Then filter on high rating and users' gender and age 
+    # Collect users' hobbies and find ratings with the same hobbies.
+    # Then filter on high rating and users' gender and age 
     hobby_ids = user_hobby.values('id')
-    a = Rating.objects.filter(hobbies__in=hobby_ids, gender=profile.gender, rating__gte=4, age_rating_years=profile.age_in_years)
+    a = Rating.objects.filter(hobbies__in=hobby_ids,
+                              gender=profile.gender, \
+                              rating__gte=4,
+                              age_rating_years=profile.age_in_years)
     b = a.values('book_id_id')
 
     # Same for sports
     sport_ids = user_sport.values('id')
-    c = Rating.objects.filter(hobbies__in=sport_ids, gender=profile.gender, rating__gte=4, age_rating_years=profile.age_in_years)
+    c = Rating.objects.filter(hobbies__in=sport_ids, gender=profile.gender,
+                              rating__gte=4,
+                              age_rating_years=profile.age_in_years)
     d = c.values('book_id_id')
 
-    # Grab user's own ratings to remove from recommendation, take both positive and negative ratings
+    # Grab user's own ratings to remove from recommendation,
+    # take both positive and negative ratings
     e = Rating.objects.filter(rated_by=profile).exclude(rating=3)
     f = e.values('book_id_id')
-   
+
     # Convert QuerySet Rating to QuerySet Book to show in template
     books = Book.objects.filter(pk__in=[b, d]).exclude(pk__in=f).distinct()
     results = len(books)
-    
+
     context = {
         'user': user,
-        'user_hobby':user_hobby,
+        'user_hobby': user_hobby,
         'user_sport': user_sport,
         'profile': profile,
         'categories': categories,
         'books': books,
         'results': results,
         }
-    
+
     return render(request, 'profiles/book_finder_user_4.html', context)
 
 
 @login_required
 def book_finder_user_5(request):
-    """ 
-    Special view for user to edit hobbies and sports. Redirects to book_finder_user_4.
+    """
+    Special view for user to edit hobbies and sports.
+    Redirects to book_finder_user_4.
     """
 
     user = get_object_or_404(User, username=request.user)
@@ -792,23 +813,26 @@ def book_finder_user_5(request):
     user_sport = profile.sports.all().order_by('name')
 
     # Update profile complete lvl
-    if profile.first_name and profile.last_name and profile.date_of_birth and profile.gender:
-        profile.profile_complete = "lvl-1"
+    if profile.first_name and profile.last_name and profile.date_of_birth and \
+            profile.gender:
+                profile.profile_complete = "lvl-1"
 
-    if profile.profile_complete == "lvl-1" and user_hobby.exists()==True or user_sport.exists()==True:
-        profile.profile_complete = "lvl-2"
+    if profile.profile_complete == "lvl-1" and user_hobby.exists() is True or \
+            user_sport.exists() is True:
+                profile.profile_complete = "lvl-2"
 
-    if profile.profile_complete == "lvl-2" and user_hobby.exists()==True and user_sport.exists()==True:
-        profile.profile_complete = "lvl-3"
-        profile.allowed_to_rate = True
+    if profile.profile_complete == "lvl-2" and user_hobby.exists() is True \
+            and user_sport.exists() is True:
+                profile.profile_complete = "lvl-3"
+                profile.allowed_to_rate = True
 
     profile.save()
-    
+
     context = {
         'user': user,
-        'user_hobby':user_hobby,
+        'user_hobby': user_hobby,
         'user_sport': user_sport,
         'profile': profile,
         }
-    
+
     return render(request, 'profiles/book_finder_user_5.html', context)

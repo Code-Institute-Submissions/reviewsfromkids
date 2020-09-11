@@ -437,7 +437,7 @@
                                         <div class="book-details__section__rating--stars">
 
                                             <fieldset class="rating">
-
+                                                
                                                 <input type="radio" id="star5" name="ratingOptions" value="5" /><label class="full" for="star5"></label>
                                                 <input type="radio" id="star4" name="ratingOptions" value="4" /><label class="full" for="star4"></label>
                                                 <input type="radio" id="star3" name="ratingOptions" value="3" /><label class="full" for="star3"></label>
@@ -487,7 +487,7 @@
 
                                     </form>
 
-                                    <form method="POST" action="{% url 'book_detail' book.id %}">
+                                    <form method="POST" class="book-details__section__rating--delete" action="{% url 'book_detail' book.id %}">
                                         {% csrf_token %}
 
                                         <input type="hidden" value="delete" name="type_of_action">   

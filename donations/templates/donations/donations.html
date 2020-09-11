@@ -30,73 +30,68 @@
     <main>
 
         <div class="donations">
+
             <p>Do you like this site? Does it help your kids to find fun books to read? Then consider making a small donation. With your support we can make this site even better!</p>
+            <p>You can select a one-time donation or a monthly support donation.</p>
+            <p>You will be redirected to a secure environment, hosted by Stripe.</p>
+
         </div>
 
-        <form class="donations__grid" action="{% url 'charge' %}" method="post" id="payment-form">
+        <div class="donations donations__type scrolling-wrapper-flexbox">
 
-                {% csrf_token %}
+            <div class="donations__type--option donations__type--option--blue">
 
-                <div class="donations__grid--col1 donations__grid--row1">
-                    Choose amount
+                <h4>Let me buy you a coffee!</h4>
+                <i class="fas fa-5x fa-mug-hot donations__type--option--row2"></i>
+                <p>3 euro</p>
+                <button class="btn donations__type--option--btn" id="checkout-button-price_1HQ9OgFApEuWmDdSIun3qPzm" role="link" type="button">Checkout</button>
+
+            </div>
+
+            <div class="donations__type--option donations__type--option--blue">
+
+                <h4>Let me buy you a lunch!</h4>
+                <i class="fas fa-5x fa-hamburger donations__type--option--row2"></i>
+                <p>10 euro</p>
+                <button class="btn donations__type--option--btn" id="checkout-button-price_1HQ9PJFApEuWmDdS9ngMsse0" role="link" type="button">Checkout</button>
+
+            </div>
+
+            <div class="donations__type--option donations__type--option--teal">
+
+                <h4>Best Friends Forever!</h4>
+                <i class="fas fa-5x fa-hands-helping donations__type--option--row2"></i>
+
+                <div class="donations__type--option--row3">
+
+                    <p>2.50 euro</p>
+                    <small>per month</small>
+
                 </div>
 
-                <div class="donations__grid--col3 donations__grid--row1">
+                <button class="btn donations__type--option--btn" id="checkout-button-price_1HQA0OFApEuWmDdSNkDKmpmY" role="link" type="button">Checkout</button>
 
-                    <select name="amount" id="amount" required>
+            </div>
 
-                        <option disabled value="">select amount</option>
-                        <option value="5">5 euro</option>
-                        <option value="10">10 euro</option>
-                        <option value="25">25 euro</option>
+            <div class="donations__type--option donations__type--option--teal">
 
-                    </select>
+                <h4>Bestest Friends Forever</h4>
+                <i class="fas fa-5x fa-heart donations__type--option--row2"></i>
+
+                <div class="donations__type--option--row3">
+
+                    <p>5 euro</p>
+                    <small>per month</small>
 
                 </div>
 
-            
-                <div class="donations__grid--col1 donations__grid--row2">
-                    Your name
-                </div>
+                <button class="btn donations__type--option--btn" id="checkout-button-price_1HQ9RXFApEuWmDdSrg3dcS0J" role="link" type="button">Checkout</button>
 
-                <div class="donations__grid--row3">
-                    <input type="text" name="name" required>                    
-                </div>
+            </div>
 
-                <div class="donations__grid--col1 donations__grid--row4">
-                    Your email
-                </div>
-
-                <div class="donations__grid--row5">
-                    <input type="email" name="email" required>
-                </div>
-
-                <div class="donations__grid--col1 donations__grid--row6">
-                    Message (optional)
-                </div>
-
-                <div class="donations__grid--row7">
-                    <input type="text" name="description" placeholder="keep up the good work!">
-                </div>
-                
-                <div class="form-row donations__grid--row8">
-
-                    <div id="card-element" style="width:30em">
-                        <!-- A Stripe Element will be inserted here. -->
-                    </div>
-            
-                    <!-- Used to display form errors. -->
-                    <div id="card-errors" role="alert">
-                        <span style="width: 30em; height: 2em; letter-spacing: 0em" id="card-errors" role="alert"></span>
-                    </div>
-            
-                </div>
-            
-                <div class="form-row donations__grid--row9">
-                    <button class="btn">Submit Payment</button>
-                </div>
-            
-            </form>
+        </div>
+   
+        <div id="error-message"></div>
 
     </main>
     
@@ -107,5 +102,5 @@
 {% block postloadjs %}
 
     <script type="module" src="{% static 'scripts/modules/Stripe.js' %}"></script>
-    
-{% endblock %}  
+
+{% endblock %}

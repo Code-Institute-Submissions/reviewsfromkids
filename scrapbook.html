@@ -1,49 +1,67 @@
-<div class="books-search">
+<form class="donations__grid" action="{% url 'charge' %}" method="post" id="payment-form">
 
-    <!-- Search form for mobile devices -->
-    <div class="books-search__overlay">
+    {% csrf_token %}
 
-            <form method="GET">
+    <div class="donations__grid--col1 donations__grid--row1">
+        Choose amount
+    </div>
 
-                {{ myFilter.form|crispy }}
-                
-                <div class="books-search__overlay__footer">
+    <div class="donations__grid--col3 donations__grid--row1">
 
-                    <button class="btn books-search__overlay__footer--left" type="submit">go</button>
+        <select name="amount" id="amount" required>
 
-                    {% if search_performed %}
+            <option disabled value="">select amount</option>
+            <option value="5">5 euro</option>
+            <option value="10">10 euro</option>
+            <option value="25">25 euro</option>
 
-                        <a class="books-search__overlay__footer--right" href="{% url 'books' %}">reset search</a>  
-
-                    {% endif %}
-
-                </div>
-                
-            </form>
+        </select>
 
     </div>
 
-    <!-- Search form for non-mobile devices -->
-    <div class="books-search__side-bar">
 
-        <form class="books-search__side-bar" method="GET">
+    <div class="donations__grid--col1 donations__grid--row2">
+        Your name
+    </div>
 
-            {{ myFilter.form|crispy }}
-            <button class="btn" type="submit">go</button>
-            
-        </form>
-        <br>
-        <br>
+    <div class="donations__grid--row3">
+        <input type="text" name="name" required>                    
+    </div>
 
-        {% if search_performed %}
+    <div class="donations__grid--col1 donations__grid--row4">
+        Your email
+    </div>
 
-            <a href="{% url 'books' %}">reset search</a>
+    <div class="donations__grid--row5">
+        <input type="email" name="email" required>
+    </div>
 
-        {% endif %}
+    <div class="donations__grid--col1 donations__grid--row6">
+        Message (optional)
+    </div>
+
+    <div class="donations__grid--row7">
+        <input type="text" name="description" placeholder="keep up the good work!">
+    </div>
+    
+    <div class="form-row donations__grid--row8">
+
+        <div id="card-element" style="width:30em">
+            <!-- A Stripe Element will be inserted here. -->
+        </div>
+
+        <!-- Used to display form errors. -->
+        <div id="card-errors" role="alert">
+            <span style="width: 30em; height: 2em; letter-spacing: 0em" id="card-errors" role="alert"></span>
+        </div>
 
     </div>
 
-</div>
+    <div class="form-row donations__grid--row9">
+        <button class="btn">Submit Payment</button>
+    </div>
+
+</form>
 
 
 

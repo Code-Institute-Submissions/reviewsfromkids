@@ -1,70 +1,136 @@
-// Create a Stripe client.
-var stripe = Stripe('pk_test_51HFc5ZFApEuWmDdSU11sbZEpbxfiXgwExMFnwH2f5K2ZCpgoiKtyZ10OyrSQ08hxayUS06kazNOKvnPdV7kV7GMV00hh13Vif4');
+// Stripe javascript. Unfortunately, for each donation 'product' a new, same function with specific ID.
+// Not very DRY
 
-// Create an instance of Elements.
-var elements = stripe.elements();
+// 3 euro donation
+(function() {
 
-// Custom styling can be passed to options when creating an Element.
-// (Note that this demo uses a wider set of styles than the guide below.)
-var style = {
-base: {
-    color: '#32325d',
-    fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-    fontSmoothing: 'antialiased',
-    fontSize: '16px',
-    '::placeholder': {
-    color: '#aab7c4'
-    }
-},
-invalid: {
-    color: '#fa755a',
-    iconColor: '#fa755a'
-}
-};
+    var stripe = Stripe('pk_test_51HFc5ZFApEuWmDdSU11sbZEpbxfiXgwExMFnwH2f5K2ZCpgoiKtyZ10OyrSQ08hxayUS06kazNOKvnPdV7kV7GMV00hh13Vif4');
 
-// Create an instance of the card Element.
-var card = elements.create('card', {style: style});
+    var checkoutButton = document.getElementById('checkout-button-price_1HQ9OgFApEuWmDdSIun3qPzm');
 
-// Add an instance of the card Element into the `card-element` <div>.
-card.mount('#card-element');
+    checkoutButton.addEventListener('click', function () {
 
-// Handle real-time validation errors from the card Element.
-card.on('change', function(event) {
-    var displayError = document.getElementById('card-errors');
-    if (event.error) {
-        displayError.textContent = event.error.message;
-    } else {
-        displayError.textContent = '';
-    }
-});
+        stripe.redirectToCheckout({
+            
+            lineItems: [{price: 'price_1HQ9OgFApEuWmDdSIun3qPzm', quantity: 1}],
+            mode: 'payment',
+            successUrl: 'https://reviewsfromkids.herokuapp.com/donations/success',
+            cancelUrl: 'https://reviewsfromkids.herokuapp.com/donations',
 
-// Handle form submission.
-var form = document.getElementById('payment-form');
-form.addEventListener('submit', function(event) {
-event.preventDefault();
+        })
 
-stripe.createToken(card).then(function(result) {
-    if (result.error) {
-    // Inform the user if there was an error.
-    var errorElement = document.getElementById('card-errors');
-    errorElement.textContent = result.error.message;
-    } else {
-    // Send the token to your server.
-    stripeTokenHandler(result.token);
-    }
-});
-});
+        .then(function (result) {
 
-// Submit the form with the token ID.
-function stripeTokenHandler(token) {
-// Insert the token ID into the form so it gets submitted to the server
-var form = document.getElementById('payment-form');
-var hiddenInput = document.createElement('input');
-hiddenInput.setAttribute('type', 'hidden');
-hiddenInput.setAttribute('name', 'stripeToken');
-hiddenInput.setAttribute('value', token.id);
-form.appendChild(hiddenInput);
+            if (result.error) {
+            
+                var displayError = document.getElementById('error-message');
+                displayError.textContent = result.error.message;
 
-// Submit the form
-form.submit();
-}
+            }
+
+        });
+
+    });
+
+})();
+
+// 10 euro donation
+(function() {
+
+    var stripe = Stripe('pk_test_51HFc5ZFApEuWmDdSU11sbZEpbxfiXgwExMFnwH2f5K2ZCpgoiKtyZ10OyrSQ08hxayUS06kazNOKvnPdV7kV7GMV00hh13Vif4');
+
+    var checkoutButton = document.getElementById('checkout-button-price_1HQ9PJFApEuWmDdS9ngMsse0');
+
+    checkoutButton.addEventListener('click', function () {
+
+        stripe.redirectToCheckout({
+
+            lineItems: [{price: 'price_1HQ9PJFApEuWmDdS9ngMsse0', quantity: 1}],
+            mode: 'payment',
+            successUrl: 'https://reviewsfromkids.herokuapp.com/donations/success',
+            cancelUrl: 'https://reviewsfromkids.herokuapp.com/donations',
+
+        })
+
+        .then(function (result) {
+
+            if (result.error) {
+            
+                var displayError = document.getElementById('error-message');
+                displayError.textContent = result.error.message;
+                
+            }
+
+        });
+
+    });
+
+})();
+
+// BFF 2,50 euro per month
+(function() {
+
+    var stripe = Stripe('pk_test_51HFc5ZFApEuWmDdSU11sbZEpbxfiXgwExMFnwH2f5K2ZCpgoiKtyZ10OyrSQ08hxayUS06kazNOKvnPdV7kV7GMV00hh13Vif4');
+
+    var checkoutButton = document.getElementById('checkout-button-price_1HQA0OFApEuWmDdSNkDKmpmY');
+    
+    checkoutButton.addEventListener('click', function () {
+    
+        stripe.redirectToCheckout({
+
+            lineItems: [{price: 'price_1HQA0OFApEuWmDdSNkDKmpmY', quantity: 1}],
+            mode: 'subscription',
+            successUrl: 'https://reviewsfromkids.herokuapp.com/donations/success',
+            cancelUrl: 'https://reviewsfromkids.herokuapp.com/donations',
+
+        })
+
+        .then(function (result) {
+
+            if (result.error) {
+            
+                var displayError = document.getElementById('error-message');
+                displayError.textContent = result.error.message;
+
+            }
+
+        });
+
+    });
+
+})();
+
+// BBFF 5 euro per month
+(function() {
+
+    var stripe = Stripe('pk_test_51HFc5ZFApEuWmDdSU11sbZEpbxfiXgwExMFnwH2f5K2ZCpgoiKtyZ10OyrSQ08hxayUS06kazNOKvnPdV7kV7GMV00hh13Vif4');
+
+    var checkoutButton = document.getElementById('checkout-button-price_1HQ9RXFApEuWmDdSrg3dcS0J');
+
+    checkoutButton.addEventListener('click', function () {
+    
+        stripe.redirectToCheckout({
+
+            lineItems: [{price: 'price_1HQ9RXFApEuWmDdSrg3dcS0J', quantity: 1}],
+            mode: 'subscription',
+            successUrl: 'https://reviewsfromkids.herokuapp.com/donations/success',
+            cancelUrl: 'https://reviewsfromkids.herokuapp.com/donations',
+
+        })
+
+        .then(function (result) {
+
+            if (result.error) {
+            
+                var displayError = document.getElementById('error-message');
+                displayError.textContent = result.error.message;
+
+            }
+
+        });
+
+    });
+
+})();
+
+

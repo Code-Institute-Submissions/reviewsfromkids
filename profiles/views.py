@@ -331,52 +331,56 @@ def book_finder_edit_sport(request):
     form = UserProfileSportForm(instance=profile)
 
     if request.method == "POST":
-        form = UserProfileSportForm(instance=profile, data = request.POST)
+        form = UserProfileSportForm(instance=profile, data=request.POST)
         if form.is_valid():
             form.save()
 
             # Set bools needed for bookfinder functionality
-            if profile.sports.all().exists()==True:
+            if profile.sports.all().exists() is True:
                 profile.sports_known = True
             else:
                 profile.sports_known = False
-            
-            if profile.hobbies_known == True and profile.sports_known == True:
+
+            if profile.hobbies_known is True and profile.sports_known is True:
                 profile.hobbies_and_sports_known = True
             else:
                 profile.hobbies_and_sports_known = False
 
-            if profile.hobbies_known == True and profile.sports_known == False:
+            if profile.hobbies_known is True and profile.sports_known is False:
                 profile.only_hobbies_known = True
             else:
                 profile.only_hobbies_known = False
 
-            if profile.hobbies_known == False and profile.sports_known == True:
+            if profile.hobbies_known is False and profile.sports_known is True:
                 profile.only_sports_known = True
             else:
                 profile.only_sports_known = False
 
-            if profile.hobbies_known == False and profile.sports_known == False:
-                profile.no_hobbies_and_sports_known = True
+            if profile.hobbies_known is False and \
+                    profile.sports_known is False:
+                        profile.no_hobbies_and_sports_known = True
             else:
                 profile.no_hobbies_and_sports_known = False
-            
+
             # Update profile complete lvl
             user_hobby = profile.hobbies.all()
             user_sport = profile.sports.all()
 
-            if profile.first_name and profile.last_name and profile.date_of_birth and profile.gender:
-                profile.profile_complete = "lvl-1"
-        
-            if profile.profile_complete == "lvl-1" and user_hobby.exists()==True or user_sport.exists()==True:
-                profile.profile_complete = "lvl-2"
+            if profile.first_name and profile.last_name and \
+                    profile.date_of_birth and profile.gender:
+                        profile.profile_complete = "lvl-1"
 
-            if profile.profile_complete == "lvl-2" and user_hobby.exists()==True and user_sport.exists()==True:
-                profile.profile_complete = "lvl-3"
-                profile.allowed_to_rate = True
+            if profile.profile_complete == "lvl-1" and user_hobby.exists() is\
+                    True or user_sport.exists() is True:
+                        profile.profile_complete = "lvl-2"
+
+            if profile.profile_complete == "lvl-2" and user_hobby.exists() is \
+                    True and user_sport.exists() is True:
+                        profile.profile_complete = "lvl-3"
+                        profile.allowed_to_rate = True
 
             profile.save()
-            
+
             messages.success(request, f'Sports updated, thank you')
 
             profile.save()
@@ -413,32 +417,32 @@ def book_finder_user(request):
     user_hobby = profile.hobbies.all()
     user_sport = profile.sports.all()
 
-    # Check what personal profile information is available. User is known by default (pk).
+    # Check what personal profile information is available.
     dobgender_available = False
     onlydob_available = False
     onlygender_available = False
     onlyuser_available = False
-    
-    if profile.date_of_birth == None:
+
+    if profile.date_of_birth is None:
         dob_available = False
     else:
         dob_available = True
 
-    if profile.gender == None:
+    if profile.gender is None:
         gender_available = False
     else:
         gender_available = True
-    
+
     # Pass results to template
-    if dob_available == True and gender_available == True:
+    if dob_available is True and gender_available is True:
         dobgender_available = True
-    elif dob_available == True and gender_available == False:
+    elif dob_available is True and gender_available is False:
         onlydob_available = True
-    elif dob_available == False and gender_available == True:
+    elif dob_available is False and gender_available is True:
         onlygender_available = True
     else:
         onlyuser_available = True
-    
+
     context = {
         'profile': profile,
         'dobgender_available': dobgender_available,
@@ -446,7 +450,7 @@ def book_finder_user(request):
         'onlygender_available': onlygender_available,
         'onlyuser_available': onlyuser_available,
     }
-    
+
     return render(request, 'profiles/book_finder_user.html', context)
 
 
@@ -459,35 +463,35 @@ def book_finder_user_1(request):
     profile = get_object_or_404(UserProfile, user=request.user)
     form = UserProfileForm(instance=profile)
 
-    # Check what profile information is available. User is known by default (pk).
+    # Check what profile information is available.
     dobgender_available = False
     onlydob_available = False
     onlygender_available = False
     onlyuser_available = False
 
-    if profile.date_of_birth == None:
+    if profile.date_of_birth is None:
         dob_available = False
     else:
         dob_available = True
 
-    if profile.gender == None:
+    if profile.gender is None:
         gender_available = False
     else:
         gender_available = True
-    
+
     # Pass results to template
-    if dob_available == True and gender_available == True:
+    if dob_available is True and gender_available is True:
         dobgender_available = True
-    elif dob_available == True and gender_available == False:
+    elif dob_available is True and gender_available is False:
         onlydob_available = True
-    elif dob_available == False and gender_available == True:
+    elif dob_available is False and gender_available is True:
         onlygender_available = True
     else:
         onlyuser_available = True
-    
+
     # Grab form data and save
     if request.method == "POST":
-        form = UserProfileForm(instance=profile, data = request.POST)
+        form = UserProfileForm(instance=profile, data=request.POST)
         if form.is_valid():
             form.save()
 
@@ -495,15 +499,18 @@ def book_finder_user_1(request):
             user_hobby = profile.hobbies.all()
             user_sport = profile.sports.all()
 
-            if profile.first_name and profile.last_name and profile.date_of_birth and profile.gender:
-                profile.profile_complete = "lvl-1"
-        
-            if profile.profile_complete == "lvl-1" and user_hobby.exists()==True or user_sport.exists()==True:
-                profile.profile_complete = "lvl-2"
+            if profile.first_name and profile.last_name and \
+                    profile.date_of_birth and profile.gender:
+                        profile.profile_complete = "lvl-1"
 
-            if profile.profile_complete == "lvl-2" and user_hobby.exists()==True and user_sport.exists()==True:
-                profile.profile_complete = "lvl-3"
-                profile.allowed_to_rate = True
+            if profile.profile_complete == "lvl-1" and \
+                    user_hobby.exists() is True or user_sport.exists() is True:
+                        profile.profile_complete = "lvl-2"
+
+            if profile.profile_complete == "lvl-2" and \
+                    user_hobby.exists() is True and user_sport.exists() is True:
+                        profile.profile_complete = "lvl-3"
+                        profile.allowed_to_rate = True
 
             if profile.date_of_birth:
                 date_calc = datetime.now()
@@ -511,11 +518,11 @@ def book_finder_user_1(request):
                 profile.age_in_years = age_now.years
 
             profile.save()
-            
+
             messages.success(request, f'Profile updated, thank you')
 
             return redirect('book_finder_user_2')
-    
+
     context = {
         'profile': profile,
         'dobgender_available': dobgender_available,
@@ -531,7 +538,8 @@ def book_finder_user_1(request):
 @login_required
 def book_finder_user_2(request):
     """
-    If user has no hobbies and no sports: start with hobbies and then in book_finder_user_3 add sports.
+    If user has no hobbies and no sports: start with hobbies and then in
+    book_finder_user_3 add sports.
     If user has only sports: add hobbies.
     If user has only hobbies: add sports.
     """
@@ -540,101 +548,103 @@ def book_finder_user_2(request):
     user_sport = profile.sports.all().order_by('name')
     no_hobbysport_available = None
 
-    # Check what profile information is available. User is known by default (pk).
+    # Check what profile information is available.
     dobgender_available = False
     onlydob_available = False
     onlygender_available = False
     onlyuser_available = False
 
-    if profile.date_of_birth == None:
+    if profile.date_of_birth is None:
         dob_available = False
     else:
         dob_available = True
 
-    if profile.gender == None:
+    if profile.gender is None:
         gender_available = False
     else:
         gender_available = True
-    
-    if dob_available == True and gender_available == True:
+
+    if dob_available is True and gender_available is True:
         dobgender_available = True
-    elif dob_available == True and gender_available == False:
+    elif dob_available is True and gender_available is False:
         onlydob_available = True
-    elif dob_available == False and gender_available == True:
+    elif dob_available is False and gender_available is True:
         onlygender_available = True
     else:
         onlyuser_available = True
-    
+
     form_hobby = UserProfileHobbyForm(instance=profile)
     form_sport = UserProfileSportForm(instance=profile)
 
     # Grab data from form
     if request.method == "POST":
-        if request.POST.get('type_of_action')=='onlyhobby_available':
-            form = UserProfileSportForm(instance=profile, data = request.POST)
-        
-        if request.POST.get('type_of_action')=='onlysport_available':
-            form = UserProfileHobbyForm(instance=profile, data = request.POST)
-            
-        if request.POST.get('type_of_action')=='no_hobbysport_available':
-            form = UserProfileHobbyForm(instance=profile, data = request.POST)
+        if request.POST.get('type_of_action') is 'onlyhobby_available':
+            form = UserProfileSportForm(instance=profile, data=request.POST)
+
+        if request.POST.get('type_of_action') is 'onlysport_available':
+            form = UserProfileHobbyForm(instance=profile, data=request.POST)
+
+        if request.POST.get('type_of_action') is 'no_hobbysport_available':
+            form = UserProfileHobbyForm(instance=profile, data=request.POST)
             no_hobbysport_available = True
-            
+
         if form.is_valid():
             form.save()
 
         # Set bools needed for bookfinder functionality
-        if profile.sports.all().exists()==True:
+        if profile.sports.all().exists() is True:
             profile.sports_known = True
         else:
             profile.sports_known = False
 
-        if profile.hobbies.all().exists()==True:
+        if profile.hobbies.all().exists() is True:
             profile.hobbies_known = True
         else:
             profile.hobbies_known = False
 
-        if profile.hobbies_known == True and profile.sports_known == True:
+        if profile.hobbies_known is True and profile.sports_known is True:
             profile.hobbies_and_sports_known = True
         else:
             profile.hobbies_and_sports_known = False
 
-        if profile.hobbies_known == True and profile.sports_known == False:
+        if profile.hobbies_known is True and profile.sports_known is False:
             profile.only_hobbies_known = True
         else:
             profile.only_hobbies_known = False
 
-        if profile.hobbies_known == False and profile.sports_known == True:
+        if profile.hobbies_known is False and profile.sports_known is True:
             profile.only_sports_known = True
         else:
             profile.only_sports_known = False
 
-        if profile.hobbies_known == False and profile.sports_known == False:
+        if profile.hobbies_known is False and profile.sports_known is False:
             profile.no_hobbies_and_sports_known = True
         else:
             profile.no_hobbies_and_sports_known = False
 
         # Update profile complete lvl
-        if profile.first_name and profile.last_name and profile.date_of_birth and profile.gender:
-            profile.profile_complete = "lvl-1"
-    
-        if profile.profile_complete == "lvl-1" and user_hobby.exists()==True or user_sport.exists()==True:
-            profile.profile_complete = "lvl-2"
+        if profile.first_name and profile.last_name and profile.date_of_birth\
+                and profile.gender:
+                    profile.profile_complete = "lvl-1"
 
-        if profile.profile_complete == "lvl-2" and user_hobby.exists()==True and user_sport.exists()==True:
-            profile.profile_complete = "lvl-3"
-            profile.allowed_to_rate = True
+        if profile.profile_complete == "lvl-1" and user_hobby.exists() is \
+                True or user_sport.exists() is True:
+                    profile.profile_complete = "lvl-2"
+
+        if profile.profile_complete == "lvl-2" and user_hobby.exists() is \
+                True and user_sport.exists() is True:
+                    profile.profile_complete = "lvl-3"
+                    profile.allowed_to_rate = True
 
         profile.save()
-        
-        messages.success(request, f'Profile updated, thank you')
-        
 
-        if  no_hobbysport_available == True:
+        messages.success(request, f'Profile updated, thank you')
+
+        if no_hobbysport_available is True:
             return redirect('book_finder_user_3')
         else:
             return redirect('book_finder_user_4')
-    
+
     context = {
         'profile': profile,
         'user_hobby': user_hobby,
@@ -649,6 +659,7 @@ def book_finder_user_2(request):
 
     return render(request, 'profiles/book_finder_user_2.html', context)
 
+
 @login_required
 def book_finder_user_3(request):
     """
@@ -661,27 +672,27 @@ def book_finder_user_3(request):
     user_hobby = profile.hobbies.all().order_by('name')
     user_sport = profile.sports.all().order_by('name')
 
-    # Check what profile information is available. User is known by default (pk).
+    # Check what profile information is available.
     dobgender_available = False
     onlydob_available = False
     onlygender_available = False
     onlyuser_available = False
 
-    if profile.date_of_birth == None:
+    if profile.date_of_birth is None:
         dob_available = False
     else:
         dob_available = True
 
-    if profile.gender == None:
+    if profile.gender is None:
         gender_available = False
     else:
         gender_available = True
-    
-    if dob_available == True and gender_available == True:
+
+    if dob_available is True and gender_available is True:
         dobgender_available = True
-    elif dob_available == True and gender_available == False:
+    elif dob_available is True and gender_available is False:
         onlydob_available = True
-    elif dob_available == False and gender_available == True:
+    elif dob_available is False and gender_available is True:
         onlygender_available = True
     else:
         onlyuser_available = True
@@ -689,53 +700,56 @@ def book_finder_user_3(request):
     form_sport = UserProfileSportForm(instance=profile)
 
     if request.method == "POST":
-        form = UserProfileSportForm(instance=profile, data = request.POST)
+        form = UserProfileSportForm(instance=profile, data=request.POST)
         if form.is_valid():
             form.save()
 
             # Set bools needed for bookfinder functionality
-            if profile.sports.all().exists()==True:
+            if profile.sports.all().exists() is True:
                 profile.sports_known = True
             else:
                 profile.sports_known = False
-            
-            if profile.hobbies_known == True and profile.sports_known == True:
+
+            if profile.hobbies_known is True and profile.sports_known is True:
                 profile.hobbies_and_sports_known = True
             else:
                 profile.hobbies_and_sports_known = False
 
-            if profile.hobbies_known == True and profile.sports_known == False:
+            if profile.hobbies_known is True and profile.sports_known is False:
                 profile.only_hobbies_known = True
             else:
                 profile.only_hobbies_known = False
 
-            if profile.hobbies_known == False and profile.sports_known == True:
+            if profile.hobbies_known is False and profile.sports_known is True:
                 profile.only_sports_known = True
             else:
                 profile.only_sports_known = False
 
-            if profile.hobbies_known == False and profile.sports_known == False:
+            if profile.hobbies_known is False and profile.sports_known is False:
                 profile.no_hobbies_and_sports_known = True
             else:
                 profile.no_hobbies_and_sports_known = False
 
             # Update profile complete lvl
-            if profile.first_name and profile.last_name and profile.date_of_birth and profile.gender:
-                profile.profile_complete = "lvl-1"
-        
-            if profile.profile_complete == "lvl-1" and user_hobby.exists()==True or user_sport.exists()==True:
-                profile.profile_complete = "lvl-2"
+            if profile.first_name and profile.last_name\
+                    and profile.date_of_birth and profile.gender:
+                        profile.profile_complete = "lvl-1"
 
-            if profile.profile_complete == "lvl-2" and user_hobby.exists()==True and user_sport.exists()==True:
-                profile.profile_complete = "lvl-3"
-                profile.allowed_to_rate = True
+            if profile.profile_complete == "lvl-1" and user_hobby.exists() is \
+                    True or user_sport.exists() is True:
+                        profile.profile_complete = "lvl-2"
+
+            if profile.profile_complete == "lvl-2" and user_hobby.exists() is \
+                    True and user_sport.exists() is True:
+                        profile.profile_complete = "lvl-3"
+                        profile.allowed_to_rate = True
 
             profile.save()
-            
+
             messages.success(request, f'Profile updated, thank you')
 
             return redirect('book_finder_user_4')
-    
+
     context = {
         'profile': profile,
         'user_hobby': user_hobby,
@@ -752,8 +766,9 @@ def book_finder_user_3(request):
 
 @login_required
 def book_finder_user_4(request):
-    """ 
-    Books that fit your profile! Based on age, gender, hobbies, sports and your own ratings.
+    """
+    Books that fit your profile! Based on age, gender, hobbies, sports
+    and your own ratings.
     """
 
     user = get_object_or_404(User, username=request.user)
@@ -761,12 +776,12 @@ def book_finder_user_4(request):
     user_hobby = profile.hobbies.all().order_by('name')
     user_sport = profile.sports.all().order_by('name')
     categories = Category.objects.all()
-    
+
     # Collect users' hobbies and find ratings with the same hobbies.
-    # Then filter on high rating and users' gender and age 
+    # Then filter on high rating and users' gender and age
     hobby_ids = user_hobby.values('id')
     a = Rating.objects.filter(hobbies__in=hobby_ids,
-                              gender=profile.gender, \
+                              gender=profile.gender,
                               rating__gte=4,
                               age_rating_years=profile.age_in_years)
     b = a.values('book_id_id')
@@ -821,7 +836,7 @@ def book_finder_user_5(request):
             user_sport.exists() is True:
                 profile.profile_complete = "lvl-2"
 
-    if profile.profile_complete == "lvl-2" and user_hobby.exists() is True \
+    if profile.profile_complete is "lvl-2" and user_hobby.exists() is True \
             and user_sport.exists() is True:
                 profile.profile_complete = "lvl-3"
                 profile.allowed_to_rate = True

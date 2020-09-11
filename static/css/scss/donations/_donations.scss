@@ -5,20 +5,26 @@
     @include tablet {
 
         width: 80%;
+
     }
 
     @include l_laptop {
 
         width: 80%;
+
     }
 
     p {
+
         font-size: 1.2rem;
         padding: 0 1rem;
+
     }
 
     h4 {
+
         padding: 1rem;
+
     }
 
     &__type {
@@ -57,11 +63,13 @@
             &--blue {
 
                 background-color: $mainBlue;
+
             }
 
             &--teal {
 
                 background-color: $mainPurple;
+
             }
 
             &--row2 {
@@ -79,7 +87,9 @@
                 small {
 
                     margin-top: -1.5rem;
+
                 }
+                
             }
 
             &--btn {

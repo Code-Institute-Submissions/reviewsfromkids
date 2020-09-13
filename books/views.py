@@ -299,11 +299,10 @@ def book_detail(request, book_id):
         # Rating girls only
         girls_rating = Rating.objects.filter(book_id=current_book, gender='GIRL')
         girls_number_of_ratings = len(girls_rating)
-        girls_total_rating_sum = girls_rating.aggregate(sum=Sum('rating'))
-        ['sum']
+        girls_total_rating_sum = girls_rating.aggregate(sum=Sum('rating'))['sum']
 
         if girls_number_of_ratings > 0:
-            girls_avg_rating = round(girls_total_rating_sum / girls_number_of_ratings, 1)
+            girls_avg_rating = round(girls_total_rating_sum/girls_number_of_ratings, 1)
         else:
             girls_avg_rating = 0
 

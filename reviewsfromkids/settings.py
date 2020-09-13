@@ -18,7 +18,8 @@ if os.path.exists("env.py"):
     DEBUG = True
     ALLOWED_HOSTS = []
 else:
-    DEBUG = 'DEVELOPMENT' in os.environ
+    DEBUG = True
+    # DEBUG = 'DEVELOPMENT' in os.environ
     ALLOWED_HOSTS = ['reviewsfromkids.herokuapp.com', 'localhost']
 
 # Application definition

@@ -82,10 +82,12 @@ def edit_personal(request):
             if profile.first_name and profile.last_name and \
                     profile.date_of_birth and profile.gender:
                         profile.profile_complete = "lvl-1"
+                        profile.allowed_to_rate = False
 
             if profile.profile_complete == "lvl-1" and \
                     user_hobby.exists() is True or user_sport.exists() is True:
                         profile.profile_complete = "lvl-2"
+                        profile.allowed_to_rate = False
 
             if profile.profile_complete == "lvl-2" and user_hobby.exists() is \
                     True and user_sport.exists() is True:
@@ -157,10 +159,12 @@ def edit_hobby(request):
             if profile.first_name and profile.last_name and \
                     profile.date_of_birth and profile.gender:
                         profile.profile_complete = "lvl-1"
+                        profile.allowed_to_rate = False
 
             if profile.profile_complete == "lvl-1" and user_hobby.exists() is \
                     True or user_sport.exists() is True:
                         profile.profile_complete = "lvl-2"
+                        profile.allowed_to_rate = False
 
             if profile.profile_complete == "lvl-2" and user_hobby.exists() \
                     is True and user_sport.exists() is True:
@@ -227,10 +231,12 @@ def edit_sport(request):
             if profile.first_name and profile.last_name and \
                     profile.date_of_birth and profile.gender:
                         profile.profile_complete = "lvl-1"
+                        profile.allowed_to_rate = False
 
             if profile.profile_complete == "lvl-1" and \
                     user_hobby.exists() is True or user_sport.exists() is True:
                         profile.profile_complete = "lvl-2"
+                        profile.allowed_to_rate = False
 
             if profile.profile_complete == "lvl-2" and \
                 user_hobby.exists() is True and \
@@ -299,10 +305,12 @@ def book_finder_edit_hobby(request):
             if profile.first_name and profile.last_name and \
                     profile.date_of_birth and profile.gender:
                         profile.profile_complete = "lvl-1"
+                        profile.allowed_to_rate = False
 
             if profile.profile_complete == "lvl-1" and user_hobby.exists() \
                     is True or user_sport.exists() is True:
                         profile.profile_complete = "lvl-2"
+                        profile.allowed_to_rate = False
 
             if profile.profile_complete == "lvl-2" and user_hobby.exists() \
                     is True and user_sport.exists() is True:
@@ -371,10 +379,12 @@ def book_finder_edit_sport(request):
             if profile.first_name and profile.last_name and \
                     profile.date_of_birth and profile.gender:
                         profile.profile_complete = "lvl-1"
+                        profile.allowed_to_rate = False
 
             if profile.profile_complete == "lvl-1" and user_hobby.exists() is\
                     True or user_sport.exists() is True:
                         profile.profile_complete = "lvl-2"
+                        profile.allowed_to_rate = False
 
             if profile.profile_complete == "lvl-2" and user_hobby.exists() is \
                     True and user_sport.exists() is True:
@@ -504,10 +514,12 @@ def book_finder_user_1(request):
             if profile.first_name and profile.last_name and \
                     profile.date_of_birth and profile.gender:
                         profile.profile_complete = "lvl-1"
+                        profile.allowed_to_rate = False
 
             if profile.profile_complete == "lvl-1" and \
                     user_hobby.exists() is True or user_sport.exists() is True:
                         profile.profile_complete = "lvl-2"
+                        profile.allowed_to_rate = False
 
             if profile.profile_complete == "lvl-2" and \
                     user_hobby.exists() is True and user_sport.exists() is True:
@@ -580,13 +592,13 @@ def book_finder_user_2(request):
 
     # Grab data from form
     if request.method == "POST":
-        if request.POST.get('type_of_action') is 'onlyhobby_available':
+        if request.POST.get('type_of_action') == 'onlyhobby_available':
             form = UserProfileSportForm(instance=profile, data=request.POST)
 
-        if request.POST.get('type_of_action') is 'onlysport_available':
+        if request.POST.get('type_of_action') == 'onlysport_available':
             form = UserProfileHobbyForm(instance=profile, data=request.POST)
 
-        if request.POST.get('type_of_action') is 'no_hobbysport_available':
+        if request.POST.get('type_of_action') == 'no_hobbysport_available':
             form = UserProfileHobbyForm(instance=profile, data=request.POST)
             no_hobbysport_available = True
 
@@ -628,10 +640,12 @@ def book_finder_user_2(request):
         if profile.first_name and profile.last_name and profile.date_of_birth\
                 and profile.gender:
                     profile.profile_complete = "lvl-1"
+                    profile.allowed_to_rate = False
 
         if profile.profile_complete == "lvl-1" and user_hobby.exists() is \
                 True or user_sport.exists() is True:
                     profile.profile_complete = "lvl-2"
+                    profile.allowed_to_rate = False
 
         if profile.profile_complete == "lvl-2" and user_hobby.exists() is \
                 True and user_sport.exists() is True:
@@ -833,10 +847,12 @@ def book_finder_user_5(request):
     if profile.first_name and profile.last_name and profile.date_of_birth and \
             profile.gender:
                 profile.profile_complete = "lvl-1"
+                profile.allowed_to_rate = False
 
     if profile.profile_complete == "lvl-1" and user_hobby.exists() is True or \
             user_sport.exists() is True:
                 profile.profile_complete = "lvl-2"
+                profile.allowed_to_rate = False
 
     if profile.profile_complete is "lvl-2" and user_hobby.exists() is True \
             and user_sport.exists() is True:

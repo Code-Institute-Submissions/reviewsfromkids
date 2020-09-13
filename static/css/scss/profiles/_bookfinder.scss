@@ -17,7 +17,9 @@
                 width: 380px;
 
             }
+
         }
+
     }
 
     @include tablet {
@@ -31,9 +33,11 @@
         margin: 2rem auto 0 auto;
         display: block;
         width: 125px;
+
     }
 
     &__back {
+
         display: block;
         text-align: center;
         font-size: 0.8rem;
@@ -44,7 +48,9 @@
             text-align: start;
 
         }
+
     }
+
 }
 
 .form-wrapper {
@@ -55,6 +61,7 @@
     @include tablet {
 
         width: 300px;
+        
     }
 
 }

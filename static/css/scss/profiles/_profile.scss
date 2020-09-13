@@ -10,7 +10,9 @@
         .tab-content {
 
             width: 585px;
+
         }
+
     }
     
     &__title {
@@ -23,7 +25,9 @@
         &--sub {
 
             margin: 1rem auto 2rem auto;
+
         }
+
     }
 
     @include tablet {
@@ -34,6 +38,7 @@
         text-align: center;
 
         }
+
     }
 
     &__pills {
@@ -54,9 +59,11 @@
         @include l_laptop {
 
             width: 580px;
+
         }
 
         a {
+
             color: $mainTeal;
             background-color: white;
             padding: 0.5rem 1rem;
@@ -75,6 +82,7 @@
             background-color: $mainTeal;
             border: none;
             box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+
         }
 
     }
@@ -84,6 +92,7 @@
         h3 {
 
             color: $mainTeal;
+
         }
 
         &--btn {
@@ -91,6 +100,7 @@
             width: 125px;
             margin: 2rem auto;
             display: block;
+
         }
 
         &-grid {
@@ -102,8 +112,11 @@
 
                 display: grid;
                 grid-template-columns: 1fr 1fr;
+
             }
+
         }
+
     }
 
     &__hobbysport {
@@ -111,6 +124,7 @@
         h3 {
 
             color: $mainTeal;
+
         }
 
         ul {
@@ -131,6 +145,7 @@
             ul li {
                 
                 list-style: none;
+
             }
 
         }
@@ -144,6 +159,7 @@
             padding: 0.2rem 0.4rem;
             margin: 0.3rem;
             list-style: none;
+
         }
 
     }
@@ -151,6 +167,7 @@
     &__icon--edit {
 
         color: $mainTeal;
+        
     }
 
 }

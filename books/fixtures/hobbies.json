@@ -43,5 +43,10 @@
        "fields": {
            "name": "play an instrument" 
           }
+    },
+    {"pk": 10, "model": "profiles.hobby",
+       "fields": {
+           "name": "no hobbies..." 
+          }
     }
 ]

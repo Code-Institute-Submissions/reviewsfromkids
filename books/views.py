@@ -1,14 +1,17 @@
+from dateutil.relativedelta import relativedelta, MO
+from datetime import datetime
+from statistics import mode
+
+import math
+
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.db.models import Q, Sum, Count, Avg
 from django.shortcuts import render, redirect, reverse, get_object_or_404
+
+from .filters import BookFilter
 from .models import Book, Category, Rating
 from profiles.models import UserProfile, Hobby, Sport
-from django.db.models import Q, Sum, Count, Avg
-from django.contrib import messages
-from .filters import BookFilter
-from datetime import datetime
-from dateutil.relativedelta import relativedelta, MO
-from django.contrib.auth.decorators import login_required
-from statistics import mode
-import math
 
 
 def all_books(request):

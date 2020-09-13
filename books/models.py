@@ -1,8 +1,10 @@
-from django.db import models
-from django.contrib.auth.models import User
 from taggit.managers import TaggableManager
-from profiles.models import UserProfile, Hobby, Sport
+
+from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
+from django.db import models
+
+from profiles.models import UserProfile, Hobby, Sport
 
 
 # Create your models here.

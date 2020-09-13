@@ -1,9 +1,9 @@
 from django.contrib import admin
+
 from .models import Book, Category, Rating
 
+
 # Register your models here.
-
-
 class BookAdmin(admin.ModelAdmin):
     list_display = (
         'pk',

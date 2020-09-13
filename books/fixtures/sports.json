@@ -41,7 +41,7 @@
     },
     {"pk": 9, "model": "profiles.sport",
        "fields": {
-           "name": "gymnastics" 
+           "name": "no sports..." 
           }
     }
 ]

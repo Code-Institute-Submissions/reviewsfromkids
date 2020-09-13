@@ -1,5 +1,7 @@
 html, body {
+
     width: 100%;
+
 }
 
 .generic-wrapper {
@@ -34,6 +36,7 @@ html, body {
         margin-top: 5rem;
 
     }
+
 }
 
 .allauth-wrapper {
@@ -65,11 +68,14 @@ html, body {
 
         color: $mainPurple;
         font-weight: 600;
-        margin-bottom: 1rem;;
+        margin-bottom: 1rem;
+
     }
 
     p {
+
         font-size: 1.2rem;
+
     }
 
     .btn {
@@ -83,6 +89,7 @@ html, body {
             width: 200px;
 
         }
+
     }
 
 }
@@ -95,17 +102,22 @@ html, body {
     @include tablet {
 
         width: 400px;
+
     }
     
-    h1, h4 {
+    h1, 
+    h4 {
 
         color: $mainPurple;
         font-weight: 600;
-        margin-bottom: 1rem;;
+        margin-bottom: 1rem;
+
     }
 
     p {
+
         font-size: 1.2rem;
+
     }
 
     .btn {
@@ -113,6 +125,7 @@ html, body {
         display: block;
         margin: 3rem auto 0 auto;
         width: 125px;
+
     }
 
 }
@@ -125,11 +138,14 @@ html, body {
 }
 
 .btn-link {
+
     border: none;
     background-color: initial;
 
     &--red {
+
         color: red;
+
     }
 
 }
@@ -138,6 +154,7 @@ html, body {
 
     background: none;
     border: none;
+
 }
 
 .btn {
@@ -175,7 +192,9 @@ html, body {
                 background-color: #fff;
             
             }
+
         }
+
     }
 
     &--tag {
@@ -193,9 +212,10 @@ html, body {
                 border: solid 1px  white;
 
             }
+        
         } 
-    }
     
+    }
     
 }
 
@@ -210,32 +230,43 @@ html, body {
 }
 
 .strip-margin {
+
     margin: 0;
+
 }
 
 .scrolling-wrapper {
+
     overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;
   
     &__card {
+
       display: inline-block;
+
     }
+
   }
 
 .emphasis1 {
+
     color: $mainPink;
     font-weight: 700;
+
 }
 
 .emphasis-orange {
+
     color: $mainYellow;
     font-weight: 700;
     font-size: 2rem;
+
 }
 
 .align-center {
 
     text-align: center;
     display: block;
+    
 }

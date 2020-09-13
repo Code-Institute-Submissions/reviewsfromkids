@@ -540,7 +540,8 @@ html, body {
     width: 400px;
   }
 }
-.error-page h1, .error-page h4 {
+.error-page h1,
+.error-page h4 {
   color: #7d51a1;
   font-weight: 600;
   margin-bottom: 1rem;
@@ -1364,6 +1365,7 @@ h2.book-details__title {
 .book-result__content-area {
   display: grid;
   grid-template-rows: 1.3rem auto 1fr auto auto auto;
+  row-gap: 0.2rem;
 }
 .book-result__content-area--row1 {
   grid-row: 1;
@@ -1504,12 +1506,12 @@ h2.book-details__title {
 }
 @media (min-width: 768px) {
   .donations {
-    width: 80%;
+    width: 83%;
   }
 }
 @media (min-width: 1200px) {
   .donations {
-    width: 80%;
+    width: 55%;
   }
 }
 .donations p {

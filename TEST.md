@@ -306,7 +306,7 @@ Upon account creation, an empty userprofile is created. User can update this pro
 
 The main mechanism is the book finder. The secundary flow is directly in 'my profile'.
 
-For book finder see [Logged in user lvl-0](#logged_in_user_lvl-0).
+For book finder see [Logged in user lvl-0](#logged-in-user-lvl-0).
 
 The 'my profile' flow:
 - On mobile devices open the navigation and click on my profile.
@@ -401,7 +401,7 @@ The 'my profile' flow:
 
 
 ### User story 10. Get personalized recommendations
-This user story is covered by User story 3. Search a book. 
+This user story is covered by [User story 3. Search a book](#user-story-3.-search-a-book). 
 
 
 ### User story 11. Make a donation

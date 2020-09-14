@@ -153,7 +153,7 @@ This loads the sign up page. Go to [user story 4](#user-story-4-easily-register-
     - Form with checkboxes for hobbies.
     - Next button to go to step 3.
     - Back button to go to step 1.
-- Select the following hobbies: [vastleggen welke ze moeten kiezen].
+- Select the following hobbies: lego, play outside and reading.
 - Click "next".
 
 ##### book_finder_user_3
@@ -163,7 +163,7 @@ This loads the sign up page. Go to [user story 4](#user-story-4-easily-register-
     - Form with checkboxes for sports.
     - Finish button to go to results.
     - Back button to go to step 2.
-- Select the following sports: [vastleggen welke sports].
+- Select the following sports: rugby and football.
 - Click "finish".
 
 ##### book_finder_user_4
@@ -402,7 +402,16 @@ The 'my profile' flow:
 
 
 ### User story 10. Get personalized recommendations
-This user story is covered by [User story 3. Search a book](#user-story-3-search-a-book). 
+This user story is also covered by [User story 3. Search a book](#user-story-3-search-a-book).
+
+To really see the recommendations change:
+- Log in to your account.
+- Change the gender to girl.
+- Change your hobbies to dancing, music and reading.
+- Change your sports to gymnastics and swimming.
+- Start the bookfinder again.
+- You see different recommendations now.
+- Note that if you rate a book that is on your recommendations list, this book disappears from your list. 
 
 
 ### User story 11. Make a donation

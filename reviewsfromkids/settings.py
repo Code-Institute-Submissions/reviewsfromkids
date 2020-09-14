@@ -206,4 +206,4 @@ else:
     EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASS')
     DEFAULT_FROM_EMAIL = 'teamreviewsfromkids@gmail.com'
 
-SITE_ID = 1
+SITE_ID = 2

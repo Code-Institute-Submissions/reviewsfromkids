@@ -21,7 +21,7 @@ Conform the instructions on the [offical Django site](https://docs.djangoproject
 
 "An exception to PEP 8 is our rules on line lengths. Don’t limit lines of code to 79 characters if it means the code looks significantly uglier or is harder to read. We allow up to 119 characters as this is the width of GitHub code review; anything longer requires horizontal scrolling which makes review more difficult. This check is included when you run flake8. Documentation, comments, and docstrings should be wrapped at 79 characters, even though PEP 8 suggests 72."
 
-## User stories
+## User stories - main user
 Each user story is tested thoroughly. All steps are taken in the main browsers at 3 different viewports: mobile (including tablet) and desktop.
 Some user stories have variations based on the completeness of the profile. Profile completeness levels:
 
@@ -436,6 +436,52 @@ This user story is covered by [User story 3. Search a book](#user-story-3-search
 - Complete the form and send.
 - You see the contact page reload with empty fields.
 - You see a success message that stays on screen until you close it or navigate away.
+
+
+## User stories - site owner
+
+### User story 1. Easily upload new books
+There are two ways to upload a book.
+
+1. Via the admin:
+    - Go to the locally deployed site http://127.0.0.1:8000/admin and log in using your superuser credentials.
+    - Locate the Books section and click add.
+    - Complete the fields and save the new entry.
+
+2. Via json fixtures:
+    - Open the cloned project in an editor like VSC.
+    - Go to the books app and locate the folder fixtures.
+    - Open the file books.json.
+    - Add new entries to the list and save.
+    - Open the command line and type: ```python manage.py loaddata books```.
+    - The new books are loaded into the database.
+    - Note: if there are books in the json that are already in the database, these books are overwritten. In other words, if you want to add new books only, delete existing books from the json file.
+
+### User story 2. Easily promote new books
+The site owner has two ways to promote books.
+
+1. Featured books:
+    - Go to the locally deployed site http://127.0.0.1:8000/admin and log in using your superuser credentials.
+    - Locate the Books section and open the folder.
+    - Open the book that you want to add to featured books.
+    - Tick the box 'featured item' and save.
+    - Note that the featured items are limited to show four books. If you want to show more than four, you can change the limitation in the file:
+        - index.html (in the home app).
+        - Line 48 ```{% if forloop.counter < 5 %}```.
+        - Change the number to your liking.
+
+2. Recently added books:
+- This is automnatically showing new books that are added after a specific date.
+- The rule is static at the moment, but can be set to a rolling date (for instance like the last seven days).
+- You can change this in the file:
+    - views.py (in the home app).
+    - Line 16 ```recent_books = Book.objects.filter(date_added="2020-07-16")```.
+    - Change the date rule to your liking.
+- Note that the recently added books are limited to show eight books. If you want to show more than eight, you can change the limitation in the file:
+        - index.html (in the home app).
+        - Line 68 ```{% if forloop.counter < 9 %}```.
+        - Change the number to your liking.
+
 
 ## Features
 Most of the features are covered by the test of user stories. Remaining features are tested individually and work as intended.

@@ -402,7 +402,7 @@ The 'my profile' flow:
 
 
 ### User story 10. Get personalized recommendations
-This user story is covered by [User story 3. Search a book](#user-story-3search-a-book). 
+This user story is covered by [User story 3. Search a book](#user-story-3-search-a-book). 
 
 
 ### User story 11. Make a donation

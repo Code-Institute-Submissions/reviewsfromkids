@@ -182,7 +182,7 @@ The site has been designed defensively, gating content and functionality. This i
 - Call to action in hero is to check your recommendations.
 - Call to action at bottom is to start.
 - Both calls to action link to results of book finder.
-</details>
+
 
 #### Book finder
 The book finder is a tool with two objectives:
@@ -263,7 +263,7 @@ The book finder is a tool with two objectives:
 - Button to go to find_user_2 (so, skip find_user_1, since this information is available).
 - Back button to go back to home.
 
-The rest of the flow is similar to that of lvl-0 users. Starting at [book_finder_user_2](#book-finder-user-2).
+The rest of the flow is similar to that of lvl-0 users. Starting at [book_finder_user_2](#book_finder_user_2).
 
 ##### Logged in user with lvl-2
 ###### book_finder_user:
@@ -282,7 +282,7 @@ The rest of the flow is similar to that of lvl-0 users. Starting at [book_finder
 See [book_finder_user_4](#book_finder_user_4) above.
 
 ##### Logged in user with lvl-3
-User has completed the profile and goes to the results directly. See [book_finder_user_4](#book-finder-user-4) above.
+User has completed the profile and goes to the results directly. See [book_finder_user_4](#book_finder_user_4) above.
 
 
 #### All books page

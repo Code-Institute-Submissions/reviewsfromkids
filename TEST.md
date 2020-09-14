@@ -119,7 +119,7 @@ On the home page:
     - If no account: call to action links to sign up page.
 - Click the button 'Go'.
 
-This loads the sign up page. Go to [user story 4](#user-story-4) to sign up for an account. When complete, continue the user story as logged in user.
+This loads the sign up page. Go to [user story 4](#user-story-4easily-register-for-an-account) to sign up for an account. When complete, continue the user story as logged in user.
 
 #### Logged in user lvl-0
 - You read the message "Find your next favorite book."
@@ -253,6 +253,7 @@ The signup flow is:
 - You see the login page and a short notification that the email address was confirmed.
 - Log in to check your account.
 
+In case you follow user story 3: go back to user story 3, [logged in user lvl-0](#logged-in-user-lvl-0).
 
 ### User story 5. Easily log in or out
 #### Log in
@@ -347,11 +348,11 @@ The 'my profile' flow:
     - If positive rating (4 or 5 stars): all books with your positive rating.
     - If neutral rating (3 stars): all books with your neutral rating.
     - If negative rating (1 and 2 stars): all books with your negative rating.
-- Books are displayed in table row format. Similar to [All books page](#all-books-page).
+- Books are displayed in table row format. Similar to [All books page](https://github.com/ChiefChingu/reviewsfromkids/blob/master/README.md#all-books-page).
 
 ##### Want to read
 - If no books on list, teaser to add books.
-- If books on list, books are displayed in table row format. Similar to [All books page](#all-books-page).
+- If books on list, books are displayed in table row format. Similar to [All books page](https://github.com/ChiefChingu/reviewsfromkids/blob/master/README.md#all-books-page).
 - All books have a yellow heart.
 
 
@@ -401,7 +402,7 @@ The 'my profile' flow:
 
 
 ### User story 10. Get personalized recommendations
-This user story is covered by [User story 3. Search a book](#user-story-3.-search-a-book). 
+This user story is covered by [User story 3. Search a book](#user-story-3search-a-book). 
 
 
 ### User story 11. Make a donation

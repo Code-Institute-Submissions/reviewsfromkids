@@ -119,7 +119,7 @@ On the home page:
     - If no account: call to action links to sign up page.
 - Click the button 'Go'.
 
-This loads the sign up page. Go to [user story 4](#user-story-4easily-register-for-an-account) to sign up for an account. When complete, continue the user story as logged in user.
+This loads the sign up page. Go to [user story 4](#user-story-4-easily-register-for-an-account) to sign up for an account. When complete, continue the user story as logged in user.
 
 #### Logged in user lvl-0
 - You read the message "Find your next favorite book."

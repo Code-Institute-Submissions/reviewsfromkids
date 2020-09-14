@@ -279,7 +279,7 @@ The rest of the flow is similar to that of lvl-0 users. Starting at [book_finder
 - Save button to go to step 4.
 - Back button to go to step 1.
 
-See [book_finder_user_4](#book-finder-user-4) above.
+See [book_finder_user_4](#book_finder_user_4) above.
 
 ##### Logged in user with lvl-3
 User has completed the profile and goes to the results directly. See [book_finder_user_4](#book-finder-user-4) above.
@@ -541,7 +541,7 @@ For more details, please view the models.py files of the respective apps.
     - [https://www.djangoproject.com/](https://www.djangoproject.com/)
 
 
-## Python/Django packages
+#### Python/Django packages
 A host of packages are used in this project. Please view the [requirements.txt](https://github.com/ChiefChingu/reviewsfromkids/blob/master/requirements.txt) to see the complete list.
 
 ### Libraries

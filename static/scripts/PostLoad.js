@@ -1,3 +1,4 @@
+//Hide and show navigation
 var prevScrollpos = window.pageYOffset;
 
 window.onscroll = function() {
@@ -30,5 +31,5 @@ function showHeader() {
 
 }
 
-
+//Toasts
 $('.toast').toast('show');

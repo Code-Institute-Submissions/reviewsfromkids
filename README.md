@@ -55,7 +55,7 @@ When designing this project a lot of ideas came up. Keeping the main objective i
 - Most liked by: based on ratings show whether the book is recommened most by boys or girls.
 - Recommended age: based on ratings show the most frequent age of users that rated the book.
 
-### Structure Plane TODO
+### Structure Plane
 The structure of the site is straightforward: a homepage connects to the books overview page, the bookfinder, the donations page and the usual pages for about, contact, registration, login, privacy and cookies. When logged in, the homepage also connects to the profile page.
 
 - The books overview has the book details as children.
@@ -64,7 +64,7 @@ The structure of the site is straightforward: a homepage connects to the books o
 
 Schematically, this looks as follows:
 
-![structure-plane]()
+![structure-plane](https://github.com/ChiefChingu/reviewsfromkids/blob/master/structure-plane.png)
 
 In Django terms this structure resulted in four apps:
 
@@ -76,10 +76,10 @@ In Django terms this structure resulted in four apps:
 At first there was a fith app 'Ratings'. However, while developing it soon became clear that it was more efficient to integrate this into the Books app.
 
 
-### Skeleton Plane TODO
+### Skeleton Plane
 This project is designed with the mobile user in mind: mobile first and desktop second. The mobile viewport is the baseline. Media queries are used to handle the larger viewports.
 
-The wireframes are found [here](). 
+The wireframes are found [here](https://github.com/ChiefChingu/reviewsfromkids/blob/master/wireframes%20reviewsfromkids.pdf). 
 
 ### Surface Plane
 The final product can be viewed [here](https://reviewsfromkids.herokuapp.com).
@@ -287,7 +287,7 @@ User has completed the profile and goes to the results directly. See [book_finde
 
 #### All books page
 The all books page shows all books. 
-- On mobile screens it shows a search button at the top. On click a search panel is toggled (see search for more details).
+- On mobile screens it shows a search button at the top. On click a search panel is toggled (see [search](#search) for more details).
 - On larger screens the screen is split in two columns. The left column is dedicated to search. The right column shows all books and/or the search results (see search for more details).
 - Books are in a table row format. Every book shows:
     - Image of front cover.
@@ -510,7 +510,7 @@ The project uses relational databases SQLite and PostgreSQL. At the start when l
 ### Database Overview
 The database overview is displayed below.
 
-![database-overview]()
+![database-overview](https://github.com/ChiefChingu/reviewsfromkids/blob/master/db-overview.png)
 
 At the start of the project I created tables for features like the favorites list. Later it became clear that this was not necessary: lots of data points are now integrated in the book, ratings and userprofile tables.
 
